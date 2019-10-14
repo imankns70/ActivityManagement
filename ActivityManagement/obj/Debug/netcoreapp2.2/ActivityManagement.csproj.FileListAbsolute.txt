@@ -1,0 +1,14 @@
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.deps.json
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.runtimeconfig.json
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.runtimeconfig.dev.json
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.dll
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.pdb
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.csproj.CoreCompileInputs.cache
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.RazorAssemblyInfo.cache
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.RazorAssemblyInfo.cs
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.AssemblyInfoInputs.cache
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.AssemblyInfo.cs
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.RazorTargetAssemblyInfo.cache
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.dll
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.pdb
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.csprojAssemblyReference.cache

@@ -1,0 +1,8 @@
+E:\project\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp2.2\ActivityManagement.IocConfig.deps.json
+E:\project\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp2.2\ActivityManagement.IocConfig.dll
+E:\project\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp2.2\ActivityManagement.IocConfig.pdb
+E:\project\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.csproj.CoreCompileInputs.cache
+E:\project\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.AssemblyInfoInputs.cache
+E:\project\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.AssemblyInfo.cs
+E:\project\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.dll
+E:\project\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.pdb
