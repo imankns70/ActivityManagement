@@ -12170,11 +12170,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\ActivityManagement\\activitymanagement\\ActivityManagement.csproj",
+      "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement\\ActivityManagement.csproj",
       "projectName": "ActivityManagement",
-      "projectPath": "E:\\project\\ActivityManagement\\activitymanagement\\ActivityManagement.csproj",
+      "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement\\ActivityManagement.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\ActivityManagement\\activitymanagement\\obj\\",
+      "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

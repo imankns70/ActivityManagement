@@ -7,9 +7,9 @@ namespace ActivityManagement.DomainClasses.Entities.Business
         public int TeamSettingId { get; set; }
         public string Title { get; set; }
         public bool CheckSupervisor { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public virtual Team Team{get;set;}
-        public Guid TeamId {get;set;}
+        public int TeamId {get;set;}
          
              
 

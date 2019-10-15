@@ -15,3 +15,4 @@ E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.AssemblyInfo.cs
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.dll
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.pdb
+E:\project\activityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.csprojAssemblyReference.cache

@@ -10,7 +10,6 @@ namespace ActivityManagement.DataLayer.Mapping.Business
         {
            builder.ToTable("TeamSetting");
            builder.HasKey(x=>x.TeamSettingId);
-           builder.Property(x=>x.CheckSupervisor).IsRequired(false);
            builder.HasOne(x=>x.Team).WithMany(c=>c.TeamSettings).HasForeignKey(c=>c.TeamId);
         }
     }
