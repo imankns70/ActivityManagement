@@ -12,3 +12,12 @@ E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\Activit
 E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.dll
 E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.pdb
 E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.csprojAssemblyReference.cache
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.dll
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.pdb
+E:\project\ActivityManagement\ActivityManagement\obj\Debug\netcoreapp2.2\ActivityManagement.csproj.CopyComplete
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.DataLayer.dll
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.dll
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.DataLayer.pdb
+E:\project\ActivityManagement\ActivityManagement\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
+E:\project\ActivityManagement\activitymanagement\bin\Debug\netcoreapp2.2\ActivityManagement.IocConfig.dll
+E:\project\ActivityManagement\activitymanagement\bin\Debug\netcoreapp2.2\ActivityManagement.IocConfig.pdb

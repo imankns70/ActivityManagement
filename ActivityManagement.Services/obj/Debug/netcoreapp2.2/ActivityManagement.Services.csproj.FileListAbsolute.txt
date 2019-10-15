@@ -10,7 +10,6 @@ E:\project\ActivityManagement\BusinessLayer\obj\Debug\netcoreapp2.2\ActivityMana
 E:\project\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2.2\ActivityManagement.Services.deps.json
 E:\project\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2.2\ActivityManagement.Services.dll
 E:\project\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2.2\ActivityManagement.Services.pdb
-E:\project\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.csprojAssemblyReference.cache
 E:\project\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.csproj.CoreCompileInputs.cache
 E:\project\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.AssemblyInfoInputs.cache
 E:\project\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.AssemblyInfo.cs
