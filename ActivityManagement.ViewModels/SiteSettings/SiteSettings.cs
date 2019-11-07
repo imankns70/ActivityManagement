@@ -1,4 +1,4 @@
-﻿namespace ActivityManagement.ViewModels.Settings
+﻿namespace ActivityManagement.ViewModels.SiteSettings
 {
     public class SiteSettings
     {
