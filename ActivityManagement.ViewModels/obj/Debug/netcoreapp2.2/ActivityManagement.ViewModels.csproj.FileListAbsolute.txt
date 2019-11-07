@@ -10,9 +10,16 @@ E:\project\ActivityManagement\ViewModels\obj\Debug\netcoreapp2.2\ActivityManagem
 E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.deps.json
 E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.dll
 E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.pdb
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.DataLayer.dll
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.dll
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.dll
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.DataLayer.pdb
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
+E:\project\ActivityManagement\ActivityManagement.ViewModels\bin\Debug\netcoreapp2.2\Newtonsoft.Json.xml
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.csprojAssemblyReference.cache
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.csproj.CoreCompileInputs.cache
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.AssemblyInfoInputs.cache
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.AssemblyInfo.cs
+E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.csproj.CopyComplete
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.dll
 E:\project\ActivityManagement\ActivityManagement.ViewModels\obj\Debug\netcoreapp2.2\ActivityManagement.ViewModels.pdb
