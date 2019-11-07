@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\project\\activityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {}
+    "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {}
   },
   "projects": {
-    "E:\\project\\activityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+    "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\activityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
         "projectName": "ActivityManagement.DataLayer",
-        "projectPath": "E:\\project\\activityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\activityManagement\\ActivityManagement.DataLayer\\obj\\",
+        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-                "projectPath": "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+              "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+    "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "projectName": "ActivityManagement.DomainClasses",
-        "projectPath": "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\activityManagement\\ActivityManagement.DomainClasses\\obj\\",
+        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

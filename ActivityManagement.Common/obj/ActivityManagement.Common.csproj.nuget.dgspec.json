@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\project\\activityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
+    "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
   },
   "projects": {
-    "E:\\project\\activityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+    "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\activityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "projectName": "ActivityManagement.Common",
-        "projectPath": "E:\\project\\activityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\activityManagement\\ActivityManagement.Common\\obj\\",
+        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

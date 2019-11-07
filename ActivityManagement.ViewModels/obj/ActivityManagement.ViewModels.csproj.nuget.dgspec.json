@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\project\\activityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {}
+    "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {}
   },
   "projects": {
-    "E:\\project\\activityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+    "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\activityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
         "projectName": "ActivityManagement.ViewModels",
-        "projectPath": "E:\\project\\activityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\activityManagement\\ActivityManagement.ViewModels\\obj\\",
+        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

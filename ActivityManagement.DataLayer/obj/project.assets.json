@@ -4542,11 +4542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "projectName": "ActivityManagement.DataLayer",
-      "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+      "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4565,8 +4565,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+            "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+              "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
             }
           }
         }
