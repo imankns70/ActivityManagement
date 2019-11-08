@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ActivityManagement.DataLayer.Context;
+﻿using ActivityManagement.DataLayer.Context;
+using ActivityManagement.IocConfig;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ActivityManagement.ViewModels;
+using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.EntityFrameworkCore;
 
 namespace ActivityManagementMvc
@@ -26,8 +22,12 @@ namespace ActivityManagementMvc
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+            services.AddCustomIdentityServices();
+            services.AddCustomServices();
+            services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddMvc();
         }
 
@@ -39,6 +39,7 @@ namespace ActivityManagementMvc
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
+            app.UseCustomIdentityServices();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

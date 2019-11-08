@@ -12,14 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActivityManagement.Services\ActivityManagement.Services.csproj" />
+    <Folder Include="ViewComponents\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\" />
-    <Folder Include="wwwroot\assets\css\" />
-    <Folder Include="wwwroot\assets\images\" />
-    <Folder Include="wwwroot\lib\" />
+    <ProjectReference Include="..\ActivityManagement.IocConfig\ActivityManagement.IocConfig.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v2.2": {
       "ActivityManagement.Services/1.0.0": {
         "dependencies": {
-          "ActivityManagement.Common": "1.0.0",
           "ActivityManagement.DataLayer": "1.0.0",
           "ActivityManagement.ViewModels": "1.0.0"
         },
@@ -1875,6 +1874,7 @@
       },
       "ActivityManagement.DataLayer/1.0.0": {
         "dependencies": {
+          "ActivityManagement.Common": "1.0.0",
           "ActivityManagement.DomainClasses": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
           "Microsoft.EntityFrameworkCore.Design": "2.2.4",

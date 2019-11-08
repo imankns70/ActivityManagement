@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ActivityManagement.Common\ActivityManagement.Common.csproj" />
     <ProjectReference Include="..\ActivityManagement.DomainClasses\ActivityManagement.DomainClasses.csproj" />
   </ItemGroup>
 </Project>

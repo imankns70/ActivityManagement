@@ -26,3 +26,5 @@ E:\project\ActivityManagement\ActivityManagement.DataLayer\obj\Debug\netcoreapp2
 E:\project\ActivityManagement\ActivityManagement.DataLayer\obj\Debug\netcoreapp2.2\ActivityManagement.DataLayer.csproj.CopyComplete
 E:\project\ActivityManagement\ActivityManagement.DataLayer\obj\Debug\netcoreapp2.2\ActivityManagement.DataLayer.dll
 E:\project\ActivityManagement\ActivityManagement.DataLayer\obj\Debug\netcoreapp2.2\ActivityManagement.DataLayer.pdb
+E:\project\ActivityManagement\ActivityManagement.DataLayer\bin\Debug\netcoreapp2.2\ActivityManagement.Common.dll
+E:\project\ActivityManagement\ActivityManagement.DataLayer\bin\Debug\netcoreapp2.2\ActivityManagement.Common.pdb

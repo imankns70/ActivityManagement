@@ -7,7 +7,6 @@
     <Folder Include="EfServices\Business\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ActivityManagement.Common\ActivityManagement.Common.csproj" />
     <ProjectReference Include="..\ActivityManagement.DataLayer\ActivityManagement.DataLayer.csproj" />
     <ProjectReference Include="..\ActivityManagement.ViewModels\ActivityManagement.ViewModels.csproj" />
   </ItemGroup>
