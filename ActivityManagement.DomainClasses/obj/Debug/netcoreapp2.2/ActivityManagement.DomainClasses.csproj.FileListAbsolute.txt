@@ -16,3 +16,12 @@ E:\project\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcore
 E:\project\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.dll
 E:\project\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
 E:\project\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.csprojAssemblyReference.cache
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.deps.json
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.dll
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.csprojAssemblyReference.cache
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.csproj.CoreCompileInputs.cache
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.AssemblyInfoInputs.cache
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.AssemblyInfo.cs
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.dll
+D:\projects\ActivityManagement\ActivityManagement.DomainClasses\obj\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb

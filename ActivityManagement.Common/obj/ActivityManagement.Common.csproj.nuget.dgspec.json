@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
+    "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
   },
   "projects": {
-    "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+    "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "projectName": "ActivityManagement.Common",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
-        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+        "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,18 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "MD.PersianDateTime.Core": {
+              "target": "Package",
+              "version": "[2.3.5, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",

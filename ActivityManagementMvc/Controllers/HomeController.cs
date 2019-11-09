@@ -28,7 +28,8 @@ namespace ActivityManagementMvc.Controllers
                 Description = _writableLocations.Value.SiteInformation.Description,
                 Logo = _writableLocations.Value.SiteInformation.Logo,
             };
-            HomeViewModel homeViewModel= new HomeViewModel(siteInformation);
+          
+            HomeViewModel homeViewModel= new HomeViewModel(siteInformation, new BreadCrumbViewModel());
             return View(homeViewModel);
         }
     }

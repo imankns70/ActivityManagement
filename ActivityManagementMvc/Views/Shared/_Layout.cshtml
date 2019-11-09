@@ -42,9 +42,9 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Brand -->
-            <a class="navbar-brand pt-0" href="./index.html">
-                <img src="/assets/img/Logo.png" class="navbar-brand-img" alt="...">
-                پنل مدیریت خودم
+            <a class="navbar-brand pt-0" asp-action="Index">
+                <img src="@Model.SiteInformation.Logo" class="navbar-brand-img" alt="">
+                @Model.SiteInformation.Title
             </a>
             <!-- User -->
             <ul class="nav align-items-center d-md-none">
@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="col-9 collapse-brand">
                             <a href="./index.html">
-                                <img src="~/assets/img/Logo.png"> پنل مدیریت میزفا
+                                <img src="@Model.SiteInformation.Logo"> @Model.SiteInformation.Title
                             </a>
                         </div>
                         <div class="col-3 collapse-close">
@@ -91,25 +91,25 @@
 
                 <hr class="my-3">
                 <!-- Navigation -->
-                @await Html.PartialAsync("_AdminMenu")
+                @await Html.PartialAsync("_SideMenu")
             </div>
         </div>
     </nav>
     <!-- Main content -->
-    <div class="main-content">
-        @RenderBody()
-        <footer class="footer container-fluid">
-            <div class="row align-items-center justify-content-xl-between">
-                <div class="col-xl-6">
-                    <div class="copyright text-center text-xl-left text-muted">
-                        2019  &copy;  <a href="https://www.Test.com" class="font-weight-bold ml-1" target="_blank">Test</a>
-                    </div>
+<div class="main-content">
+     
+  
+    @RenderBody()
+    <footer class="footer container-fluid">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    2019 &copy; <a href="https://www.Test.com" class="font-weight-bold ml-1" target="_blank">Test</a>
                 </div>
             </div>
-        </footer>
-    </div>
-
-
+        </div>
+    </footer>
+</div>
 
     <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
