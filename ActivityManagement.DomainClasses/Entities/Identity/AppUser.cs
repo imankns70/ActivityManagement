@@ -16,8 +16,8 @@ namespace ActivityManagement.DomainClasses.Entities.Identity
         public DateTime? RegisterDateTime { get; set; }
         public bool IsActive { get; set; }
         public string Mobile { get; set; }
-        public GenderType Gender { get; set; }
-        public Guid TeamId { get; set; }
+        public GenderType? Gender { get; set; }
+    
         public virtual ICollection<UserTeam> Teams { get; set; }
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<UserClaim> Claims { get; set; }

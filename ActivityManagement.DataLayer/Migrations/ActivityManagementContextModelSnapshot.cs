@@ -15,7 +15,7 @@ namespace ActivityManagement.DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -177,7 +177,7 @@ namespace ActivityManagement.DataLayer.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<int>("Gender");
+                    b.Property<int?>("Gender");
 
                     b.Property<string>("Image");
 
@@ -206,8 +206,6 @@ namespace ActivityManagement.DataLayer.Migrations
                     b.Property<DateTime?>("RegisterDateTime");
 
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<Guid>("TeamId");
 
                     b.Property<bool>("TwoFactorEnabled");
 

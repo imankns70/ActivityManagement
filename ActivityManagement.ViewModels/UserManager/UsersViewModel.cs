@@ -81,6 +81,8 @@ namespace ActivityManagement.ViewModels.UserManager
 
         [JsonIgnore]
         public ICollection<UserRole> Roles { get; set; }
+        [JsonIgnore]
+        public List<AppRole> AllRoles { get; set; }
 
         [JsonIgnore,Display(Name ="نقش")]
         [Required(ErrorMessage = "انتخاب {0} الزامی است.")]

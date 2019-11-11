@@ -32,7 +32,6 @@ D:\projects\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\bin\Debug\netcoreapp2.2\ActivityManagement.ViewModels.pdb
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.csprojAssemblyReference.cache
-D:\projects\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.csproj.CoreCompileInputs.cache
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.AssemblyInfoInputs.cache
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.AssemblyInfo.cs
 D:\projects\ActivityManagement\ActivityManagement.IocConfig\obj\Debug\netcoreapp2.2\ActivityManagement.IocConfig.csproj.CopyComplete

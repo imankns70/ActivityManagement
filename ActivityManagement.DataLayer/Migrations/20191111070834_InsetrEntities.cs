@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ActivityManagement.DataLayer.Migrations
 {
-    public partial class Initialize : Migration
+    public partial class InsetrEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,8 +51,7 @@ namespace ActivityManagement.DataLayer.Migrations
                     RegisterDateTime = table.Column<DateTime>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     Mobile = table.Column<string>(nullable: true),
-                    Gender = table.Column<int>(nullable: false),
-                    TeamId = table.Column<Guid>(nullable: false)
+                    Gender = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ActivityManagement.DataLayer.Migrations
 {
     [DbContext(typeof(ActivityManagementContext))]
-    [Migration("20191015180842_Initialize")]
-    partial class Initialize
+    [Migration("20191111070834_InsetrEntities")]
+    partial class InsetrEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -179,7 +179,7 @@ namespace ActivityManagement.DataLayer.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<int>("Gender");
+                    b.Property<int?>("Gender");
 
                     b.Property<string>("Image");
 
@@ -208,8 +208,6 @@ namespace ActivityManagement.DataLayer.Migrations
                     b.Property<DateTime?>("RegisterDateTime");
 
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<Guid>("TeamId");
 
                     b.Property<bool>("TwoFactorEnabled");
 

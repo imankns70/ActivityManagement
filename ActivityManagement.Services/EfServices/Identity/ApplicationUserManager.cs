@@ -49,7 +49,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             _options = options;
             _keyNormalizer = keyNormalizer;
             _passwordValidators = passwordValidators;
-           
+
         }
 
         public async Task<List<AppUser>> GetAllUsersAsync()
@@ -108,12 +108,12 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
 
 
-        public async Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc,bool? registerDateTimeSortAsc, string searchText)
+        public async Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc, bool? registerDateTimeSortAsc, string searchText)
         {
             var users = await Users.Include(u => u.Roles).Where(t => t.FirstName.Contains(searchText) ||
                                                                      t.LastName.Contains(searchText) ||
                                                                      t.Email.Contains(searchText) ||
-                                                                     t.UserName.Contains(searchText) || 
+                                                                     t.UserName.Contains(searchText) ||
                                                                      t.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت hh:mm:ss").Contains(searchText))
                     .Select(user => new UsersViewModel
                     {
@@ -135,32 +135,37 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             if (firstnameSortAsc != null)
             {
-                users = users.OrderBy(t => (firstnameSortAsc == true) ? t.FirstName : "").ThenByDescending(t => (firstnameSortAsc == false) ? t.FirstName : "").ToList();
+                users = users.OrderBy(x => (firstnameSortAsc == true) ? x.FirstName : "")
+                    .ThenByDescending(x => (firstnameSortAsc == false) ? x.FirstName : "").ToList();
             }
 
             else if (lastnameSortAsc != null)
             {
-                users = users.OrderBy(t => (lastnameSortAsc == true) ? t.LastName : "").ThenByDescending(t => (lastnameSortAsc == false) ? t.LastName : "").ToList();
+                users = users.OrderBy(t => (lastnameSortAsc == true) ? t.LastName : "")
+                    .ThenByDescending(t => (lastnameSortAsc == false) ? t.LastName : "").ToList();
             }
 
             else if (emailSortAsc != null)
             {
-                users = users.OrderBy(t => (emailSortAsc == true) ? t.Email : "").ThenByDescending(t => (emailSortAsc == false) ? t.Email : "").ToList();
+                users = users.OrderBy(t => (emailSortAsc == true) ? t.Email : "")
+                    .ThenByDescending(t => (emailSortAsc == false) ? t.Email : "").ToList();
             }
 
             else if (usernameSortAsc != null)
             {
-                users = users.OrderBy(t => (usernameSortAsc == true) ? t.PhoneNumber : "").ThenByDescending(t => (usernameSortAsc == false) ? t.UserName : "").ToList();
+                users = users.OrderBy(t => (usernameSortAsc == true) ? t.PhoneNumber : "")
+                    .ThenByDescending(t => (usernameSortAsc == false) ? t.UserName : "").ToList();
             }
 
             else if (registerDateTimeSortAsc != null)
             {
-                users = users.OrderBy(t => (registerDateTimeSortAsc == true) ? t.PersianRegisterDateTime : "").ThenByDescending(t => (registerDateTimeSortAsc == false) ? t.PersianRegisterDateTime : "").ToList();
+                users = users.OrderBy(t => (registerDateTimeSortAsc == true) ? t.PersianRegisterDateTime : "")
+                    .ThenByDescending(t => (registerDateTimeSortAsc == false) ? t.PersianRegisterDateTime : "").ToList();
             }
 
             foreach (var item in users)
                 item.Row = ++offset;
-             
+
             return users;
         }
 

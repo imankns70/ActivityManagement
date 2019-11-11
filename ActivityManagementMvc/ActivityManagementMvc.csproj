@@ -13,9 +13,7 @@
 
   <ItemGroup>
     <Folder Include="ViewComponents\" />
-    <Folder Include="wwwroot\lib\themify-icons\css\" />
-    <Folder Include="wwwroot\lib\themify-icons\fonts\" />
-    <Folder Include="wwwroot\lib\themify-icons\ie7\" />
+    <Folder Include="Views\RoleManager\" />
   </ItemGroup>
 
   <ItemGroup>

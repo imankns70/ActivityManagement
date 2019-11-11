@@ -7,7 +7,7 @@ namespace ActivityManagement.DataLayer.Mapping
     {
         public static void AddCustomIdentityMappings(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AppUser>().ToTable("AppUsers");
+            modelBuilder.Entity<AppUser>().ToTable("AppUsers").Property(x => x.Gender).IsRequired(false);
             modelBuilder.Entity<AppRole>().ToTable("AppRoles");
             modelBuilder.Entity<UserRole>().ToTable("AppUserRole");
             modelBuilder.Entity<RoleClaim>().ToTable("AppRoleClaim");

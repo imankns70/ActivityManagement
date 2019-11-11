@@ -37,7 +37,6 @@ D:\projects\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2
 D:\projects\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
 D:\projects\ActivityManagement\ActivityManagement.Services\bin\Debug\netcoreapp2.2\ActivityManagement.DomainClasses.pdb
 D:\projects\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.csprojAssemblyReference.cache
-D:\projects\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.csproj.CoreCompileInputs.cache
 D:\projects\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.AssemblyInfoInputs.cache
 D:\projects\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.AssemblyInfo.cs
 D:\projects\ActivityManagement\ActivityManagement.Services\obj\Debug\netcoreapp2.2\ActivityManagement.Services.csproj.CopyComplete

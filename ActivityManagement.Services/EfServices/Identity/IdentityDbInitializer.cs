@@ -116,7 +116,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 RegisterDateTime=DateTime.Now,
                 FirstName= firstName,
                 LastName= lastName,
-                Gender=GenderType.Female,
+                //Gender=null,
                 IsActive=true
             };
             var adminUserResult = await _applicationUserManager.CreateAsync(adminUser, password);
