@@ -63,25 +63,28 @@
                             </div>
                             <div class="col-md-12">
                                 <p class="mt-3">اختصاص نقش به کاربر</p>
+                                
+                                @* roles exist in application *@
                                 @foreach (var item in Model.AllRoles)
                                 {
                                     <label class="col-md-8" style="vertical-align:20px;">@item.Name</label>
                                     <label class="custom-toggle">
+                                        @* roles belong to current User *@
                                         @if (Model.Roles != null)
                                         {
                                             if (Model.Roles.Select(r => r.RoleId).Contains(item.Id))
                                             {
-                                                <input type="radio" value="@item.Id" asp-for="RoleId" checked />
+                                                <input type="radio" value="@item.Id" asp-for="RoleId" checked/>
                                             }
                                             else
                                             {
-                                                <input type="radio" value="@item.Id" asp-for="RoleId" />
+                                                <input type="radio" value="@item.Id" asp-for="RoleId"/>
                                             }
                                         }
 
                                         else
                                         {
-                                            <input type="radio" value="@item.Id" asp-for="RoleId" />
+                                            <input type="radio" value="@item.Id" asp-for="RoleId"/>
                                         }
                                         <span class="custom-toggle-slider rounded-circle"></span>
                                     </label>
@@ -201,19 +204,21 @@
                             <script>
                                 $("#BirthDate").MdPersianDateTimePicker({
                                     targetTextSelector:"#InputBirthDate",
-                                    placement:'top',
+                                    placement: 'top',
+                                    fromDate:"1300",
+
                                 });
                             </script>
-                            <div class="form-group row">
+                            @*<div class="form-group row">
                                 <div class="col-md-3">
                                     <label asp-for="Bio" class="control-label"></label>
                                 </div>
                                 <div class="col-md-9">
-                                    <textarea asp-for="PhoneNumber" class="form-control"></textarea>
+                                    <textarea asp-for="Bio" class="form-control"></textarea>
                            
                                     <span asp-validation-for="Bio" class="text-danger"></span>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </form>

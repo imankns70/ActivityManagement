@@ -65,16 +65,19 @@
 
 
          function operateFormatter(value, row, index) {
-        return [
-            '<button type="button" class="btn-link text-success" data-toggle="ajax-modal" data-url=@Url.Action("RenderRole", "RoleManager")?roleId=' + row.Id + ' title="ویرایش">',
-            '<i class="fa fa-edit"></i>',
-            '</button >',
-
-            '<button type="button" class="btn-link text-danger" data-toggle="ajax-modal" data-url=@Url.Action("Delete", "RoleManager")/?roleId=' + row.Id + ' title="حذف">',
-            '<i class="fa fa-trash"></i>',
-            '</button >'
-        ].join('')
-    }
+             return [
+                 '<button type="button" class="btn-link text-success" data-toggle="ajax-modal" data-url=@Url.Action("RenderRole", "RoleManager")?roleId=' +
+                 row.Id +
+                 ' title="ویرایش">',
+                 '<i class="fa fa-edit"></i>',
+                 '</button >',
+                 '<button type="button" class="btn-link text-danger" data-toggle="ajax-modal" data-url=@Url.Action("Delete", "RoleManager")/?roleId=' +
+                 row.Id +
+                 ' title="حذف">',
+                 '<i class="fa fa-trash"></i>',
+                 '</button >'
+             ].join('');
+         }
 
      function checkBoxFormat(value, row) {
        return '<input type="checkbox" name="btSelectItem" value="' + row.Id + '" />';
@@ -82,11 +85,11 @@
 
 
         function totalTextFormatter(data) {
-            return 'تعداد'
+            return 'تعداد';
         }
 
         function totalNameFormatter(data) {
-            return data.length
+            return data.length;
         }
 
 

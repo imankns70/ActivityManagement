@@ -19,7 +19,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public string Image { get; set; }
 
         [JsonIgnore,Display(Name ="تصویر پروفایل")]
-        [Required(ErrorMessage = "انتخاب {0} الزامی است.")]
+        //[Required(ErrorMessage = "انتخاب {0} الزامی است.")]
         public IFormFile ImageFile { get; set; }
 
 

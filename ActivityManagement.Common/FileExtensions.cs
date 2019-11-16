@@ -10,8 +10,8 @@ namespace ActivityManagement.Common
     {
         public static string GetContentType(string path)
         {
-            var types = GetMimeTypes();
-            var ext = Path.GetExtension(path).ToLowerInvariant();
+            Dictionary<string,string> types = GetMimeTypes();
+            string ext = Path.GetExtension(path).ToLowerInvariant();
             return types[ext];
         }
 
@@ -71,7 +71,7 @@ namespace ActivityManagement.Common
 
         private enum ZipRarFileExtention
         {
-            none = 0,
+            None = 0,
             ZIP = 1,
             RAR = 2
         }
@@ -448,7 +448,7 @@ namespace ActivityManagement.Common
             byte[] chkByteRar = { 82, 97, 114, 33 };
             bool isvalid = false;
 
-            ZipRarFileExtention ziprarfileExtn = ZipRarFileExtention.none;
+            ZipRarFileExtention ziprarfileExtn = ZipRarFileExtention.None;
             if (fileContentType.Contains("zip"))
             {
                 ziprarfileExtn = ZipRarFileExtention.ZIP;
@@ -501,15 +501,14 @@ namespace ActivityManagement.Common
         }
 
 
-        public static async Task<UploadFileResult> UploadFileAsync(this IFormFile file, string path)
+        public static async Task<UploadFileResult> UploadFileAsync(this IFormFile file, FileType types, string path)
         {
-            string FileExtension = Path.GetExtension(file.FileName);
-            var types = FileType.Image;
-            bool result = true;
+            string fileExtension = Path.GetExtension(file.FileName);
+           
             using (var memory = new MemoryStream())
             {
                 await file.CopyToAsync(memory);
-                result = IsValidFile(memory.ToArray(), types, FileExtension.Replace('.', ' '));
+                bool result = IsValidFile(memory.ToArray(), types, fileExtension.Replace('.', ' '));
                 if (result)
                 {
                     using (var stream = new FileStream(path, FileMode.Create))
@@ -539,10 +538,10 @@ namespace ActivityManagement.Common
             {
 
             }
-            public UploadFileResult(bool _IsSuccess, List<string> _Errors)
+            public UploadFileResult(bool isSuccess, List<string> errors)
             {
-                IsSuccess = _IsSuccess;
-                Errors = _Errors;
+                IsSuccess = isSuccess;
+                Errors = errors;
             }
             public bool? IsSuccess { get; set; }
             public List<string> Errors { get; set; }

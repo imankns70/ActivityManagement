@@ -1,5 +1,6 @@
 ﻿$(function() {
     var placeholder = $("#modal-placeholder");
+    //get create and edit 
     $(document).on('click',
         ' button[data-toggle="ajax-modal"]',
         function () {
@@ -17,13 +18,14 @@
             });
         });
 
+    // post create and edit 
     placeholder.on("click",
         "button[data-save='modal']",
         function () {
             showLoading();
             var form = $(this).parents(".modal").find("form");
             var formUrl = form.attr("action");
-            debugger;
+        
 
             var dataToSend = new FormData(form.get(0));
             $.ajax({
@@ -32,19 +34,22 @@
                 type: "post",
                 processData: false,
                 contentType: false,
-
+                beforeSend: function () { showLoading() },
+                complete: function () { hideLoading() },
                 error: function () {showSweetErrorAlert()}
 
-            }).done(function (result) {
-
-                var newBody = $(".modal-body", result);
-                var newFooter = $(".modal-footer", result);
+            }).done(function (data) {
+                 
+                var newBody = $(".modal-body", data);
+                var newFooter = $(".modal-footer", data);
                 placeholder.find(".modal-body").replaceWith(newBody);
                 placeholder.find(".modal-footer").replaceWith(newFooter);
-
-                var isValid = newBody.find("input [name=IsValid]").val === "True";
+                debugger;
+                var isValid = newBody.find("input[name='IsValid']").val() === "True";
+                
                 if (isValid) {
                     $.ajax({ url: '/Base/Notification', error: function () { showSweetErrorAlert(); } }).done(function (notification) {
+                        debugger;
                         showSweetSuccessAlert(notification);
                        
                         $table.bootstrapTable('refresh');
@@ -52,7 +57,7 @@
                     });
                 }
             });
-            hideLoading();
+           
         });
 
     function showLoading() {
