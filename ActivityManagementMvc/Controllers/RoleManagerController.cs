@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
@@ -6,14 +7,18 @@ using ActivityManagement.Common.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.Home;
 using ActivityManagement.ViewModels.RoleManager;
 using ActivityManagement.ViewModels.SiteSettings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
 {
+
+    [DisplayName("مدیریت کاربران")]
     public class RoleManagerController : BaseController
     {
         private readonly IApplicationRoleManager _roleManager;
@@ -28,7 +33,8 @@ namespace ActivityManagementMvc.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet, DisplayName("نمایش نقش ها")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             SiteInformation siteInformation = GetSitInformation();

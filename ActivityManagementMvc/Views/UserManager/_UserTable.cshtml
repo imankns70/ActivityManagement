@@ -102,6 +102,9 @@
             row.Id +
             ' title="Management">',
             '<i class="fa fa-user"></i> | مدیریت ', '</a>',
+            
+            '<a class="btn btn btn-success mr-1 btn-sm" href=@Url.Action("Index","DynamicAccess")?userId=' + row.Id + ' title="سطح دسترسی">',
+            ' سطح دسترسی ', '</a>',
             '<button type="button" class="btn-link text-success" data-toggle="ajax-modal" data-url=@Url.Action("RenderUser", "UserManager")?userId=' +
             row.Id +
             ' title="ویرایش">',

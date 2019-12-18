@@ -14,6 +14,7 @@ namespace ActivityManagement.IocConfig
             services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
             services.AddScoped<ApplicationIdentityErrorDescriber>();
+            services.AddDynamicPersmission();
         }
 
         public static void UseCustomIdentityServices(this IApplicationBuilder app)
