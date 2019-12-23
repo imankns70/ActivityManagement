@@ -24,8 +24,7 @@ namespace ActivityManagementMvc.Controllers
         private readonly IApplicationRoleManager _roleManager;
 
         private const string RoleNotFound = "نقش یافت نشد.";
-        public RoleManagerController(IWritableOptions<SiteSettings> writableOptions,
-            IApplicationRoleManager roleManager) : base(writableOptions)
+        public RoleManagerController(IApplicationRoleManager roleManager) 
         {
             _roleManager = roleManager;
             _roleManager.CheckArgumentIsNull(nameof(_roleManager));
@@ -37,8 +36,8 @@ namespace ActivityManagementMvc.Controllers
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
-            SiteInformation siteInformation = GetSitInformation();
-            HomeViewModel homeViewModel = new HomeViewModel(siteInformation, new BreadCrumbViewModel());
+            
+            HomeViewModel homeViewModel = new HomeViewModel(new BreadCrumbViewModel());
             return View(homeViewModel);
         }
 

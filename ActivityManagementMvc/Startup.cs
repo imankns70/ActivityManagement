@@ -29,6 +29,11 @@ namespace ActivityManagementMvc
             services.AddCustomServices();
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddMvc();
+            services.ConfigureApplicationCookie(options =>
+            {
+                //options.LoginPath = "/Account/SignIn";
+                options.AccessDeniedPath = "/UserManager/AccessDenied";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

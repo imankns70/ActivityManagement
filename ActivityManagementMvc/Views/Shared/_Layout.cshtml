@@ -1,4 +1,6 @@
-﻿@model ActivityManagement.ViewModels.Home.HomeViewModel
+﻿@using ActivityManagement.Services.EfInterfaces
+@using ActivityManagement.ViewModels.SiteSettings
+@inject IWritableOptions<SiteSettings> WritableOptions
 <!DOCTYPE html>
 
 <html>
@@ -9,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
-    <title>@Model.SiteInformation.Title</title>
+    <title>@WritableOptions.Value.SiteInformation.Title</title>
 
     <!-- Favicon -->
-    <link href="@Model.SiteInformation.Favicon" rel="icon" type="image/png">
+    <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png">
     <!-- Icons -->
     <link href="~/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
     <link href="~/assets/vendor/fontawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -60,8 +62,8 @@
             </button>
             <!-- Brand -->
             <a class="navbar-brand pt-0" asp-action="Index">
-                <img src="@Model.SiteInformation.Logo" class="navbar-brand-img" alt="">
-                @Model.SiteInformation.Title
+                <img src="@WritableOptions.Value.SiteInformation.Logo" class="navbar-brand-img" alt="">
+                @WritableOptions.Value.SiteInformation.Title
             </a>
             <!-- User -->
             <ul class="nav align-items-center d-md-none">

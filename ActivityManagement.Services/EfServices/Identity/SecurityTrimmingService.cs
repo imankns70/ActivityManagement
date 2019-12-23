@@ -29,7 +29,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         {
             var currentClaimValue = $"{area}:{controller}:{action}";
             var securedControllerActions = _mvcActionsDiscoveryService.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
-            if (!securedControllerActions.SelectMany(x => x.MvcActions).Any(x => x.ActionId == currentClaimValue))
+            if (securedControllerActions.SelectMany(x => x.MvcActions).All(x => x.ActionId != currentClaimValue))
             {
                 throw new KeyNotFoundException($@"The `secured` area={area}/controller={controller}/action={action} with `ConstantPolicies.DynamicPermission` policy not found. Please check you have entered the area/controller/action names correctly and also it's decorated with the correct security policy.");
             }

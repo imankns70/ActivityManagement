@@ -22,8 +22,7 @@ namespace ActivityManagementMvc.Controllers
         private readonly IHostingEnvironment _env;
         private const string UserNotFound = "کاربر یافت نشد.";
 
-        public UserManagerController(IWritableOptions<SiteSettings> writableOptions, IApplicationUserManager userManager, IApplicationRoleManager roleManager, IHostingEnvironment env)
-        : base(writableOptions)
+        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IHostingEnvironment env)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -40,14 +39,13 @@ namespace ActivityManagementMvc.Controllers
         public IActionResult Index()
         {
 
-            SiteInformation siteInformation = GetSitInformation();
-            BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
+             BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
             {
                 Title = "مدیریت کاربران",
                 Url = "/UserManager/Index"
 
             };
-            HomeViewModel homeViewModel = new HomeViewModel(siteInformation, breadCrumbViewModel);
+            HomeViewModel homeViewModel = new HomeViewModel(breadCrumbViewModel);
 
             return View(homeViewModel);
         }
@@ -299,6 +297,10 @@ namespace ActivityManagementMvc.Controllers
             }
 
             return PartialView("_DeleteGroup");
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

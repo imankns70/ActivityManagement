@@ -4,10 +4,9 @@ namespace ActivityManagement.ViewModels.Home
 {
     public class HomeViewModel
     {
-        public HomeViewModel(SiteInformation siteInformation, BreadCrumbViewModel breadCrumbViewModel)
+        public HomeViewModel(BreadCrumbViewModel breadCrumbViewModel)
         {
-            SiteInformation = siteInformation;
-            BreadCrumbViewModel = breadCrumbViewModel;
+             BreadCrumbViewModel = breadCrumbViewModel;
         }
         public SiteInformation SiteInformation { get; set; }
         public BreadCrumbViewModel BreadCrumbViewModel { get; set; }

@@ -6,9 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ActivityManagement.IocConfig
 {
-    public static class AddDynamicPersmissionExtentions
+    public static class AddDynamicPermissionExtensions
     {
-        public static IServiceCollection AddDynamicPersmission(this IServiceCollection services)
+        public static IServiceCollection AddDynamicPermission(this IServiceCollection services)
         {
             services.AddSingleton<IAuthorizationHandler, DynamicPermissionsAuthorizationHandler>();
             services.AddSingleton<IMvcActionsDiscoveryService, MvcActionsDiscoveryService>();

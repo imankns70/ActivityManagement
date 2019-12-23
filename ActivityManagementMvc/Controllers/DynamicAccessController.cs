@@ -9,29 +9,29 @@ namespace ActivityManagementMvc.Controllers
 {
     public class DynamicAccessController : BaseController
     {
-        public readonly IApplicationUserManager _userManager;
+        public readonly IApplicationRoleManager _roleManager;
         public readonly IMvcActionsDiscoveryService _mvcActionsDiscovery;
-        public DynamicAccessController(IWritableOptions<SiteSettings> writableOptions, IApplicationUserManager userManager, IMvcActionsDiscoveryService mvcActionsDiscovery):base(writableOptions)
+        public DynamicAccessController(IApplicationRoleManager roleManager, IMvcActionsDiscoveryService mvcActionsDiscovery)
         {
-            _userManager = userManager;
+            _roleManager = roleManager;
             _mvcActionsDiscovery = mvcActionsDiscovery;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(int userId)
+        public async Task<IActionResult> Index(int roleId)
         {
-            if (userId == 0)
+            if (roleId == 0)
                 return NotFound();
 
 
-            var user = await _userManager.FindClaimsInUser(userId);
-            if (user == null)
+            var role = await _roleManager.FindClaimsInRole(roleId);
+            if (role == null)
                 return NotFound();
 
             var securedControllerActions = _mvcActionsDiscovery.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
             return View(new DynamicAccessIndexViewModel
             {
-                UserIncludeUserClaims = user,
+                RoleIncludeRoleClaims = role,
                 SecuredControllerActions = securedControllerActions,
             });
         }
@@ -39,11 +39,11 @@ namespace ActivityManagementMvc.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(DynamicAccessIndexViewModel ViewModel)
         {
-            var Result = await _userManager.AddOrUpdateClaimsAsync(ViewModel.UserId, ConstantPolicies.DynamicPermissionClaimType, ViewModel.ActionIds.Split(","));
-            if (!Result.Succeeded)
+            var result = await _roleManager.AddOrUpdateClaimsAsync(ViewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, ViewModel.ActionIds.Split(","));
+            if (!result.Succeeded)
                 ModelState.AddModelError(string.Empty, "در حین انجام عملیات خطایی رخ داده است.");
 
-            return RedirectToAction("Index", new { userId = ViewModel.UserId });
+            return RedirectToAction("Index", new { userId = ViewModel.RoleId });
         }
     }
 }

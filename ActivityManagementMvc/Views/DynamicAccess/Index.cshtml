@@ -42,7 +42,7 @@
         <div class="row mt-5">
             <div class="card shadow w-100">
                 <div class="card-header font_Vazir_Medium">
-                    <h4 class="mb-1"> تنظیم سطوح دسترسی پویای کاربر «@Model.UserIncludeUserClaims.FirstName @Model.UserIncludeUserClaims.LastName»</h4>
+                    <h4 class="mb-1"> تنظیم سطوح دسترسی پویای نقش «@Model.RoleIncludeRoleClaims.Name </h4>
                 </div>
                 <form method="post"
                       asp-controller="DynamicAccess"
@@ -50,7 +50,7 @@
                     <div asp-validation-summary="ModelOnly"></div>
                     <div class="card-body">
                         <input type="hidden" asp-for="ActionIds"/>
-                        <input name="UserId" value="@Model.UserIncludeUserClaims.Id" type="hidden" />
+                        <input name="UserId" value="@Model.RoleIncludeRoleClaims.Id" type="hidden" />
                         <div id="tree">
                             <ul>
                                 @{int i = 0;}
@@ -68,7 +68,7 @@
                                         <ul class="list-group list-group-flush pr-0">
                                             @foreach (var action in controller.MvcActions.OrderBy(x => x.ActionDisplayName))
                                             {
-                                                var isSelected = Model.UserIncludeUserClaims.Claims
+                                                var isSelected = Model.RoleIncludeRoleClaims.Claims
                                                     .Any(roleClaim => roleClaim.ClaimType == ConstantPolicies.DynamicPermissionClaimType &&
                                                                       roleClaim.ClaimValue == action.ActionId);
                                                 var selected = isSelected ? "jstree-clicked" : "";
