@@ -1,4 +1,4 @@
-﻿@model ActivityManagement.ViewModels.Home.BreadCrumbViewModel
+﻿@*@model ActivityManagement.ViewModels.Home.BreadCrumbViewModel*@
 
 <!-- Header -->
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -8,7 +8,10 @@
             <li>
                 <a class="h4 mb-0 text-white d-lg-inline-block" asp-controller="Home" asp-action="Index"> صفحه اصلی </a>
             </li>
-            @if (!string.IsNullOrWhiteSpace(Model.Title))
+            <li class="pr-2 pl-2">
+                <i class="fa fa-angle-left text-white align-middle"></i>
+            </li>
+            @*@if (!string.IsNullOrWhiteSpace(Model.Title))
             {
                 <li class="pr-2 pl-2">
                     <i class="fa fa-angle-left text-white align-middle"></i>
@@ -16,7 +19,7 @@
                 <li>
                     <a class="h4 mb-0 text-white d-lg-inline-block" href="@Model.Url">@Model.Title</a>
                 </li>
-            }
+            }*@
        
         </ul>
 

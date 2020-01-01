@@ -3,134 +3,272 @@
 @inject IWritableOptions<SiteSettings> WritableOptions
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
     <title>@WritableOptions.Value.SiteInformation.Title</title>
 
     <!-- Favicon -->
-    <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png">
-    <!-- Icons -->
-    <link href="~/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link href="~/assets/vendor/fontawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- Argon CSS -->
-    <link type="text/css" href="/assets/css/argon.css?v=1.0.0" rel="stylesheet">
+    <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png" />
 
-    <!-- Loading -->
-    <link href="~/lib/Loading/css/preloader.css" rel="stylesheet" />
 
-    <!-- Sweetalert2 -->
-    <link href="~/lib/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" />
+
+    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />
 
     <!-- DateTimePicker -->
-    <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />*@
 
+    <!-- Plugins Core Css -->
+    <link href="/assets/css/app.min.css" rel="stylesheet">
+    <link href="/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
+    <!-- Custom Css -->
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <!-- Theme style. You can choose a theme from css/themes instead of get all themes -->
+    <link href="/assets/css/styles/all-themes.css" rel="stylesheet" />
+    @*<link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />*@
 
-    <!-- fileInput -->
-    <link href="~/assets/css/bootstrap-fileinput.css" rel="stylesheet" />
-  
-    <!-- Bootstrap Table -->
-    <link href="~/assets/vendor/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" />
+    @*<a class="navbar-brand pt-0" asp-action="Index">
+            <img src="@WritableOptions.Value.SiteInformation.Logo" class="navbar-brand-img" alt="">
 
-    <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script src="~/lib/Loading/js/jquery.preloader.min.js"></script>
-    <script src="~/assets/js/bootstrap-fileinput.min.js"></script>
-    <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
-    <script src="~/assets/vendor/bootstrap-table/dist/bootstrap-table.js"></script>
-    <script src="~/assets/vendor/bootstrap-table/dist/extensions/export/tableExport.js"></script>
-    <script src="~/assets/vendor/bootstrap-table/dist/bootstrap-table-locale-all.js"></script>
-    <script src="~/assets/vendor/bootstrap-table/dist/extensions/export/bootstrap-table-export.min.js"></script>
+        </a>*@
 
-    <script src="~/assets/js/argon.js?v=1.0.0"></script>
-    <script src="~/assets/js/Main.js"></script>
 </head>
-<body>
-    <div id="modal-placeholder"></div>
-    <!-- Sidenav -->
-    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        <div class="container-fluid">
-            <!-- Toggler -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Brand -->
-            <a class="navbar-brand pt-0" asp-action="Index">
-                <img src="@WritableOptions.Value.SiteInformation.Logo" class="navbar-brand-img" alt="">
-                @WritableOptions.Value.SiteInformation.Title
-            </a>
-            <!-- User -->
-            <ul class="nav align-items-center d-md-none">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="media align-items-center">
-                            <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="/assets/images/avatar/poster5.png">
-                            </span>
-                        </div>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-                        <a href="./examples/profile.html" class="dropdown-item">
-                            <i class="ni ni-single-02"></i>
-                            <span>نمایه من</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#!" class="dropdown-item">
-                            <i class="ni ni-user-run"></i>
-                            <span>خروج</span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <!-- Collapse -->
-            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-                <!-- Collapse header -->
-                <div class="navbar-collapse-header d-md-none">
-                    <div class="row">
-                        <div class="col-9 collapse-brand">
-                            <a href="./index.html">
-                                <img src="@Model.SiteInformation.Logo"> @Model.SiteInformation.Title
-                            </a>
-                        </div>
-                        <div class="col-3 collapse-close">
-                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                                <span></span>
-                                <span></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Form -->
+<body class="rtl theme-black logo-white submenu-closed">
 
-                <hr class="my-3">
-                <!-- Navigation -->
-                @await Html.PartialAsync("_SideMenu")
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30">
+                <img class="loading-img-spin" src="assets/images/loading.png" alt="admin">
+            </div>
+            <p>لطفا صبر کنید...</p>
+        </div>
+    </div>
+
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+                   aria-expanded="false"></a>
+                <a href="#" onClick="return false;" class="bars"></a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/logo.png" alt="" />
+                    <span class="logo-name">@WritableOptions.Value.SiteInformation.Title</span>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="#" onClick="return false;" class="sidemenu-collapse">
+                            <i class="nav-hdr-btn ti-align-left"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Full Screen Button -->
+                    <li class="fullscreen">
+                        <a href="javascript:;" class="fullscreen-btn">
+                            <i class="nav-hdr-btn ti-fullscreen"></i>
+                        </a>
+                    </li>
+                    <!-- #END# Full Screen Button -->
+                    <!-- #START# Notifications-->
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                            <i class="nav-hdr-btn ti-bell"></i>
+                            <span class="notify"></span>
+                            <span class="heartbeat"></span>
+                        </a>
+                        <ul class="dropdown-menu pullDown">
+                            <li class="header">اطلاعیه ها</li>
+                            <li class="body">
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user1.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 14 دقیقه پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user2.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 22 دقیقه پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user3.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 3 ساعت پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user4.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 3 ساعت پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user5.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 3 ساعت پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user6.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> 3 ساعت پیش
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <span class="table-img msg-user">
+                                                <img src="assets/images/user/user7.jpg" alt="">
+                                            </span>
+                                            <span class="menu-info">
+                                                <span class="menu-title">حسین حیاتی</span>
+                                                <span class="menu-desc">
+                                                    <i class="material-icons">access_time</i> دیروز
+                                                </span>
+                                                <span class="menu-desc">لطفا ایمیل خود را چک کنید.</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#" onClick="return false;">مشاهده تمام اطلاعیه ها</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Notifications-->
+                    <li class="dropdown user_profile">
+                        <div class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="assets/images/user.jpg" alt="user">
+                        </div>
+                        <ul class="dropdown-menu pullDown">
+                            <li class="body">
+                                <ul class="user_dw_menu">
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <i class="material-icons">person</i>پروفایل
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <i class="material-icons">feedback</i>بازخورد
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <i class="material-icons">help</i>راهنما
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onClick="return false;">
+                                            <i class="material-icons">power_settings_new</i>خروج
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- #END# Tasks -->
+                    <li class="pull-right">
+                        <a href="#" onClick="return false;" class="js-right-sidebar" data-close="true">
+                            <i class="nav-hdr-btn ti-layout-grid2"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
-    <!-- Main content -->
-    <div class="main-content">
+    <!-- #Top Bar -->
+    <div>
+        <!-- Right Sidebar -->
+        @await Html.PartialAsync("_RightSideMenu")
+        
 
+        <!-- Left Sidebar -->
+        @await Html.PartialAsync("_LeftSideMenu")
 
-        @RenderBody()
-        <footer class="footer container-fluid">
-            <div class="row align-items-center justify-content-xl-between">
-                <div class="col-xl-6">
-                    <div class="copyright text-center text-xl-left text-muted">
-                        2019 &copy; <a href="https://www.Test.com" class="font-weight-bold ml-1" target="_blank">Test</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+ 
     </div>
+    <section class="content">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
+    </section>
 
-   
+
+
+    @*<script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="assets/js/app.min.js"></script>
+
+    <!-- Custom Js -->
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/bundles/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/js/pages/index.js"></script>
+    @*<script src="~/lib/Loading/js/jquery.preloader.min.js"></script>*@
+    @*<script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>*@
+    <script src="~/assets/js/Main.js"></script>
 
     @RenderSection("Scripts", false)
 </body>
