@@ -21,6 +21,10 @@
     public class SiteInformation
     {
         public string Title { get; set; }
+
+        /// <summary>
+        /// متا تگ سایت که مربوط به توضیحات سایت است
+        /// </summary>
         public string Description { get; set; }
         public string Logo { get; set; }
         public string Favicon { get; set; }

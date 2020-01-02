@@ -8222,11 +8222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "projectName": "ActivityManagement.Services",
-      "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+      "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8245,11 +8245,11 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+            "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+              "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
             },
-            "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+            "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+              "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
             }
           }
         }
@@ -8271,10 +8271,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
