@@ -5,7 +5,7 @@
 @import url(../fonts/simple-line-icons/css/simple-line-icons.css);
 
 @font-face {
-    font-family: 'SDF';
+    font-family: 'IRANSans';
     src: url('../fonts/iransans/IRANSans-Light-web.woff') format('woff'), url('../fonts/iransans/IRANSans-Light-web.ttf') format('truetype');
     font-weight: normal;
 }
@@ -4610,13 +4610,7 @@
 	margin: 10px
 }
 
-@font-face {
-	font-family: "Poppins";
-	font-style: normal;
-	font-weight: 400;
-	src: url("../fonts/poppins/poppins-v5-latin-regular.eot");
-	src: local("Poppins Regular"), local("Poppins-Regular"), url("../fonts/poppins/poppins-v5-latin-regulard41d.eot?#iefix") format("embedded-opentype"), url("../fonts/poppins/poppins-v5-latin-regular.woff2") format("woff2"), url("../fonts/poppins/poppins-v5-latin-regular.woff") format("woff"), url("../fonts/poppins/poppins-v5-latin-regular.ttf") format("truetype"), url("../fonts/poppins/poppins-v5-latin-regular.svg#Poppins") format("svg")
-}
+ 
 
 body,
 html {
@@ -4625,7 +4619,7 @@ html {
 	-o-transition: all .5s;
 	-webkit-transition: all .5s;
 	transition: all .5s;
-	font-family:'SDF', "Poppins", sans-serif;
+	font-family:'IRANSans', "Poppins", sans-serif;
 	font-size: 13px
 }
 
@@ -4798,7 +4792,7 @@ table .checkbox [type="checkbox"] + label {
 	background: #eee;
 	color: black;
 	font-size: 14px;
-	font-family:'SDF', sans-serif, Verdana;
+	font-family:'IRANSans', sans-serif, Verdana;
 	padding: 10px;
 	pointer-events: none
 }
@@ -13638,7 +13632,7 @@ fieldset[disabled] .form-control {
 	-o-transition: all .5s;
 	-webkit-transition: all .5s;
 	transition: all .5s;
-	font-family:'SDF', "Poppins", sans-serif;
+	font-family:'IRANSans', "Poppins", sans-serif;
 	background: #fff;
 	width: 260px;
 	overflow: hidden;
@@ -14299,7 +14293,7 @@ fieldset[disabled] .form-control {
 }
 
 .navbar {
-	font-family:'SDF', "Poppins", sans-serif;
+	font-family:'IRANSans', "Poppins", sans-serif;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	-ms-border-radius: 0;
@@ -14446,7 +14440,7 @@ fieldset[disabled] .form-control {
 
 .logo-name {
 	color: white;
-	font-size: 24px;
+	font-size: 17px;
 	font-weight: 400
 }
 
@@ -19585,7 +19579,7 @@ tr.shown td.details-control {
 }
 
 .product-grid {
-	font-family:'SDF', Raleway, sans-serif;
+	font-family:'IRANSans', Raleway, sans-serif;
 	text-align: center;
 	padding: 0 0 72px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -19750,7 +19744,7 @@ tr.shown td.details-control {
 .product-grid .price {
 	color: #333;
 	font-size: 17px;
-	font-family:'SDF', Montserrat, sans-serif;
+	font-family:'IRANSans', Montserrat, sans-serif;
 	font-weight: 700;
 	letter-spacing: 0px;
 	margin-bottom: 8px;
