@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using ActivityManagement.Common.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
@@ -24,7 +26,7 @@ namespace ActivityManagementMvc.Controllers
         private readonly IApplicationRoleManager _roleManager;
 
         private const string RoleNotFound = "نقش یافت نشد.";
-        public RoleManagerController(IApplicationRoleManager roleManager) 
+        public RoleManagerController(IApplicationRoleManager roleManager)
         {
             _roleManager = roleManager;
             _roleManager.CheckArgumentIsNull(nameof(_roleManager));
@@ -32,43 +34,19 @@ namespace ActivityManagementMvc.Controllers
 
         }
 
-        [HttpGet, DisplayName("نمایش نقش ها")]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[HttpGet, DisplayName("نمایش نقش ها")]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
-            
-            HomeViewModel homeViewModel = new HomeViewModel(new BreadCrumbViewModel());
-            return View(homeViewModel);
+            return View();
         }
 
 
         [HttpGet]
-        public async Task<JsonResult> GetRoles(string search, string order, int offset, int limit, string sort)
+        public async Task<JsonResult> GetRoles([DataSourceRequest]DataSourceRequest request)
         {
-            List<RolesViewModel> roles;
-            int total = _roleManager.Roles.Count();
-
-            if (string.IsNullOrWhiteSpace(search))
-                search = "";
-
-            if (limit == 0)
-                limit = total;
-
-            if (sort == "عنوان نقش")
-            {
-                if (order == "asc")
-                    roles = await _roleManager.GetPaginateRolesAsync(offset, limit, true, search);
-                else
-                    roles = await _roleManager.GetPaginateRolesAsync(offset, limit, false, search);
-            }
-
-            else
-                roles = await _roleManager.GetPaginateRolesAsync(offset, limit, null, search);
-
-            if (search != "")
-                total = roles.Count();
-
-            return Json(new { total = total, rows = roles });
+            DataSourceResult resultAsync = await _roleManager.GetAllRoles().ToDataSourceResultAsync(request, x => new { x.Id, x.Name });
+            return Json(resultAsync);
         }
 
 

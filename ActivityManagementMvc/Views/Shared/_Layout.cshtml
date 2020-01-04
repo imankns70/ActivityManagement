@@ -19,23 +19,20 @@
 
     <link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />
-
-
+    <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
     <!-- Plugins Core Css -->
     <link href="/assets/css/app.min.css" rel="stylesheet">
     <link href="/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
     <!-- Custom Css -->
-    <link href="/assets/css/style.css" rel="stylesheet" />
     <!-- Theme style. You can choose a theme from css/themes instead of get all themes -->
     <link href="/assets/css/styles/all-themes.css" rel="stylesheet" />
     <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
 
-    @*<link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />*@
+    <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
 
-    @*<a class="navbar-brand pt-0" asp-action="Index">
-            <img src="@WritableOptions.Value.SiteInformation.Logo" class="navbar-brand-img" alt="">
 
-        </a>*@
 
 </head>
 <body class="rtl theme-black logo-white submenu-closed">
@@ -75,7 +72,11 @@
 
 
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
+    <script src="~/lib/Kendo/js/aspnetmvc.min.js"></script>
+    <script src="~/lib/Kendo/js/jquery.validate.js"></script>
+    <script src="~/lib/Kendo/js/validate.unobtrusive.js"></script>
     <script src="assets/js/app.min.js"></script>
 
     <!-- Custom Js -->
@@ -84,8 +85,7 @@
     <script src="assets/js/pages/index.js"></script>
     @*<script src="~/lib/Loading/js/jquery.preloader.min.js"></script>*@
     <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
-    <script src="~/assets/js/Main.js"></script>
-
+    <script src="~/assets/js/BaseScripts.js"></script>
     @RenderSection("Scripts", false)
 </body>
 </html>
