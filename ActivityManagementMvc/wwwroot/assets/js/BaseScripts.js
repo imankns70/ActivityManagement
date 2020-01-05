@@ -39,14 +39,7 @@ var mydnn = (function () {
     };
 });
 
-
-$.ajaxSetup({
-    data: {
-        ModuleId: $("#dnn-module-id").val(),
-        TabId: $("#dnn-module-tab-id").val(),
-        RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
-    }
-});
+ 
 
 
 function ShowMessage(msgText, Type) {
@@ -287,103 +280,102 @@ function myGetJson(controllerName, actionName, params, formNameInPost, methodTyp
 //}
 
 //######################################## KendoFunction ####################################
-function minKendovalidate(input) {
-    var minAttr = $(input).attr('min');
+//function minKendovalidate(input) {
+//    var minAttr = $(input).attr('min');
 
 
-    if (minAttr != null) {
-        if (input.val().length < minAttr) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+//    if (minAttr != null) {
+//        if (input.val().length < minAttr) {
+//            return false;
+//        }
+//        else {
+//            return true;
+//        }
+//    }
 
-    return true;
-}
-function maxKendovalidate(input) {
-    var maxAttr = $(input).attr('max');
+//    return true;
+//}
+
+//function maxKendovalidate(input) {
+//    var maxAttr = $(input).attr('max');
 
 
-    if (maxAttr != null) {
-        if (input.val().length > maxAttr) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+//    if (maxAttr != null) {
+//        if (input.val().length > maxAttr) {
+//            return false;
+//        }
+//        else {
+//            return true;
+//        }
+//    }
 
-    return true;
-}
-function IsEnglishInput(input) {
-    var IsenglishInput = $(input).attr('isenglish');
-    if (IsenglishInput)
-    {
-        debugger;
-        var textinput = $(input).val();
-        var re = new RegExp("^([a-zA-Z0-9]{5,})$");
-        if (re.test(textinput)) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        //for (var i = 0; i < textinput.length; i++) {
-        //    if( !textinput.charAt(i).key.match(/[a-zA-Z0-9]/))
-        //    {
-        //        return false;
-        //    }
-        //}
-        return true;
-    }
-    return true;
-}
-function GetGlobalpopupFormValidator(popupName) {
-    var popupFormValidator = $(popupName).kendoValidator({
-        rules: {
-            min: function (input) { return minKendovalidate(input); },
-            max: function (input) { return maxKendovalidate(input); },
-            isenglish: function (input) { return IsEnglishInput(input); }
-        }
+//    return true;
+//}
 
-    }).data("kendoValidator");
-    return popupFormValidator;
-}
-function GlobalFormIsValid()
-{
-    var Globvalidator= $("#Form").kendoValidator({
-        rules: {
-            min: function (input) { return minKendovalidate(input); },
-            max: function (input) { return maxKendovalidate(input); },
-            isenglish: function (input) { return IsEnglishInput(input); }
-        }
+//function IsEnglishInput(input) {
+//    var IsenglishInput = $(input).attr('isenglish');
+//    if (IsenglishInput)
+//    {
+//        debugger;
+//        var textinput = $(input).val();
+//        var re = new RegExp("^([a-zA-Z0-9]{5,})$");
+//        if (re.test(textinput)) {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//        //for (var i = 0; i < textinput.length; i++) {
+//        //    if( !textinput.charAt(i).key.match(/[a-zA-Z0-9]/))
+//        //    {
+//        //        return false;
+//        //    }
+//        //}
+//        return true;
+//    }
+//    return true;
+//}
 
-    }).data("kendoValidator");
-    return Globvalidator.validate();
-}
-function ConvertDateMiladitoPersian(datein) {
-    var ff = moment(datein).format('jYYYY/jMM/jDD');
-    return ff;
-}
+//function GetGlobalpopupFormValidator(popupName) {
+//    var popupFormValidator = $(popupName).kendoValidator({
+//        rules: {
+//            min: function (input) { return minKendovalidate(input); },
+//            max: function (input) { return maxKendovalidate(input); },
+//            isenglish: function (input) { return IsEnglishInput(input); }
+//        }
 
-$(document).ready(function () {
-    $("#Form").kendoValidator({
-        rules: {
-            min: function (input) { return minKendovalidate(input); },
-            max: function (input) { return maxKendovalidate(input); },
-            isenglish: function (input) { return IsEnglishInput(input); }
-        }
+//    }).data("kendoValidator");
+//    return popupFormValidator;
+//}
 
-    }).data("kendoValidator");
+//function GlobalFormIsValid()
+//{
+//    var Globvalidator= $("#Form").kendoValidator({
+//        rules: {
+//            min: function (input) { return minKendovalidate(input); },
+//            max: function (input) { return maxKendovalidate(input); },
+//            isenglish: function (input) { return IsEnglishInput(input); }
+//        }
 
-    //$("input").each(function () {
-    //    var cb = $(this).data("kendoDropDownList");
-    //    if (cb) {
-    //        // attach handler to cb
-    //        cb.bind("open", handler)
-    //    }
-    //});
-});
+//    }).data("kendoValidator");
+//    return Globvalidator.validate();
+//}
+
+//function ConvertDateMiladitoPersian(datein) {
+//    var ff = moment(datein).format('jYYYY/jMM/jDD');
+//    return ff;
+//}
+
+//$(document).ready(function () {
+//    $("#Form").kendoValidator({
+//        rules: {
+//            min: function (input) { return minKendovalidate(input); },
+//            max: function (input) { return maxKendovalidate(input); },
+//            isenglish: function (input) { return IsEnglishInput(input); }
+//        }
+
+//    }).data("kendoValidator");
+
+ 
+//});

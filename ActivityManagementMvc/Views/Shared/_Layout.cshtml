@@ -17,35 +17,26 @@
 
 
 
-    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />
-    <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
-    <link href="~/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
-    <!-- Plugins Core Css -->
-    <link href="/assets/css/app.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />
     <link href="/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
-    <!-- Custom Css -->
-    <!-- Theme style. You can choose a theme from css/themes instead of get all themes -->
     <link href="/assets/css/styles/all-themes.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
-
-    <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
+    <link href="/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+    <link href="/assets/css/app.min.css" rel="stylesheet">
+    <link href="/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
+    <link href="/lib/Loading/css/preloader.css" rel="styleshleet" />
     <link href="/assets/css/style.css" rel="stylesheet" />
+
+
+
 
 
 
 </head>
 <body class="rtl theme-black logo-white submenu-closed">
 
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="m-t-30">
-                <img class="loading-img-spin" src="assets/images/loading.png" alt="admin">
-            </div>
-            <p>لطفا صبر کنید...</p>
-        </div>
-    </div>
+
 
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
@@ -65,27 +56,27 @@
     </div>
     <section class="content">
         <div class="container-fluid">
+
             @RenderBody()
         </div>
     </section>
 
 
-
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
-    <script src="~/lib/Kendo/js/aspnetmvc.min.js"></script>
-    <script src="~/lib/Kendo/js/jquery.validate.js"></script>
-    <script src="~/lib/Kendo/js/validate.unobtrusive.js"></script>
-    <script src="assets/js/app.min.js"></script>
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/app.min.js"></script>
+    <script src="/assets/js/admin.js"></script>
+    <script src="/lib/Kendo/js/kendo.all.min.js"></script>
+    <script src="/lib/Kendo/js/aspnetmvc.min.js"></script>
+    <script src="~/lib/Kendo/js/kendo.culture.fa-IR.min.js"></script>
+    <script src="/lib/Kendo/js/jquery.validate.js"></script>
+    <script src="/lib/Kendo/js/validate.unobtrusive.js"></script>
 
-    <!-- Custom Js -->
-    <script src="assets/js/admin.js"></script>
-    <script src="assets/js/bundles/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/index.js"></script>
-    @*<script src="~/lib/Loading/js/jquery.preloader.min.js"></script>*@
-    <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
-    <script src="~/assets/js/BaseScripts.js"></script>
+    @*<script src="/assets/js/pages/index.js"></script>*@
+    <script src="/lib/Loading/js/jquery.preloader.min.js"></script>
+    <script src="/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script src="/assets/js/BaseScripts.js"></script>
+
     @RenderSection("Scripts", false)
 </body>
 </html>

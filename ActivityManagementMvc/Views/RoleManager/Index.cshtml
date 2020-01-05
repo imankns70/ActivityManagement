@@ -1,4 +1,4 @@
-﻿ 
+﻿
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
@@ -6,95 +6,132 @@
 
 
 <div id="RoleGrid"></div>
-<div id="RoleWindow"></div>
-
+<div id="windoRole"></div>
 
 <script id="CreateRole" type="text/x-kendo-template">
     <a onclick=CreateRole() class='k-button k-grid-delete'><i class="fa fa-plus"></i></a>
 </script>
-<script type="text/javascript">
-    var recordRole=0;
-    var windowRole;
-    $(function() {
-        RoleInitialize();
-    });
 
-    function RoleInitialize() {
+@section Scripts {
+    @{
+
+        <script type="text/javascript">
+            var recordRole = 0;
+            var windowRole;
+            $(function () {
+                $("#RoleGrid").text(kendo.version);
+                debugger;
+                RoleInitialize();
+              
+            });
+
+            function RoleInitialize() {
+
+                $("#RoleGrid").html('');
+
+                $("#RoleGrid").kendoGrid({
+                    toolbar: [{ template: kendo.template($("#CreateRole").html()) }, "excel"],
+                    excel: { allPages: true },
+                    height: 400,
+                    dataSource: {
+                        type: "aspnetmvc-ajax",
+                        transport: {
+                            read: "/RoleManager/GetRoles",
+                            parameterMap: function (data, operation) { return JSON.stringify(data); }
+                        },
+                        schema: {
+                            data: "Data",
+                            errors: "Errors",
+
+                            total: "Total",
+                            model: {
+                                id: "Id",
+                                fields: {
+                                    Id: { type: "number", editable: false, nullable: true },
+                                    Name: { type: "string" }
 
 
-        $("#RoleGrid").kendoGrid({
-            toolbar:[{name:"create",text:"جدید", template:kendo.template($("#CreateRole").html())}, "excel"],
-            excel: {allPages: true},
-            height: 400,
-            dataSource: {
-                type: "aspnetmvc-ajax",
-                transport: {
-                    read: "/RoleManager/GetRoles"
-                },
-                schema: {
-                    data: "Data",
-                    errors: "Errors",
+                                }
 
-                    total: "Total",
-                    model: {
-                        id: "Id",
-                        fields: {
-                            Id: { type: "number",editable: false, nullable: true},
-                            Name: { type: "string"}
-		                  
+
+                            }
+                        },
+                        parameterMap: function (data, type) {
+                            return kendo.stringify(data);
+                        },
+                        pageSize: 20
+                    },
+
+
+
+                    serverFiltering: true,
+                    serverPaging: true,
+                    serverSorting: true,
+                    dataBinding: function () {
+                        recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                    },
+
+                    pageable: true,
+                    navigatable: true,
+                    selectable: "single row",
+                    sortable: {
+                        mode: "multiple"
+                    },
+                    pageSize: 20,
+                    resizable: true,
+                    scrollable: true,
+                    columns: [
+                        {
+                            title: "ردیف",
+                            template: "#= ++recordRole #",
+                            width: 100
+                        },
+                        { field: "Id", title: "شناسه نقش" },
+                        { field: "Name", title: "نام نقش" },
+
+
+                        {
+                            title: "<i class='Add' >عملیات</i>",
+                            template:
+                                "<a onClick=\"EditRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
+                                "<a onClick=\"DeleteRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> "
 
                         }
-
-
-                    }
-                },
-                parameterMap: function (data, type) {
-                    return kendo.stringify(data);
-                },
-                pageSize: 20},
-            columns: [
-                { field: "NotaryID", title: "شناسه دفتر اسناد رسمی" },
-                { field: "Code", title: "شماره دفترخانه" },
-						 
-
-                {command: [  { name: "edit",text: 'ویرایش',title: "ویرایش",template: "<a onclick=EditRole('#Id#') class='k-button k-grid-delete'><span class='glyphicon glyphicon-remove'></span></a>" }
-                    ,{text: 'حذف',name: "Delete",title: "ویرایش"}], width: 180 }
-            ],
-
-
-            serverFiltering: true,
-            serverPaging: true,
-            serverSorting: true,
-            dataBinding: function() {
-                recordRole = (this.dataSource.page() -1) * this.dataSource.pageSize();
-            },
-
-            pageable: true,
-            navigatable: true,
-            selectable: "single row",
-            sortable: {
-                mode: "multiple"
-            },
-            pageSize: 20,
-            resizable: true,
-            scrollable: true
-        });
-    }
+                    ]
+                });
+            }
 
 
 
-    function initGrid() {
-        var window = $("#window").kendoWindow({
-            title: "آیا از حذف رکورد انتخاب شده اطمینان دارید؟",
-            modal:true,
-            visible: false, //the window will not appear before its .open method is called
-            width: "400px",
-            height: "200px",
-        }).data("kendoWindow");
+            function CreateRole(x) {
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/Create/',
+                    success: function (data) {
+                        $("#windowTask").html(data);
 
-        function EditRole(id) {
-            
-        }
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowRole.data("kendoWindow").title('ایجاد').center().open();
+                    },
+                });
+            }
+
+            function EditRole(id) {
+
+            }
+
+            function RoleGridRefresh() {
+                var grid = $("#RoleGrid").data("kendoGrid");
+                grid.dataSource.read();
+                try { windowRole.data('kendoWindow').close(); } catch (e) { }
+            }
         </script>
+    }
+}
+
 
 
