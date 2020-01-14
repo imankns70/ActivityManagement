@@ -7,15 +7,6 @@ E:\project\ActivityManagement\Common\obj\Debug\netcoreapp2.2\ActivityManagement.
 E:\project\ActivityManagement\Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfo.cs
 E:\project\ActivityManagement\Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.dll
 E:\project\ActivityManagement\Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
-E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.deps.json
-E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.dll
-E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.csprojAssemblyReference.cache
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.csproj.CoreCompileInputs.cache
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfoInputs.cache
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfo.cs
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.dll
-E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
 D:\projects\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.deps.json
 D:\projects\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.dll
 D:\projects\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
@@ -23,3 +14,11 @@ D:\projects\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2
 D:\projects\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfo.cs
 D:\projects\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.dll
 D:\projects\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
+E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.deps.json
+E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.dll
+E:\project\ActivityManagement\ActivityManagement.Common\bin\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
+E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.csprojAssemblyReference.cache
+E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfoInputs.cache
+E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.AssemblyInfo.cs
+E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.dll
+E:\project\ActivityManagement\ActivityManagement.Common\obj\Debug\netcoreapp2.2\ActivityManagement.Common.pdb
