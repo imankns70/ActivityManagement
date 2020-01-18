@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="EfInterfaces\Business\" />
@@ -10,9 +10,5 @@
     <ProjectReference Include="..\ActivityManagement.DataLayer\ActivityManagement.DataLayer.csproj" />
     <ProjectReference Include="..\ActivityManagement.ViewModels\ActivityManagement.ViewModels.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  
 </Project>
