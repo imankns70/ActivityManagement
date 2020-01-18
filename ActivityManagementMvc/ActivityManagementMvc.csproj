@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-     
-    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2019.3.1023" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\RoleManager\" />
     <Folder Include="wwwroot\assets\css\pages\" />
@@ -88,6 +83,10 @@
     <Folder Include="wwwroot\assets\vendor\fontawesome\fontawesome-free\svgs\brands\" />
     <Folder Include="wwwroot\assets\vendor\fontawesome\fontawesome-free\svgs\regular\" />
     <Folder Include="wwwroot\assets\vendor\fontawesome\fontawesome-free\svgs\solid\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2019.3.1023" />
   </ItemGroup>
 
   <ItemGroup>
