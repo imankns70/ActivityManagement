@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {}
+    "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {}
   },
   "projects": {
-    "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+    "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "projectName": "ActivityManagement.DomainClasses",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

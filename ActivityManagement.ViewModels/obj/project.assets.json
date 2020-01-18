@@ -9042,11 +9042,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+      "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
       "projectName": "ActivityManagement.ViewModels",
-      "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+      "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-      "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
+      "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9066,8 +9066,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-              "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+            "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+              "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
             }
           }
         }

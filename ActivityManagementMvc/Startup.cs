@@ -47,6 +47,12 @@ namespace ActivityManagementMvc
                 //options.LoginPath = "/Account/SignIn";
                 options.AccessDeniedPath = "/UserManager/AccessDenied";
             });
+            //services.AddControllersWithViews().AddJsonOptions(option =>
+            //{
+            //    option.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+            //    option.JsonSerializerOptions.PropertyNamingPolicy = null;
+
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
