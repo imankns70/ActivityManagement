@@ -19,10 +19,10 @@ namespace ActivityManagementMvc.Controllers
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
 
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private const string UserNotFound = "کاربر یافت نشد.";
 
-        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IHostingEnvironment env)
+        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
