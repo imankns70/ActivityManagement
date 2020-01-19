@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ActivityManagementMvc/bin/Debug/netcoreapp2.2/ActivityManagementMvc.dll",
+            "program": "${workspaceFolder}/ActivityManagementMvc/bin/Debug/netcoreapp3.1/ActivityManagementMvc.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/ActivityManagementMvc",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -24,6 +24,11 @@
                 "/Views": "${workspaceFolder}/Views"
             }
         },
-        
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
     ]
 }

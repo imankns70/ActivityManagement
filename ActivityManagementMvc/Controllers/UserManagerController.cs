@@ -19,10 +19,10 @@ namespace ActivityManagementMvc.Controllers
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
 
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private const string UserNotFound = "کاربر یافت نشد.";
 
-        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IHostingEnvironment env)
+        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -39,7 +39,7 @@ namespace ActivityManagementMvc.Controllers
         public IActionResult Index()
         {
 
-             BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
+            BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
             {
                 Title = "مدیریت کاربران",
                 Url = "/UserManager/Index"
@@ -145,7 +145,7 @@ namespace ActivityManagementMvc.Controllers
             {
                 IdentityResult result;
                 AppUser user = new AppUser();
-              
+
 
                 viewModel.BirthDate = viewModel.PersianBirthDate.ConvertShamsiToMiladi();
 
@@ -157,7 +157,7 @@ namespace ActivityManagementMvc.Controllers
                     if (viewModel.ImageFile != null)
                     {
                         viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
-                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image,$"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
+                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
                         if (fileResult.IsSuccess == false)
                         {
                             ModelState.AddModelError(string.Empty, InvalidImage);
@@ -196,11 +196,11 @@ namespace ActivityManagementMvc.Controllers
                 {
                     if (viewModel.ImageFile != null)
                     {
-                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image,$"{_env.WebRootPath}/avatars/{viewModel.Image}");
+                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/avatars/{viewModel.Image}");
                         if (fileResult.IsSuccess == false)
                             ModelState.AddModelError(string.Empty, InvalidImage);
                     }
-                   
+
 
                     user.EmailConfirmed = true;
                     user.UserName = viewModel.UserName;

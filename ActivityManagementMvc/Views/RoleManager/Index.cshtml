@@ -19,8 +19,8 @@
             var recordRole = 0;
             var windowRole;
             $(function () {
-                $("#RoleGrid").text(kendo.version);
-                debugger;
+         
+             
                 RoleInitialize();
               
             });
@@ -34,16 +34,16 @@
                     excel: { allPages: true },
                     height: 400,
                     dataSource: {
-                        type: "aspnetmvc-ajax",
+                        //type: "aspnetmvc-ajax",
                         transport: {
-                            read: "/RoleManager/GetRoles",
+                            read: "/RoleManager/GetRoles", type: "POST", contentType: "application/json",
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
                         schema: {
-                            data: "Data",
-                            errors: "Errors",
+                            data: "data",
+                            errors: "errors",
 
-                            total: "Total",
+                            total: "total",
                             model: {
                                 id: "Id",
                                 fields: {
@@ -52,8 +52,7 @@
 
 
                                 }
-
-
+            
                             }
                         },
                         parameterMap: function (data, type) {

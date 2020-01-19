@@ -39,7 +39,8 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<AppUser> FindByIdAsync(string userId);
         Task<AppUser> FindByNameAsync(string userName);
         Task<IdentityResult> CreateAsync(AppUser user, string password);
-        string NormalizeKey(string key);
+        string NormalizeName(string name);
+        string NormalizeEmail(string email);
         Task UpdateNormalizedUserNameAsync(AppUser user);
         Task<string> GetUserNameAsync(AppUser user);
         Task<IdentityResult> SetUserNameAsync(AppUser user, string userName);
