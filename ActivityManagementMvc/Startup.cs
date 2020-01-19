@@ -59,11 +59,23 @@ namespace ActivityManagementMvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            else
+                app.UseExceptionHandler("/Home/Error");
+
+
+
             app.UseStaticFiles();
             app.UseCustomIdentityServices();
+            app.Use(async (context, next) =>
+            {
+                await next();
+                if (context.Response.StatusCode == 404)
+                {
+                    context.Request.Path = "/Home/Error404";
+                    await next();
+                }
+            });
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(routes =>

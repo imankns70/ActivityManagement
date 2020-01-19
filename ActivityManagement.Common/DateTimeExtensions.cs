@@ -17,7 +17,11 @@ namespace ActivityManagement.Common
             PersianDateTime persianDateTime = new PersianDateTime(date);
             return persianDateTime.ToString(format);
         }
-
+        public static bool IsLeapYear(this DateTime? date)
+        {
+            PersianDateTime persianDateTime = new PersianDateTime(date);
+            return persianDateTime.IsLeapYear;
+        }
         public static DateTimeResult CheckShamsiDateTime(this string date)
         {
             try
@@ -35,7 +39,7 @@ namespace ActivityManagement.Common
         public static DateTime DateTimeWithOutMilliseconds(DateTime dateTime) => dateTime.AddTicks(-(dateTime.Ticks % TimeSpan.TicksPerSecond));
 
 
-      
+
     }
 
     public class DateTimeResult

@@ -39,7 +39,7 @@ namespace ActivityManagementMvc.Controllers
         public IActionResult Index()
         {
 
-             BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
+            BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
             {
                 Title = "مدیریت کاربران",
                 Url = "/UserManager/Index"
@@ -145,7 +145,7 @@ namespace ActivityManagementMvc.Controllers
             {
                 IdentityResult result;
                 AppUser user = new AppUser();
-              
+
 
                 viewModel.BirthDate = viewModel.PersianBirthDate.ConvertShamsiToMiladi();
 
@@ -157,7 +157,7 @@ namespace ActivityManagementMvc.Controllers
                     if (viewModel.ImageFile != null)
                     {
                         viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
-                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image,$"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
+                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
                         if (fileResult.IsSuccess == false)
                         {
                             ModelState.AddModelError(string.Empty, InvalidImage);
@@ -196,11 +196,11 @@ namespace ActivityManagementMvc.Controllers
                 {
                     if (viewModel.ImageFile != null)
                     {
-                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image,$"{_env.WebRootPath}/avatars/{viewModel.Image}");
+                        FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/avatars/{viewModel.Image}");
                         if (fileResult.IsSuccess == false)
                             ModelState.AddModelError(string.Empty, InvalidImage);
                     }
-                   
+
 
                     user.EmailConfirmed = true;
                     user.UserName = viewModel.UserName;
