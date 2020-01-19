@@ -11,7 +11,12 @@ namespace ActivityManagementMvc
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration) 
+        {
+            this.Configuration = configuration;
+               
+        }
+                public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {

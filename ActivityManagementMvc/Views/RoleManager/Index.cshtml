@@ -125,6 +125,7 @@
             }
 
             function RoleGridRefresh() {
+                
                 var grid = $("#RoleGrid").data("kendoGrid");
                 grid.dataSource.read();
                 try { windowRole.data('kendoWindow').close(); } catch (e) { }
