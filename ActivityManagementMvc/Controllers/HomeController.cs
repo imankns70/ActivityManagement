@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using ActivityManagement.Common;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.ViewModels.DynamicAccess;
@@ -31,6 +32,7 @@ namespace ActivityManagementMvc.Controllers
         }
         public IActionResult Error()
         {
+            
 
             return View();
         }

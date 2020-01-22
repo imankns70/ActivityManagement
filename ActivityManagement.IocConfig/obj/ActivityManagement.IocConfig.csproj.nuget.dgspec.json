@@ -1,6 +1,13 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {}
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {}
   },
   "projects": {
@@ -12,6 +19,27 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {}
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+  },
+  "projects": {
+    "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectName": "ActivityManagement.Common",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -74,6 +102,13 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -82,6 +117,24 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "projectName": "ActivityManagement.DataLayer",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -101,11 +154,33 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
+              },
+              "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
               },
               "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+<<<<<<< HEAD
+=======
+=======
+              "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
+              },
+              "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               }
             }
           }
@@ -155,6 +230,13 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -163,6 +245,24 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectName": "ActivityManagement.DomainClasses",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -217,6 +317,13 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -225,6 +332,24 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+        "projectName": "ActivityManagement.IocConfig",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -244,11 +369,29 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
+              },
+              "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
               },
+<<<<<<< HEAD
               "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+=======
+              "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               }
             }
           }
@@ -261,6 +404,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -280,6 +429,13 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -288,6 +444,24 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+        "projectName": "ActivityManagement.Services",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -307,11 +481,33 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+              },
+              "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
               },
               "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+<<<<<<< HEAD
+=======
+=======
+              "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+              },
+              "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               }
             }
           }
@@ -343,6 +539,13 @@
         }
       }
     },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -351,6 +554,24 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "projectName": "ActivityManagement.ViewModels",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -370,8 +591,23 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+<<<<<<< HEAD
               "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
                 "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+=======
+<<<<<<< HEAD
+              "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+=======
+<<<<<<< HEAD
+              "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+=======
+              "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
               }
             }
           }

@@ -1,6 +1,13 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
+=======
+<<<<<<< HEAD
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
     "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
   },
   "projects": {
@@ -12,6 +19,27 @@
         "projectPath": "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
         "outputPath": "e:\\project\\ActivityManagement\\ActivityManagementApi\\obj\\",
+<<<<<<< HEAD
+=======
+=======
+    "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+  },
+  "projects": {
+    "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "projectName": "ActivityManagementApi",
+        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+<<<<<<< HEAD
+        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
+=======
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
+>>>>>>> c9f26d16ba5bcff55ea687e550961bf66a589c95
+>>>>>>> 027da5d23ff97452cf51d6db8fb070da6f5b207b
+>>>>>>> 596ad8ac37b6cbc73fae293771aa7f33bd959924
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
