@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ActivityManagement.Common.Api.Attributes
 {
@@ -6,7 +7,7 @@ namespace ActivityManagement.Common.Api.Attributes
     {
         public JwtAuthenticationAttribute()
         {
-            //AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme;
+            AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme;
         }
     }
 }
