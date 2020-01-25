@@ -1,4 +1,7 @@
-﻿namespace ActivityManagement.IocConfig.Api.Swagger
+﻿using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+namespace ActivityManagement.IocConfig.Api.Swagger
 {
     public class SetVersionInPaths : IDocumentFilter
     {

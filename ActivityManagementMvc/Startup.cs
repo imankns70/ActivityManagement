@@ -1,44 +1,44 @@
-﻿using ActivityManagement.DataLayer.Context;
+﻿using System;
+using ActivityManagement.DataLayer.Context;
 using ActivityManagement.IocConfig;
+using ActivityManagement.IocConfig.Api.Middlewares;
+using ActivityManagement.IocConfig.Api.Swagger;
 using ActivityManagement.ViewModels.DynamicAccess;
+using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ActivityManagement.ViewModels.SiteSettings;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace ActivityManagementMvc
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) 
-        {
-            this.Configuration = configuration;
-               
-        }
-                public IConfiguration Configuration { get; }
 
+        public IConfiguration Configuration { get; }
+        private readonly SiteSettings SiteSettings;
+        public IServiceProvider Services { get; }
         public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
+            SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application,
-        // visit https://go.microsoft.com/fwlink/?LinkID=398940
 
 
         public void ConfigureServices(IServiceCollection services)
         {
 
-
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+               options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomIdentityServices();
             services.AddCustomServices();
+            services.AddApiVersioning();
+            services.AddCustomAuthentication(SiteSettings);
+            services.AddSwagger();
 
             services.AddAuthorization(options =>
             {
@@ -63,12 +63,20 @@ namespace ActivityManagementMvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-                app.UseDeveloperExceptionPage();
-            else
-                app.UseExceptionHandler("/Home/Error");
+            // once we use api and mvc with together
+            var cachePeriod = env.IsDevelopment() ? "600" : "605800";
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+            {
+                appBuilder.UseCustomExceptionHandler();
+            });
 
-
+            app.UseWhen(context => !context.Request.Path.StartsWithSegments("/api"), appBuilder =>
+            {
+                if (env.IsDevelopment())
+                    appBuilder.UseDeveloperExceptionPage();
+                else
+                    appBuilder.UseExceptionHandler("/Home/Error");
+            });
 
             app.UseStaticFiles();
             app.UseCustomIdentityServices();
@@ -81,17 +89,18 @@ namespace ActivityManagementMvc
                     await next();
                 }
             });
+            app.UseSwaggerAndUI();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(routes =>
             {
                 routes.MapControllerRoute(
-                   "areas",
-                   "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-               );
+                    "areas",
+                    "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
                 routes.MapControllerRoute(
-                     "default",
-                     "{controller=Home}/{action=Index}/{id?}"
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}"
                 );
             });
         }

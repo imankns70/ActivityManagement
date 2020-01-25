@@ -1,3 +1,5 @@
+using ActivityManagement.Services.Api;
+using ActivityManagement.Services.Api.Contract;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.Services.EfServices.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,7 @@ namespace ActivityManagement.IocConfig
 
                 //})
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddTransient<IjwtService,jwtService>();
             return services;
         }
     }

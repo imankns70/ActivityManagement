@@ -5,6 +5,7 @@
         public AdminUserSeed AdminUserSeed { get; set; }
         public SiteInformation SiteInformation { get; set; }
         public SiteEmail SiteEmail { get; set; }
+        public JwtSettings JwtSettings { get; set; }
     }
 
 
@@ -37,4 +38,14 @@
         public string Host { get; set; }
         public int Port { get; set; }
     }
+       public class JwtSettings
+    {
+        public string SecretKey { get; set; }
+        public string EncrypKey { get; set; }
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
+        public int NotBeforeMinutes { get; set; }
+        public int ExpirationMinutes { get; set; }
+
+}
 }

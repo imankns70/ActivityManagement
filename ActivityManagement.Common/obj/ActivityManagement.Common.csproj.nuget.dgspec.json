@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
   },
   "projects": {
@@ -12,12 +13,25 @@
         "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
         "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+=======
+    "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
+  },
+  "projects": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectName": "ActivityManagement.Common",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+>>>>>>> ba4fcccbace00e654393b51659144ccc96577d58
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,9 +56,17 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "MD.PersianDateTime.Core": {
               "target": "Package",
               "version": "[2.3.5, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
             },
             "Microsoft.AspNetCore.Identity": {
               "target": "Package",

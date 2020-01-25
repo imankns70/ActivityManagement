@@ -1,4 +1,8 @@
-﻿namespace ActivityManagement.IocConfig.Api.Swagger
+﻿using System.Linq;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
+namespace ActivityManagement.IocConfig.Api.Swagger
 {
     public class RemoveVersionParameters : IOperationFilter
     {
@@ -9,5 +13,7 @@
             if (versionParameter != null)
                 operation.Parameters.Remove(versionParameter);
         }
+
+        
     }
 }

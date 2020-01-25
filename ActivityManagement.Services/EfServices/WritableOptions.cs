@@ -12,14 +12,15 @@ namespace ActivityManagement.Services.EfServices
 {
     public class WritableOptions<T> : IWritableOptions<T> where T : class, new()
     {
-        private readonly IHostingEnvironment _environment;
+      
+        private readonly IWebHostEnvironment _environment;
         private readonly IOptionsMonitor<T> _options;
         private readonly IConfigurationRoot _configuration;
         private readonly string _section;
         private readonly string _file;
 
         public WritableOptions(
-            IHostingEnvironment environment,
+            IWebHostEnvironment environment,
             IOptionsMonitor<T> options,
             IConfigurationRoot configuration,
             string section,
@@ -32,7 +33,9 @@ namespace ActivityManagement.Services.EfServices
             _file = file;
         }
 
-        public T Value => _options.CurrentValue;
+        public T Value => Options.CurrentValue;
+
+        public IOptionsMonitor<T> Options => _options;
 
         public void Update(Action<T> applyChanges)
         {
