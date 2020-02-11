@@ -1,7 +1,4 @@
-﻿@using ActivityManagement.Services.EfInterfaces
-@using ActivityManagement.ViewModels.SiteSettings
-@inject IWritableOptions<SiteSettings> WritableOptions
-<nav class="navbar">
+﻿<nav class="navbar">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
@@ -9,7 +6,7 @@
             <a href="#" onClick="return false;" class="bars"></a>
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo.png" alt="" />
-                <span class="logo-name">@WritableOptions.Value.SiteInformation.Title</span>
+                <span class="logo-name">آتریو</span>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">

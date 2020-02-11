@@ -15,68 +15,79 @@
     <!-- Favicon -->
     <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png" />
 
+    <link href="/assets/images/favicon.ico" rel="icon" type="image/png">
 
-
-    <link href="/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />
+    @*<link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+    @*<link href="/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />*@
+    <link href="assets/css/app.min.css" rel="stylesheet">
     <link href="/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
-    <link href="/assets/css/styles/all-themes.css" rel="stylesheet" />
-    <link href="/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
-    <link href="/assets/css/app.min.css" rel="stylesheet">
-    <link href="/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
-    <link href="/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
-    <link href="/lib/Loading/css/preloader.css" rel="styleshleet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/styles/all-themes.css" rel="stylesheet" />
+    <!-- Loading -->
+    <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
+
+    <!-- DateTimePicker -->
+    <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+
+    <!-- Kendo -->
+    <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
+
+    <!-- FontAwesome -->
     <link href="~/assets/fonts/FontAwsome5/css/fontawesome.min.css" rel="stylesheet" />
     <link href="~/assets/fonts/FontAwsome5/css/brands.min.css" rel="stylesheet" />
     <link href="~/assets/fonts/FontAwsome5/css/solid.min.css" rel="stylesheet" />
-    <link href="/assets/css/style.css" rel="stylesheet" />
-
 
 
 
 
 
 </head>
-<body class="rtl theme-black logo-white submenu-closed">
-
-
-
+<body class="light rtl">
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="m-t-30">
+                <img class="loading-img-spin" src="assets/images/loading.png" alt="admin">
+            </div>
+            <p>لطفا صبر کنید...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
     <!-- Top Bar -->
-    @await Html.PartialAsync("_Navbar")
+    @Html.RenderPartialAsync("_Navbar")
     <!-- #Top Bar -->
     <div>
-        <!-- Right Sidebar -->
-        @await Html.PartialAsync("_RightSideMenu")
+
+        @Html.RenderPartialAsync("_RightSideMenu")
 
 
-        <!-- Left Sidebar -->
-        @await Html.PartialAsync("_LeftSideMenu")
-
+        @Html.RenderPartialAsync("_LeftSideMenu")
 
     </div>
     <section class="content">
         <div class="container-fluid">
-
             @RenderBody()
         </div>
     </section>
 
 
+
+
+
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/app.min.js"></script>
-    <script src="/assets/js/admin.js"></script>
+    <script src="assets/js/app.min.js"></script>
+    <!-- Custom Js -->
+    <script src="assets/js/admin.js"></script>
     <script src="/lib/Kendo/js/kendo.all.min.js"></script>
     <script src="/lib/Kendo/js/aspnetmvc.min.js"></script>
     <script src="/lib/Kendo/js/kendo.culture.fa-IR.min.js"></script>
     @*<script src="~/lib/Kendo/js/kendo.culture.fa.min.js"></script>*@
     <script src="/lib/Kendo/js/jquery.validate.js"></script>
     <script src="/lib/Kendo/js/validate.unobtrusive.js"></script>
-
-    @*<script src="/assets/js/pages/index.js"></script>*@
     <script src="/lib/Loading/js/jquery.preloader.min.js"></script>
     <script src="/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
     <script src="/assets/fonts/FontAwsome5/js/fontawesome.js"></script>

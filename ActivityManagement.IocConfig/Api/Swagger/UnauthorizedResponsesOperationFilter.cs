@@ -9,13 +9,13 @@ namespace ActivityManagement.IocConfig.Api.Swagger
 {
     public class UnauthorizedResponsesOperationFilter : IOperationFilter
     {
-        private readonly bool includeUnauthorizedAndForbiddenResponses;
-        private readonly string schemeName;
+        private readonly bool _includeUnauthorizedAndForbiddenResponses;
+        private readonly string _schemeName;
 
         public UnauthorizedResponsesOperationFilter(bool includeUnauthorizedAndForbiddenResponses, string schemeName = "Bearer")
         {
-            this.includeUnauthorizedAndForbiddenResponses = includeUnauthorizedAndForbiddenResponses;
-            this.schemeName = schemeName;
+            _includeUnauthorizedAndForbiddenResponses = includeUnauthorizedAndForbiddenResponses;
+            _schemeName = schemeName;
         }
 
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
@@ -28,7 +28,7 @@ namespace ActivityManagement.IocConfig.Api.Swagger
             var hasAuthorize = filters.Any(p => p.Filter is AuthorizeFilter);
             if (!hasAuthorize) return;
 
-            if (includeUnauthorizedAndForbiddenResponses)
+            if (_includeUnauthorizedAndForbiddenResponses)
             {
                 operation.Responses.TryAdd("401", new OpenApiResponse { Description = "Unauthorized" });
                 operation.Responses.TryAdd("403", new OpenApiResponse { Description = "Forbidden" });

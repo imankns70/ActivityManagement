@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
+    "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
   },
   "projects": {
-    "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
+    "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
         "projectName": "ActivityManagementApi",
-        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagementApi\\obj\\",
+        "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
