@@ -6,7 +6,7 @@ using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Identity;
- using ActivityManagement.ViewModels.SiteSettings;
+using ActivityManagement.ViewModels.SiteSettings;
 using System.Linq;
 using System.Net;
 using System.Security.Claims;
@@ -17,7 +17,7 @@ namespace ActivityManagement.IocConfig
 {
     public static class AddCustomAuthenticationExtentions
     {
-        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services,SiteSettings siteSettings)
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings)
         {
             services.AddAuthentication(options =>
             {
@@ -31,12 +31,16 @@ namespace ActivityManagement.IocConfig
 
                   var validationParameters = new TokenValidationParameters
                   {
+                      // token must be signed
                       RequireSignedTokens = true,
 
+                      // validate secret key when server gets token
                       ValidateIssuerSigningKey = true,
                       IssuerSigningKey = new SymmetricSecurityKey(secretkey),
 
                       RequireExpirationTime = true,
+
+                      // check when token is expired so then take it down
                       ValidateLifetime = true,
 
                       ValidateAudience = true, //default : false
@@ -91,16 +95,16 @@ namespace ActivityManagement.IocConfig
 
                   };
               });
-              //.AddGoogle(options =>
-              //{
-              //    options.ClientId = "315654760867-d01fsd0fb847vft0fbo6hvbgqghrt5ph.apps.googleusercontent.com";
-              //    options.ClientSecret = "F7rY4md1LciG24O_4J_RAPct";
-              //})
-              //.AddYahoo(options =>
-              //{
-              //    options.ClientId = "dj0yJmk9aWxnZVZNTGVwVXhWJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWQz";
-              //    options.ClientSecret = "9d68b57943e8035cd0771f49d2b54af10797eb4e";
-              //});
+            //.AddGoogle(options =>
+            //{
+            //    options.ClientId = "315654760867-d01fsd0fb847vft0fbo6hvbgqghrt5ph.apps.googleusercontent.com";
+            //    options.ClientSecret = "F7rY4md1LciG24O_4J_RAPct";
+            //})
+            //.AddYahoo(options =>
+            //{
+            //    options.ClientId = "dj0yJmk9aWxnZVZNTGVwVXhWJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWQz";
+            //    options.ClientSecret = "9d68b57943e8035cd0771f49d2b54af10797eb4e";
+            //});
 
             return services;
         }

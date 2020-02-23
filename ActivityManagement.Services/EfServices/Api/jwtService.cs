@@ -63,15 +63,28 @@ namespace ActivityManagement.Services.Api
                 new Claim(new ClaimsIdentityOptions().SecurityStampClaimType,user.SecurityStamp),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
-            
-            // use roleClaim instead of userClaim 
-            var userClaims = await _userManager.GetClaimsAsync(user);
-            var userRoles = await _userManager.GetRolesAsync(user);
-            foreach (var item in userClaims)
-                Claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, item.Value));
 
-            foreach (var item in userRoles)
-                Claims.Add(new Claim(ClaimTypes.Role, item));
+
+            List<AppRole> roles = _roleManager.GetAllRoles();
+
+            foreach (var item in roles)
+            {
+                var roleClaim = await _roleManager.FindClaimsInRole(item.Id);
+                foreach (var claim in roleClaim.Claims)
+                {
+                    Claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
+                }
+
+                Claims.Add(new Claim(ClaimTypes.Role, item.Name));
+            }
+            // instead of userClaim use roleClaim 
+            // var userClaims = await _userManager.GetClaimsAsync(user);
+            // var userRoles = await _userManager.GetRolesAsync(user);
+            // foreach (var item in userClaims)
+            //     Claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, item.Value));
+
+            // foreach (var item in userRoles)
+            //     Claims.Add(new Claim(ClaimTypes.Role, item));
 
             return Claims;
         }

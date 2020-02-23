@@ -38,14 +38,29 @@
         public string Host { get; set; }
         public int Port { get; set; }
     }
-       public class JwtSettings
+    public class JwtSettings
     {
         public string SecretKey { get; set; }
         public string EncrypKey { get; set; }
+
+        /// <summary>
+        ///  صادر کننده توکن که باید اشاره کند به شرکت یا سایتی که آن را صادر می کند 
+        /// </summary>
+        /// <value>"SiteName.Com"</value>
         public string Issuer { get; set; }
+
+        /// <summary>
+        ///  جایی که قرار است از این توکت استفاده کند  
+        /// </summary>
+        /// <value>"SiteName.Com"</value>
         public string Audience { get; set; }
+
+        /// <summary>
+        ///  زمانی که قرار است از این توکت مورد پردازش قرار بگیرد  
+        /// </summary>
+        /// <value>"SiteName.Com"</value>
         public int NotBeforeMinutes { get; set; }
         public int ExpirationMinutes { get; set; }
 
-}
+    }
 }
