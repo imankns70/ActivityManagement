@@ -21,7 +21,9 @@ namespace ActivityManagement.IocConfig
         {
             services.AddAuthentication(options =>
             {
-                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+
+                // زمانی که بخواهیم اعتبار سنجی کاربران بر اساس توکن باشد اینها از حالت کامنت خارج می شوند
+                // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
