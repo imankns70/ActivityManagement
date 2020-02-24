@@ -3581,10 +3581,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Common.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.DataLayer/1.0.0": {
         "type": "project",
@@ -3602,10 +3599,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",
@@ -3634,10 +3628,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.IocConfig.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.Services/1.0.0": {
         "type": "project",
@@ -3654,10 +3645,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",
@@ -3670,10 +3658,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.ViewModels.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
@@ -10337,11 +10322,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagementMvc\\ActivityManagementMvc.csproj",
+      "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagementMvc\\ActivityManagementMvc.csproj",
       "projectName": "ActivityManagementMvc",
-      "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagementMvc\\ActivityManagementMvc.csproj",
+      "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagementMvc\\ActivityManagementMvc.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagementMvc\\obj\\",
+      "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagementMvc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10361,8 +10346,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
-              "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
+            "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+              "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
             }
           }
         }

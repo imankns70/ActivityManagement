@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
+using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
@@ -11,7 +12,7 @@ using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using ActivityManagement.ViewModels.DynamicAccess;
 namespace ActivityManagementMvc.Controllers
 {
     public class UserManagerController : BaseController
@@ -131,6 +132,7 @@ namespace ActivityManagementMvc.Controllers
 
 
         [HttpPost]
+        [JwtAuthentication(Policy=ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> CreateOrUpdate(UsersViewModel viewModel)
         {
             viewModel.AllRoles = _roleManager.GetAllRoles();
@@ -183,7 +185,7 @@ namespace ActivityManagementMvc.Controllers
 
                         if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
                         result = await _userManager.UpdateAsync(user);
-
+                        await _userManager.UpdateSecurityStampAsync(user);
                         var role = await _roleManager.FindByIdAsync(viewModel.RoleId.ToString());
                         if (role != null)
                         {
