@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ActivityManagement.IocConfig;
+ 
+
 
 namespace ActivityManagementApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    // [Route("api/v{version:apiVersion}/[controller]")]
+    // [ApiVersion("1")]
+    // [ApiResultFilter]
     public class ValuesController : ControllerBase
     {
         // GET api/values
