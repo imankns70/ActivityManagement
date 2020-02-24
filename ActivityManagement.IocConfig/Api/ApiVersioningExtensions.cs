@@ -9,6 +9,7 @@ namespace ActivityManagement.IocConfig.Api
         {
             services.AddApiVersioning(options =>
             {
+                // add true or false to request header
                 options.ReportApiVersions = true;
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
