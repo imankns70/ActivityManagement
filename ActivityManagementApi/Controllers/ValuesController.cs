@@ -4,18 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ActivityManagement.IocConfig;
- 
-
+using ActivityManagement.Common.Api.Attributes;
+using ActivityManagement.ViewModels.DynamicAccess;
 
 namespace ActivityManagementApi.Controllers
 {
-    // [Route("api/v{version:apiVersion}/[controller]")]
-    // [ApiVersion("1")]
-    // [ApiResultFilter]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1")]
+    [ApiResultFilter]
     public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
+        //[JwtAuthentication(AuthenticationSchemes=ConstantPolicies.DynamicPermission)]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
