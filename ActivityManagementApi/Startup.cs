@@ -37,7 +37,7 @@ namespace ActivityManagementApi
             services.AddCustomIdentityServices();
             services.AddCustomServices();
             services.AddApiVersioning();
-           // services.AddCustomAuthentication(SiteSettings);
+            services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
 
             services.AddAuthorization(options =>

@@ -19,10 +19,10 @@
 
     @*<link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
     @*<link href="/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />*@
-    <link href="assets/css/app.min.css" rel="stylesheet">
-    <link href="/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet" />
-    <link href="assets/css/styles/all-themes.css" rel="stylesheet" />
+    <link href="~/assets/css/app.min.css" rel="stylesheet">
+    <link href="~/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/styles/all-themes.css" rel="stylesheet" />
     <!-- Loading -->
     <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
 
@@ -30,8 +30,10 @@
     <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
 
     <!-- Kendo -->
+    <link href="~/lib/Kendo/css/kendo.blueopal.min.css" rel="stylesheet" />
+    <link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
     <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
-    <link href="~/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />
+
 
     <!-- FontAwesome -->
     <link href="~/assets/fonts/FontAwsome5/css/fontawesome.min.css" rel="stylesheet" />
@@ -78,20 +80,25 @@
 
 
     <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/app.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
     <!-- Custom Js -->
-    <script src="assets/js/admin.js"></script>
-    <script src="/lib/Kendo/js/kendo.all.min.js"></script>
-    <script src="/lib/Kendo/js/aspnetmvc.min.js"></script>
-    <script src="/lib/Kendo/js/kendo.culture.fa-IR.min.js"></script>
-    @*<script src="~/lib/Kendo/js/kendo.culture.fa.min.js"></script>*@
-    <script src="/lib/Kendo/js/jquery.validate.js"></script>
-    <script src="/lib/Kendo/js/validate.unobtrusive.js"></script>
-    <script src="/lib/Loading/js/jquery.preloader.min.js"></script>
-    <script src="/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
-    <script src="/assets/fonts/FontAwsome5/js/fontawesome.js"></script>
-    <script src="/assets/js/BaseScripts.js"></script>
+    <script src="~/assets/js/admin.js"></script>
+    <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
+    @*<script src="/lib/Kendo/js/aspnetmvc.min.js"></script>*@
+    @*<script src="~/lib/Kendo/js/kendo.culture.fa-IR.min.js"></script>*@
+    <script src="~/lib/Kendo/js/cultures/kendo.culture.fa-IR.min.js"></script>
+    <script src="~/lib/Kendo/js/cultures/kendo.culture.fa.min.js"></script>
+    <script src="~/lib/Kendo/js/messages/kendo.messages.en-US.js"></script>
+    <script src="~/lib/Kendo/js/messages/kendo.messages.fa-IR.js"></script>
+    
+    <script src="~/lib/Kendo/js/jquery.validate.js"></script>
+    <script src="~/lib/Kendo/js/validate.unobtrusive.js"></script>
+    <script src="~/lib/Loading/js/jquery.preloader.min.js"></script>
+    <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script src="~/assets/fonts/FontAwsome5/js/fontawesome.js"></script>
+    <script src="~/assets/js/BaseScripts.js"></script>
+    <script src="~/assets/js/jquery.PostMvcAjax.js"></script>
 
 
     @RenderSection("Scripts", false)
