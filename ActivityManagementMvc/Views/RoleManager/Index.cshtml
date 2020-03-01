@@ -1,6 +1,6 @@
 ﻿
 @{
-    
+
     Layout = "_Layout";
 }
 
@@ -19,10 +19,10 @@
             var recordRole = 0;
             var windowRole;
             $(function () {
-         
-             
+
+
                 RoleInitialize();
-              
+
             });
 
             function RoleInitialize() {
@@ -34,9 +34,12 @@
                     excel: { allPages: true },
                     height: 400,
                     dataSource: {
-                        //type: "aspnetmvc-ajax",
+                     type:"aspnetmvc-ajax",
                         transport: {
-                            read: "/RoleManager/GetRoles", type: "POST", contentType: "application/json",
+                            read: "/RoleManager/GetRoles",
+                            type: "POST",
+                            dataType: "json",
+                            contentType: "application/json",
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
                         schema: {
@@ -47,12 +50,14 @@
                             model: {
                                 id: "Id",
                                 fields: {
+
+
                                     Id: { type: "number", editable: false, nullable: true },
                                     Name: { type: "string" }
 
 
                                 }
-            
+
                             }
                         },
                         parameterMap: function (data, type) {
@@ -62,10 +67,15 @@
                     },
 
 
-
                     serverFiltering: true,
                     serverPaging: true,
                     serverSorting: true,
+                    pageable:
+                    {
+                        pageSizes: [10, 25, 50, 63, 75, 100, 150],
+                        refresh: true,
+                        input: true
+                    },
                     dataBinding: function () {
                         recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
                     },
@@ -124,7 +134,7 @@
             }
 
             function RoleGridRefresh() {
-                
+
                 var grid = $("#RoleGrid").data("kendoGrid");
                 grid.dataSource.read();
                 try { windowRole.data('kendoWindow').close(); } catch (e) { }
