@@ -108,6 +108,8 @@
     <Folder Include="wwwroot\lib\bootstrap\site\_data\" />
     <Folder Include="wwwroot\lib\bootstrap\site\_includes\icons\" />
     <Folder Include="wwwroot\lib\bootstrap\site\_layouts\" />
+    <Folder Include="wwwroot\lib\Kendo\css\fonts\DejaVu\" />
+    <Folder Include="wwwroot\lib\Kendo\css\fonts\glyphs\" />
     <Folder Include="wwwroot\lib\popper.js\dist\esm\" />
     <Folder Include="wwwroot\lib\popper.js\dist\umd\" />
     <Folder Include="wwwroot\lib\popper.js\docs\css\" />
