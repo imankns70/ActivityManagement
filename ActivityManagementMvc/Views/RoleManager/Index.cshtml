@@ -4,23 +4,32 @@
     Layout = "_Layout";
 }
 
-
-<div id="RoleGrid"></div>
+@*<ul id="panelbar" class="k-rtl">
+        <li class="k-state-active k-state-selected">
+           اطلاعات نقش
+            <div id="personsGrid" class="table-responsive"></div>
+        </li>
+    </ul>*@
+<div id="RoleGrid" class="k-rtl"></div>
 <div id="windoRole"></div>
 
 <script id="CreateRole" type="text/x-kendo-template">
     <a onclick=CreateRole() class='k-button k-grid-delete'><i class="fa fa-plus"></i></a>
 </script>
-
+<script type="text/javascript">
+    var recordRole = 0;
+</script>
 @section Scripts {
     @{
 
         <script type="text/javascript">
-            var recordRole = 0;
+            //var recordRole = 0;
             var windowRole;
             $(function () {
 
-
+                //$("#panelbar").kendoPanelBar({
+                //    expandMode: "single"
+                //});
                 RoleInitialize();
 
             });
@@ -33,8 +42,9 @@
                     toolbar: [{ template: kendo.template($("#CreateRole").html()) }, "excel"],
                     excel: { allPages: true },
                     height: 400,
+                    columnMenu: true,
                     dataSource: {
-                     type:"aspnetmvc-ajax",
+                        type:"aspnetmvc-ajax",
                         transport: {
                             read: "/RoleManager/GetRoles",
                             type: "POST",
@@ -43,10 +53,9 @@
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
                         schema: {
-                            data: "data",
-                            errors: "errors",
-
-                            total: "total",
+                            data: "Data",
+                            total: "Total",
+                            errors: "Errors",
                             model: {
                                 id: "Id",
                                 fields: {
@@ -60,34 +69,41 @@
 
                             }
                         },
-                        parameterMap: function (data, type) {
-                            return kendo.stringify(data);
-                        },
-                        pageSize: 20
+                        parameterMap: function (data, operation) {
+                            {
+                                if (operation !== "read") {
+                                    return data;
+                                }
+                                else {
+                                    return JSON.stringify(data);
+                                }
+                            }
+                        }
+
                     },
 
-
+                    pageSize: 10,
                     serverFiltering: true,
                     serverPaging: true,
                     serverSorting: true,
                     pageable:
                     {
-                        pageSizes: [10, 25, 50, 63, 75, 100, 150],
-                        refresh: true,
-                        input: true
-                    },
-                    dataBinding: function () {
-                        recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                        pageSizes: [10, 25, 50, 100],
+                        refresh: true
                     },
 
-                    pageable: true,
-                    navigatable: true,
+                    dataBinding: function()
+                    {
+                       recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                    },
+                    
                     selectable: "single row",
                     sortable: {
                         mode: "multiple"
                     },
-                    pageSize: 20,
-                    resizable: true,
+
+                    editable: false,
+                    filterable: true,
                     scrollable: true,
                     columns: [
                         {
@@ -102,8 +118,13 @@
                         {
                             title: "<i class='Add' >عملیات</i>",
                             template:
+
                                 "<a onClick=\"EditRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
                                 "<a onClick=\"DeleteRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> "
+
+
+
+
 
                         }
                     ]
@@ -139,8 +160,8 @@
                 grid.dataSource.read();
                 try { windowRole.data('kendoWindow').close(); } catch (e) { }
             }
-        </script>
-    }
+</script>
+}
 }
 
 
