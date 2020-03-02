@@ -13,8 +13,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ActivityManagement.ViewModels.DynamicAccess;
+using Microsoft.AspNetCore.Authorization;
+
 namespace ActivityManagementMvc.Controllers
 {
+ 
     public class UserManagerController : BaseController
     {
         private readonly IApplicationUserManager _userManager;
@@ -132,6 +135,7 @@ namespace ActivityManagementMvc.Controllers
 
 
         [HttpPost]
+        //[Authorize]
         [JwtAuthentication(Policy=ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> CreateOrUpdate(UsersViewModel viewModel)
         {
