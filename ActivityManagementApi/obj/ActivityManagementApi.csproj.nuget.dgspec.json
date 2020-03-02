@@ -1,37 +1,23 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
+    "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
   },
   "projects": {
-    "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "projectName": "ActivityManagement.Common",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {}
-  },
-  "projects": {
-    "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
-        "projectName": "ActivityManagement.Common",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,39 +74,31 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
         "projectName": "ActivityManagement.DataLayer",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
-        "projectName": "ActivityManagement.DataLayer",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -134,19 +112,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-<<<<<<< HEAD
-              "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
+              "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
               },
-              "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
-=======
-              "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
-              },
-              "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+              "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
               }
             }
           }
@@ -188,39 +158,31 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "projectName": "ActivityManagement.DomainClasses",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
-        "projectName": "ActivityManagement.DomainClasses",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -265,35 +227,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
         "projectName": "ActivityManagement.IocConfig",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
-        "projectName": "ActivityManagement.IocConfig",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -307,19 +258,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-<<<<<<< HEAD
-              "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
+              "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
               },
-              "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
-=======
-              "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
-              },
-              "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+              "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
               }
             }
           }
@@ -353,39 +296,31 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
         "projectName": "ActivityManagement.Services",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
-        "projectName": "ActivityManagement.Services",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -399,19 +334,11 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-<<<<<<< HEAD
-              "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
+              "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
               },
-              "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
-=======
-              "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
-              },
-              "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+              "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
               }
             }
           }
@@ -449,39 +376,31 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+    "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
         "projectName": "ActivityManagement.ViewModels",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
         "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
-        "projectName": "ActivityManagement.ViewModels",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -495,89 +414,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-<<<<<<< HEAD
-              "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
-=======
-              "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-<<<<<<< HEAD
-    "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-        "projectName": "ActivityManagementApi",
-        "projectPath": "e:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "e:\\project\\ActivityManagement\\ActivityManagementApi\\obj\\",
-=======
-    "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-        "projectName": "ActivityManagementApi",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-        "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {
-<<<<<<< HEAD
-              "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
-                "projectPath": "e:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
-=======
-              "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
-                "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
->>>>>>> ddfc92aabad36ce548a0ea12de5067fd1591f7a4
+              "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
               }
             }
           }
@@ -608,7 +446,70 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "projectName": "ActivityManagementApi",
+        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
+        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagementApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+                "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

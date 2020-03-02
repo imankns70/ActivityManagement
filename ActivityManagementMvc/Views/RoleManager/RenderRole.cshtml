@@ -15,7 +15,7 @@
                 <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body clearfix">
-                <form asp-action="CreateOrUpdate">
+                <form asp-action="Create">
                     @if (ViewData.ModelState.IsValid.ToString() == "False")
                     {
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
@@ -49,7 +49,10 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">بستن</button>
-                @if (Model.Id != null)
+                  <button type="submit" class="btn btn-sm btn-labeled btn-success mr-1" data-save="modal">
+                        افزودن اطلاعات
+                    </button>
+                @* @if (Model.Id != null)
                 {
                     <button type="submit" class="btn btn-sm btn-labeled btn-success mr-1" data-save="modal">
                         ذخیره تغییرات
@@ -57,10 +60,8 @@
                 }
                 else
                 {
-                    <button type="submit" class="btn btn-sm btn-labeled btn-success mr-1" data-save="modal">
-                        افزودن اطلاعات
-                    </button>
-                }
+                  
+                } *@
             </div>
         </div>
     </div>

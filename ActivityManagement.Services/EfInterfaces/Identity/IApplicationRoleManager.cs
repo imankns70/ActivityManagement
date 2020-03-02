@@ -36,7 +36,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<AppRole> FindClaimsInRole(int roleId);
         Task<List<UsersViewModel>> GetUsersInRoleAsync(int roleId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId, string roleClaimType, IList<string> selectedRoleClaimValues);
-        Task<List<RolesViewModel>> GetPaginateRolesAsync(int offset, int limit, bool? roleNameSortAsc, string searchText);
+        //Task<List<RolesViewModel>> GetPaginateRolesAsync(int offset, int limit, bool? roleNameSortAsc, string searchText);
 
         #endregion
     }

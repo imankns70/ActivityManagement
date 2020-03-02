@@ -137,25 +137,25 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
 
 
-        public async Task<List<RolesViewModel>> GetPaginateRolesAsync(int offset, int limit, bool? roleNameSortAsc, string searchText)
-        {
-            List<RolesViewModel> roles;
-            roles = await Roles.Where(r => r.Name.Contains(searchText)).Select(role => new RolesViewModel
-            {
-                Id = role.Id,
-                Name = role.Name,
-                Description = role.Description,
-                UsersCount = role.Users.Count()
-            }).Skip(offset).Take(limit).ToListAsync();
+        //public async Task<List<RolesViewModel>> GetPaginateRolesAsync(int offset, int limit, bool? roleNameSortAsc, string searchText)
+        //{
+        //    List<RolesViewModel> roles;
+        //    roles = await Roles.Where(r => r.Name.Contains(searchText)).Select(role => new RolesViewModel
+        //    {
+        //        Id = role.Id,
+        //        Name = role.Name,
+        //        Description = role.Description,
+        //        UsersCount = role.Users.Count()
+        //    }).Skip(offset).Take(limit).ToListAsync();
 
-            if (roleNameSortAsc != null)
-               roles = roles.OrderBy(t => (roleNameSortAsc == true) ? t.Name : "").ThenByDescending(t => (roleNameSortAsc == false) ? t.Name : "").ToList();
+        //    if (roleNameSortAsc != null)
+        //       roles = roles.OrderBy(t => (roleNameSortAsc == true) ? t.Name : "").ThenByDescending(t => (roleNameSortAsc == false) ? t.Name : "").ToList();
 
-            foreach (var item in roles)
-                item.Row = ++offset;
+        //    foreach (var item in roles)
+        //        item.Row = ++offset;
 
-            return roles;
-        }
+        //    return roles;
+        //}
 
      
 

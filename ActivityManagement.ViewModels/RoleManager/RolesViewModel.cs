@@ -5,21 +5,19 @@ namespace ActivityManagement.ViewModels.RoleManager
 {
     public class RolesViewModel
     {
-        [JsonProperty("Id")]
+       
         public int? Id { get; set; }
+ 
 
-        [JsonProperty("ردیف")]
-        public int Row { get; set; }
-
-        [Display(Name="عنوان نقش"),JsonProperty("عنوان نقش")]
+        [Display(Name="عنوان نقش")]
         [Required(ErrorMessage ="وارد نمودن {0} الزامی است.")]
         public string Name { get; set; }
 
-        [Display(Name = "توضیحات"),JsonProperty("توضیحات")]
+        [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string Description { get; set; }
-
-        [JsonProperty("تعداد کاربران")]
+                
+        [Display(Name="تعداد کاربران")]
         public int UsersCount { get; set; }
 
     }

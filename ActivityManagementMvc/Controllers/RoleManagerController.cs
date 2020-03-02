@@ -45,29 +45,18 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<JsonResult> GetRoles([DataSourceRequest]DataSourceRequest request)
         {
-            DataSourceResult resultAsync = await _roleManager.GetAllRoles().ToDataSourceResultAsync(request, x => new { x.Id, x.Name });
+            
+            DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount().ToDataSourceResultAsync(request);
             return Json(resultAsync);
         }
 
 
         [HttpGet, AjaxOnly]
-        public async Task<IActionResult> RenderRole(int? roleId)
+        public IActionResult RenderCreate()
         {
             var roleViewModel = new RolesViewModel();
-            if (roleId != null)
-            {
-                var role = await _roleManager.FindByIdAsync(roleId.ToString());
-                if (role != null)
-                {
-                    roleViewModel.Id = role.Id;
-                    roleViewModel.Name = role.Name;
-                    roleViewModel.Description = role.Description;
-                }
 
-                else
-                    ModelState.AddModelError(string.Empty, RoleNotFound);
-            }
-            return PartialView("_RenderRole", roleViewModel);
+            return PartialView(roleViewModel);
         }
 
 

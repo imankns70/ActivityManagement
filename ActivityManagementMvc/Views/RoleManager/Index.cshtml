@@ -11,10 +11,10 @@
         </li>
     </ul>*@
 <div id="RoleGrid" class="k-rtl"></div>
-<div id="windoRole"></div>
+<div id="windoRoleContainer"></div>
 
 <script id="CreateRole" type="text/x-kendo-template">
-    <a onclick=CreateRole() class='k-button k-grid-delete'><i class="fa fa-plus"></i></a>
+    <a onclick=CreateRole() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i></a>
 </script>
 <script type="text/javascript">
     var recordRole = 0;
@@ -44,7 +44,7 @@
                     height: 400,
                     columnMenu: true,
                     dataSource: {
-                        type:"aspnetmvc-ajax",
+                        type: "aspnetmvc-ajax",
                         transport: {
                             read: "/RoleManager/GetRoles",
                             type: "POST",
@@ -62,7 +62,9 @@
 
 
                                     Id: { type: "number", editable: false, nullable: true },
-                                    Name: { type: "string" }
+                                    Name: { type: "string" },
+                                    UsersCount: { type: "number" },
+                                    Description: { type: "string" }
 
 
                                 }
@@ -70,19 +72,13 @@
                             }
                         },
                         parameterMap: function (data, operation) {
-                            {
-                                if (operation !== "read") {
-                                    return data;
-                                }
-                                else {
-                                    return JSON.stringify(data);
-                                }
-                            }
-                        }
+                            return JSON.stringify(data);
 
+                        },
+                        pageSize: 10,
                     },
 
-                    pageSize: 10,
+
                     serverFiltering: true,
                     serverPaging: true,
                     serverSorting: true,
@@ -92,11 +88,10 @@
                         refresh: true
                     },
 
-                    dataBinding: function()
-                    {
-                       recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                    dataBinding: function () {
+                        recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
                     },
-                    
+
                     selectable: "single row",
                     sortable: {
                         mode: "multiple"
@@ -111,8 +106,10 @@
                             template: "#= ++recordRole #",
                             width: 100
                         },
-                        { field: "Id", title: "شناسه نقش" },
+                        { field: "Id", title: "شناسه نقش", width: 120 },
                         { field: "Name", title: "نام نقش" },
+                        { field: "UsersCount", title: "تعداد کاربران",width:120  },
+                        { field: "Description", title: "توضیحات" },
 
 
                         {
@@ -120,7 +117,8 @@
                             template:
 
                                 "<a onClick=\"EditRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
-                                "<a onClick=\"DeleteRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> "
+                                "<a onClick=\"DeleteRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> " +
+                                "<a onClick=\"DetailRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-list fa-lg\"></i></a> "
 
 
 
@@ -134,6 +132,10 @@
 
 
             function CreateRole(x) {
+                $("#windowTask").remove();
+                $("#windoRoleContainer").add("<div id='windowTask'></div>");
+
+
                 $.ajax({
                     type: "Get",
                     url: '/RoleManager/Create/',
@@ -160,8 +162,8 @@
                 grid.dataSource.read();
                 try { windowRole.data('kendoWindow').close(); } catch (e) { }
             }
-</script>
-}
+        </script>
+    }
 }
 
 
