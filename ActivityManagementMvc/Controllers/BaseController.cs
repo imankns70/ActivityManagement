@@ -17,20 +17,10 @@ namespace ActivityManagementMvc.Controllers
         public const string EditSuccess = "ویرایش اطلاعات با موفقیت انجام شد.";
         public const string DeleteSuccess = "حذف اطلاعات با موفقیت انجام شد.";
         public const string OperationSuccess = "عملیات با موفقیت انجام شد.";
+        public const string NotRoleFounded = "هیچ نقشی یافت نشد";
+        public const string NotUserFounded = "هیچ کاربری یافت نشد";
         public const string InvalidImage = "عکس نامعتبر است.";
-
-      
-        public IActionResult Notification()
-        {
-            return Content(TempData["notification"].ToString());
-        }
-        [HttpGet, AjaxOnly]
-        public IActionResult DeleteGroup()
-        {
-            return PartialView("_DeleteGroup");
-        }
-
-      
+                     
 
     }
 }

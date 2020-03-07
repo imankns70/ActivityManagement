@@ -3,162 +3,176 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
 using ActivityManagement.Common.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.Home;
 using ActivityManagement.ViewModels.RoleManager;
 using ActivityManagement.ViewModels.SiteSettings;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ActivityManagementMvc.Controllers
-{
+namespace ActivityManagementMvc.Controllers {
 
-    [DisplayName("مدیریت کاربران")]
-    public class RoleManagerController : BaseController
-    {
+    [DisplayName ("مدیریت کاربران")]
+    public class RoleManagerController : BaseController {
         private readonly IApplicationRoleManager _roleManager;
 
         private const string RoleNotFound = "نقش یافت نشد.";
-        public RoleManagerController(IApplicationRoleManager roleManager)
-        {
+        public RoleManagerController (IApplicationRoleManager roleManager) {
             _roleManager = roleManager;
-            _roleManager.CheckArgumentIsNull(nameof(_roleManager));
-
+            _roleManager.CheckArgumentIsNull (nameof (_roleManager));
 
         }
 
         //[HttpGet, DisplayName("نمایش نقش ها")]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public IActionResult Index()
-        {
-            return View();
+        public IActionResult Index () {
+            return View ();
         }
-
 
         [HttpGet]
-        public async Task<JsonResult> GetRoles([DataSourceRequest]DataSourceRequest request)
-        {
-            
-            DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount().ToDataSourceResultAsync(request);
-            return Json(resultAsync);
-        }
+        public async Task<JsonResult> GetRoles ([DataSourceRequest] DataSourceRequest request) {
 
+            DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount ().ToDataSourceResultAsync (request);
+            return Json (resultAsync);
+        }
 
         [HttpGet, AjaxOnly]
-        public IActionResult RenderCreate()
-        {
-            var roleViewModel = new RolesViewModel();
+        public IActionResult RenderCreate () {
+            var roleViewModel = new RolesViewModel ();
 
-            return PartialView(roleViewModel);
+            return PartialView (roleViewModel);
         }
-
 
         [HttpPost, AjaxOnly]
-        public async Task<IActionResult> CreateOrUpdate(RolesViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
+        public async Task<IActionResult> Create (RolesViewModel viewModel) {
+
+            ReturnJson returnJson = new ReturnJson ();
+            if (ModelState.IsValid) {
                 IdentityResult result;
-                if (viewModel.Id != null)
-                {
-                    var role = await _roleManager.FindByIdAsync(viewModel.Id.ToString());
-                    role.Name = viewModel.Name;
-                    role.Description = viewModel.Description;
-                    result = await _roleManager.UpdateAsync(role);
+
+                AppRole roleModel = new AppRole (viewModel.Name) {
+                    Description = viewModel.Description
+                };
+                result = await _roleManager.CreateAsync (roleModel);
+
+                if (result.Succeeded) {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "RoleGridRefresh()";
+
+                } else {
+
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add (result.DumpErrors ());
+
                 }
-
-                else
-                {
-                    AppRole roleModel = new AppRole(viewModel.Name)
-                    {
-                        Description = viewModel.Description
-                    };
-                    result = await _roleManager.CreateAsync(roleModel);
-
-                }
-
-                if (result.Succeeded)
-                    TempData["notification"] = OperationSuccess;
-                else
-                    ModelState.AddErrorsFromResult(result);
+            } else {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message = ModelState.GetErrorsModelState ();
             }
-            return PartialView("_RenderRole", viewModel);
-        }
 
+            return Json (returnJson);
+        }
 
         [HttpGet, AjaxOnly]
-        public async Task<IActionResult> Delete(int? roleId)
-        {
-            if (roleId == null)
-                ModelState.AddModelError(string.Empty, RoleNotFound);
-            else
-            {
-                var role = await _roleManager.FindByIdAsync(roleId.ToString());
-                if (role == null)
-                    ModelState.AddModelError(string.Empty, RoleNotFound);
-                else
-                {
-                    RolesViewModel rolesViewModel = new RolesViewModel
-                    {
-                        Id = role.Id,
-                        Name = role.Name,
-                        Description = role.Description,
-                    };
-                    return PartialView("_DeleteConfirmation", rolesViewModel);
-                }
-
+        public async Task<IActionResult> RenderEdit (int id) {
+            var roleViewModel = new RolesViewModel ();
+            AppRole role = await _roleManager.FindByIdAsync (id.ToString ());
+            if (role != null) {
+                roleViewModel.Id = role.Id;
+                roleViewModel.Name = role.Name;
+                roleViewModel.Description = role.Description;
             }
-            return PartialView("_DeleteConfirmation");
+
+            return PartialView (roleViewModel);
         }
 
+        [HttpPost, AjaxOnly]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit (RolesViewModel viewModel) {
 
-        [HttpPost, ActionName("Delete"), AjaxOnly]
-        public async Task<IActionResult> DeleteConfirmed(RolesViewModel viewModel)
-        {
-            var role = await _roleManager.FindByIdAsync(viewModel.Id.ToString());
-            if (role == null)
-                ModelState.AddModelError(string.Empty, RoleNotFound);
-            else
-            {
-                var result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
-                {
-                    TempData["notification"] = DeleteSuccess;
-                    return PartialView("_DeleteConfirmation", viewModel);
+            ReturnJson returnJson = new ReturnJson ();
+            if (ModelState.IsValid) {
+                IdentityResult result;
+
+                AppRole role = await _roleManager.FindByIdAsync (viewModel.Id.ToString ());
+                role.Name = viewModel.Name;
+                role.Description = viewModel.Description;
+                result = await _roleManager.UpdateAsync (role);
+
+                if (result.Succeeded) {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "RoleGridRefresh()";
+
+                } else {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add (result.DumpErrors ());
+
                 }
-
-                ModelState.AddErrorsFromResult(result);
+            } else {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message = ModelState.GetErrorsModelState ();
             }
-            return PartialView("_DeleteConfirmation");
+            return Json (returnJson);
         }
 
+        [HttpGet, AjaxOnly]
 
-        [HttpPost, ActionName("DeleteGroup"), AjaxOnly]
-        public async Task<IActionResult> DeleteGroupConfirmed(string[] btSelectItem)
-        {
-            if (!btSelectItem.Any())
-                ModelState.AddModelError(string.Empty, "هیچ نقشی برای حذف انتخاب نشده است.");
-            else
-            {
-                foreach (var item in btSelectItem)
-                {
-                    var role = await _roleManager.FindByIdAsync(item);
-                    var result = await _roleManager.DeleteAsync(role);
-                    if (!result.Succeeded)
-                        ModelState.AddErrorsFromResult(result);
-
-                }
-                TempData["notification"] = "حذف گروهی نقش ها با موفقیت انجام شد..";
+        public async Task<IActionResult> RenderDelete (int id) {
+            var roleViewModel = new RolesViewModel ();
+            AppRole role = await _roleManager.FindByIdAsync (id.ToString ());
+            if (role != null) {
+                roleViewModel.Id = role.Id;
+                roleViewModel.Name = role.Name;
+                roleViewModel.Description = role.Description;
             }
 
-            return PartialView("_DeleteGroup");
+            return PartialView (roleViewModel);
+        }
+
+        [HttpPost, AjaxOnly]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete (RolesViewModel viewModel) {
+            ReturnJson returnJson = new ReturnJson ();
+
+            var role = await _roleManager.FindByIdAsync (viewModel.Id.ToString ());
+            if (role == null) {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add (NotRoleFounded);
+            } else {
+                IdentityResult result = await _roleManager.DeleteAsync (role);
+                if (result.Succeeded) {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "RoleGridRefresh()";
+                } else {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add (result.DumpErrors ());
+                }
+
+            }
+
+            return Json (returnJson);
+        }
+
+        [HttpGet, AjaxOnly]
+
+        public async Task<IActionResult> RenderDetail (int id) {
+            var roleViewModel = new RolesViewModel ();
+            AppRole role = await _roleManager.FindByIdAsync (id.ToString ());
+            if (role != null) {
+                roleViewModel.UsersCount = role.Users.Count();
+                roleViewModel.Name = role.Name;
+                roleViewModel.Description = role.Description;
+            }
+
+            return PartialView (roleViewModel);
         }
     }
 }

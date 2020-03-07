@@ -39,49 +39,36 @@ var mydnn = (function () {
     };
 });
 
- 
+function ShowMessage(msgText, type) {
 
-
-function ShowMessage(msgText, Type) {
-    if (Type === TypeMessage.Success) {
+    if (type === TypeMessage.Success) {
         $.confirm({
             title: 'عملیات موفق',
             content: msgText,
+            useBootstrap: false,
             type: 'green',
             typeAnimated: true,
             buttons: {
-                //tryAgain: {
-                //    text: 'Try again',
-                //    btnClass: 'btn-red',
-                //    action: function () {
-                //    }
-                //},
+
                 close: {
                     text: 'بستن',
                     btnClass: 'btn-blue',
                     action: function () {
                     }
                 }
-                ,
 
-                //close: function () {
-                //}
             }
         });
     }
-    else if (Type === TypeMessage.Error) {
+    else if (type === TypeMessage.Error) {
         $.confirm({
             title: 'عملیات ناموفق',
             content: msgText,
+            useBootstrap: false,
             type: 'red',
             typeAnimated: true,
             buttons: {
-                //tryAgain: {
-                //    text: 'Try again',
-                //    btnClass: 'btn-red',
-                //    action: function () {
-                //    }
-                //},
+
                 close: {
                     text: 'بستن',
                     btnClass: 'btn-red',
@@ -93,8 +80,8 @@ function ShowMessage(msgText, Type) {
     }
 }
 
-function ShowConfirm(msgText, Type, funcToExec) {
-    if (Type === TypeConfirm.Danger) {
+function ShowConfirm(msgText, type) {
+    if (type === TypeConfirm.Danger) {
         $.confirm({
             title: 'اخطار',
             content: msgText,
@@ -111,8 +98,8 @@ function ShowConfirm(msgText, Type, funcToExec) {
                     text: 'حذف',
                     btnClass: 'btn-red',
                     action: function () {
-                        debugger;
-                        funcToExec();
+
+
                         return true;
                     }
                 },
@@ -120,39 +107,40 @@ function ShowConfirm(msgText, Type, funcToExec) {
                     text: 'بستن',
                     btnClass: 'btn-blue',
                     action: function () {
-                        debugger;
+
                         //return false;
                     }
                 }
-                ,
 
-                //close: function () {
-                //}
+
             }
         });
     }
 
 }
-function SendAndUpdate(controllerName, actionName, params, formNameInPost, methodType, updateElementId) {
 
+function closeWindows(selector) {
+
+    return $(selector).closest(".k-window-content").data("kendoWindow").close();
+}
+
+function SendAndUpdate(formSelector) {
+    debugger;
 
     var ajaxConfig = {
-        type: methodType,//'get',
 
-        url: "/ + controllerName + "/" + actionName",
+        type: $(formSelector).attr("method"), //'get',
+        url: $(formSelector).attr("action"),
 
-      
         success: function (data) {
 
-            if (data.Text) {
-                ShowMessage(data.Text, data.TypeMessage);
+            if (data.MessageType === TypeMessage.Success) {
+                ShowMessage(data.Message, TypeMessage.Success);
             }
-            if (updateElementId) {
-                if (data.TypeMessage === TypeMessage.Success) {
+            else {
+                ShowMessage(data.Message, TypeMessage.Error);
+            }
 
-                    $(updateElementId).html(data.Html);
-                }
-            }
             if (data.Script) {
                 eval(data.Script);
             }
@@ -163,36 +151,30 @@ function SendAndUpdate(controllerName, actionName, params, formNameInPost, metho
             ShowMessage("خطایی رخ داده است", TypeMessage.error);
             console.error('An error occurred.');
             console.error(data);
-           
+
         }
     }
 
-    if (methodType === MethodType.Get) {
-        ajaxConfig["data"] = params;
+    //if (methodType === MethodType.Get) {
+    //    ajaxConfig["data"] = params;
+    //}
+
+    
+        var dataToSend = $(formSelector).get(0);
+        ajaxConfig["data"] = new FormData(dataToSend);
+    
+
+
+    ajaxConfig["contentType"] = false;
+    ajaxConfig["processData"] = false;
+
+    if ($(formSelector).attr('enctype') == "multipart/form-data") {
+        ajaxConfig["contentType"] = false;
+
     }
-    else {//POST
-        if (formNameInPost) {
 
-            var formin = $(formNameInPost).get(0);
-            ajaxConfig["contentType"] = false;
-            ajaxConfig["processData"] = false;
-            
-            if (params) {
 
-                ajaxConfig["data"] = new FormData(formin) + "&" + params;
-            }
-            else {
-                ajaxConfig["data"] = new FormData(formin);
-            }
-            if ($(formNameInPost).attr('enctype') == "multipart/form-data") {
-                ajaxConfig["contentType"] = false;
 
-            }
-        }
-        else {
-            ajaxConfig["data"] = params;
-        }
-    }
     $.ajax(ajaxConfig);
 
 }
@@ -377,5 +359,5 @@ function myGetJson(controllerName, actionName, params, formNameInPost, methodTyp
 
 //    }).data("kendoValidator");
 
- 
+
 //});

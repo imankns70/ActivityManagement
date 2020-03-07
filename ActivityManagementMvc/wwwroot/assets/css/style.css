@@ -12985,7 +12985,7 @@ label {
   margin-bottom: 25px;
 }
 
-.form-group .form-control {
+/*.form-group .form-control {
   width: 100%;
   border: 0;
   box-shadow: none;
@@ -12995,7 +12995,7 @@ label {
   -ms-border-radius: 0;
   border-radius: 0;
   padding-right: 0;
-}
+}*/
 
 .form-group input.form-control {
   margin: 0;
@@ -23214,7 +23214,7 @@ html.ie11 .bs-searchbox .form-control {
   float: right;
 }
 .fa-trash {
-  color: #d0270d  !important;
+  color: #d0270d !important;
 }
 
 .fa-edit {
@@ -23224,7 +23224,85 @@ html.ie11 .bs-searchbox .form-control {
 .fa-list {
   color: #008000 !important;
 }
-a.k-grid-add{
-	background-color: #20a920;
+a.k-grid-add {
+  background-color: #0ec515 !important;
+  border-color: #0ec515 !important;
+}
+a.k-grid-add > *,
+a.k-grid-excel {
+  color: #ffffff !important;
+}
+.k-grid-toolbar a.k-grid-excel {
+  background-color: #6c757d;
+}
+.k-grid-toolbar a.k-grid-excel .k-i-file-excel {
+  font-size: 20px;
+}
+.k-grid-toolbar {
+  background-color: #428bca !important;
+  border-color: #428bca !important;
+}
+.k-window-action {
+  background-color: #f70606 !important;
+  color: #fff !important;
+}
+.k-window-titlebar.k-header {
+  background-color: #428bca !important;
+  text-align: center;
 
+  color: #ffffff;
+}
+.k-window-titlebar.k-header span {
+  top: 2px !important;
+}
+form input.form-control,
+form textarea.form-control {
+  border: 1px solid #bbb !important;
+  border-radius: 2px !important;
+}
+form textarea.form-control {
+  width: 500px !important;
+  height: 80px !important;
+  display: inline-block;
+  vertical-align: top;
+}
+form .form-group label {
+  display: inline-block;
+  width: 80px;
+}
+form .form-group input {
+  display: inline-block;
+  width: 200px !important;
+}
+.btn-save,
+.btn-close {
+  background-color: #eee;
+  border: 1px solid #cccccc;
+  width: 70px;
+  height: 28px;
+  border-radius: 4px; 
+}
+.btn-save:hover,
+.btn-save:focus {
+  background-color: #1df124;
+}
+.btn-save:hover,
+.btn-close:hover {
+  color: #fff;
+}
+.btn-save i {
+  color: #0ec515;
+}
+.btn-close i {
+  color: #f70606;
+}
+.btn-close:hover,
+.btn-close:focus {
+  background-color: #f15252;
+}
+.jconfirm-box {
+  width: 40% !important;
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+    overflow: hidden !important;
 }

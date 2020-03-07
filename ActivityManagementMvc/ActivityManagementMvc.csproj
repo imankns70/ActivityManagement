@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Folder Include="ViewComponents\" />
-    <Folder Include="Views\RoleManager\" />
     <Folder Include="wwwroot\assets\css\styles\" />
     <Folder Include="wwwroot\assets\fonts\fontawesome\" />
     <Folder Include="wwwroot\assets\fonts\FontAwsome5\css\" />
@@ -139,6 +138,7 @@
     <Folder Include="wwwroot\lib\themify-icons\css\" />
     <Folder Include="wwwroot\lib\themify-icons\fonts\" />
     <Folder Include="wwwroot\lib\themify-icons\ie7\" />
+    <Folder Include="wwwroot\CashFiles\" />
   </ItemGroup>
 
   <ItemGroup>

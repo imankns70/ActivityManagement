@@ -14,6 +14,7 @@ namespace ActivityManagement.ViewModels.RoleManager
         public string Name { get; set; }
 
         [Display(Name = "توضیحات")]
+        [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string Description { get; set; }
                 
