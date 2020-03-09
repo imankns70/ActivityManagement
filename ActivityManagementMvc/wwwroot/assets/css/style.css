@@ -14605,9 +14605,8 @@ fieldset[disabled] .form-control {
 }
 
 .logo-name {
-  color: white;
-  font-size: 24px;
-  font-weight: 400;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 .navbar-nav > li > a {
@@ -23306,3 +23305,7 @@ form .form-group input {
 .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
     overflow: hidden !important;
 }
+.Detail label {
+    color: #0505b5;
+}
+ 

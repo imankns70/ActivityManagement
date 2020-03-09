@@ -73,7 +73,10 @@ namespace ActivityManagement.Services.EfServices.Identity
             return Roles.Include(c => c.Claims).FirstOrDefaultAsync(c => c.Id == roleId);
         }
 
-
+        public async Task<AppRole> FinRoleAndUsersCountById(int roleId)
+        {
+            return await Roles.Include(s => s.Users).FirstOrDefaultAsync(a => a.Id == roleId);
+        }
         public async Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId,string roleClaimType,IList<string> selectedRoleClaimValues)
         {
             var role = await FindClaimsInRole(roleId);

@@ -1,7 +1,7 @@
 'use strict';
 $(function () {
     $.MyAdmin.browser.activate();
-    $.MyAdmin.leftSideBar.activate();
+    //$.MyAdmin.leftSideBar.activate();
     $.MyAdmin.rightSideBar.activate();
     $.MyAdmin.navbar.activate();
     $.MyAdmin.input.activate();

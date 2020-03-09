@@ -201,8 +201,9 @@
                 $("#windowRoleContainer").append("<div id='windowRole'></div>");
                 $.ajax({
                     type: "Get",
-                    url: '/RoleManager/DetailRole/'+id,
+                    url: '/RoleManager/RenderDetail/'+id,
                     success: function (data) {
+                        debugger;
                         $("#windowRole").html(data);
 
                         windowRole = $("#windowRole").kendoWindow({
@@ -210,7 +211,7 @@
                             modal: true,
                             width: "800"
                         }); 
-                        windowRole.data("kendoWindow").title('حذف').center().open();
+                        windowRole.data("kendoWindow").title('جزئیات').center().open();
                     },
                 });
             }

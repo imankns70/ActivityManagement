@@ -34,6 +34,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         List<AppRole> GetAllRoles();
         List<RolesViewModel> GetAllRolesAndUsersCount();
         Task<AppRole> FindClaimsInRole(int roleId);
+        Task<AppRole> FinRoleAndUsersCountById(int roleId);
         Task<List<UsersViewModel>> GetUsersInRoleAsync(int roleId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId, string roleClaimType, IList<string> selectedRoleClaimValues);
         //Task<List<RolesViewModel>> GetPaginateRolesAsync(int offset, int limit, bool? roleNameSortAsc, string searchText);
