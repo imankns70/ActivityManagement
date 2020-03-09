@@ -107,6 +107,8 @@
     <Folder Include="wwwroot\lib\bootstrap\site\_data\" />
     <Folder Include="wwwroot\lib\bootstrap\site\_includes\icons\" />
     <Folder Include="wwwroot\lib\bootstrap\site\_layouts\" />
+    <Folder Include="wwwroot\lib\jqueryConfirm\css\" />
+    <Folder Include="wwwroot\lib\jqueryConfirm\js\" />
     <Folder Include="wwwroot\lib\Kendo\css\fonts\DejaVu\" />
     <Folder Include="wwwroot\lib\Kendo\css\fonts\glyphs\" />
     <Folder Include="wwwroot\lib\popper.js\dist\esm\" />
@@ -135,6 +137,18 @@
     <Folder Include="wwwroot\lib\popper.js\packages\test\bin\" />
     <Folder Include="wwwroot\lib\popper.js\packages\tooltip\" />
     <Folder Include="wwwroot\lib\popper.js\packages\tooltip\src\" />
+    <Folder Include="wwwroot\lib\popper\dist\esm\" />
+    <Folder Include="wwwroot\lib\popper\dist\umd\" />
+    <Folder Include="wwwroot\lib\popper\docs\css\" />
+    <Folder Include="wwwroot\lib\popper\docs\css\images\" />
+    <Folder Include="wwwroot\lib\popper\docs\fonts\" />
+    <Folder Include="wwwroot\lib\popper\docs\images\" />
+    <Folder Include="wwwroot\lib\popper\docs\js\" />
+    <Folder Include="wwwroot\lib\popper\docs\js\ie\" />
+    <Folder Include="wwwroot\lib\popper\docs\_includes\" />
+    <Folder Include="wwwroot\lib\popper\docs\_layouts\" />
+    <Folder Include="wwwroot\lib\popper\docs\_sass\" />
+    <Folder Include="wwwroot\lib\popper\docs\_sass\libs\" />
     <Folder Include="wwwroot\lib\themify-icons\css\" />
     <Folder Include="wwwroot\lib\themify-icons\fonts\" />
     <Folder Include="wwwroot\lib\themify-icons\ie7\" />
