@@ -64,7 +64,7 @@ namespace ActivityManagementMvc
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // once we use api and mvc with together
-            var cachePeriod = env.IsDevelopment() ? "600" : "605800";
+            //var cachePeriod = env.IsDevelopment() ? "600" : "605800";
             app.UseWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
             {
                 appBuilder.UseCustomExceptionHandler();
@@ -74,6 +74,7 @@ namespace ActivityManagementMvc
             {
                 if (env.IsDevelopment())
                     appBuilder.UseDeveloperExceptionPage();
+
                 else
                     appBuilder.UseExceptionHandler("/Home/Error");
             });

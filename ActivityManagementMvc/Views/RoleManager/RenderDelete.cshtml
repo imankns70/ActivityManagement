@@ -1,0 +1,19 @@
+﻿@model ActivityManagement.ViewModels.RoleManager.RolesViewModel
+
+<form id="DeleteRoleForm" asp-controller="RoleManager" asp-action="Delete" method="Post" class="k-rtl">
+     @Html.AntiForgeryToken()
+     
+   <input type="hidden" asp-for="Id"/>
+
+ <p>آیا از حذف نقش @Model.Name اطمینان دارید ؟</p>
+
+
+    <div class="form-group">
+
+        <button type="button" class="btn-save" onclick="SendAndUpdate('#DeleteRoleForm')"><i class="fa fa-plus"></i><span class="mr-1">ذخیره</span></button>
+        <button type="button" class="btn-close" onclick="closeWindows(this)"><i class="fa fa-times"></i><span class="mr-1">بستن</span></button>
+        
+    </div>
+
+</form>
+
