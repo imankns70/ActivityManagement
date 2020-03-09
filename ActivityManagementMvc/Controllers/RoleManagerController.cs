@@ -44,7 +44,6 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<JsonResult> GetRoles([DataSourceRequest] DataSourceRequest request)
         {
-
             DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount().ToDataSourceResultAsync(request);
             return Json(resultAsync);
         }
@@ -78,7 +77,6 @@ namespace ActivityManagementMvc.Controllers
                 }
                 else
                 {
-
                     returnJson.MessageType = MessageType.Error;
                     returnJson.Message.Add(result.DumpErrors());
 
