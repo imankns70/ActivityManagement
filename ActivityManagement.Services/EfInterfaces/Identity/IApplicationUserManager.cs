@@ -119,6 +119,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         #region CustomMethod
         Task<List<AppUser>> GetAllUsersAsync();
         Task<List<UsersViewModel>> GetAllUsersWithRolesAsync();
+        List<UsersViewModel> GetAllUsersWithRoles();
         Task<UsersViewModel> FindUserWithRolesByIdAsync(int userId);
         Task<string> GetFullName(ClaimsPrincipal user);
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);

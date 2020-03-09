@@ -53,10 +53,8 @@ namespace ActivityManagementMvc.Controllers
         public IActionResult RenderCreate()
         {
             var roleViewModel = new RolesViewModel();
-
             return PartialView(roleViewModel);
         }
-
         [HttpPost, AjaxOnly]
         public async Task<IActionResult> Create(RolesViewModel viewModel)
         {

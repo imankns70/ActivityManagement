@@ -1,28 +1,234 @@
-﻿@model ActivityManagement.ViewModels.Home.HomeViewModel
-@{
-    
-    Layout = "_Layout";
-}
-
-
-<div id="modal-placeholder"></div>
-<partial name="_Header" model="@Model.BreadCrumbViewModel"/>
-
-
-<div class="container-fluid mt--7">
-    <div class="row mt-5">
-        <div class="card shadow w-100">
-            <div class="card-header font_Vazir_Medium">
-                مدیریت کاربران
-            </div>
-            <div class="card-body">
-                <form asp-controller="UserManager">
-                    @await Html.PartialAsync("_UserTable")
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+﻿ 
+ 
 
 
  
+
+@{
+
+    Layout = "_Layout";
+}
+
+@*<ul id="panelbar" class="k-rtl">
+        <li class="k-state-active k-state-selected">
+           اطلاعات نقش
+            <div id="personsGrid" class="table-responsive"></div>
+        </li>
+    </ul>*@
+<div id="RoleGrid" class="k-rtl"></div>
+<div id="windowRoleContainer"></div>
+
+
+<script id="CreateRole" type="text/x-kendo-template">
+    <a onclick=CreateRole() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
+
+</script>
+<script type="text/javascript">
+    var recordRole = 0;
+</script>
+@section Scripts {
+    @{
+
+        <script type="text/javascript">
+            //var recordRole = 0;
+            var windowRole;
+            $(function () {
+
+                //$("#panelbar").kendoPanelBar({
+                //    expandMode: "single"
+                //});
+                RoleInitialize();
+
+            });
+
+            function RoleInitialize() {
+
+                $("#RoleGrid").html('');
+
+                $("#RoleGrid").kendoGrid({
+                    toolbar: [{ template: kendo.template($("#CreateRole").html()) },"excel"],
+                    excel: { allPages: true },
+                    //height: 400,
+                    columnMenu: true,
+                    dataSource: {
+                        //type: "aspnetmvc-ajax",
+                        transport: {
+                            read: "/RoleManager/GetRoles",
+                            type: "POST",
+                            dataType: "json",
+                            contentType: "application/json",
+                            parameterMap: function (data, operation) { return JSON.stringify(data); }
+                        },
+                        schema: {
+                            data: "Data",
+                            total: "Total",
+                            errors: "Errors",
+                            model: {
+                                id: "Id",
+                                fields: {
+
+
+                                    Id: { type: "number", editable: false, nullable: true },
+                                    Name: { type: "string" },
+                                    UsersCount: { type: "number" },
+                                    Description: { type: "string" }
+
+
+                                }
+
+                            }
+                        },
+                        parameterMap: function (data, operation) {
+                            return JSON.stringify(data);
+
+                        },
+                        pageSize: 10
+                    },
+
+
+                    serverFiltering: true,
+                    serverPaging: true,
+                    serverSorting: true,
+                    pageable:
+                    {
+                        pageSizes: [10, 25, 50, 100],
+                        refresh: true
+                    },
+                  sort:
+                 {
+                     field: "Id",
+                     dir: "asc"
+                 },
+                    dataBinding: function () {
+                        recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                    },
+
+                    selectable: "single row",
+                    sortable: {
+                        mode: "multiple"
+                    },
+
+                    editable: false,
+                    filterable: true,
+                    scrollable: true,
+                    columns: [
+                        {
+                            title: "ردیف",
+                            template: "#= ++recordRole #",
+                            width: 100
+                        },
+                        //{ field: "Id", title: "شناسه نقش", width: 120 },
+                        { field: "Name", title: "نام نقش" },
+                        { field: "UsersCount", title: "تعداد کاربران",width:120  },
+                        { field: "Description", title: "توضیحات" },
+
+
+                        {
+                            title: "<i class='Add' >عملیات</i>",
+                            width:280,
+                            template:
+
+                                "<a onClick=\"EditRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
+                                "<a onClick=\"DeleteRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> " +
+                                "<a onClick=\"DetailRole('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-list fa-lg\"></i></a> "
+ 
+                        }
+                    ]
+                }).find("table").addClass("table table-bordered table-hover");
+            }
+
+
+
+            function CreateRole() {
+                
+                $("#windowRole").remove();
+                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+
+
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/RenderCreate/',
+                    success: function (data) {
+                        $("#windowRole").html(data);
+
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowRole.data("kendoWindow").title('ایجاد').center().open();
+                    },
+                });
+            }
+
+            function EditRole(id) {
+                  $("#windowRole").remove();
+                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+
+
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/RenderEdit/'+id,
+                    success: function (data) {
+                        $("#windowRole").html(data);
+
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowRole.data("kendoWindow").title('ویرایش').center().open();
+                    },
+                });
+            }
+
+            function DeleteRole(id) {
+                  $("#windowRole").remove();
+                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/RenderDelete/'+id,
+                    success: function (data) {
+                        $("#windowRole").html(data);
+
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        }); 
+                        windowRole.data("kendoWindow").title('حذف').center().open();
+                    },
+                });
+            }
+
+            function DetailRole(id) {
+                  $("#windowRole").remove();
+                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/RenderDetail/'+id,
+                    success: function (data) {
+                        debugger;
+                        $("#windowRole").html(data);
+
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        }); 
+                        windowRole.data("kendoWindow").title('جزئیات').center().open();
+                    },
+                });
+            }
+
+            function RoleGridRefresh() {
+                var grid = $("#RoleGrid").data("kendoGrid");
+                grid.dataSource.read();
+                try { windowRole.data('kendoWindow').close(); } catch (e) { }
+            }
+        </script>
+    }
+}
+
+
+

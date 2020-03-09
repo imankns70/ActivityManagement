@@ -75,6 +75,24 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             }).ToListAsync();
         }
+        public List<UsersViewModel> GetAllUsersWithRoles()
+        {
+            return  Users.Select(user => new UsersViewModel
+            {
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                BirthDate = user.BirthDate,
+                IsActive = user.IsActive,
+                Image = user.Image,
+                RegisterDateTime = user.RegisterDateTime,
+                Roles = user.Roles,
+
+            }).ToList();
+        }
 
         public async Task<UsersViewModel> FindUserWithRolesByIdAsync(int userId)
         {

@@ -6,18 +6,20 @@ using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.Home;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using ActivityManagement.ViewModels.DynamicAccess;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ActivityManagementMvc.Controllers
 {
- 
+
     public class UserManagerController : BaseController
     {
         private readonly IApplicationUserManager _userManager;
@@ -31,7 +33,6 @@ namespace ActivityManagementMvc.Controllers
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
 
-
             _roleManager = roleManager;
             _roleManager.CheckArgumentIsNull(nameof(_roleManager));
 
@@ -43,80 +44,16 @@ namespace ActivityManagementMvc.Controllers
         public IActionResult Index()
         {
 
-            BreadCrumbViewModel breadCrumbViewModel = new BreadCrumbViewModel
-            {
-                Title = "مدیریت کاربران",
-                Url = "/UserManager/Index"
-
-            };
-            HomeViewModel homeViewModel = new HomeViewModel(breadCrumbViewModel);
-
-            return View(homeViewModel);
+            return View();
         }
 
-
-        public async Task<JsonResult> GetUsers(string search, string order, int offset, int limit, string sort)
+        [HttpGet]
+        public async Task<JsonResult> GetUser([DataSourceRequest] DataSourceRequest request)
         {
-            List<UsersViewModel> allUsers;
-            int total = _userManager.Users.Count();
 
-            if (string.IsNullOrWhiteSpace(search))
-                search = "";
-
-            if (limit == 0)
-                limit = total;
-
-            if (sort == "نام")
-            {
-                if (order == "asc")
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, true, null, null, null, null, search);
-                else
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, false, null, null, null, null, search);
-            }
-
-            else if (sort == "نام خانوادگی")
-            {
-                if (order == "asc")
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, true, null, null, null, search);
-                else
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, false, null, null, null, search);
-            }
-
-            else if (sort == "ایمیل")
-            {
-                if (order == "asc")
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, true, null, null, search);
-                else
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, false, null, null, search);
-            }
-
-            else if (sort == "نام کاربری")
-            {
-                if (order == "asc")
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, null, true, null, search);
-                else
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, null, false, null, search);
-            }
-
-            else if (sort == "تاریخ عضویت")
-            {
-                if (order == "asc")
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, null, null, true, search);
-                else
-                    allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, null, null, false, search);
-            }
-
-            else
-                allUsers = await _userManager.GetPaginateUsersAsync(offset, limit, null, null, null, null, null, search);
-
-            if (search != "")
-                total = allUsers.Count();
-
-            return Json(new { total = total, rows = allUsers });
+            DataSourceResult resultAsync = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
+            return Json(resultAsync);
         }
-
-
-
 
         [HttpGet]
         public async Task<IActionResult> RenderUser(int? userId)
@@ -133,10 +70,9 @@ namespace ActivityManagementMvc.Controllers
             return PartialView("_RenderUser", usersViewModel);
         }
 
-
         [HttpPost]
         //[Authorize]
-        [JwtAuthentication(Policy=ConstantPolicies.DynamicPermission)]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> CreateOrUpdate(UsersViewModel viewModel)
         {
             viewModel.AllRoles = _roleManager.GetAllRoles();
@@ -151,7 +87,6 @@ namespace ActivityManagementMvc.Controllers
             {
                 IdentityResult result;
                 AppUser user = new AppUser();
-
 
                 viewModel.BirthDate = viewModel.PersianBirthDate.ConvertShamsiToMiladi();
 
@@ -170,11 +105,9 @@ namespace ActivityManagementMvc.Controllers
                             return PartialView("_RenderUser", viewModel);
                         }
 
-
                         FileExtensions.DeleteFile($"{_env.WebRootPath}/avatars/{user.Image}");
                         user.Image = viewModel.Image;
                     }
-
 
                     result = await _userManager.RemoveFromRolesAsync(user, userRoles);
                     if (result.Succeeded)
@@ -197,7 +130,6 @@ namespace ActivityManagementMvc.Controllers
                         }
                     }
                 }
-
                 else
                 {
                     if (viewModel.ImageFile != null)
@@ -206,7 +138,6 @@ namespace ActivityManagementMvc.Controllers
                         if (fileResult.IsSuccess == false)
                             ModelState.AddModelError(string.Empty, InvalidImage);
                     }
-
 
                     user.EmailConfirmed = true;
                     user.UserName = viewModel.UserName;
@@ -219,7 +150,6 @@ namespace ActivityManagementMvc.Controllers
                     //user.Bio = viewModel.Bio;
                     user.Image = viewModel.Image;
                     if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
-
 
                     result = await _userManager.CreateAsync(user, viewModel.Password);
                     if (result.Succeeded)
@@ -236,14 +166,12 @@ namespace ActivityManagementMvc.Controllers
                 if (result.Succeeded)
                     TempData["notification"] = OperationSuccess;
 
-
                 else
                     ModelState.AddErrorsFromResult(result);
             }
 
             return PartialView("_RenderUser", viewModel);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Delete(int? userId)
@@ -260,7 +188,6 @@ namespace ActivityManagementMvc.Controllers
             }
             return PartialView("_DeleteConfirmation");
         }
-
 
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(AppUser model)
@@ -283,8 +210,6 @@ namespace ActivityManagementMvc.Controllers
 
             return PartialView("_DeleteConfirmation");
         }
-
-
 
         [HttpPost, ActionName("DeleteGroup")]
         public async Task<IActionResult> DeleteGroupConfirmed(int[] btSelectItem)
