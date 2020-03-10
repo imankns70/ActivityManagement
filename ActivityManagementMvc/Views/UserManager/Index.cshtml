@@ -41,7 +41,7 @@
                     //height: 400,
                     columnMenu: true,
                     dataSource: {
-                         
+
                         transport: {
                             read: "/UserManager/GetUsers",
                             type: "POST",
@@ -111,12 +111,17 @@
                         },
 
                         { field: "FirstName", title: "نام" },
-                        { field: "LastName", title: "نام خانوادگی" , width:120},
+                        { field: "LastName", title: "نام خانوادگی", width: 120 },
                         { field: "UserName", title: "نام کاربر" },
                         { field: "RoleName", title: "نام نقش" },
-                        { field: "PersianRegisterDateTime", title: "تاریخ عضویت", width:120 },
+                        { field: "PersianRegisterDateTime", title: "تاریخ عضویت", width: 120 },
                         { field: "GenderName", title: "جنسیت" },
-                        { field: "IsActive", title: "فعال" },
+                        {
+                            field: "IsActive", title: "فعال",
+                            template:"<label class='switch-wrap'><input type='checkbox' #=IsActive ? checked='checked':' ' # disabled='disabled'/><div class='switch'></div></label>"
+                             
+                           
+                        },
 
 
                         {

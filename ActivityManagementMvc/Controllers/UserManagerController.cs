@@ -52,6 +52,7 @@ namespace ActivityManagementMvc.Controllers
         public async Task<JsonResult> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
+            
             return Json(resultAsync);
         }
 
