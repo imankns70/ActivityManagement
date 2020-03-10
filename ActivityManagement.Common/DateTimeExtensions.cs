@@ -6,13 +6,13 @@ namespace ActivityManagement.Common
 {
     public static class DateTimeExtensions
     {
-        public static DateTime ConvertShamsiToMiladi(this string date)
+        public static DateTime ConvertPersianToGeorgian(this string date)
         {
             PersianDateTime persianDateTime = PersianDateTime.Parse(date);
             return persianDateTime.ToDateTime();
         }
 
-        public static string ConvertMiladiToShamsi(this DateTime? date, string format)
+        public static string ConvertGeorgianToPersian(this DateTime? date, string format)
         {
             PersianDateTime persianDateTime = new PersianDateTime(date);
             return persianDateTime.ToString(format);
@@ -22,17 +22,17 @@ namespace ActivityManagement.Common
             PersianDateTime persianDateTime = new PersianDateTime(date);
             return persianDateTime.IsLeapYear;
         }
-        public static DateTimeResult CheckShamsiDateTime(this string date)
+        public static DateTimeResult CheckPersianDateTime(this string date)
         {
             try
             {
                 DateTime miladiDate = PersianDateTime.Parse(date).ToDateTime();
-                return new DateTimeResult { MiladiDate = miladiDate, IsShamsi = true };
+                return new DateTimeResult { GeorgianDate = miladiDate, IsPersian = true };
             }
 
             catch
             {
-                return new DateTimeResult { IsShamsi = false };
+                return new DateTimeResult { IsPersian = false };
             }
         }
 
@@ -44,8 +44,8 @@ namespace ActivityManagement.Common
 
     public class DateTimeResult
     {
-        public bool IsShamsi { get; set; }
-        public DateTime? MiladiDate { get; set; }
+        public bool IsPersian { get; set; }
+        public DateTime? GeorgianDate { get; set; }
     }
 
 }

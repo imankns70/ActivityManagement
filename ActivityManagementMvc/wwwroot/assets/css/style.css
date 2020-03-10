@@ -3,10 +3,9 @@
 @import url(../fonts/simple-line-icons/css/simple-line-icons.css);
 
 @font-face {
-  font-family: "SDF";
-  src: url("../fonts/iransans/IRANSans-Light-web.woff") format("woff"),
-    url("../fonts/iransans/IRANSans-Light-web.ttf") format("truetype");
-  font-weight: normal;
+    font-family: "IRANSans";
+    src: url("../fonts/iransans/IRANSans-Light-web.woff") format("woff"), url("../fonts/iransans/IRANSans-Light-web.ttf") format("truetype");
+    font-weight: normal;
 }
 
 .m-l--125 {
@@ -4654,8 +4653,8 @@ html {
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  font-family: "SDF", "Poppins", sans-serif;
-  font-size: 13px;
+  font-family: "IRANSans", "Poppins", sans-serif;
+  font-size: 11px;
 }
 
 h1,
@@ -4827,7 +4826,7 @@ table .checkbox [type="checkbox"] + label {
   background: #eee;
   color: black;
   font-size: 14px;
-  font-family: "SDF", sans-serif, Verdana;
+  font-family: "IRANSans", sans-serif, Verdana;
   padding: 10px;
   pointer-events: none;
 }
@@ -13792,7 +13791,7 @@ fieldset[disabled] .form-control {
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  font-family: "SDF", "Poppins", sans-serif;
+  font-family: "IRANSans", "Poppins", sans-serif;
   background: #fff;
   width: 260px;
   overflow: hidden;
@@ -14459,7 +14458,7 @@ fieldset[disabled] .form-control {
 }
 
 .navbar {
-  font-family: "SDF", "Poppins", sans-serif;
+  font-family: "IRANSans", "Poppins", sans-serif;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -19771,7 +19770,7 @@ tr.shown td.details-control {
 }
 
 .product-grid {
-  font-family: "SDF", Raleway, sans-serif;
+  font-family: "IRANSans", Raleway, sans-serif;
   text-align: center;
   padding: 0 0 72px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -19936,7 +19935,7 @@ tr.shown td.details-control {
 .product-grid .price {
   color: #333;
   font-size: 17px;
-  font-family: "SDF", Montserrat, sans-serif;
+  font-family: "IRANSans", Montserrat, sans-serif;
   font-weight: 700;
   letter-spacing: 0px;
   margin-bottom: 8px;
@@ -23213,19 +23212,19 @@ html.ie11 .bs-searchbox .form-control {
   float: right;
 }
 .fa-trash {
-  color: #d0270d !important;
+    color: #ec0e6b !important;
 }
 
 .fa-edit {
-  color: #0707a9 !important;
+    color: #09bcce !important;
 }
 
 .fa-list {
-  color: #008000 !important;
+    color: #38e320 !important;
 }
 a.k-grid-add {
-  background-color: #0ec515 !important;
-  border-color: #0ec515 !important;
+    background-color: #08ae0e !important;
+    border-color: #fff !important;
 }
 a.k-grid-add > *,
 a.k-grid-excel {
@@ -23281,24 +23280,28 @@ form .form-group input {
   height: 28px;
   border-radius: 4px; 
 }
-.btn-save:hover,
-.btn-save:focus {
-  background-color: #1df124;
-}
-.btn-save:hover,
-.btn-close:hover {
-  color: #fff;
-}
+    .btn-save:hover,
+    .btn-save:focus {
+        background-color: #08ae0e;
+        
+    }
+        .btn-save:hover,
+        .btn-save:hover i,
+        .btn-close:hover i,
+        .btn-close:hover {
+            color: #fff;
+           
+        }
 .btn-save i {
   color: #0ec515;
 }
 .btn-close i {
   color: #f70606;
 }
-.btn-close:hover,
-.btn-close:focus {
-  background-color: #f15252;
-}
+    .btn-close:hover,
+    .btn-close:focus {
+        background-color: #f70606;
+    }
 .jconfirm-box {
   width: 40% !important;
 }
@@ -23308,4 +23311,12 @@ form .form-group input {
 .Detail label {
     color: #0505b5;
 }
- 
+.fa-cog {
+    color: #9f9a9a !important;
+}
+
+.k-window-titlebar .k-window-actions {
+    position: absolute;
+    top: 1px !important;
+    left: 6px !important;
+}

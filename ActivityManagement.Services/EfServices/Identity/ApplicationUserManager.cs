@@ -77,19 +77,23 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
         public List<UsersViewModel> GetAllUsersWithRoles()
         {
-            return  Users.Select(user => new UsersViewModel
+            return Users.Include(user => user.Roles).Select(user => new UsersViewModel
             {
+
                 Id = user.Id,
+                //Bio = user.Bio,
+                IsActive = user.IsActive,
+                Image = user.Image,
+                PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                PersianRegisterDateTime = user.RegisterDateTime.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                GenderName = user.Gender != null ? user.Gender == GenderType.Male ? "مرد" : "زن" : "",
+                RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault(),
                 Email = user.Email,
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                BirthDate = user.BirthDate,
-                IsActive = user.IsActive,
-                Image = user.Image,
-                RegisterDateTime = user.RegisterDateTime,
-                Roles = user.Roles,
+
 
             }).ToList();
         }
@@ -119,73 +123,14 @@ namespace ActivityManagement.Services.EfServices.Identity
             }).FirstOrDefaultAsync();
         }
 
-        public async Task<string> GetFullName(ClaimsPrincipal User)
+        public async Task<string> GetFullName(ClaimsPrincipal user)
         {
-            var UserInfo = await GetUserAsync(User);
-            return UserInfo.FirstName + " " + UserInfo.LastName;
+            AppUser userInfo = await GetUserAsync(user);
+            return userInfo.FirstName + " " + userInfo.LastName;
         }
 
 
-        public async Task<List<UsersViewModel>> GetPaginateUsersAsync(int offset, int limit, bool? firstnameSortAsc, bool? lastnameSortAsc, bool? emailSortAsc, bool? usernameSortAsc, bool? registerDateTimeSortAsc, string searchText)
-        {
-            var users = await Users.Include(u => u.Roles).Where(t => t.FirstName.Contains(searchText) ||
-                                                                     t.LastName.Contains(searchText) ||
-                                                                     t.Email.Contains(searchText) ||
-                                                                     t.UserName.Contains(searchText) ||
-                                                                     t.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت hh:mm:ss").Contains(searchText))
-                    .Select(user => new UsersViewModel
-                    {
-                        Id = user.Id,
-                        Email = user.Email,
-                        UserName = user.UserName,
-                        PhoneNumber = user.PhoneNumber,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        //Bio = user.Bio,
-                        IsActive = user.IsActive,
-                        Image = user.Image,
-                        PersianBirthDate = user.BirthDate.ConvertMiladiToShamsi("yyyy/MM/dd"),
-                        PersianRegisterDateTime = user.RegisterDateTime.ConvertMiladiToShamsi("yyyy/MM/dd ساعت HH:mm:ss"),
-                        GenderName = user.Gender == GenderType.Male ? "مرد" : "زن",
-                        RoleId = user.Roles.Select(r => r.Role.Id).FirstOrDefault(),
-                        RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault()
-                    }).Skip(offset).Take(limit).ToListAsync();
 
-            if (firstnameSortAsc != null)
-            {
-                users = users.OrderBy(x => (firstnameSortAsc == true) ? x.FirstName : "")
-                    .ThenByDescending(x => (firstnameSortAsc == false) ? x.FirstName : "").ToList();
-            }
-
-            else if (lastnameSortAsc != null)
-            {
-                users = users.OrderBy(t => (lastnameSortAsc == true) ? t.LastName : "")
-                    .ThenByDescending(t => (lastnameSortAsc == false) ? t.LastName : "").ToList();
-            }
-
-            else if (emailSortAsc != null)
-            {
-                users = users.OrderBy(t => (emailSortAsc == true) ? t.Email : "")
-                    .ThenByDescending(t => (emailSortAsc == false) ? t.Email : "").ToList();
-            }
-
-            else if (usernameSortAsc != null)
-            {
-                users = users.OrderBy(t => (usernameSortAsc == true) ? t.PhoneNumber : "")
-                    .ThenByDescending(t => (usernameSortAsc == false) ? t.UserName : "").ToList();
-            }
-
-            else if (registerDateTimeSortAsc != null)
-            {
-                users = users.OrderBy(t => (registerDateTimeSortAsc == true) ? t.PersianRegisterDateTime : "")
-                    .ThenByDescending(t => (registerDateTimeSortAsc == false) ? t.PersianRegisterDateTime : "").ToList();
-            }
-
-            foreach (var item in users)
-                item.Row = ++offset;
-
-            return users;
-        }
 
         public string CheckAvatarFileName(string fileName)
         {

@@ -9,25 +9,22 @@ namespace ActivityManagement.ViewModels.UserManager
 {
     public class UsersViewModel
     {
-        [JsonProperty("Id")]
+  
         public int? Id { get; set; }
-
-        [JsonProperty("ردیف")]
-        public int Row { get; set; }
-
-        [Display(Name = "تصویر پروفایل"), JsonProperty("تصویر")]
+         
+        [Display(Name = "تصویر پروفایل")]
         public string Image { get; set; }
 
-        [JsonIgnore,Display(Name ="تصویر پروفایل")]
+        [Display(Name ="تصویر پروفایل")]
         //[Required(ErrorMessage = "انتخاب {0} الزامی است.")]
         public IFormFile ImageFile { get; set; }
 
 
         [Required(ErrorMessage ="وارد نمودن {0} الزامی است.")]
-        [Display(Name="نام کاربری"),JsonProperty("نام کاربری")]
+        [Display(Name="نام کاربری")]
         public string UserName { get; set; }
         
-        [Display(Name ="ایمیل"),JsonProperty("ایمیل")]
+        [Display(Name ="ایمیل")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         [EmailAddress(ErrorMessage ="ایمیل وارد شده صحیح نمی باشد.")]
         public string Email { get; set; }
@@ -37,42 +34,42 @@ namespace ActivityManagement.ViewModels.UserManager
         [DataType(DataType.Password), Display(Name = "کلمه عبور"),JsonIgnore]
         public string Password { get; set; }
 
-        [DataType(DataType.Password), Display(Name = "تکرار کلمه عبور"),JsonIgnore]
+        [DataType(DataType.Password), Display(Name = "تکرار کلمه عبور")]
         [Compare("Password", ErrorMessage = "کلمه عبور وارد شده با تکرار کلمه عبور مطابقت ندارد.")]
         public string ConfirmPassword { get; set; }
 
 
-        [Display(Name = "شماره موبایل"),JsonProperty("شماره تماس")]
+        [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string PhoneNumber { get; set; }
 
-        [Display(Name = "نام"),JsonProperty("نام")]
+        [Display(Name = "نام")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string FirstName { get; set; }
 
-        [Display(Name = "نام خانوادگی"),JsonProperty("نام خانوادگی")]
+        [Display(Name = "نام خانوادگی")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string LastName { get; set; }
 
-        [Display(Name = "تاریخ تولد"),JsonIgnore()]
+        [Display(Name = "تاریخ تولد")]
         public DateTime? BirthDate { get; set; }
 
-        [Display(Name = "تاریخ تولد"),JsonProperty("تاریخ تولد")]
+        [Display(Name = "تاریخ تولد")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string PersianBirthDate { get; set; }
         
-        [Display(Name = "تاریخ عضویت"),JsonIgnore]
+        [Display(Name = "تاریخ عضویت"),]
         public DateTime? RegisterDateTime { get; set; }
 
-        [Display(Name = "تاریخ عضویت"),JsonProperty("تاریخ عضویت")]
+        [Display(Name = "تاریخ عضویت")]
         public string PersianRegisterDateTime { get; set; }
 
-        [Display(Name = "معرفی"),JsonProperty("معرفی")]
+        [Display(Name = "معرفی")]
         public string Bio { get; set; }
-        [Display(Name = "فعال / غیرفعال"),JsonProperty("IsActive")]
+        [Display(Name = "فعال / غیرفعال")]
         public bool IsActive { get; set; }
 
-        [Display(Name = "جنسیت"),JsonIgnore]
+        [Display(Name = "جنسیت")]
         [Required(ErrorMessage = "انتخاب {0} الزامی است.")]
         public GenderType? Gender { get; set; }
 
@@ -84,11 +81,11 @@ namespace ActivityManagement.ViewModels.UserManager
         [JsonIgnore]
         public List<AppRole> AllRoles { get; set; }
 
-        [JsonIgnore,Display(Name ="نقش")]
+        [Display(Name ="نقش")]
         [Required(ErrorMessage = "انتخاب {0} الزامی است.")]
         public int? RoleId { get; set; }
 
-        [JsonProperty("نقش")]
+        [Display(Name = "نقش")]
         public string RoleName { get; set; }
 
         [JsonIgnore]
