@@ -11389,7 +11389,7 @@ table .checkbox [type="checkbox"] + label {
     padding-right: 26px;
     height: 25px;
     line-height: 25px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: normal;
 }
 
@@ -12793,7 +12793,7 @@ table .checkbox [type="checkbox"] + label {
 
 .form-check,
 label {
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1.42857;
     color: #414244;
     font-weight: 400;
@@ -23197,3 +23197,8 @@ form .form-group input {
             background-color: #428bca;
         }
 /* end switch toggle*/
+input[type=text],
+input[type=email],
+input[type=password] {
+    height: 2rem !important;
+}

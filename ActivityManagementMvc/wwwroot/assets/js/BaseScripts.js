@@ -125,7 +125,7 @@ function closeWindows(selector) {
 }
 
 function KendoComboBind(inputName, controller, action) {
-
+    debugger;
     $(inputName).kendoComboBox({
         dataTextField: "text",
         dataValueField: "value",
