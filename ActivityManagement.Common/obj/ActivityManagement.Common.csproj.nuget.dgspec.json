@@ -1,37 +1,23 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
+    "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
   },
   "projects": {
-    "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+    "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "projectName": "ActivityManagement.Common",
-        "projectPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+        "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
         "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
-        "outputPath": "d:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
-=======
-    "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {}
-  },
-  "projects": {
-    "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
-        "projectName": "ActivityManagement.Common",
-        "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
-        "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-        "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
->>>>>>> 5387310009d5ba3a8dabccf27ff0dab9eb39d3e6
+        "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\i.solouki\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,11 +74,14 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
