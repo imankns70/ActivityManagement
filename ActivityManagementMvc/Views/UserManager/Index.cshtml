@@ -118,10 +118,19 @@
                         { field: "GenderName", title: "جنسیت" },
                         {
                             field: "IsActive", title: "فعال",
-                            template:"<label class='switch-wrap'><input type='checkbox' #=IsActive ? checked='checked':' ' # disabled='disabled'/><div class='switch'></div></label>"
-                             
-                           
-                        },
+                            template: function (e) {
+                                var fa;
+                                if (e.IsActive) {
+                                    fa = "<i class='fa fa-check fa-lg' style='color:#0ec515'></i>";
+                                } else {
+                                    fa = "<i class='fa fa-times fa-lg' style='color:red'></i>";
+                                }
+                                return fa;
+                            } 
+                                    //template:"<label class='switch-wrap'><input type='checkbox' #=IsActive ? checked='checked':' ' # disabled='disabled'/><div class='switch'></div></label>"
+
+
+                                },
 
 
                         {

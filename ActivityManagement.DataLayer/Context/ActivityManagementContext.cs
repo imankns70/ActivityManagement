@@ -34,6 +34,8 @@ namespace ActivityManagement.DataLayer.Context
             builder.AddCustomActivityManagementMapping();
 
             builder.Entity<Activity>().Property(x => x.SystemDate).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+            builder.Entity<AppUser>().Property(x => x.RegisterDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+            builder.Entity<AppUser>().Property(x => x.IsActive).HasDefaultValueSql("1");
             
         }
         #region BaseClass

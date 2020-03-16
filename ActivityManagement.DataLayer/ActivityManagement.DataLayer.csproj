@@ -12,7 +12,4 @@
     <ProjectReference Include="..\ActivityManagement.Common\ActivityManagement.Common.csproj" />
     <ProjectReference Include="..\ActivityManagement.DomainClasses\ActivityManagement.DomainClasses.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
 </Project>

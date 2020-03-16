@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.Common.Api.Attributes;
+using ActivityManagement.Common.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
@@ -44,7 +45,7 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
+
             return View();
         }
 
@@ -52,24 +53,16 @@ namespace ActivityManagementMvc.Controllers
         public async Task<JsonResult> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
-            
+
             return Json(resultAsync);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> RenderUser(int? userId)
-        //{
-        //    UsersViewModel usersViewModel = new UsersViewModel();
-        //    usersViewModel.AllRoles = _roleManager.GetAllRoles();
-
-        //    if (userId != null)
-        //    {
-        //        usersViewModel = await _userManager.FindUserWithRolesByIdAsync((int)userId);
-        //        usersViewModel.PersianBirthDate = usersViewModel.BirthDate.ConvertMiladiToShamsi("yyyy/MM/dd");
-        //    }
-
-        //    return PartialView("_RenderUser", usersViewModel);
-        //}
+        [HttpGet, AjaxOnly]
+        public  IActionResult RenderCreate(int? userId)
+        {
+         
+            return PartialView();
+        }
 
         //[HttpPost]
         ////[Authorize]
@@ -99,7 +92,7 @@ namespace ActivityManagementMvc.Controllers
         //            if (viewModel.ImageFile != null)
         //            {
         //                viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
-        //                FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
+        //               FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, $"{_env.WebRootPath}/images/avatars/{viewModel.Image}");
         //                if (fileResult.IsSuccess == false)
         //                {
         //                    ModelState.AddModelError(string.Empty, InvalidImage);
@@ -174,9 +167,22 @@ namespace ActivityManagementMvc.Controllers
         //    return PartialView("_RenderUser", viewModel);
         //}
 
-       
 
-       
+        [HttpGet]
+        public async Task<IActionResult> RenderEdit(int id)
+        {
+            UsersViewModel usersViewModel = new UsersViewModel();
+            usersViewModel.AllRoles = _roleManager.GetAllRoles();
+
+
+            usersViewModel = await _userManager.FindUserWithRolesByIdAsync(id);
+            usersViewModel.PersianBirthDate = usersViewModel.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd");
+
+
+            return PartialView(usersViewModel);
+        }
+
+
         public IActionResult AccessDenied()
         {
             return View();

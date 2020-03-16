@@ -190,7 +190,6 @@ namespace ActivityManagementMvc.Controllers
         }
 
         [HttpGet, AjaxOnly]
-
         public async Task<IActionResult> RenderDetail(int id)
         {
             var roleViewModel = new RolesViewModel();
@@ -204,5 +203,17 @@ namespace ActivityManagementMvc.Controllers
 
             return PartialView(roleViewModel);
         }
+
+        [HttpGet, AjaxOnly]
+        public async Task<IActionResult> ComboRole([DataSourceRequest] DataSourceRequest request)
+        {
+            DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount()
+                .Select(a=> new{ text=a.Name, value=a.Id}).ToDataSourceResultAsync(request);
+
+
+            return Json(resultAsync);
+        }
     }
+
+    
 }

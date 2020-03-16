@@ -124,6 +124,34 @@ function closeWindows(selector) {
     return $(selector).closest(".k-window-content").data("kendoWindow").close();
 }
 
+function KendoComboBind(inputName, controller, action) {
+    debugger;
+    $(inputName).kendoComboBox({
+        dataTextField: "text",
+        dataValueField: "value",
+        filter: "contains",
+        suggest: true,
+        minLength: 1,
+        //delay:100,
+        dataSource: {
+            serverFiltering: true,
+            transport: {
+                read: {
+                    url: "/" + controller + "/" + action + "/",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: function () {
+                        return {
+                            text: $(inputName).data('kendoComboBox').input.val()
+                        };
+                    }
+                },
+                parameterMap: function (data, operation) { return JSON.stringify(data); }
+            }
+        }
+    });
+
+}
 function SendAndUpdate(formSelector) {
     debugger;
 
