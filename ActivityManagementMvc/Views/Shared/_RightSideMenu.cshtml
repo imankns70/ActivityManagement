@@ -1,110 +1,43 @@
-﻿<aside id="leftsidebar" class="sidebar">
-    <!-- Menu -->
-    <div class="menu">
-        <ul class="list">
-            <li>
-                <div class="sidebar-profile clearfix">
-                    <div class="profile-img">
-                        <img src="~/assets/images/usrbig.jpg" alt="profile">
-                    </div>
-                    <div class="profile-info">
-                        <h3>حسین حیاتی</h3>
-                        <p>خوش آمدید !</p>
-                    </div>
-                </div>
-            </li>
+﻿@*@using NewsWebsite.Common;*@
+@addTagHelper*,NewsWebsite
 
-            <li>
-                <a asp-controller="RoleManager" asp-action="Index">
-                    <i class="fa fa-user-plus"></i>
-                    <span>نقش ها</span>
+<ul class="navbar-nav">
+    <li class="nav-item pt-2 pb-2 pl-2">
+        <a class="nav-link" asp-action="Index" asp-controller="RoleManager">
+            <i class="fa fa-user text-pink"></i> مدیریت نقش ها
+        </a>
+
+    </li>
+    <li class="nav-item pt-2 pb-2 pl-2">
+
+        <a class="nav-link" asp-action="Index" asp-controller="UserManager">
+            <i class="fa fa-users text-yellow"></i> مدیریت کاربران
+        </a>
+
+    </li>
+
+
+
+    @*<li class="nav-item">
+            <a class="nav-link" asp-action="ChangePassword" asp-controller="Manage">
+                <i class="ni ni-key-25 text-info"></i> تغییر کلمه عبور
+            </a>
+        </li>*@
+    @*<li class="nav-item">
+            <security-trimming asp-action="Index" asp-controller="SiteSetting" asp-area="Admin">
+                <a class="nav-link" asp-action="Index" asp-controller="SiteSetting">
+                    <i class="ni ni-settings-gear-65 text-suceess"></i> تنظیمات سایت
                 </a>
-                @*<ul class="ml-menu">
-                        <li class="active">
-                            <a href="index.html">داشبورد 1</a>
-                        </li>
-
-                    </ul>*@
-            </li>
-            <li>
-                <a asp-controller="UserManager" asp-action="Index">
-                    <i class="fa fa-users"></i>  
-                    <span>کاربرها</span>
-                </a>
-
-            </li>
-
-            @*<li>
-                    <a href="#" onClick="return false;" class="menu-toggle">
-                        <i class="menu-icon ti-magnet"></i>
-                        <span>رابط کاربری</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="pages/ui/alerts.html">هشدارها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/animations.html">انیمیشن ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/badges.html">نشان ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/modal.html">مودال</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/buttons.html">دکمه ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/collapse.html">سقوط</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/dialogs.html">دیالوگ ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/cards.html">کارت ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/labels.html">برچسب ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/list-group.html">گروه فرست</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/media-object.html">شی رسانه</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/notifications.html">اطلاعیه ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/preloaders.html">پیش بارگذارها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/progressbars.html">نوارهای پیشرفت</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/range-sliders.html">اسلایدرهای محدوده</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/sortable-nestable.html">قابل مرتب شدن و ناپایداری</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/tabs.html">زبانه ها</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/waves.html">امواج</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/typography.html">تایپوگرافی</a>
-                        </li>
-                        <li>
-                            <a href="pages/ui/helper-classes.html">کلاس های کمکی</a>
-                        </li>
-                    </ul>
-                </li>*@
-
-
-        </ul>
-    </div>
-    <!-- #Menu -->
-</aside>
+            </security-trimming>
+        </li>*@
+    @*<li class="nav-item">
+            <a class="nav-link" asp-action="" asp-controller="">
+                <i class="ni ni-settings-gear-65 text-info"></i>  احراز هویت دو مرحله ای
+            </a>
+        </li>*@
+    @*<li class="nav-item">
+            <a class="nav-link" asp-action="Profile" asp-controller="Manage" asp-route-userId="@User.Identity.GetUserId()">
+                <i class="ni ni-circle-08 text-pink"></i> نمایه من
+            </a>
+        </li>*@
+</ul>

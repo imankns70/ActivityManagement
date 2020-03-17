@@ -16,91 +16,98 @@
     <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png" />
 
     <link href="~/assets/images/favicon.ico" rel="icon" type="image/png">
-    <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    @*<link href="~/assets/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
-    @*<link href="/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css" rel="stylesheet" />*@
-    <link href="~/assets/css/app.min.css" rel="stylesheet">
-    <link href="~/assets/js/bundles/materialize-rtl/materialize-rtl.min.css" rel="stylesheet">
-    <link href="~/assets/css/styles/all-themes.css" rel="stylesheet" />
+    <link href="~/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="~/assets/vendor/fontawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- Argon CSS -->
+    <link type="text/css" href="~/assets/css/argon.css?v=1.0.0" rel="stylesheet">
     <!-- Loading -->
     <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
 
-
+    <link href="~/lib/FileInput/bootstrap-fileinput.css" rel="stylesheet" />
     <!-- Kendo -->
     <link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
     <link href="~/lib/Kendo/css/kendo.bootstrap.custom.css" rel="stylesheet" />
-    @*<link href="~/lib/Kendo/css/kendo.default-v2.min.css" rel="stylesheet" />*@
-    @*<link href="~/lib/Kendo/css/kendo.blueopal.min.css" rel="stylesheet" />*@
-    @*<link href="~/lib/Kendo/css/kendo.material.min.css" rel="stylesheet" />*@
+
     <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
 
-    <link href="~/lib/FileInput/bootstrap-fileinput.css" rel="stylesheet" />
-    <!-- FontAwesome -->
-    <link href="~/assets/fonts/FontAwsome5/css/fontawesome.min.css" rel="stylesheet" />
-    <link href="~/assets/fonts/FontAwsome5/css/brands.min.css" rel="stylesheet" />
-    <link href="~/assets/fonts/FontAwsome5/css/solid.min.css" rel="stylesheet" />
-
-    <!-- DateTimePicker -->
-    <link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="~/lib/jqueryConfirm/css/jquery-confirm.css" rel="stylesheet" />
 
     <link href="~/assets/css/style.css" rel="stylesheet" />
 
 
 
-
 </head>
-<body class="light rtl">
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="m-t-30">
-                <img class="loading-img-spin" src="~/assets/images/loading.png" alt="admin">
-            </div>
-            <p>لطفا صبر کنید...</p>
-        </div>
-    </div>
-    <!-- #END# Page Loader -->
-    <!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Top Bar -->
-    @Html.RenderPartialAsync("_Navbar")
-    <!-- #Top Bar -->
-    <div>
-
-        @Html.RenderPartialAsync("_RightSideMenu")
-
-
-        @Html.RenderPartialAsync("_LeftSideMenu")
-
-    </div>
-    <section class="content">
+<body>
+    <!-- Sidenav -->
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
         <div class="container-fluid">
-            @RenderBody()
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <a class="navbar-brand pt-0" href="./index.html">
+                <img src="@WritableOptions.Value.SiteInformation.Logo" class="navbar-brand-img" alt="...">
+                پنل مدیریت میزفا
+            </a>
+            <!-- User -->
+            <ul class="nav align-items-center d-md-none">
+                @await Component.InvokeAsync("Profile")
+            </ul>
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Collapse header -->
+                    <div class="navbar-collapse-header d-md-none">
+                        <div class="row">
+                            <div class="col-9 collapse-brand">
+                                <a href="./index.html">
+                                    <img src="@WritableOptions.Value.SiteInformation.Logo"> پنل مدیریت میزفا
+                                </a>
+                            </div>
+                            <div class="col-3 collapse-close">
+                                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form -->
+
+                    <hr>
+                    <!-- Navigation -->
+                    @await Html.PartialAsync("_RightSideMenu")
+                </div>
         </div>
-    </section>
+    </nav>
+    <!-- Main content -->
+    <div class="main-content">
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+            <div class="container-fluid">
+                <!-- Brand -->
+                <ul class="nav nav-sitemap justify-content-center justify-content-xl-end">
+                    <li>
+                        <a class="h4 mb-0 text-white d-lg-inline-block" asp-controller="Home" asp-action="Index"> صفحه اصلی </a>
+                    </li>
 
+                </ul>
 
-
-
+                <!-- User -->
+                @await Html.PartialAsync("_Login")
+            </div>
+        </nav>
+        <div class="header bg-gradient-primary pb-6 pt-5 pt-md-3">
+        </div>
+        @RenderBody()
+       
+    </div>
 
 
     <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/popper.js/popper.min.js"></script>
-
-    <script src="~/lib/twitter-bootstrap/js/bootstrap.min.js"></script>
-
-    <script src="~/assets/js/app.min.js"></script>
-
-    <!-- Custom Js -->
-    <script src="~/assets/js/admin.js"></script>
-
+    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
     <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
     @* <script src="/lib/Kendo/js/aspnetmvc.min.js"></script> *@
-    @*<script src="~/lib/Kendo/js/kendo.culture.fa-IR.min.js"></script>*@
     <script src="~/lib/Kendo/js/cultures/kendo.culture.fa-IR.min.js"></script>
-    @*<script src="~/lib/Kendo/js/cultures/kendo.culture.fa.min.js"></script>*@
-    @*<script src="~/lib/Kendo/js/messages/kendo.messages.en-US.js"></script>*@
     <script src="~/lib/Kendo/js/messages/kendo.messages.fa-IR.js"></script>
     <script src="~/lib/jqueryConfirm/js/jquery-confirm.js"></script>
     <script src="~/lib/FileInput/bootstrap-fileinput.min.js"></script>
@@ -108,11 +115,12 @@
         <script src="~/lib/Kendo/js/validate.unobtrusive.js"></script>*@
     <script src="~/lib/Loading/js/jquery.preloader.min.js"></script>
     <script src="~/assets/fonts/FontAwsome5/js/fontawesome.js"></script>
-    <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/assets/js/argon.min.js"></script>
 
     <script src="~/assets/js/BaseScripts.js"></script>
     <script type="text/javascript">
         $(function () {
+
             //$("body").preloader({ text: 'لطفا صبر کنید ...' });
 
         });

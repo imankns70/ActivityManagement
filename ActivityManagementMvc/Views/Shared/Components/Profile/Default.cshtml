@@ -1,0 +1,30 @@
+﻿
+<li class="nav-item dropdown">
+    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="~/assets/images/UserPic.png">
+                @*@if (user.Image.HasValue())
+        {
+            <img alt="Image placeholder" src="~/avatars/@user.Image">
+        }
+
+        else
+        {
+            <img alt="Image placeholder" src="~/assets/img/UserPic.png">
+        }*@
+            </span>
+        </div>
+    </a>
+    <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+        <a href="./examples/profile.html" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>نمایه من</span>
+        </a>
+        <div class="dropdown-divider"></div>
+        <a href="#!" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>خروج</span>
+        </a>
+    </div>
+</li>
