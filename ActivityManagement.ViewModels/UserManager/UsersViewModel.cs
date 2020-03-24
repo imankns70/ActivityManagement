@@ -25,6 +25,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public string UserName { get; set; }
         
         [Display(Name ="ایمیل")]
+        [DataType(DataType.EmailAddress)]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         [EmailAddress(ErrorMessage ="ایمیل وارد شده صحیح نمی باشد.")]
         public string Email { get; set; }
@@ -41,6 +42,7 @@ namespace ActivityManagement.ViewModels.UserManager
 
         [Display(Name = "شماره موبایل")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
         [Display(Name = "نام")]

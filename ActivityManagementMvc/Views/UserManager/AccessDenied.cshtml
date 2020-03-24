@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "AccessDenied";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -21,7 +21,7 @@
         </ul>
 
         <!-- User -->
-        @await Html.PartialAsync("_AdminLogin")
+        @await Html.PartialAsync("_Login")
     </div>
 </nav>
 <!-- Header -->

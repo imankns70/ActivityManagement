@@ -503,24 +503,28 @@ namespace ActivityManagement.Common
 
         public static async Task<UploadFileResult> UploadFileAsync(this IFormFile file, FileType types, string path)
         {
-            string fileExtension = Path.GetExtension(file.FileName);
-           
-            using (var memory = new MemoryStream())
+            try
             {
+                string fileExtension = Path.GetExtension(file.FileName);
+
+                await using MemoryStream memory = new MemoryStream();
                 await file.CopyToAsync(memory);
                 bool result = IsValidFile(memory.ToArray(), types, fileExtension.Replace('.', ' '));
                 if (result)
                 {
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
+                    await using FileStream stream = new FileStream(path,FileMode.Create);
+                    await file.CopyToAsync(stream);
 
                     return new UploadFileResult(true, null);
                 }
                 else
                     return new UploadFileResult(false, new List<string>() { "فایل انتخاب شده معتبر نمی باشد." });
             }
+            catch (Exception e)
+            {
+                return new UploadFileResult(false, new List<string>() { e.Message });
+            }
+
         }
 
 

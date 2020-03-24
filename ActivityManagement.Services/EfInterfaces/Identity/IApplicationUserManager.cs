@@ -125,6 +125,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
          string CheckAvatarFileName(string fileName);
         Task<AppUser> FindClaimsInUser(int userId);
+        Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
         #endregion
     }

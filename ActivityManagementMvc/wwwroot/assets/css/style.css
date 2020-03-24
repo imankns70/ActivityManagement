@@ -88,10 +88,12 @@ form .form-group label {
     display: inline-block;
     width: 80px;
 }
-
+#InputBirthDate {
+    width: 100px;
+}
 form .form-group input {
-    display: inline-block;
-    width: 200px !important;
+    /*display: inline-block;*/
+    /*width: 200px !important;*/
 }
 
 .btn-save,
@@ -101,6 +103,7 @@ form .form-group input {
     width: 70px;
     height: 28px;
     border-radius: 4px;
+    cursor: pointer;
 }
 
     .btn-save:hover,
@@ -150,49 +153,42 @@ form .form-group input {
     left: 6px !important;
 }
 
-/* start switch toggle*/
-.switch-wrap {
-    /*cursor: pointer;*/
-    background: #ffffff;
-    padding: -3px;
-    width: 40px;
-    height: 20px;
-    border-radius: 33.5px;
-    border: 1px solid #428bca;
+/*span#BirthDate {
+    padding: 3px 9px !important;
+    position: absolute;
+    right: 15px;
+    top: 23px;
+    cursor: pointer;
+    color: gray;
+    padding: 4px;
+    z-index: 1;
+    height: 19px;
+}*/
+div[data-provides="fileinput"] {
+    padding: 30px;
 }
-
-    .switch-wrap input {
-        position: absolute;
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
-
-    .switch-wrap .switch {
-        height: 100%;
-        display: grid;
-        grid-template-columns: 0fr 1fr 1fr;
-        transition: 0.2s;
-    }
-
-        .switch-wrap .switch::after {
-            content: '';
-            border-radius: 50%;
-            background: #ccc;
-            grid-column: 2;
-            transition: background 0.2s;
-        }
-
-    .switch-wrap input:checked + .switch {
-        grid-template-columns: 1fr 1fr 0fr;
-    }
-
-        .switch-wrap input:checked + .switch::after {
-            background-color: #428bca;
-        }
-/* end switch toggle*/
-input[type=text],
+form label {
+    display: inline-block !important;
+}
+/*input[type=text],
 input[type=email],
 input[type=password] {
     height: 2rem !important;
+}*/
+
+@-moz-document url-prefix() {
+
+    #InputBirthDate {
+        width: 128px;
+    }
+}
+.burgerMenu {
+    display: none;
+    position: absolute;
+    left: 62px;
+    list-style-type: none;
+    
+}
+.burgerMenu li {
+    margin: 2px;
 }

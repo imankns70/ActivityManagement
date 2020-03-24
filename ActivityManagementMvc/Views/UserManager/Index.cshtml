@@ -26,9 +26,8 @@
     <a onclick=CreateUser() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
 
 </script>
-<script type="text/javascript">
 
-</script>
+
 @section Scripts {
     @{
 
@@ -51,14 +50,14 @@
                 $("#UserGrid").kendoGrid({
                     toolbar: [{ template: kendo.template($("#CreateUser").html()) }, "excel"],
                     excel: { allPages: true },
-                    //height: 400,
+
                     columnMenu: true,
                     dataSource: {
-
+                        type: "aspnetmvc-ajax",
                         transport: {
                             read: "/UserManager/GetUsers",
                             type: "POST",
-                            dataType: "json",
+                            //dataType: "json",
                             contentType: "application/json",
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
@@ -69,7 +68,6 @@
                             model: {
                                 id: "Id",
                                 fields: {
-
                                     Id: { type: "number", editable: false, nullable: true },
                                     FirstName: { type: "string" },
                                     LastName: { type: "string" },
@@ -120,40 +118,45 @@
                         {
                             title: "ردیف",
                             template: "#= ++recordUser #",
-                            width: 100
+                            width: 50
                         },
-
-                        { field: "FirstName", title: "نام" },
+                        { field: "FirstName", title: "نام", width: 100 },
                         { field: "LastName", title: "نام خانوادگی", width: 120 },
-                        { field: "UserName", title: "نام کاربر" },
-                        { field: "RoleName", title: "نام نقش" },
+                        { field: "UserName", title: "نام کاربر", width: 100 },
+                        { field: "RoleName", title: "نام نقش", width: 100 },
                         { field: "PersianRegisterDateTime", title: "تاریخ عضویت", width: 120 },
-                        { field: "GenderName", title: "جنسیت" },
+                        { field: "GenderName", title: "جنسیت", width: 100 },
                         {
-                            field: "IsActive", title: "فعال",
+                            field: "IsActive",
+                            title: "فعال",
                             template: function (e) {
                                 var fa;
                                 if (e.IsActive) {
                                     fa = "<i class='fa fa-check fa-lg' style='color:#0ec515'></i>";
                                 } else {
-                                    fa = "<i class='fa fa-times fa-lg' style='color:red'></i>";
+                                    fa = "<i class='fa fa-times fa-lg' style='color:#ff0000'></i>";
                                 }
                                 return fa;
-                            } 
-                                    //template:"<label class='switch-wrap'><input type='checkbox' #=IsActive ? checked='checked':' ' # disabled='disabled'/><div class='switch'></div></label>"
+                            }
+                            //template:"<label class='switch-wrap'><input type='checkbox' #=IsActive ? checked='checked':' ' # disabled='disabled'/><div class='switch'></div></label>"
 
 
-                                },
-
-
+                        },
                         {
                             title: "<i class='Add' >عملیات</i>",
-                            width: 280,
-                            template:
+                            width: 80,
+                            template: function (e) {
 
-                                "<a onClick=\"EditUser('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
-                                "<a onClick=\"DeleteUser('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-trash fa-lg\"></i></a> " +
-                                "<a onClick=\"DetailUser('#= Id #')\" type=\"button\" on class=\"k-button\"><i class=\"fa fa-list fa-lg\"></i></a> "
+                                var str = "<a onClick='RenderMenu(this)' type='button' class='k-button'><i class='fa fa-list fa-lg'></i></a> ";
+                               str +=
+                                    "<ul class='burgerMenu'><li><a onClick='EditUser(" + e.Id + ")' title=' ویرایش' type='button'  class='k-button'><i class=' fa fa-edit fa-lg'></i></a><li> "+
+                                        "<li><a onClick='DeleteUser(" + e.Id + ")' title='حذف' type='button'  class='k-button'><i class='fa fa-trash fa-lg'></i></a> <li>" +
+                                        "<li><a onClick= 'DetailUser(" + e.Id + ")' title=' جزئیات' type='button'  class=' k-button'><i class=' fa fa-list fa-lg'></i></a><li> " +
+                                        "<li><a onClick=' ResetPassword(" + e.Id + ")' title='تغییر کلمه عبور' type='button' class=' k-button'><i class='fa fa-change fa-lg'></i></a><li></ul>";
+                                return str;
+                            }
+
+
 
                         }
                     ]
@@ -161,6 +164,13 @@
             }
 
 
+            function RenderMenu(e) {
+                $(".burgerMenu").hide();
+                $(e).next().toggle();
+               
+            }
+             
+           
 
             function CreateUser() {
 
@@ -193,6 +203,7 @@
                     type: "Get",
                     url: '/UserManager/RenderEdit/' + id,
                     success: function (data) {
+
                         $("#windowUser").html(data);
 
                         windowUser = $("#windowUser").kendoWindow({
@@ -220,7 +231,7 @@
                             width: "800"
                         });
                         windowUser.data("kendoWindow").title('حذف').center().open();
-                    },
+                    }
                 });
             }
 
@@ -231,7 +242,7 @@
                     type: "Get",
                     url: '/UserManager/RenderDetail/' + id,
                     success: function (data) {
-                        debugger;
+
                         $("#windowUser").html(data);
 
                         windowUser = $("#windowUser").kendoWindow({
@@ -240,7 +251,27 @@
                             width: "800"
                         });
                         windowUser.data("kendoWindow").title('جزئیات').center().open();
-                    },
+                    }
+                });
+            }
+            function ResetPassword(id) {
+                $("#windowUser").remove();
+                $("#windowUserContainer").append("<div id='windowUser'></div>");
+                $.ajax({
+                    type: "Get",
+                    url: '/UserManager/ResetPassword/',
+                    data: { userId: id },
+                    success: function (data) {
+
+                        $("#windowUser").html(data);
+
+                        windowUser = $("#windowUser").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowUser.data("kendoWindow").title('تغییر کلمه عبور').center().open();
+                    }
                 });
             }
 

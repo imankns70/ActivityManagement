@@ -1,6 +1,6 @@
 ﻿@model ActivityManagement.ViewModels.RoleManager.RolesViewModel
 
-<form id="EditRoleForm" asp-controller="RoleManager" asp-action="Edit" method="post" class="k-rtl">
+<form id="EditRoleForm" asp-controller="RoleManager" asp-action="Edit" method="post" class="form-inline">
      @Html.AntiForgeryToken()
      
   
@@ -25,9 +25,9 @@
     </div>
 
 
-    <div class="form-group">
+    <div class="row form-group mt-5">
 
-        <button type="button" class="btn-save" onclick="SendAndUpdate('#EditRoleForm')"><i class="fa fa-plus"></i><span class="mr-1">ذخیره</span></button>
+        <button type="button" class="btn-save mr-2" onclick="SendAndUpdate('#EditRoleForm')"><i class="fa fa-plus"></i><span class="mr-1">ذخیره</span></button>
         <button type="button" class="btn-close" onclick="closeWindows(this)"><i class="fa fa-times"></i><span class="mr-1">بستن</span></button>
         
 

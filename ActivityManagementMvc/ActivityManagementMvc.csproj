@@ -117,9 +117,9 @@
     <Folder Include="wwwroot\lib\themify-icons\fonts\" />
     <Folder Include="wwwroot\lib\themify-icons\ie7\" />
     <Folder Include="wwwroot\CashFiles\" />
-    <Folder Include="wwwroot\avatars\" />
     <Folder Include="wwwroot\lib\twitter-bootstrap\css\" />
     <Folder Include="wwwroot\lib\twitter-bootstrap\js\" />
+    <Folder Include="wwwroot\Users\" />
   </ItemGroup>
 
   <ItemGroup>

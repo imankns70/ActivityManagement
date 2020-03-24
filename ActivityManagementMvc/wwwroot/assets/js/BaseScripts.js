@@ -125,29 +125,40 @@ function closeWindows(selector) {
 }
 
 function KendoComboBind(inputName, controller, action) {
-    debugger;
+
     $(inputName).kendoComboBox({
         dataTextField: "text",
         dataValueField: "value",
         filter: "contains",
         suggest: true,
-        minLength: 1,
-        //delay:100,
+        minLength: 2,
+        
         dataSource: {
+            type: "aspnetmvc-ajax",
             serverFiltering: true,
             transport: {
                 read: {
                     url: "/" + controller + "/" + action + "/",
                     type: "POST",
-                    contentType: "application/json",
-                    data: function () {
-                        return {
-                            text: $(inputName).data('kendoComboBox').input.val()
-                        };
-                    }
+                    contentType: "application/json"
+                 
                 },
                 parameterMap: function (data, operation) { return JSON.stringify(data); }
+            },
+            schema: {
+                data: "Data",
+                total: "Total",
+                errors: "Errors",
+                model: {
+                    id: "value",
+                    fields: {
+                        value: { type: "number" },
+                        text: { type: "string" }
+
+                    }
+                }
             }
+      
         }
     });
 
@@ -187,10 +198,10 @@ function SendAndUpdate(formSelector) {
     //    ajaxConfig["data"] = params;
     //}
 
-    
-        var dataToSend = $(formSelector).get(0);
-        ajaxConfig["data"] = new FormData(dataToSend);
-    
+
+    var dataToSend = $(formSelector).get(0);
+    ajaxConfig["data"] = new FormData(dataToSend);
+
 
 
     ajaxConfig["contentType"] = false;

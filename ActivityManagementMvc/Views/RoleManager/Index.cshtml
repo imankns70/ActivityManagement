@@ -51,11 +51,11 @@
                     //height: 400,
                     columnMenu: true,
                     dataSource: {
-                        //type: "aspnetmvc-ajax",
+                        type: "aspnetmvc-ajax",
                         transport: {
                             read: "/RoleManager/GetRoles",
                             type: "POST",
-                            dataType: "json",
+                            //dataType: "json",
                             contentType: "application/json",
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },

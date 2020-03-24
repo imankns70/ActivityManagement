@@ -59,7 +59,7 @@ namespace ActivityManagement.Services.EfServices.Identity
 
         public async Task<List<UsersViewModel>> GetAllUsersWithRolesAsync()
         {
-            return await Users.Select(user => new UsersViewModel
+            return await Users.Include(appUser => appUser.Roles).Select(user => new UsersViewModel
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -112,7 +112,8 @@ namespace ActivityManagement.Services.EfServices.Identity
                 IsActive = user.IsActive,
                 Image = user.Image,
                 RegisterDateTime = user.RegisterDateTime,
-                Roles = user.Roles,
+                //Roles = user.Roles,
+                RoleId = user.Roles.FirstOrDefault().RoleId,
                 AccessFailedCount = user.AccessFailedCount,
                 EmailConfirmed = user.EmailConfirmed,
                 LockoutEnabled = user.LockoutEnabled,
@@ -120,6 +121,25 @@ namespace ActivityManagement.Services.EfServices.Identity
                 PhoneNumberConfirmed = user.PhoneNumberConfirmed,
                 TwoFactorEnabled = user.TwoFactorEnabled,
                 Gender = user.Gender,
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<UsersViewModel> FindUserWithDetailIdAsync(int userId)
+        {
+            return await Users.Include(appUser => appUser.Roles).Where(u => u.Id == userId).Select(user => new UsersViewModel
+            {
+                Id = user.Id,
+                //Bio = user.Bio,
+                IsActive = user.IsActive,
+                Image = user.Image,
+                PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                PersianRegisterDateTime = user.RegisterDateTime.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                GenderName = user.Gender != null ? user.Gender == GenderType.Male ? "مرد" : "زن" : "",
+                RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault(),
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
             }).FirstOrDefaultAsync();
         }
 

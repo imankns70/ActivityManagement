@@ -41,7 +41,7 @@ namespace ActivityManagementMvc.Controllers
             return View();
         }
 
-        [HttpGet]
+      
         public async Task<JsonResult> GetRoles([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount().ToDataSourceResultAsync(request);
@@ -55,6 +55,7 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
         [HttpPost, AjaxOnly]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RolesViewModel viewModel)
         {
 
@@ -172,17 +173,27 @@ namespace ActivityManagementMvc.Controllers
             }
             else
             {
-                IdentityResult result = await _roleManager.DeleteAsync(role);
-                if (result.Succeeded)
+                if (await _roleManager.CheckUserInThisRole(role))
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "RoleGridRefresh()";
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add("برای این نقش کاربر وجود دارد");
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    IdentityResult result = await _roleManager.DeleteAsync(role);
+                    if (result.Succeeded)
+                    {
+                        returnJson.MessageType = MessageType.Success;
+                        returnJson.Script = "RoleGridRefresh()";
+                    }
+                    else
+                    {
+                        returnJson.MessageType = MessageType.Error;
+                        returnJson.Message.Add(result.DumpErrors());
+                    }
                 }
+           
+               
 
             }
 
@@ -204,12 +215,23 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
 
-        [HttpGet, AjaxOnly]
+        [AjaxOnly]
         public async Task<IActionResult> ComboRole([DataSourceRequest] DataSourceRequest request)
         {
-            DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount()
+            DataSourceResult resultAsync = await _roleManager.GetAllRoles()
                 .Select(a=> new{ text=a.Name, value=a.Id}).ToDataSourceResultAsync(request);
 
+            
+            //object result;
+            //if (string.IsNullOrEmpty(text))
+            //{
+            //    result = _roleManager.GetAllRoles().OrderByDescending(a => a.Id).Take(8).Select(a => new { text = a.Name, value = a.Id });
+            //}
+            //else
+            //{
+            //    result = _roleManager.GetAllRoles().Where(a => a.Name.Contains(text))
+            //        .Select(a => new { text = a.Name, value = a.Id });
+            //}
 
             return Json(resultAsync);
         }

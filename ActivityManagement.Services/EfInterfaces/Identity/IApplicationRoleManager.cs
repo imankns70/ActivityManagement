@@ -37,7 +37,8 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<AppRole> FinRoleAndUsersCountById(int roleId);
         Task<List<UsersViewModel>> GetUsersInRoleAsync(int roleId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId, string roleClaimType, IList<string> selectedRoleClaimValues);
- 
+        Task<bool> CheckUserInThisRole(AppRole role);
+
         #endregion
     }
 }

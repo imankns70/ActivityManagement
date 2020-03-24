@@ -1,0 +1,19 @@
+﻿@model ActivityManagement.ViewModels.UserManager.UsersViewModel
+
+    <form id="DeleteUserForm" asp-controller="UserManager" asp-action="Delete" method="Post" class="k-rtl">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="Id" />
+
+        <h4>آیا شما می خواهید  @Model.FirstName  @Model.LastName را از لیست کاربران حذف کنید ؟</h4>
+
+
+        <div class="form-group">
+
+            <button type="button" class="btn-save" onclick="SendAndUpdate('#DeleteUserForm')"><i class="fa fa-plus"></i><span class="mr-1">ذخیره</span></button>
+            <button type="button" class="btn-close" onclick="closeWindows(this)"><i class="fa fa-times"></i><span class="mr-1">بستن</span></button>
+
+        </div>
+
+    </form>
+

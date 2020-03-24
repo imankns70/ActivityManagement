@@ -8,6 +8,7 @@ using ActivityManagement.ViewModels.RoleManager;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace ActivityManagement.Services.EfServices.Identity
@@ -113,6 +114,11 @@ namespace ActivityManagement.Services.EfServices.Identity
             }
 
             return await UpdateAsync(role);
+        }
+
+        public async Task<bool> CheckUserInThisRole(AppRole role)
+        {
+          return  await Roles.Include(a => a.Users).AnyAsync(a => a.Id == role.Id && a.Users.Any());
         }
 
         public async Task<List<UsersViewModel>> GetUsersInRoleAsync(int roleId)
