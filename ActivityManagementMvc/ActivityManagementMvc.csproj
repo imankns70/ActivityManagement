@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\Profile\" />
     <Folder Include="wwwroot\assets\css\styles\" />
     <Folder Include="wwwroot\assets\fonts\fontawesome\" />
     <Folder Include="wwwroot\assets\fonts\FontAwsome5\css\" />
@@ -57,6 +59,12 @@
     <Folder Include="wwwroot\assets\vendor\fontawesome\fontawesome-free\svgs\regular\" />
     <Folder Include="wwwroot\assets\vendor\fontawesome\fontawesome-free\svgs\solid\" />
     <Folder Include="wwwroot\assets\images\avatars\" />
+    <Folder Include="wwwroot\assets\vendor\nucleo\css\" />
+    <Folder Include="wwwroot\assets\vendor\nucleo\fonts\" />
+    <Folder Include="wwwroot\lib\bootstrap-datetimepicker\css\" />
+    <Folder Include="wwwroot\lib\bootstrap-datetimepicker\js\" />
+    <Folder Include="wwwroot\lib\bootstrap.datetimepicker\css\" />
+    <Folder Include="wwwroot\lib\bootstrap.datetimepicker\js\" />
     <Folder Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\" />
     <Folder Include="wwwroot\lib\bootstrap\build\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
@@ -117,6 +125,7 @@
     <Folder Include="wwwroot\lib\themify-icons\fonts\" />
     <Folder Include="wwwroot\lib\themify-icons\ie7\" />
     <Folder Include="wwwroot\CashFiles\" />
+    <Folder Include="wwwroot\avatars\" />
     <Folder Include="wwwroot\lib\twitter-bootstrap\css\" />
     <Folder Include="wwwroot\lib\twitter-bootstrap\js\" />
     <Folder Include="wwwroot\Users\" />

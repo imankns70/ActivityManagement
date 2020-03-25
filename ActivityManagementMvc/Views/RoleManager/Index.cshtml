@@ -19,7 +19,8 @@
     </div>
 </div>
 <div id="windowRoleContainer"></div>
-
+<div id="context-menu-Container"></div>
+<ul id='context-menu'></ul>
 
 <script id="CreateRole" type="text/x-kendo-template">
     <a onclick=CreateRole() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
@@ -38,7 +39,11 @@
                 //    expandMode: "single"
                 //});
                 RoleInitialize();
+                $("#context-menu").kendoContextMenu({
+                    target: "#RoleGrid",
+                    filter: "#context-menu-Container"
 
+                });
             });
 
             function RoleInitialize() {
@@ -118,27 +123,58 @@
                             width: 50
                         },
                         //{ field: "Id", title: "شناسه نقش", width: 120 },
-                        { field: "Name", title: "نام نقش", width: 180 },
-                        { field: "UsersCount", title: "تعداد کاربران", width: 100 },
-                        { field: "Description", title: "توضیحات" },
+                        { field: "Name", title: "نام نقش", width: 130 },
+                        { field: "UsersCount", title: "تعداد کاربران", width: 130 },
+                        { field: "Description", title: "توضیحات",width: 230  },
 
 
                         {
                             title: "<i class='Add' >عملیات</i>",
-                            width: 250,
-                            template:
+                            width: 80,
+                            template: function (e) {
 
-                                "<a onClick=\"EditRole('#= Id #')\" title=\"ویرایش\" type=\"button\" on class=\"k-button\" style=\"min-width:50px;\"><i class=\"fa fa-edit fa-lg\"></i></a> " +
-                                "<a onClick=\"DeleteRole('#= Id #')\" title=\"حذف\" type=\"button\" on class=\"k-button\" style=\"min-width:50px;\"><i class=\"fa fa-trash fa-lg\"></i></a> " +
-                                "<a onClick=\"DetailRole('#= Id #')\" title=\"جزئیات\" type=\"button\" on class=\"k-button\" style=\"min-width:50px;\"><i class=\"fa fa-list fa-lg\"></i></a> " +
-                                "<a onClick=\"DynamicAccess('#= Id #')\" title=\"سطح دسترسی\" type=\"button\" on class=\"k-button\" style=\"min-width:50px;\"><i class=\"fa fa-cog fa-lg\"></i></a> "
+                                return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.Id + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
 
+                            }
+                             
                         }
                     ]
                 }).find("table").addClass("table table-bordered table-hover");
             }
 
 
+            function RenderMenu(element, id) {
+
+                var contextMenu = $("#context-menu").data("kendoContextMenu");
+                var dataSourceMenu = [];
+
+                dataSourceMenu.push({
+                    text: "<li onClick='EditRole(" + id + ")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
+                    encoded: false
+                },
+                    {
+                        text: "<li onClick='DeleteRole(" + id + ")' title='حذف' type='button'><i class='fa fa-trash fa-lg'></i>حذف</li> ",
+                        encoded: false
+                    },
+                    {
+                        text: "<li onClick='DetailRole(" + id + ")' title='جزئیات' type='button'><i class='fa fa-list fa-lg'></i>جزئیات</li> ",
+                        encoded: false
+                    },
+                    {
+                        text: "<li onClick='DynamicAccess(" + id + ")' title='سطح دسترسی' type='button'><i class='fa fa-retweet fa-lg'></i>سطح دسترسی</li> ",
+                        encoded: false
+                    }
+                );
+
+                var offset = $(element).offset();
+
+                $("#context-menu").data("kendoContextMenu").setOptions({
+                    dataSource: dataSourceMenu
+                });
+
+                contextMenu.open(offset.left + 80, offset.top);
+                $("li").css("text-align", "right");
+            }
 
             function CreateRole() {
 

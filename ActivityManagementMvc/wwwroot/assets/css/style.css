@@ -8,7 +8,7 @@
     font-weight: normal;
 }
 
- 
+
 
 body,
 html {
@@ -88,9 +88,11 @@ form .form-group label {
     display: inline-block;
     width: 80px;
 }
+
 #InputBirthDate {
     width: 100px;
 }
+
 form .form-group input {
     /*display: inline-block;*/
     /*width: 200px !important;*/
@@ -167,6 +169,7 @@ form .form-group input {
 div[data-provides="fileinput"] {
     padding: 30px;
 }
+
 form label {
     display: inline-block !important;
 }
@@ -182,13 +185,17 @@ input[type=password] {
         width: 128px;
     }
 }
-.burgerMenu {
-    display: none;
-    position: absolute;
-    left: 62px;
-    list-style-type: none;
-    
+
+#context-menu {
+    background-color: #d1eaf4;
 }
-.burgerMenu li {
-    margin: 2px;
+
+    #context-menu li span{
+        color: #00435e !important;
+    }
+td[role=gridcell] .k-button {
+    color: #00435e !important;
+}
+td[role=gridcell] .k-button {
+    background-color: #daecf4;
 }
