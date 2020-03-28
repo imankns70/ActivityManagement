@@ -17,11 +17,21 @@ namespace ActivityManagement.Common
             PersianDateTime persianDateTime = new PersianDateTime(date);
             return persianDateTime.ToString(format);
         }
+        /// <summary>
+        /// تشخیص سال کبیسه
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static bool IsLeapYear(this DateTime? date)
         {
             PersianDateTime persianDateTime = new PersianDateTime(date);
             return persianDateTime.IsLeapYear;
         }
+        /// <summary>
+        /// تشخیص تاریخ فارسی
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static DateTimeResult CheckPersianDateTime(this string date)
         {
             try

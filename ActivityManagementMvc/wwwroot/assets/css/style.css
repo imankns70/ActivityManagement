@@ -199,3 +199,6 @@ td[role=gridcell] .k-button {
 td[role=gridcell] .k-button {
     background-color: #daecf4;
 }
+.fileinput-new.thumbnail img {
+    width: 130px;
+}

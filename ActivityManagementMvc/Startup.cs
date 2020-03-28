@@ -36,9 +36,9 @@ namespace ActivityManagementMvc
                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomIdentityServices();
             services.AddCustomServices();
-            services.AddApiVersioning();
+            //services.AddApiVersioning();
             services.AddCustomAuthentication(SiteSettings);
-            services.AddSwagger();
+            //services.AddSwagger();
 
             services.AddAuthorization(options =>
             {
@@ -90,7 +90,7 @@ namespace ActivityManagementMvc
                     await next();
                 }
             });
-            app.UseSwaggerAndUI();
+            //app.UseSwaggerAndUI();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(routes =>

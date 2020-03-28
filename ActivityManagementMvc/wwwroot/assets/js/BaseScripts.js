@@ -23,15 +23,7 @@ var mydnn = (function () {
 
 
 
-    //var formPreventDefault = function () {
-    //    $(document).on("keypress", function (e) {
-    //        if (e.which == 13) {
-    //            $("#Form").on("submit", function (e) {
-    //                e.preventDefault();
-    //            });
-    //        }
-    //    });
-    //}
+   
 
     return {
         myconfig: myconfig//,
@@ -39,6 +31,15 @@ var mydnn = (function () {
     };
 });
 
+function ShowLoading() {
+    
+     $("body").preloader({ text: 'لطفا صبر کنید ...' });
+}
+
+function HideLoading() {
+    $('.preloader').remove();
+}
+ 
 function ShowMessage(msgText, type) {
 
     if (type === TypeMessage.Success) {
@@ -164,7 +165,7 @@ function KendoComboBind(inputName, controller, action) {
 
 }
 function SendAndUpdate(formSelector) {
-    debugger;
+
 
     var ajaxConfig = {
 
@@ -172,7 +173,7 @@ function SendAndUpdate(formSelector) {
         url: $(formSelector).attr("action"),
 
         success: function (data) {
-
+            debugger;
             if (data.MessageType === TypeMessage.Success) {
                 ShowMessage(data.Message, TypeMessage.Success);
             }
@@ -186,7 +187,7 @@ function SendAndUpdate(formSelector) {
 
         },
         error: function (data) {
-            debugger;
+         
             ShowMessage("خطایی رخ داده است", TypeMessage.error);
             console.error('An error occurred.');
             console.error(data);

@@ -29,6 +29,8 @@ namespace ActivityManagement.IocConfig
 
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(20);
                     options.Lockout.MaxFailedAccessAttempts = 3;
+                    options.Lockout.AllowedForNewUsers = false;
+
                 })
              .AddEntityFrameworkStores<ActivityManagementContext>()
              .AddErrorDescriber<ApplicationIdentityErrorDescriber>()

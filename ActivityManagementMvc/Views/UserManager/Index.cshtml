@@ -4,8 +4,8 @@
     Layout = "_Layout";
 }
 
-<div class="container-fluid mt-2">
-    <div class="row mt-5">
+<div class="container mt-2">
+    <div class="row mt-3">
         <div class="card shadow w-100">
             <div class="card-header">
                 مدیریت کاربران
@@ -23,22 +23,24 @@
 <div id="context-menu-Container"></div>
 <ul id='context-menu'></ul>
 
-<script id="CreateUser" type="text/x-kendo-template">
-    <a onclick=CreateUser() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
 
-</script>
 
 
 @section Scripts {
     @{
 
+        <script id="CreateUser" type="text/x-kendo-template">
+            <a onclick=CreateUser() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
+
+        </script>
         <script type="text/javascript">
             var recordUser = 0;
             var windowUser;
-            $(function() {
+            $(function () {
 
-
+              
                 UserInitialize();
+               
                 $("#context-menu").kendoContextMenu({
                     target: "#UserGrid",
                     filter: "#context-menu-Container"
@@ -62,7 +64,7 @@
                             type: "POST",
                             //dataType: "json",
                             contentType: "application/json",
-                            parameterMap: function(data, operation) { return JSON.stringify(data); }
+                            parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
                         schema: {
                             data: "Data",
@@ -78,13 +80,15 @@
                                     GenderName: { type: "string" },
                                     PersianRegisterDateTime: { type: "string" },
                                     IsActive: { type: "boolean" },
-                                    RoleName: { type: "string" }
+                                    RoleName: { type: "string" },
+                                    IsLock: { type: "boolean" },
+                                    LockoutEnabled: { type: "boolean" }
 
                                 }
 
                             }
                         },
-                        parameterMap: function(data, operation) {
+                        parameterMap: function (data, operation) {
                             return JSON.stringify(data);
 
                         },
@@ -105,7 +109,7 @@
                         field: "Id",
                         dir: "asc"
                     },
-                    dataBinding: function() {
+                    dataBinding: function () {
                         recordUser = (this.dataSource.page() - 1) * this.dataSource.pageSize();
                     },
 
@@ -123,17 +127,44 @@
                             template: "#= ++recordUser #",
                             width: 50
                         },
-                        { field: "FirstName", title: "نام", width: 100 },
+                        { field: "FirstName", title: "نام", width: 80 },
                         { field: "LastName", title: "نام خانوادگی", width: 120 },
-                        { field: "UserName", title: "نام کاربر", width: 100 },
-                        { field: "RoleName", title: "نام نقش", width: 100 },
-                        { field: "PersianRegisterDateTime", title: "تاریخ عضویت", width: 120 },
-                        { field: "GenderName", title: "جنسیت", width: 100 },
+                        { field: "UserName", title: "نام کاربر", width: 80 },
+                        { field: "RoleName", title: "نام نقش", width: 90 },
+                        {
+                            field: "IsLock", title: "قفل زمانی",
+                            width: 90,
+                            template: function (e) {
+                                var lock;
+                                if (e.IsLock) {
+                                    lock = "<i class='fa fa-lock fa-lg' style='color:#ff0000; cursor:pointer'  onclick='LockUserAccountByDate(" + e.Id + ")'></i>";
+                                } else {
+                                    lock = "<i class='fa fa-unlock fa-lg' style='color:#0ec515; cursor:pointer'  onclick='LockUserAccountByDate(" + e.Id + ")'></i>";
+                                }
+                                return lock;
+                            }
+                        },
+                        { field: "PersianRegisterDateTime", title: "تاریخ عضویت", width: 110 },
+ 
+                        { field: "GenderName", title: "جنسیت", width: 90 },
+                        {
+                            field: "LockoutEnabled", title: "وضعیت",
+                            width: 90,
+                            template: function (e) {
+                                var lock;
+                                if (e.LockoutEnabled) {
+                                    lock = "<i class='fa fa-lock fa-lg' style='color:#ff0000; cursor:pointer'  onclick='ChangeLockOutEnable(" + e.Id + ")'></i>";
+                                } else {
+                                    lock = "<i class='fa fa-unlock fa-lg' style='color:#0ec515; cursor:pointer'  onclick='ChangeLockOutEnable(" + e.Id + ")'></i>";
+                                }
+                                return lock;
+                            }
+                        },
                         {
                             field: "IsActive",
                             width: 80,
                             title: "فعال",
-                            template: function(e) {
+                            template: function (e) {
                                 var fa;
                                 if (e.IsActive) {
                                     fa = "<i class='fa fa-check fa-lg' style='color:#0ec515'></i>";
@@ -149,9 +180,9 @@
                         {
                             title: "<i class='Add' >عملیات</i>",
                             width: 90,
-                            template: function(e) {
+                            template: function (e) {
 
-                                return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," +e.Id +")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
+                                return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.Id + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
 
                             }
 
@@ -168,7 +199,7 @@
                 var dataSourceMenu = [];
 
                 dataSourceMenu.push({
-                    text: "<li onClick='EditUser(" +id +")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
+                    text: "<li onClick='EditUser(" + id + ")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
                     encoded: false
                 },
                     {
@@ -183,7 +214,7 @@
                         text: "<li onClick='ResetPassword(" + id + ")' title='تغییر کلمه عبور' type='button'><i class='fa fa-retweet fa-lg'></i>تغییر کلمه عبور</li> ",
                         encoded: false
                     }
-                   );
+                );
 
                 var offset = $(element).offset();
 
@@ -195,7 +226,35 @@
                 $("li").css("text-align", "right");
             }
 
+            function LockUserAccountByDate(id) {
 
+                $.ajax({
+                    type: "Get",
+                    url: '/UserManager/LockOrUnLockUserAccount/' + id,
+                     success: function (data) {
+                        if (data.MessageType === TypeMessage.Error) {
+                            ShowMessage(data.Message, TypeMessage.Error);
+                        } else {
+                            eval(data.Script);
+                        }
+                    }
+                });
+            }
+            function ChangeLockOutEnable(id) {
+
+                $.ajax({
+                    type: "Get",
+                    url: '/UserManager/ChangeLockOutEnable/' + id,
+                     success: function (data) {
+                        if (data.MessageType === TypeMessage.Error) {
+                            ShowMessage(data.Message, TypeMessage.Error);
+                        } else {
+                            eval(data.Script);
+                        }
+                    }
+                });
+            }
+            
             function CreateUser() {
 
                 $("#windowUser").remove();
@@ -205,7 +264,7 @@
                 $.ajax({
                     type: "Get",
                     url: '/UserManager/RenderCreate/',
-                    success: function(data) {
+                    success: function (data) {
                         $("#windowUser").html(data);
 
                         windowUser = $("#windowUser").kendoWindow({
@@ -226,7 +285,7 @@
                 $.ajax({
                     type: "Get",
                     url: '/UserManager/RenderEdit/' + id,
-                    success: function(data) {
+                    success: function (data) {
 
                         $("#windowUser").html(data);
 
@@ -246,7 +305,7 @@
                 $.ajax({
                     type: "Get",
                     url: '/UserManager/RenderDelete/' + id,
-                    success: function(data) {
+                    success: function (data) {
                         $("#windowUser").html(data);
 
                         windowUser = $("#windowUser").kendoWindow({
@@ -265,7 +324,7 @@
                 $.ajax({
                     type: "Get",
                     url: '/UserManager/RenderDetail/' + id,
-                    success: function(data) {
+                    success: function (data) {
 
                         $("#windowUser").html(data);
 
@@ -284,9 +343,9 @@
                 $("#windowUserContainer").append("<div id='windowUser'></div>");
                 $.ajax({
                     type: "Get",
-                    url: '/UserManager/ResetPassword/',
+                    url: '/UserManager/RenderResetPassword/',
                     data: { userId: id },
-                    success: function(data) {
+                    success: function (data) {
 
                         $("#windowUser").html(data);
 

@@ -3,7 +3,7 @@
 @inject IWritableOptions<SiteSettings> WritableOptions
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -15,24 +15,23 @@
     <!-- Favicon -->
     <link href="@WritableOptions.Value.SiteInformation.Favicon" rel="icon" type="image/png" />
 
-    <link href="~/assets/images/favicon.ico" rel="icon" type="image/png">
-    <link href="~/lib/bootstrap/dist/css/Bootstrap-rtl.css" rel="stylesheet" />
-    <link href="~/assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link href="~/assets/vendor/fontawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- Argon CSS -->
-    <link type="text/css" href="~/assets/css/argon.css?v=1.0.0" rel="stylesheet">
-    <!-- Loading -->
-    <link href="~/lib/Loading/css/preloader.css" rel="styleshleet" />
+    <link href="assets/images/favicon.ico" rel="icon" type="image/png">
+    <link href="lib/bootstrap/dist/css/Bootstrap-rtl.css" rel="stylesheet" />
+    <link href="assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link type="text/css" href="assets/css/argon.css?v=1.0.0" rel="stylesheet">
 
-    <link href="~/lib/FileInput/bootstrap-fileinput.css" rel="stylesheet" />
-    <!-- Kendo -->
-    <link href="~/lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
-    <link href="~/lib/Kendo/css/kendo.bootstrap.custom.css" rel="stylesheet" />
+    <link href="lib/FileInput/bootstrap-fileinput.css" rel="stylesheet" />
 
-    <link href="~/lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
-    <link href="~/lib/jqueryConfirm/css/jquery-confirm.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
-    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="lib/Kendo/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="lib/Kendo/css/kendo.bootstrap.custom.css" rel="stylesheet" />
+
+    <link href="lib/Kendo/css/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="lib/jqueryConfirm/css/jquery-confirm.css" rel="stylesheet" />
+
+    <link href="lib/bootstrap.datetimepicker/css/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="lib/Loading/css/preloader.css" rel="stylesheet" />
 
 
 
@@ -61,7 +60,7 @@
                     <div class="row">
                         <div class="col-9 collapse-brand">
                             <a href="./index.html">
-                                <img src="@WritableOptions.Value.SiteInformation.Logo"> پنل مدیریت میزفا
+                                <img src="@WritableOptions.Value.SiteInformation.Logo">  @WritableOptions.Value.SiteInformation.Title
                             </a>
                         </div>
                         <div class="col-3 collapse-close">
@@ -103,29 +102,35 @@
     </div>
 
 
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
-    <script src="~/lib/Kendo/js/kendo.all.min.js"></script>
-    <script src="/lib/Kendo/js/aspnetmvc.min.js"></script>
-    <script src="~/lib/Kendo/js/cultures/kendo.culture.fa-IR.min.js"></script>
-    <script src="~/lib/Kendo/js/messages/kendo.messages.fa-IR.js"></script>
-    <script src="~/lib/jqueryConfirm/js/jquery-confirm.js"></script>
-    <script src="~/lib/FileInput/bootstrap-fileinput.min.js"></script>
-    <script src="~/lib/Kendo/js/jquery.validate.js"></script>
-    <script src="~/lib/Kendo/js/validate.unobtrusive.js"></script>
-    <script src="~/lib/Loading/js/jquery.preloader.min.js"></script>
-    <script src="~/assets/fonts/FontAwsome5/js/fontawesome.js"></script>
-    <script src="~/assets/js/argon.min.js"></script>
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/bootstrap.datetimepicker/js/jquery.md.bootstrap.datetimepicker.js"></script>
+<script src="lib/Kendo/js/kendo.all.min.js"></script>
+<script src="lib/Kendo/js/aspnetmvc.min.js"></script>
+<script src="lib/Kendo/js/cultures/kendo.culture.fa-IR.min.js"></script>
+<script src="lib/Kendo/js/messages/kendo.messages.fa-IR.js"></script>
+<script src="lib/jqueryConfirm/js/jquery-confirm.js"></script>
+<script src="lib/FileInput/bootstrap-fileinput.min.js"></script>
 
-    <script src="~/assets/js/BaseScripts.js"></script>
-    <script type="text/javascript">
-        $(function () {
+<script src="lib/Kendo/js/jquery.validate.js"></script>
+<script src="lib/Kendo/js/validate.unobtrusive.js"></script>
+<script src="assets/fonts/FontAwsome5/js/fontawesome.js"></script>
+<script src="assets/js/argon.min.js"></script>
+<script src="assets/js/BaseScripts.js"></script>
+<script src="lib/Loading/js/jquery.preloader.min.js"></script>
+   
+<script type="text/javascript">
+    $(document).bind("ajaxStart", function() {
+        ShowLoading();
+    });
 
-            //$("body").preloader({ text: 'لطفا صبر کنید ...' });
+    $(document).bind("ajaxStop", function() {
+        HideLoading();
+    });
+</script>
 
-        });
-    </script>
-    @RenderSection("Scripts", false)
+@RenderSection("Scripts", false)
+
+
 </body>
 </html>

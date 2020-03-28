@@ -90,7 +90,8 @@ namespace ActivityManagementMvc.Controllers
 
                     if (viewModel.ImageFile != null)
                     {
-                        string path = Path.Combine($"{_env.WebRootPath}/Users/{ viewModel.ImageFile.FileName}");
+                        viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
+                        string path = Path.Combine($"{_env.WebRootPath}/Users/{ viewModel.Image}");
                         FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, path);
                         if (fileResult.IsSuccess == false)
                         {
@@ -101,6 +102,7 @@ namespace ActivityManagementMvc.Controllers
 
 
                     }
+
 
                     user.EmailConfirmed = true;
                     user.UserName = viewModel.UserName;
@@ -275,7 +277,7 @@ namespace ActivityManagementMvc.Controllers
             UsersViewModel usersViewModel = await _userManager.FindUserWithRolesByIdAsync(id);
             return PartialView(usersViewModel);
         }
-        [HttpPost,AjaxOnly]
+        [HttpPost, AjaxOnly]
         [ValidateAntiForgeryToken]
         //[DisplayName("ارسال حذف کاربر")]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
@@ -326,10 +328,10 @@ namespace ActivityManagementMvc.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> ResetPassword(int userId)
+        public async Task<IActionResult> RenderResetPassword(int userId)
         {
             AppUser user = await _userManager.FindByIdAsync(userId.ToString());
-            
+
             var viewModel = new ResetPasswordViewModel
             {
                 UserId = userId,
@@ -348,7 +350,7 @@ namespace ActivityManagementMvc.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel viewModel)
         {
 
-            ReturnJson returnJson= new ReturnJson();
+            ReturnJson returnJson = new ReturnJson();
             try
             {
                 if (ModelState.IsValid)
@@ -361,6 +363,8 @@ namespace ActivityManagementMvc.Controllers
                     }
                     else
                     {
+
+
                         await _userManager.RemovePasswordAsync(user);
                         var result = await _userManager.AddPasswordAsync(user, viewModel.NewPassword);
                         if (result.Succeeded)
@@ -374,11 +378,15 @@ namespace ActivityManagementMvc.Controllers
                             returnJson.MessageType = MessageType.Error;
                             returnJson.Message.Add(result.DumpErrors());
                         }
-                          
-                        
+
+
                     }
 
-                  
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message = ModelState.GetErrorsModelState();
                 }
             }
             catch (Exception e)
@@ -386,7 +394,296 @@ namespace ActivityManagementMvc.Controllers
                 returnJson.MessageType = MessageType.Error;
                 returnJson.Message.Add(e.Message);
             }
-          
+
+
+            return Json(returnJson);
+        }
+
+        /// <summary>
+        /// قفل و خروج از حالت قفل حساب کاربر
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> LockOrUnLockUserAccount(int id)
+        {
+            ReturnJson returnJson = new ReturnJson();
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+
+            else
+            {
+                if (user.LockoutEnd == null)
+                {
+
+                    user.LockoutEnd = DateTimeOffset.UtcNow.AddMinutes(20);
+                }
+
+                else
+                {
+                    if (user.LockoutEnd > DateTime.Now)
+                    {
+
+                        user.LockoutEnd = null;
+                    }
+                    else
+                    {
+
+                        user.LockoutEnd = DateTimeOffset.UtcNow.AddMinutes(20);
+                    }
+                }
+
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "UserGridRefresh()";
+
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add(result.DumpErrors());
+                }
+
+            }
+
+
+            return Json(returnJson);
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن فقل حساب کاربر
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> ChangeLockOutEnable(int id)
+        {
+            ReturnJson returnJson = new ReturnJson();
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+
+            else
+            {
+                if (user.LockoutEnabled)
+                {
+                    user.LockoutEnabled = false;
+                }
+
+                else
+                {
+                    user.LockoutEnabled = true;
+                }
+
+
+            }
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                returnJson.MessageType = MessageType.Success;
+                returnJson.Script = "UserGridRefresh()";
+
+            }
+            else
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(result.DumpErrors());
+            }
+            return Json(returnJson);
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن کاربر
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> InActiveOrActiveUser(int id)
+        {
+            ReturnJson returnJson = new ReturnJson();
+
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+            else
+            { 
+
+                if (user.IsActive)
+                {
+                    user.IsActive = false;
+                }
+
+                else
+                {
+                    user.IsActive = true;
+                }
+
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "UserGridRefresh()";
+
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add(result.DumpErrors());
+                }
+            }
+            return Json(returnJson);
+
+        }
+
+        /// <summary>
+        /// تایید و عدم تایید وضعیت ایمیل کاربر
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> ChangeEmailConfirmed(int userId)
+        {
+            ReturnJson returnJson = new ReturnJson();
+
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+            else
+            {
+
+
+                if (user.EmailConfirmed)
+                {
+                    user.EmailConfirmed = false;
+                }
+
+                else
+                {
+                    user.EmailConfirmed = true;
+                }
+
+
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "UserGridRefresh()";
+
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add(result.DumpErrors());
+                }
+            }
+            return Json(returnJson);
+        }
+
+        /// <summary>
+        /// تایید و عدم تایید وضعیت شماره موبایل کاربر
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> ChangePhoneNumberConfirmed(int id)
+        {
+            ReturnJson returnJson = new ReturnJson();
+
+            var user = await _userManager.FindByIdAsync(id.ToString());
+
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+            else
+            {
+
+
+                if (user.PhoneNumberConfirmed)
+                {
+                    user.PhoneNumberConfirmed = false;
+                }
+
+                else
+                {
+                    user.PhoneNumberConfirmed = true;
+                }
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "UserGridRefresh()";
+
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add(result.DumpErrors());
+                }
+            }
+            return Json(returnJson);
+
+        }
+        /// <summary>
+        /// فعال و غیر فعال کردن احرازهویت دو مرحله ای
+        /// </summary>
+        /// <param name="UserId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> ChangeTwoFactorEnabled(int userId)
+        {
+            ReturnJson returnJson = new ReturnJson();
+
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+
+            if (user == null)
+            {
+                returnJson.MessageType = MessageType.Error;
+                returnJson.Message.Add(UserNotFound);
+            }
+            else
+            {
+                if (user.TwoFactorEnabled)
+                {
+                    user.TwoFactorEnabled = false;
+                }
+
+                else
+                {
+                    user.TwoFactorEnabled = true;
+                }
+
+                IdentityResult result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    returnJson.MessageType = MessageType.Success;
+                    returnJson.Script = "UserGridRefresh()";
+
+                }
+                else
+                {
+                    returnJson.MessageType = MessageType.Error;
+                    returnJson.Message.Add(result.DumpErrors());
+                }
+            }
 
             return Json(returnJson);
         }

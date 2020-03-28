@@ -81,7 +81,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             {
 
                 Id = user.Id,
-                //Bio = user.Bio,
+                LockOutEndCustom = user.LockoutEnd !=null ? user.LockoutEnd.Value.DateTime.ToLocalTime() : (DateTime?) null,
                 IsActive = user.IsActive,
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
@@ -92,6 +92,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
                 FirstName = user.FirstName,
+                LockoutEnabled=user.LockoutEnabled,
                 LastName = user.LastName,
 
 
@@ -129,7 +130,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             return await Users.Include(appUser => appUser.Roles).Where(u => u.Id == userId).Select(user => new UsersViewModel
             {
                 Id = user.Id,
-                //Bio = user.Bio,
+                LockOutEndCustom = user.LockoutEnd != null ? user.LockoutEnd.Value.DateTime.ToLocalTime() : (DateTime?)null,
                 IsActive = user.IsActive,
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
