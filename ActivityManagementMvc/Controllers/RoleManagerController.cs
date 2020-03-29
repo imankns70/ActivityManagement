@@ -54,12 +54,13 @@ namespace ActivityManagementMvc.Controllers
             var roleViewModel = new RolesViewModel();
             return PartialView(roleViewModel);
         }
+
         [HttpPost, AjaxOnly]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RolesViewModel viewModel)
         {
 
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             if (ModelState.IsValid)
             {
                 IdentityResult result;
@@ -72,24 +73,24 @@ namespace ActivityManagementMvc.Controllers
 
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "RoleGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "RoleGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
 
                 }
             }
             else
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message = ModelState.GetErrorsModelState();
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message = ModelState.GetErrorsModelState();
             }
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         [HttpGet, AjaxOnly]
@@ -112,7 +113,7 @@ namespace ActivityManagementMvc.Controllers
         public async Task<IActionResult> Edit(RolesViewModel viewModel)
         {
 
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             if (ModelState.IsValid)
             {
                 IdentityResult result;
@@ -124,23 +125,23 @@ namespace ActivityManagementMvc.Controllers
 
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "RoleGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "RoleGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
 
                 }
             }
             else
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message = ModelState.GetErrorsModelState();
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message = ModelState.GetErrorsModelState();
             }
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         [HttpGet, AjaxOnly]
@@ -163,33 +164,33 @@ namespace ActivityManagementMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(RolesViewModel viewModel)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             var role = await _roleManager.FindByIdAsync(viewModel.Id.ToString());
             if (role == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(NotRoleFounded);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(NotRoleFounded);
             }
             else
             {
                 if (await _roleManager.CheckUserInThisRole(role))
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add("برای این نقش کاربر وجود دارد");
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add("برای این نقش کاربر وجود دارد");
                 }
                 else
                 {
                     IdentityResult result = await _roleManager.DeleteAsync(role);
                     if (result.Succeeded)
                     {
-                        returnJson.MessageType = MessageType.Success;
-                        returnJson.Script = "RoleGridRefresh()";
+                        logicResult.MessageType = MessageType.Success;
+                        logicResult.Script = "RoleGridRefresh()";
                     }
                     else
                     {
-                        returnJson.MessageType = MessageType.Error;
-                        returnJson.Message.Add(result.DumpErrors());
+                        logicResult.MessageType = MessageType.Error;
+                        logicResult.Message.Add(result.DumpErrors());
                     }
                 }
            
@@ -197,7 +198,7 @@ namespace ActivityManagementMvc.Controllers
 
             }
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         [HttpGet, AjaxOnly]

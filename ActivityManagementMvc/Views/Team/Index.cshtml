@@ -9,21 +9,21 @@
     <div class="row">
         <div class="card shadow w-100">
             <div class="card-header">
-                مدیریت نقش ها
+               تیم ها
             </div>
             <div class="card-body">
-                <div id="RoleGrid" class="k-rtl"></div>
+                <div id="TeamGrid" class="k-rtl"></div>
 
             </div>
         </div>
     </div>
 </div>
-<div id="windowRoleContainer"></div>
+<div id="windowTeamContainer"></div>
 <div id="context-menu-Container"></div>
 <ul id='context-menu'></ul>
 
-<script id="CreateRole" type="text/x-kendo-template">
-    <a onclick=CreateRole() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
+<script id="CreateTeam" type="text/x-kendo-template">
+    <a onclick=CreateTeam() class='k-button k-grid-add'><i class="fa fa-plus fa-lg"></i><span class="mr-2">افزودن</span></a>
 
 </script>
 
@@ -31,34 +31,34 @@
     @{
 
         <script type="text/javascript">
-            var recordRole = 0;
-            var windowRole;
+            var recordTeam = 0;
+            var windowTeam;
             $(function () {
 
                 //$("#panelbar").kendoPanelBar({
                 //    expandMode: "single"
                 //});
-                RoleInitialize();
+                TeamInitialize();
                 $("#context-menu").kendoContextMenu({
-                    target: "#RoleGrid",
+                    target: "#TeamGrid",
                     filter: "#context-menu-Container"
 
                 });
             });
 
-            function RoleInitialize() {
+            function TeamInitialize() {
 
-                $("#RoleGrid").html('');
+                $("#TeamGrid").html('');
 
-                $("#RoleGrid").kendoGrid({
-                    toolbar: [{ template: kendo.template($("#CreateRole").html()) }, "excel"],
+                $("#TeamGrid").kendoGrid({
+                    toolbar: [{ template: kendo.template($("#CreateTeam").html()) }, "excel"],
                     excel: { allPages: true },
                     //height: 400,
                     columnMenu: true,
                     dataSource: {
                         type: "aspnetmvc-ajax",
                         transport: {
-                            read: "/RoleManager/GetRoles",
+                            read: "/Team/GetAllTeams",
                             type: "POST",
                             //dataType: "json",
                             contentType: "application/json",
@@ -75,7 +75,8 @@
 
                                     Id: { type: "number", editable: false, nullable: true },
                                     Name: { type: "string" },
-                                    UsersCount: { type: "number" },
+                                    //UsersCount: { type: "number" },
+                                    //TeamActivitiesCount: { type: "number" },
                                     Description: { type: "string" }
 
 
@@ -105,7 +106,7 @@
                         dir: "asc"
                     },
                     dataBinding: function () {
-                        recordRole = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+                        recordTeam = (this.dataSource.page() - 1) * this.dataSource.pageSize();
                     },
 
                     selectable: "single row",
@@ -119,12 +120,13 @@
                     columns: [
                         {
                             title: "ردیف",
-                            template: "#= ++recordRole #",
+                            template: "#= ++recordTeam #",
                             width: 50
                         },
                         //{ field: "Id", title: "شناسه نقش", width: 120 },
-                        { field: "Name", title: "نام نقش", width: 130 },
-                        { field: "UsersCount", title: "تعداد کاربران", width: 130 },
+                        { field: "Name", title: "نام تیم", width: 100 },
+                        //{ field: "UsersCount", title: "تعداد اعضاء", width: 100 },
+                        //{ field: "TeamActivitiesCount", title: "تعداد فعالیت ها", width: 130 },
                         { field: "Description", title: "توضیحات",width: 230  },
 
 
@@ -136,7 +138,7 @@
                                 return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.Id + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
 
                             }
-                             
+
                         }
                     ]
                 }).find("table").addClass("table table-bordered table-hover");
@@ -149,15 +151,15 @@
                 var dataSourceMenu = [];
 
                 dataSourceMenu.push({
-                    text: "<li onClick='EditRole(" + id + ")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
+                    text: "<li onClick='EditTeam(" + id + ")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
                     encoded: false
                 },
                     {
-                        text: "<li onClick='DeleteRole(" + id + ")' title='حذف' type='button'><i class='fa fa-trash fa-lg'></i>حذف</li> ",
+                        text: "<li onClick='DeleteTeam(" + id + ")' title='حذف' type='button'><i class='fa fa-trash fa-lg'></i>حذف</li> ",
                         encoded: false
                     },
                     {
-                        text: "<li onClick='DetailRole(" + id + ")' title='جزئیات' type='button'><i class='fa fa-list fa-lg'></i>جزئیات</li> ",
+                        text: "<li onClick='DetailTeam(" + id + ")' title='جزئیات' type='button'><i class='fa fa-list fa-lg'></i>جزئیات</li> ",
                         encoded: false
                     },
                     {
@@ -176,92 +178,92 @@
                 $("li").css("text-align", "right");
             }
 
-            function CreateRole() {
+            function CreateTeam() {
 
-                $("#windowRole").remove();
-                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+                $("#windowTeam").remove();
+                $("#windowTeamContainer").append("<div id='windowTeam'></div>");
 
 
                 $.ajax({
                     type: "Get",
-                    url: '/RoleManager/RenderCreate/',
+                    url: '/TeamManager/RenderCreate/',
                     success: function (data) {
-                        $("#windowRole").html(data);
+                        $("#windowTeam").html(data);
 
-                        windowRole = $("#windowRole").kendoWindow({
+                        windowTeam = $("#windowTeam").kendoWindow({
                             visible: true,
                             modal: true,
                             width: "800"
                         });
-                        windowRole.data("kendoWindow").title('ایجاد').center().open();
+                        windowTeam.data("kendoWindow").title('ایجاد').center().open();
                     },
                 });
             }
 
-            function EditRole(id) {
-                $("#windowRole").remove();
-                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+            function EditTeam(id) {
+                $("#windowTeam").remove();
+                $("#windowTeamContainer").append("<div id='windowTeam'></div>");
 
 
                 $.ajax({
                     type: "Get",
-                    url: '/RoleManager/RenderEdit/' + id,
+                    url: '/TeamManager/RenderEdit/' + id,
                     success: function (data) {
-                        $("#windowRole").html(data);
+                        $("#windowTeam").html(data);
 
-                        windowRole = $("#windowRole").kendoWindow({
+                        windowTeam = $("#windowTeam").kendoWindow({
                             visible: true,
                             modal: true,
                             width: "800"
                         });
-                        windowRole.data("kendoWindow").title('ویرایش').center().open();
+                        windowTeam.data("kendoWindow").title('ویرایش').center().open();
                     },
                 });
             }
 
-            function DeleteRole(id) {
-                $("#windowRole").remove();
-                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+            function DeleteTeam(id) {
+                $("#windowTeam").remove();
+                $("#windowTeamContainer").append("<div id='windowTeam'></div>");
                 $.ajax({
                     type: "Get",
-                    url: '/RoleManager/RenderDelete/' + id,
+                    url: '/TeamManager/RenderDelete/' + id,
                     success: function (data) {
-                        $("#windowRole").html(data);
+                        $("#windowTeam").html(data);
 
-                        windowRole = $("#windowRole").kendoWindow({
+                        windowTeam = $("#windowTeam").kendoWindow({
                             visible: true,
                             modal: true,
                             width: "800"
                         });
-                        windowRole.data("kendoWindow").title('حذف').center().open();
+                        windowTeam.data("kendoWindow").title('حذف').center().open();
                     },
                 });
             }
 
-            function DetailRole(id) {
-                $("#windowRole").remove();
-                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+            function DetailTeam(id) {
+                $("#windowTeam").remove();
+                $("#windowTeamContainer").append("<div id='windowTeam'></div>");
                 $.ajax({
                     type: "Get",
-                    url: '/RoleManager/RenderDetail/' + id,
+                    url: '/TeamManager/RenderDetail/' + id,
                     success: function (data) {
                         debugger;
-                        $("#windowRole").html(data);
+                        $("#windowTeam").html(data);
 
-                        windowRole = $("#windowRole").kendoWindow({
+                        windowTeam = $("#windowTeam").kendoWindow({
                             visible: true,
                             modal: true,
                             width: "800"
                         });
-                        windowRole.data("kendoWindow").title('جزئیات').center().open();
+                        windowTeam.data("kendoWindow").title('جزئیات').center().open();
                     },
                 });
             }
 
-            function RoleGridRefresh() {
-                var grid = $("#RoleGrid").data("kendoGrid");
+            function TeamGridRefresh() {
+                var grid = $("#TeamGrid").data("kendoGrid");
                 grid.dataSource.read();
-                try { windowRole.data('kendoWindow').close(); } catch (e) { }
+                try { windowTeam.data('kendoWindow').close(); } catch (e) { }
             }
         </script>
     }

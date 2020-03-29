@@ -74,7 +74,7 @@ namespace ActivityManagementMvc.Controllers
         //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Create(UsersViewModel viewModel)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
 
             try
@@ -95,9 +95,9 @@ namespace ActivityManagementMvc.Controllers
                         FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, path);
                         if (fileResult.IsSuccess == false)
                         {
-                            returnJson.MessageType = MessageType.Error;
-                            returnJson.Message.AddRange(fileResult.Errors);
-                            return Json(returnJson);
+                            logicResult.MessageType = MessageType.Error;
+                            logicResult.Message.AddRange(fileResult.Errors);
+                            return Json(logicResult);
                         }
 
 
@@ -129,17 +129,17 @@ namespace ActivityManagementMvc.Controllers
 
                     if (result.Succeeded)
                     {
-                        returnJson.MessageType = MessageType.Success;
-                        returnJson.Script = "UserGridRefresh()";
-                        returnJson.Message.Add(InsertSuccess);
+                        logicResult.MessageType = MessageType.Success;
+                        logicResult.Script = "UserGridRefresh()";
+                        logicResult.Message.Add(InsertSuccess);
 
                     }
 
 
                     else
                     {
-                        returnJson.MessageType = MessageType.Error;
-                        returnJson.Message.Add(result.DumpErrors());
+                        logicResult.MessageType = MessageType.Error;
+                        logicResult.Message.Add(result.DumpErrors());
                     }
 
 
@@ -147,20 +147,20 @@ namespace ActivityManagementMvc.Controllers
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message = ModelState.GetErrorsModelState();
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message = ModelState.GetErrorsModelState();
                 }
             }
             catch (Exception e)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(e.Message);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(e.Message);
             }
 
 
 
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
 
@@ -177,7 +177,7 @@ namespace ActivityManagementMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(UsersViewModel viewModel)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             try
             {
@@ -202,9 +202,9 @@ namespace ActivityManagementMvc.Controllers
                         FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, path);
                         if (fileResult.IsSuccess == false)
                         {
-                            returnJson.MessageType = MessageType.Error;
-                            returnJson.Message.AddRange(fileResult.Errors);
-                            return Json(returnJson);
+                            logicResult.MessageType = MessageType.Error;
+                            logicResult.Message.AddRange(fileResult.Errors);
+                            return Json(logicResult);
                         }
 
                         FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
@@ -239,35 +239,35 @@ namespace ActivityManagementMvc.Controllers
 
                     if (result.Succeeded)
                     {
-                        returnJson.MessageType = MessageType.Success;
-                        returnJson.Script = "UserGridRefresh()";
-                        returnJson.Message.Add(InsertSuccess);
+                        logicResult.MessageType = MessageType.Success;
+                        logicResult.Script = "UserGridRefresh()";
+                        logicResult.Message.Add(InsertSuccess);
 
                     }
 
 
                     else
                     {
-                        returnJson.MessageType = MessageType.Error;
-                        returnJson.Message.Add(result.DumpErrors());
+                        logicResult.MessageType = MessageType.Error;
+                        logicResult.Message.Add(result.DumpErrors());
                     }
 
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message = ModelState.GetErrorsModelState();
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message = ModelState.GetErrorsModelState();
                 }
             }
             catch (Exception e)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(e.Message);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(e.Message);
             }
 
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         //[HttpGet, DisplayName("نمایش حذف کاربر")]
@@ -283,12 +283,12 @@ namespace ActivityManagementMvc.Controllers
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(UsersViewModel viewModel)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             var user = await _userManager.FindByIdAsync(viewModel.Id.ToString());
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
 
             else
@@ -297,19 +297,19 @@ namespace ActivityManagementMvc.Controllers
                 if (result.Succeeded)
                 {
                     FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
-                    returnJson.Message.Add(OperationSuccess);
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
+                    logicResult.Message.Add(OperationSuccess);
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
 
             }
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         public async Task<IActionResult> RenderDetail(int id)
@@ -350,7 +350,7 @@ namespace ActivityManagementMvc.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel viewModel)
         {
 
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             try
             {
                 if (ModelState.IsValid)
@@ -358,8 +358,8 @@ namespace ActivityManagementMvc.Controllers
                     AppUser user = await _userManager.FindByIdAsync(viewModel.UserId.ToString());
                     if (user == null)
                     {
-                        returnJson.MessageType = MessageType.Error;
-                        returnJson.Message.Add(UserNotFound);
+                        logicResult.MessageType = MessageType.Error;
+                        logicResult.Message.Add(UserNotFound);
                     }
                     else
                     {
@@ -369,14 +369,14 @@ namespace ActivityManagementMvc.Controllers
                         var result = await _userManager.AddPasswordAsync(user, viewModel.NewPassword);
                         if (result.Succeeded)
                         {
-                            returnJson.MessageType = MessageType.Success;
-                            returnJson.Script = "UserGridRefresh()";
-                            returnJson.Message.Add("بازنشانی کلمه عبور با موفقیت انجام شد.");
+                            logicResult.MessageType = MessageType.Success;
+                            logicResult.Script = "UserGridRefresh()";
+                            logicResult.Message.Add("بازنشانی کلمه عبور با موفقیت انجام شد.");
                         }
                         else
                         {
-                            returnJson.MessageType = MessageType.Error;
-                            returnJson.Message.Add(result.DumpErrors());
+                            logicResult.MessageType = MessageType.Error;
+                            logicResult.Message.Add(result.DumpErrors());
                         }
 
 
@@ -385,18 +385,18 @@ namespace ActivityManagementMvc.Controllers
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message = ModelState.GetErrorsModelState();
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message = ModelState.GetErrorsModelState();
                 }
             }
             catch (Exception e)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(e.Message);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(e.Message);
             }
 
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         /// <summary>
@@ -407,13 +407,13 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> LockOrUnLockUserAccount(int id)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             var user = await _userManager.FindByIdAsync(id.ToString());
 
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
 
             else
@@ -441,20 +441,20 @@ namespace ActivityManagementMvc.Controllers
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
 
             }
 
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         /// <summary>
@@ -465,13 +465,13 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangeLockOutEnable(int id)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
             var user = await _userManager.FindByIdAsync(id.ToString());
 
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
 
             else
@@ -491,16 +491,16 @@ namespace ActivityManagementMvc.Controllers
             IdentityResult result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                returnJson.MessageType = MessageType.Success;
-                returnJson.Script = "UserGridRefresh()";
+                logicResult.MessageType = MessageType.Success;
+                logicResult.Script = "UserGridRefresh()";
 
             }
             else
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(result.DumpErrors());
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(result.DumpErrors());
             }
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         /// <summary>
@@ -511,13 +511,13 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> InActiveOrActiveUser(int id)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
             else
             { 
@@ -535,17 +535,17 @@ namespace ActivityManagementMvc.Controllers
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
             }
-            return Json(returnJson);
+            return Json(logicResult);
 
         }
 
@@ -557,13 +557,13 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangeEmailConfirmed(int userId)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             var user = await _userManager.FindByIdAsync(userId.ToString());
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
             else
             {
@@ -583,17 +583,17 @@ namespace ActivityManagementMvc.Controllers
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
             }
-            return Json(returnJson);
+            return Json(logicResult);
         }
 
         /// <summary>
@@ -604,14 +604,14 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangePhoneNumberConfirmed(int id)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             var user = await _userManager.FindByIdAsync(id.ToString());
 
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
             else
             {
@@ -629,17 +629,17 @@ namespace ActivityManagementMvc.Controllers
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
             }
-            return Json(returnJson);
+            return Json(logicResult);
 
         }
         /// <summary>
@@ -650,14 +650,14 @@ namespace ActivityManagementMvc.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangeTwoFactorEnabled(int userId)
         {
-            ReturnJson returnJson = new ReturnJson();
+            LogicResult logicResult = new LogicResult();
 
             var user = await _userManager.FindByIdAsync(userId.ToString());
 
             if (user == null)
             {
-                returnJson.MessageType = MessageType.Error;
-                returnJson.Message.Add(UserNotFound);
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(UserNotFound);
             }
             else
             {
@@ -674,18 +674,18 @@ namespace ActivityManagementMvc.Controllers
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    returnJson.MessageType = MessageType.Success;
-                    returnJson.Script = "UserGridRefresh()";
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Script = "UserGridRefresh()";
 
                 }
                 else
                 {
-                    returnJson.MessageType = MessageType.Error;
-                    returnJson.Message.Add(result.DumpErrors());
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(result.DumpErrors());
                 }
             }
 
-            return Json(returnJson);
+            return Json(logicResult);
         }
     }
 }

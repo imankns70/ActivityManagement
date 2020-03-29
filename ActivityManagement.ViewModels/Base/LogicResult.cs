@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 namespace ActivityManagement.ViewModels.Base
 {
-    public class ReturnJson
+    public class LogicResult
     {
-        public ReturnJson()
+        public LogicResult()
         {
             Message= new List<string>();
         }
