@@ -1,4 +1,6 @@
-﻿using ActivityManagement.Services.EfInterfaces.Identity;
+﻿using ActivityManagement.Services.EfInterfaces.Business;
+using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.Services.EfServices.Business;
 using ActivityManagement.Services.EfServices.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,7 @@ namespace ActivityManagement.IocConfig
             services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
             services.AddScoped<ApplicationIdentityErrorDescriber>();
             services.AddDynamicPermission();
+           
         }
 
         public static void UseCustomIdentityServices(this IApplicationBuilder app)

@@ -11,8 +11,7 @@ namespace ActivityManagement.DataLayer.Context
     {
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-        void AddRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
-        void RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class;
+       
 
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         void MarkAsChanged<TEntity>(TEntity entity) where TEntity : class;
@@ -22,9 +21,8 @@ namespace ActivityManagement.DataLayer.Context
         void ExecuteSqlCommand(string query);
         void ExecuteSqlCommand(string query, params object[] parameters);
 
-        int SaveChanges(bool acceptAllChangesOnSuccess);
+        
         int SaveChanges();
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken());
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
+        Task<int> SaveChangesAsync();
     }
 }

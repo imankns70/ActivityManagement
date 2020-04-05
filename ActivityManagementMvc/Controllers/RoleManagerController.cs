@@ -74,6 +74,7 @@ namespace ActivityManagementMvc.Controllers
                 if (result.Succeeded)
                 {
                     logicResult.MessageType = MessageType.Success;
+                    logicResult.Message.Add(NotificationMessages.CreateSuccess);
                     logicResult.Script = "RoleGridRefresh()";
 
                 }
@@ -116,16 +117,17 @@ namespace ActivityManagementMvc.Controllers
             LogicResult logicResult = new LogicResult();
             if (ModelState.IsValid)
             {
-                IdentityResult result;
+               
 
                 AppRole role = await _roleManager.FindByIdAsync(viewModel.Id.ToString());
                 role.Name = viewModel.Name;
                 role.Description = viewModel.Description;
-                result = await _roleManager.UpdateAsync(role);
+                IdentityResult result = await _roleManager.UpdateAsync(role);
 
                 if (result.Succeeded)
                 {
                     logicResult.MessageType = MessageType.Success;
+                    logicResult.Message.Add(NotificationMessages.CreateSuccess);
                     logicResult.Script = "RoleGridRefresh()";
 
                 }
@@ -170,7 +172,7 @@ namespace ActivityManagementMvc.Controllers
             if (role == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(NotRoleFounded);
+                logicResult.Message.Add(NotificationMessages.RoleNotFounded);
             }
             else
             {
@@ -221,19 +223,7 @@ namespace ActivityManagementMvc.Controllers
         {
             DataSourceResult resultAsync = await _roleManager.GetAllRoles()
                 .Select(a=> new{ text=a.Name, value=a.Id}).ToDataSourceResultAsync(request);
-
-            
-            //object result;
-            //if (string.IsNullOrEmpty(text))
-            //{
-            //    result = _roleManager.GetAllRoles().OrderByDescending(a => a.Id).Take(8).Select(a => new { text = a.Name, value = a.Id });
-            //}
-            //else
-            //{
-            //    result = _roleManager.GetAllRoles().Where(a => a.Name.Contains(text))
-            //        .Select(a => new { text = a.Name, value = a.Id });
-            //}
-
+             
             return Json(resultAsync);
         }
     }

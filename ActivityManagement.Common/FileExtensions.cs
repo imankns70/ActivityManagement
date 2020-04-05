@@ -518,7 +518,7 @@ namespace ActivityManagement.Common
                     return new UploadFileResult(true, null);
                 }
                 else
-                    return new UploadFileResult(false, new List<string>() { "فایل انتخاب شده معتبر نمی باشد." });
+                    return new UploadFileResult(false, new List<string>() { NotificationMessages.InvalidFile });
             }
             catch (Exception e)
             {

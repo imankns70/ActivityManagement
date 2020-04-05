@@ -3,6 +3,8 @@ using ActivityManagement.DataLayer.Context;
 using ActivityManagement.IocConfig;
 using ActivityManagement.IocConfig.Api.Middlewares;
 using ActivityManagement.IocConfig.Api.Swagger;
+using ActivityManagement.Services.EfInterfaces.Business;
+using ActivityManagement.Services.EfServices.Business;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.AspNetCore.Builder;
@@ -34,12 +36,12 @@ namespace ActivityManagementApi
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
-            services.AddCustomIdentityServices();
             services.AddCustomServices();
+            services.AddCustomIdentityServices();
             services.AddApiVersioning();
             services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
-
+         
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));

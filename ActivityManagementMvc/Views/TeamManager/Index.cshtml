@@ -58,22 +58,23 @@
                     dataSource: {
                         type: "aspnetmvc-ajax",
                         transport: {
-                            read: "/Team/GetAllTeams",
+                            read: "/TeamManager/GetAllTeams",
                             type: "POST",
                             //dataType: "json",
                             contentType: "application/json",
                             parameterMap: function (data, operation) { return JSON.stringify(data); }
                         },
+                         
                         schema: {
                             data: "Data",
                             total: "Total",
                             errors: "Errors",
                             model: {
-                                id: "Id",
+                                id: "TeamId",
                                 fields: {
 
 
-                                    Id: { type: "number", editable: false, nullable: true },
+                                    //TeamId: { type: "number", editable: false, nullable: true },
                                     Name: { type: "string" },
                                     //UsersCount: { type: "number" },
                                     //TeamActivitiesCount: { type: "number" },
@@ -84,6 +85,7 @@
 
                             }
                         },
+                       
                         parameterMap: function (data, operation) {
                             return JSON.stringify(data);
 
@@ -91,7 +93,7 @@
                         pageSize: 10
                     },
 
-
+                    
                     serverFiltering: true,
                     serverPaging: true,
                     serverSorting: true,
@@ -102,7 +104,7 @@
                     },
                     sort:
                     {
-                        field: "Id",
+                        field: "TeamId",
                         dir: "asc"
                     },
                     dataBinding: function () {
@@ -134,8 +136,8 @@
                             title: "<i class='Add' >عملیات</i>",
                             width: 80,
                             template: function (e) {
-
-                                return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.Id + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
+                                
+                                return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.TeamId + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
 
                             }
 
@@ -146,10 +148,10 @@
 
 
             function RenderMenu(element, id) {
-
+                
                 var contextMenu = $("#context-menu").data("kendoContextMenu");
                 var dataSourceMenu = [];
-
+                debugger;
                 dataSourceMenu.push({
                     text: "<li onClick='EditTeam(" + id + ")' title='ویرایش' type='button'><i class='fa fa-edit fa-lg'></i>ویرایش</li> ",
                     encoded: false
@@ -163,7 +165,7 @@
                         encoded: false
                     },
                     {
-                        text: "<li onClick='DynamicAccess(" + id + ")' title='سطح دسترسی' type='button'><i class='fa fa-retweet fa-lg'></i>سطح دسترسی</li> ",
+                        text: "<li onClick='SetLeader(" + id + ")' title='تعیین لیدر' type='button'><i class='fa fa-retweet fa-lg'></i>تعیین لیدر</li> ",
                         encoded: false
                     }
                 );
@@ -236,7 +238,7 @@
                             width: "800"
                         });
                         windowTeam.data("kendoWindow").title('حذف').center().open();
-                    },
+                    }
                 });
             }
 
@@ -247,7 +249,7 @@
                     type: "Get",
                     url: '/TeamManager/RenderDetail/' + id,
                     success: function (data) {
-                        debugger;
+                       
                         $("#windowTeam").html(data);
 
                         windowTeam = $("#windowTeam").kendoWindow({
@@ -256,7 +258,26 @@
                             width: "800"
                         });
                         windowTeam.data("kendoWindow").title('جزئیات').center().open();
-                    },
+                    }
+                });
+            }
+            function SetLeader(id) {
+                $("#windowTeam").remove();
+                $("#windowTeamContainer").append("<div id='windowTeam'></div>");
+                $.ajax({
+                    type: "Get",
+                    url: '/TeamManager/RenderSetLeader/' + id,
+                    success: function (data) {
+                       
+                        $("#windowTeam").html(data);
+
+                        windowTeam = $("#windowTeam").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowTeam.data("kendoWindow").title('انتخاب لیدر').center().open();
+                    }
                 });
             }
 

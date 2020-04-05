@@ -115,7 +115,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<byte[]> CreateSecurityTokenAsync(AppUser user);
 
         #endregion
-
+        
         #region CustomMethod
         Task<List<AppUser>> GetAllUsersAsync();
         Task<List<UsersViewModel>> GetAllUsersWithRolesAsync();

@@ -1,0 +1,27 @@
+﻿@model ActivityManagement.ViewModels.Team.TeamViewModel
+
+    <form id="DeleteTeamForm" asp-controller="TeamManager" asp-action="SetLeader" method="Post" class="k-rtl">
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" asp-for="TeamId" />
+
+
+        <div class="form-group">
+
+            <label class="col-form-label">انتخاب لیدر :</label>
+            <input id="UserId" class="k-rtl" name="UserId" />
+
+        </div>
+
+
+        <div class="form-group">
+
+            <button type="button" class="btn-save" onclick="SendAndUpdate('#DeleteTeamForm')"><i class="fa fa-plus"></i><span class="mr-1">ذخیره</span></button>
+            <button type="button" class="btn-close" onclick="closeWindows(this)"><i class="fa fa-times"></i><span class="mr-1">بستن</span></button>
+
+        </div>
+
+    </form>
+<script>
+    KendoComboBind("#UserId","UserManager","ComboUser")
+</script>

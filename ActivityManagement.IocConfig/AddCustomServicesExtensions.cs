@@ -1,3 +1,4 @@
+using ActivityManagement.DataLayer.Context;
 using ActivityManagement.Services.Api;
 using ActivityManagement.Services.Api.Contract;
 using ActivityManagement.Services.EfInterfaces.Business;
@@ -11,10 +12,11 @@ namespace ActivityManagement.IocConfig
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITeamService, TeamService>();
+            services.AddScoped<IUserTeamService, UserTeamService>();
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddTransient<IjwtService, jwtService>();
-            services.AddScoped<ITeamService, TeamService>();
             return services;
         }
     }

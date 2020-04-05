@@ -37,9 +37,9 @@ namespace ActivityManagementMvc
             services.AddCustomIdentityServices();
             services.AddCustomServices();
             services.AddCustomKendoUi();
-            //services.AddApiVersioning();
+            services.AddApiVersioning();
             services.AddCustomAuthentication(SiteSettings);
-            //services.AddSwagger();
+            services.AddSwagger();
 
             services.AddAuthorization(options =>
             {

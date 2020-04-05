@@ -28,6 +28,7 @@ namespace ActivityManagementMvc.Controllers
 
     public class UserManagerController : BaseController
     {
+
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
 
@@ -44,6 +45,8 @@ namespace ActivityManagementMvc.Controllers
 
             _env = env;
             _env.CheckArgumentIsNull(nameof(_env));
+
+
         }
 
         [HttpGet]
@@ -131,7 +134,7 @@ namespace ActivityManagementMvc.Controllers
                     {
                         logicResult.MessageType = MessageType.Success;
                         logicResult.Script = "UserGridRefresh()";
-                        logicResult.Message.Add(InsertSuccess);
+                        logicResult.Message.Add(NotificationMessages.CreateSuccess);
 
                     }
 
@@ -241,7 +244,7 @@ namespace ActivityManagementMvc.Controllers
                     {
                         logicResult.MessageType = MessageType.Success;
                         logicResult.Script = "UserGridRefresh()";
-                        logicResult.Message.Add(InsertSuccess);
+                        logicResult.Message.Add(NotificationMessages.CreateSuccess);
 
                     }
 
@@ -288,7 +291,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
 
             else
@@ -299,7 +302,7 @@ namespace ActivityManagementMvc.Controllers
                     FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
                     logicResult.MessageType = MessageType.Success;
                     logicResult.Script = "UserGridRefresh()";
-                    logicResult.Message.Add(OperationSuccess);
+                    logicResult.Message.Add(NotificationMessages.OperationSuccess);
                 }
                 else
                 {
@@ -359,7 +362,7 @@ namespace ActivityManagementMvc.Controllers
                     if (user == null)
                     {
                         logicResult.MessageType = MessageType.Error;
-                        logicResult.Message.Add(UserNotFound);
+                        logicResult.Message.Add(NotificationMessages.UserNotFound);
                     }
                     else
                     {
@@ -413,7 +416,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
 
             else
@@ -471,7 +474,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
 
             else
@@ -517,10 +520,10 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
             else
-            { 
+            {
 
                 if (user.IsActive)
                 {
@@ -563,7 +566,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
             else
             {
@@ -611,7 +614,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
             else
             {
@@ -657,7 +660,7 @@ namespace ActivityManagementMvc.Controllers
             if (user == null)
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.Add(UserNotFound);
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
             }
             else
             {
@@ -686,6 +689,13 @@ namespace ActivityManagementMvc.Controllers
             }
 
             return Json(logicResult);
+        }
+        [AjaxOnly]
+        public IActionResult ComboUser([DataSourceRequest] DataSourceRequest request)
+        {
+            DataSourceResult resultAsync = _userManager.GetAllUsersAsync().Result.Select(a => new { text = a.UserName, value = a.Id }).ToDataSourceResult(request);
+
+            return Json(resultAsync);
         }
     }
 }
