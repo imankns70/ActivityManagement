@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.Common.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
@@ -139,7 +140,8 @@ namespace ActivityManagementMvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetLeader(TeamViewModel viewModel)
         {
-
+              
+          
             LogicResult logicResult = await _teamService.SetLeader(viewModel);
             if (logicResult.MessageType == MessageType.Success)
             {

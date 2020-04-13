@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
+using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
@@ -37,6 +39,7 @@ namespace ActivityManagementMvc.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+       //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Index(DynamicAccessIndexViewModel ViewModel)
         {
             var result = await _roleManager.AddOrUpdateClaimsAsync(ViewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, ViewModel.ActionIds.Split(","));
