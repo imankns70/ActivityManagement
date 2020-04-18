@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using ActivityManagement.Common.Api.Attributes;
+using ActivityManagement.Common.Attributes;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.DynamicAccess;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
 {
+    [DisplayName("مدیریت نقش ها")]
     public class DynamicAccessController : BaseController
     {
         public readonly IApplicationRoleManager _roleManager;
@@ -18,8 +21,8 @@ namespace ActivityManagementMvc.Controllers
             _roleManager = roleManager;
             _mvcActionsDiscovery = mvcActionsDiscovery;
         }
-
-        [HttpGet]
+        [HttpGet, DisplayName("نمایش سطح دسترسی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Index(int roleId)
         {
             if (roleId == 0)
@@ -38,8 +41,10 @@ namespace ActivityManagementMvc.Controllers
             });
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
-       //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات سطح دسترسی")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Index(DynamicAccessIndexViewModel ViewModel)
         {
             var result = await _roleManager.AddOrUpdateClaimsAsync(ViewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, ViewModel.ActionIds.Split(","));

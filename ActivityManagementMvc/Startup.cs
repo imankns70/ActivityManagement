@@ -50,7 +50,7 @@ namespace ActivityManagementMvc
 
             services.ConfigureApplicationCookie(options =>
             {
-                //options.LoginPath = "/Account/SignIn";
+                options.LoginPath = "/Account/SignIn";
                 options.AccessDeniedPath = "/UserManager/AccessDenied";
             });
            
@@ -87,6 +87,7 @@ namespace ActivityManagementMvc
                 }
             });
             //app.UseSwaggerAndUI();
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(routes =>

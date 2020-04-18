@@ -5,6 +5,7 @@ namespace ActivityManagement.DomainClasses.Entities.Business
 {
     public class UserTeam
     {
+        public int UserTeamId { get; set; }
         public int UserId { get; set; }
         public int TeamId { get; set; }
         public bool IsLeader { get; set; }

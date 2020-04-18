@@ -21,12 +21,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace ActivityManagementMvc.Controllers
 {
 
-    [DisplayName("مدیریت کاربران")]
+    [DisplayName("مدیریت نقش ها")]
     public class RoleManagerController : BaseController
     {
         private readonly IApplicationRoleManager _roleManager;
-
-        private const string RoleNotFound = "نقش یافت نشد.";
         public RoleManagerController(IApplicationRoleManager roleManager)
         {
             _roleManager = roleManager;
@@ -34,29 +32,32 @@ namespace ActivityManagementMvc.Controllers
 
         }
 
-        //[HttpGet, DisplayName("نمایش نقش ها")]
-        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        [HttpGet, DisplayName("نمایش نقش ها")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
             return View();
         }
 
-      
+        [DisplayName("لیست نمایش نقش ها")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<JsonResult> GetRoles([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _roleManager.GetAllRolesAndUsersCount().ToDataSourceResultAsync(request);
             return Json(resultAsync);
         }
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly, DisplayName("نمایش ایجاد نقش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult RenderCreate()
         {
             var roleViewModel = new RolesViewModel();
             return PartialView(roleViewModel);
         }
 
-        [HttpPost, AjaxOnly]
+        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات نقش")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Create(RolesViewModel viewModel)
         {
 
@@ -94,7 +95,8 @@ namespace ActivityManagementMvc.Controllers
             return Json(logicResult);
         }
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly, DisplayName("نمایش ویرایش نقش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)] 
         public async Task<IActionResult> RenderEdit(int id)
         {
             var roleViewModel = new RolesViewModel();
@@ -109,8 +111,9 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
 
-        [HttpPost, AjaxOnly]
+        [HttpPost, AjaxOnly, DisplayName("ویرایش اطلاعات نقش")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Edit(RolesViewModel viewModel)
         {
 
@@ -146,8 +149,8 @@ namespace ActivityManagementMvc.Controllers
             return Json(logicResult);
         }
 
-        [HttpGet, AjaxOnly]
-
+        [HttpGet, AjaxOnly, DisplayName("نمایش حذف نقش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderDelete(int id)
         {
             var roleViewModel = new RolesViewModel();
@@ -162,8 +165,9 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
 
-        [HttpPost, AjaxOnly]
+        [HttpPost, AjaxOnly, DisplayName("حذف اطلاعات نقش")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(RolesViewModel viewModel)
         {
             LogicResult logicResult = new LogicResult();
@@ -203,7 +207,8 @@ namespace ActivityManagementMvc.Controllers
             return Json(logicResult);
         }
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly, DisplayName("نمایش جزئیات نقش")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderDetail(int id)
         {
             var roleViewModel = new RolesViewModel();
@@ -227,6 +232,5 @@ namespace ActivityManagementMvc.Controllers
             return Json(resultAsync);
         }
     }
-
     
 }

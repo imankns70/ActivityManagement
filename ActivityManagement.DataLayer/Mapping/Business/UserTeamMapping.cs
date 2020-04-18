@@ -9,10 +9,8 @@ namespace ActivityManagement.DataLayer.Mapping.Business
         public void Configure(EntityTypeBuilder<UserTeam> builder)
         {
              builder.ToTable("UserTeam");
-             builder.HasKey(x=> new {x.UserId, x.TeamId});
+             builder.HasKey(x=>x.UserTeamId);
              
-             
-
         }
     }
 }

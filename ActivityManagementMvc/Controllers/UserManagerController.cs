@@ -25,7 +25,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
 {
-
+    [DisplayName("مدیریت کاربران")]
     public class UserManagerController : BaseController
     {
 
@@ -49,14 +49,16 @@ namespace ActivityManagementMvc.Controllers
 
         }
 
-        [HttpGet]
+        [HttpGet, DisplayName("نمایش نقش ها")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
 
             return View();
         }
 
-
+        [DisplayName("لیست نمایش کاربران")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<JsonResult> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
@@ -64,16 +66,17 @@ namespace ActivityManagementMvc.Controllers
             return Json(resultAsync);
         }
 
-        [HttpGet, AjaxOnly]
+        [HttpGet, AjaxOnly, DisplayName("نمایش ایجاد کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public IActionResult RenderCreate()
         {
 
             return PartialView();
         }
 
-        [HttpPost]
+        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات کاربر")]
         [ValidateAntiForgeryToken]
-        //[Authorize]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Create(UsersViewModel viewModel)
         {
@@ -167,7 +170,8 @@ namespace ActivityManagementMvc.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("نمایش ویرایش کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderEdit(int id)
         {
             UsersViewModel usersViewModel = await _userManager.FindUserWithRolesByIdAsync(id);
@@ -176,8 +180,10 @@ namespace ActivityManagementMvc.Controllers
 
             return PartialView(usersViewModel);
         }
-        [HttpPost, AjaxOnly]
+
+        [HttpPost, AjaxOnly, DisplayName("ویرایش اطلاعات کاربر")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Edit(UsersViewModel viewModel)
         {
             LogicResult logicResult = new LogicResult();
@@ -273,17 +279,17 @@ namespace ActivityManagementMvc.Controllers
             return Json(logicResult);
         }
 
-        //[HttpGet, DisplayName("نمایش حذف کاربر")]
-        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        [HttpGet, AjaxOnly, DisplayName("نمایش حذف کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderDelete(int id)
         {
             UsersViewModel usersViewModel = await _userManager.FindUserWithRolesByIdAsync(id);
             return PartialView(usersViewModel);
         }
-        [HttpPost, AjaxOnly]
+
+        [HttpPost, AjaxOnly, DisplayName("حذف اطلاعات کاربر")]
         [ValidateAntiForgeryToken]
-        //[DisplayName("ارسال حذف کاربر")]
-        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Delete(UsersViewModel viewModel)
         {
             LogicResult logicResult = new LogicResult();
@@ -315,12 +321,15 @@ namespace ActivityManagementMvc.Controllers
             return Json(logicResult);
         }
 
+        [HttpGet, AjaxOnly, DisplayName("نمایش جزئیات کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderDetail(int id)
         {
             UsersViewModel usersViewModel = await _userManager.FindUserWithDetailIdAsync(id);
 
             return PartialView(usersViewModel);
         }
+
         public IActionResult AccessDenied()
         {
             return View();
@@ -330,7 +339,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("نمایش تغییر کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderResetPassword(int userId)
         {
             AppUser user = await _userManager.FindByIdAsync(userId.ToString());
@@ -348,8 +358,10 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
-        [HttpPost]
+
+        [HttpPost, AjaxOnly, DisplayName("تغییر اطلاعات کاربر")]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel viewModel)
         {
 
@@ -407,7 +419,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("نمایش قفل و خروج از حالت قفل حساب کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> LockOrUnLockUserAccount(int id)
         {
             LogicResult logicResult = new LogicResult();
@@ -465,7 +478,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("فعال و غیر فعال کردن قفل حساب کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ChangeLockOutEnable(int id)
         {
             LogicResult logicResult = new LogicResult();
@@ -511,7 +525,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("فعال و غیر فعال کردن کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> InActiveOrActiveUser(int id)
         {
             LogicResult logicResult = new LogicResult();
@@ -557,7 +572,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("تایید و عدم تایید وضعیت ایمیل کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ChangeEmailConfirmed(int userId)
         {
             LogicResult logicResult = new LogicResult();
@@ -604,7 +620,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("تایید و عدم تایید وضعیت شماره موبایل کاربر")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ChangePhoneNumberConfirmed(int id)
         {
             LogicResult logicResult = new LogicResult();
@@ -650,7 +667,8 @@ namespace ActivityManagementMvc.Controllers
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet, AjaxOnly, DisplayName("فعال و غیر فعال کردن احرازهویت دو مرحله ای")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> ChangeTwoFactorEnabled(int userId)
         {
             LogicResult logicResult = new LogicResult();

@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using ActivityManagement.ViewModels.DynamicAccess;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,11 +12,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ActivityManagement.Services.EfInterfaces.Identity;
-using ActivityManagement.ViewModels.DynamicAccess;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace ActivityManagement.Services.EfServices.Identity
 {

@@ -12,14 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
 {
-
- 
-
+     
     public class HomeController : BaseController
     {
 
-        //[HttpGet, DisplayName("صفحه اصلی")]
-        //[Authorize(Policy= ConstantPolicies.DynamicPermission)]
+        [HttpGet, DisplayName("صفحه اصلی")]
+        [Authorize(Policy= ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
 

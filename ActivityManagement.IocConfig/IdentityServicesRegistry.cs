@@ -12,11 +12,12 @@ namespace ActivityManagement.IocConfig
         public static void AddCustomIdentityServices(this IServiceCollection services)
         {
             services.AddIdentityOptions();
+            services.AddDynamicPermission();
             services.AddScoped<IApplicationRoleManager, ApplicationRoleManager>();
             services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
             services.AddScoped<ApplicationIdentityErrorDescriber>();
-            services.AddDynamicPermission();
+           
            
         }
 
