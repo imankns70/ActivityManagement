@@ -25,10 +25,15 @@ namespace ActivityManagementMvc.Controllers
     public class RoleManagerController : BaseController
     {
         private readonly IApplicationRoleManager _roleManager;
-        public RoleManagerController(IApplicationRoleManager roleManager)
+        public readonly IMvcActionsDiscoveryService _mvcActionsDiscovery;
+        public RoleManagerController(IApplicationRoleManager roleManager,
+            IMvcActionsDiscoveryService mvcActionsDiscoveryService)
         {
             _roleManager = roleManager;
             _roleManager.CheckArgumentIsNull(nameof(_roleManager));
+
+            _mvcActionsDiscovery = mvcActionsDiscoveryService;
+            _mvcActionsDiscovery.CheckArgumentIsNull(nameof(_mvcActionsDiscovery));
 
         }
 
@@ -55,7 +60,7 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
 
-        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات نقش")]
+        [HttpPost, AjaxOnly, DisplayName("ذخیره اطلاعات نقش")]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> Create(RolesViewModel viewModel)
@@ -96,7 +101,7 @@ namespace ActivityManagementMvc.Controllers
         }
 
         [HttpGet, AjaxOnly, DisplayName("نمایش ویرایش نقش")]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)] 
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<IActionResult> RenderEdit(int id)
         {
             var roleViewModel = new RolesViewModel();
@@ -120,7 +125,7 @@ namespace ActivityManagementMvc.Controllers
             LogicResult logicResult = new LogicResult();
             if (ModelState.IsValid)
             {
-               
+
 
                 AppRole role = await _roleManager.FindByIdAsync(viewModel.Id.ToString());
                 role.Name = viewModel.Name;
@@ -199,8 +204,8 @@ namespace ActivityManagementMvc.Controllers
                         logicResult.Message.Add(result.DumpErrors());
                     }
                 }
-           
-               
+
+
 
             }
 
@@ -223,14 +228,52 @@ namespace ActivityManagementMvc.Controllers
             return PartialView(roleViewModel);
         }
 
+
+        [HttpGet, DisplayName("نمایش سطح دسترسی")]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<IActionResult> DynamicAccess(int id)
+        {
+           
+            AppRole role = await _roleManager.FindClaimsInRole(id);
+            
+
+            ICollection<ControllerViewModel> securedControllerActions = _mvcActionsDiscovery.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
+            return PartialView(new DynamicAccessIndexViewModel
+            {
+                RoleIncludeRoleClaims = role,
+                SecuredControllerActions = securedControllerActions,
+            });
+        }
+        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات سطح دسترسی")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<IActionResult> DynamicAccess(DynamicAccessIndexViewModel viewModel)
+        {
+            LogicResult logicResult = new LogicResult();
+            var result = await _roleManager.AddOrUpdateClaimsAsync(viewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, viewModel.ActionIds.Split(","));
+            if (!result.Succeeded)
+            {
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(result.DumpErrors());
+            }
+            else
+            {
+                logicResult.MessageType = MessageType.Success;
+                logicResult.Message.Add(NotificationMessages.CreateSuccess);
+            }
+
+            return Json(logicResult);
+        }
         [AjaxOnly]
         public async Task<IActionResult> ComboRole([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult resultAsync = await _roleManager.GetAllRoles()
-                .Select(a=> new{ text=a.Name, value=a.Id}).ToDataSourceResultAsync(request);
-             
+                .Select(a => new { text = a.Name, value = a.Id }).ToDataSourceResultAsync(request);
+
             return Json(resultAsync);
         }
+
     }
-    
+
 }

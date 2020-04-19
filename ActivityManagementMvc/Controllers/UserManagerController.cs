@@ -74,7 +74,7 @@ namespace ActivityManagementMvc.Controllers
             return PartialView();
         }
 
-        [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات کاربر")]
+        [HttpPost, AjaxOnly, DisplayName("ذخیره اطلاعات کاربر")]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
         //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]

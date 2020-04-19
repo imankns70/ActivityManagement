@@ -257,7 +257,25 @@
                     },
                 });
             }
+            function DynamicAccess(id) {
+                $("#windowRole").remove();
+                $("#windowRoleContainer").append("<div id='windowRole'></div>");
+                $.ajax({
+                    type: "Get",
+                    url: '/RoleManager/DynamicAccess/' + id,
+                    success: function (data) {
+                        debugger;
+                        $("#windowRole").html(data);
 
+                        windowRole = $("#windowRole").kendoWindow({
+                            visible: true,
+                            modal: true,
+                            width: "800"
+                        });
+                        windowRole.data("kendoWindow").title('سطح دسترسی').center().open();
+                    },
+                });
+            }
             function RoleGridRefresh() {
                 var grid = $("#RoleGrid").data("kendoGrid");
                 grid.dataSource.read();

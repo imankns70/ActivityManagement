@@ -33,6 +33,7 @@ namespace ActivityManagement.Services.EfServices
             _file = file;
         }
 
+      
         public T Value => Options.CurrentValue;
 
         public IOptionsMonitor<T> Options => _options;

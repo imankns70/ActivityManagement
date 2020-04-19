@@ -140,6 +140,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 return IdentityResult.Failed();
             }
 
+
             return IdentityResult.Success;
         }
     }
