@@ -10,6 +10,6 @@ namespace ActivityManagement.ViewModels.DynamicAccess
         public string ActionId => $"{ControllerId}:{ActionName}";
         public string ActionName { get; set; }
         public string ControllerId { get; set; }
-        public  bool IsSecuredAction { get; set; }
+        public bool IsSecuredAction { get; set; }
     }
 }

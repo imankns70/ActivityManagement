@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.DataLayer.Context;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +24,16 @@ namespace ActivityManagement.Services.EfServices.Identity
         private readonly ILogger<IdentityDbInitializer> _logger;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IServiceScopeFactory _scopeFactory;
+        public readonly IMvcActionsDiscoveryService _mvcActionsDiscovery;
+
 
         public IdentityDbInitializer(
             IApplicationUserManager applicationUserManager,
             IServiceScopeFactory scopeFactory,
             IApplicationRoleManager roleManager,
             IOptionsSnapshot<SiteSettings> adminUserSeedOptions,
-            ILogger<IdentityDbInitializer> logger
+            ILogger<IdentityDbInitializer> logger,
+            IMvcActionsDiscoveryService mvcActionsDiscovery
             )
         {
             _applicationUserManager = applicationUserManager;
@@ -35,6 +41,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             _roleManager = roleManager;
             _adminUserSeedOptions = adminUserSeedOptions;
             _logger = logger;
+            _mvcActionsDiscovery = mvcActionsDiscovery;
         }
 
         /// <summary>
@@ -113,11 +120,11 @@ namespace ActivityManagement.Services.EfServices.Identity
                 Email = email,
                 EmailConfirmed = true,
                 LockoutEnabled = true,
-                RegisterDateTime=DateTime.Now,
-                FirstName= firstName,
-                LastName= lastName,
+                RegisterDateTime = DateTime.Now,
+                FirstName = firstName,
+                LastName = lastName,
                 //Gender=null,
-                IsActive=true
+                IsActive = true
             };
             var adminUserResult = await _applicationUserManager.CreateAsync(adminUser, password);
             if (adminUserResult == IdentityResult.Failed())
@@ -140,6 +147,11 @@ namespace ActivityManagement.Services.EfServices.Identity
                 return IdentityResult.Failed();
             }
 
+            ICollection<ControllerViewModel> securedControllerActions =
+                _mvcActionsDiscovery.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
+            IList<string> allSecuredActions = securedControllerActions.SelectMany(s => s.MvcActions).ToList().Select(a => a.ActionId).ToList();
+
+          await _roleManager.AddOrUpdateClaimsAsync(adminRole.Id, ConstantPolicies.DynamicPermissionClaimType,allSecuredActions);
 
             return IdentityResult.Success;
         }
