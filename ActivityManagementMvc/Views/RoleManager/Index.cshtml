@@ -1,6 +1,7 @@
-﻿
+﻿@using ActivityManagement.Services.EfInterfaces.Identity
+@inject ISecurityTrimmingService SecurityTrimmingService
 @{
-
+    ;
     Layout = "_Layout";
 }
 
@@ -33,11 +34,15 @@
         <script type="text/javascript">
             var recordRole = 0;
             var windowRole;
+             
+            var accessToDynamicAccess= '@SecurityTrimmingService.CanCurrentUserAccess("", "RoleManager", "DynamicAccess")' === 'True' ? true: false;
             $(function () {
 
                 //$("#panelbar").kendoPanelBar({
                 //    expandMode: "single"
                 //});
+                debugger;
+                var ffff = accessToDynamicAccess;
                 RoleInitialize();
                 $("#context-menu").kendoContextMenu({
                     target: "#RoleGrid",
@@ -125,7 +130,7 @@
                         //{ field: "Id", title: "شناسه نقش", width: 120 },
                         { field: "Name", title: "نام نقش", width: 130 },
                         { field: "UsersCount", title: "تعداد کاربران", width: 130 },
-                        { field: "Description", title: "توضیحات",width: 230  },
+                        { field: "Description", title: "توضیحات", width: 230 },
 
 
                         {
@@ -136,7 +141,7 @@
                                 return "<button style='height: 28px;' class='k-button' onclick='RenderMenu(this," + e.Id + ")' title='عملیات'><i class='fa fa-cogs fa-1x' ></i>  </button>";
 
                             }
-                             
+
                         }
                     ]
                 }).find("table").addClass("table table-bordered table-hover");
@@ -159,13 +164,19 @@
                     {
                         text: "<li onClick='DetailRole(" + id + ")' title='جزئیات' type='button'><i class='fa fa-list fa-lg'></i>جزئیات</li> ",
                         encoded: false
-                    },
-                    {
-                        text: "<li onClick='DynamicAccess(" + id + ")' title='سطح دسترسی' type='button'><i class='fa fa-retweet fa-lg'></i>سطح دسترسی</li> ",
-                        encoded: false
                     }
-                );
 
+                   
+                   
+                );
+                if (accessToDynamicAccess === true) {
+                    dataSourceMenu.push({
+                        text: "<li onClick='DynamicAccess(" +
+                            id +
+                            ")' title='سطح دسترسی' type='button'><i class='fa fa-retweet fa-lg'></i>سطح دسترسی</li> ",
+                        encoded: false
+                    });
+                }
                 var offset = $(element).offset();
 
                 $("#context-menu").data("kendoContextMenu").setOptions({
@@ -264,7 +275,7 @@
                     type: "Get",
                     url: '/RoleManager/DynamicAccess/' + id,
                     success: function (data) {
-                        debugger;
+
                         $("#windowRole").html(data);
 
                         windowRole = $("#windowRole").kendoWindow({

@@ -115,7 +115,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<byte[]> CreateSecurityTokenAsync(AppUser user);
 
         #endregion
-        
+
         #region CustomMethod
         Task<List<AppUser>> GetAllUsersAsync();
         Task<List<UsersViewModel>> GetAllUsersWithRolesAsync();
@@ -123,7 +123,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<UsersViewModel> FindUserWithRolesByIdAsync(int userId);
         Task<string> GetFullName(ClaimsPrincipal user);
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
-         string CheckAvatarFileName(string fileName);
+        string CheckAvatarFileName(string fileName);
         Task<AppUser> FindClaimsInUser(int userId);
         Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);

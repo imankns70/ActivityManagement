@@ -5,14 +5,14 @@
             <span class="avatar avatar-sm rounded-circle">
                 <img alt="Image placeholder" src="~/assets/images/UserPic.png">
                 @*@if (user.Image.HasValue())
-        {
-            <img alt="Image placeholder" src="~/avatars/@user.Image">
-        }
+                    {
+                        <img alt="Image placeholder" src="~/avatars/@user.Image">
+                    }
 
-        else
-        {
-            <img alt="Image placeholder" src="~/assets/img/UserPic.png">
-        }*@
+                    else
+                    {
+                        <img alt="Image placeholder" src="~/assets/img/UserPic.png">
+                    }*@
             </span>
         </div>
     </a>
@@ -22,7 +22,8 @@
             <span>نمایه من</span>
         </a>
         <div class="dropdown-divider"></div>
-        <a href="#!" class="dropdown-item">
+
+        <a asp-controller="Account" asp-action="SignOut" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span>خروج</span>
         </a>

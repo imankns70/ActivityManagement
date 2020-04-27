@@ -147,8 +147,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 return IdentityResult.Failed();
             }
 
-            ICollection<ControllerViewModel> securedControllerActions =
-                _mvcActionsDiscovery.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
+            ICollection<ControllerViewModel> securedControllerActions = _mvcActionsDiscovery.GetAllSecuredControllerActionsWithPolicy(ConstantPolicies.DynamicPermission);
             IList<string> allSecuredActions = securedControllerActions.SelectMany(s => s.MvcActions).ToList().Select(a => a.ActionId).ToList();
 
           await _roleManager.AddOrUpdateClaimsAsync(adminRole.Id, ConstantPolicies.DynamicPermissionClaimType,allSecuredActions);

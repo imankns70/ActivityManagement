@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using ActivityManagement.Common;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.UserManager;
@@ -21,7 +22,7 @@ namespace ActivityManagementMvc.Controllers
         private readonly IWebHostEnvironment _env;
 
         public AccountController(IApplicationUserManager userManager, IApplicationRoleManager roleManager,
-            SignInManager<AppUser> signInManager,ILogger<AccountController> logger, IHttpContextAccessor accessor,
+            SignInManager<AppUser> signInManager, ILogger<AccountController> logger, IHttpContextAccessor accessor,
             IWebHostEnvironment env)
         {
             _userManager = userManager;
@@ -74,6 +75,14 @@ namespace ActivityManagementMvc.Controllers
                 }
             }
             return View();
+        }
+
+        public async Task<IActionResult> SignOut()
+        {
+            string userId = User.Identity.GetUserId();
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            await _signInManager.CanSignInAsync(user);
+            return RedirectToAction("SignIn", "Account");
         }
     }
 }

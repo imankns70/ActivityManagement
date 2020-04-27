@@ -244,6 +244,9 @@ namespace ActivityManagementMvc.Controllers
                 SecuredControllerActions = securedControllerActions,
             });
         }
+
+
+
         [HttpPost, AjaxOnly, DisplayName("ارسال اطلاعات سطح دسترسی")]
         [ValidateAntiForgeryToken]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
@@ -251,7 +254,7 @@ namespace ActivityManagementMvc.Controllers
         public async Task<IActionResult> DynamicAccess(DynamicAccessIndexViewModel viewModel)
         {
             LogicResult logicResult = new LogicResult();
-            var result = await _roleManager.AddOrUpdateClaimsAsync(viewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, viewModel.ActionIds.Split(","));
+            var result = await _roleManager.AddOrUpdateClaimsAsync(viewModel.RoleId, ConstantPolicies.DynamicPermissionClaimType, viewModel.ActionIds);
             if (!result.Succeeded)
             {
                 logicResult.MessageType = MessageType.Error;

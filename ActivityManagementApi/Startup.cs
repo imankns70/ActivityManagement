@@ -20,16 +20,15 @@ namespace ActivityManagementApi
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        private readonly SiteSettings SiteSettings;
-        public IServiceProvider Services { get; }
-        public Startup(IConfiguration configuration)
+        private readonly SiteSettings _siteSettings;
+        public IServiceProvider ServiceProvider { get; }
+        public Startup(IConfiguration configuration, IServiceProvider serviceProvider)
         {
             Configuration = configuration;
-            SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
-
+            _siteSettings = configuration.GetSection(nameof(_siteSettings)).Get<SiteSettings>();
+            ServiceProvider = serviceProvider;
         }
         
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,7 +38,7 @@ namespace ActivityManagementApi
             services.AddCustomServices();
             services.AddCustomIdentityServices();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(SiteSettings);
+            services.AddCustomAuthentication(_siteSettings);
             services.AddSwagger();
          
             services.AddAuthorization(options =>
@@ -58,7 +57,6 @@ namespace ActivityManagementApi
 
             appBuilder.UseCustomIdentityServices();
             appBuilder.UseSwaggerAndUI();
-
             appBuilder.UseAuthorization();
         }
     }

@@ -173,7 +173,7 @@ function SendAndUpdate(formSelector) {
         url: $(formSelector).attr("action"),
 
         success: function (data) {
-            debugger;
+           
             if (data.MessageType === TypeMessage.Success) {
                 ShowMessage(data.Message, TypeMessage.Success);
             }
@@ -253,8 +253,7 @@ function myGetJson(controllerName, actionName, params, formNameInPost, methodTyp
             var formin = $(formNameInPost).get(0);
             ajaxConfig["contentType"] = false;
             ajaxConfig["processData"] = false;
-            debugger;
-            if (params) {
+             if (params) {
 
                 ajaxConfig["data"] = new FormData(formin) + "&" + params;
             }

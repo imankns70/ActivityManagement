@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementMvc.Controllers
 {
-     
+    [DisplayName("صفحه اصلی")]
     public class HomeController : BaseController
     {
-        [HttpGet, DisplayName("صفحه اصلی")]
+        [HttpGet, DisplayName("نمایش صفحه اصلی")]
         [Authorize(Policy= ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {

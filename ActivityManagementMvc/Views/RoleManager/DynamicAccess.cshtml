@@ -1,32 +1,32 @@
 ﻿@model ActivityManagement.ViewModels.DynamicAccess.DynamicAccessIndexViewModel
 @using ActivityManagement.ViewModels.DynamicAccess
- 
+
 <style>
-        .jstree-node {
-          font-size: 14px !important;
-        }
-        .jstree-default .jstree-wholerow-clicked {
-           background: #fff !important;
-        }
+    .jstree-node {
+        font-size: 14px !important;
+    }
+
+    .jstree-default .jstree-wholerow-clicked {
+        background: #fff !important;
+    }
 </style>
 
 <link href="~/lib/jsTree/themes/default/style.min.css" rel="stylesheet" />
 <script src="~/lib/jsTree/jstree.min.js"></script>
 
 
- 
 
- 
-<form id="DynamicAccessForm" method="post" asp-controller="RoleManager" asp-action="DynamicAccess">
+<form id="DynamicAccessForm">
+    @Html.AntiForgeryToken()
     <div class="card-body">
-        <input type="hidden" asp-for="ActionIds" />
-        <input name="UserId" value="@Model.RoleIncludeRoleClaims.Id" type="hidden" />
+
+
         <div id="tree">
             <ul>
                 @{int i = 0;}
                 @foreach (var controller in Model.SecuredControllerActions.Where(x => !x.ControllerName.Contains("Api")).OrderBy(x => x.ControllerDisplayName))
                 {
-                    <li id=@("node_"+i)>
+                    <li id=@("node_" + i)>
                         @{
                             var displayName = controller.ControllerDisplayName;
                             if (string.IsNullOrWhiteSpace(displayName))
@@ -62,13 +62,13 @@
     </div>
     <div class="row form-group mt-5">
 
-        <button type="button" class="btn-save mr-2" onclick="SendAndUpdate('#DynamicAccessForm')"><i class="fa fa-check"></i><span class="mr-1">ذخیره</span></button>
+        <button type="button" class="btn-save mr-2" onclick="submitForm()"><i class="fa fa-check"></i><span class="mr-1">ذخیره</span></button>
         <button type="button" class="btn-close" onclick="closeWindows(this)"><i class="fa fa-times"></i><span class="mr-1">بستن</span></button>
 
 
     </div>
 </form>
-    
+
 
 
 <script>
@@ -85,13 +85,39 @@
     });
 
     function submitForm() {
-        var checked_ids = [];
+        var roleId= @Model.RoleIncludeRoleClaims.Id;
+        var actionIds = [];
         var selectedElms = $('#tree').jstree("get_selected", true);
+
         $.each(selectedElms, function () {
-            if (this.id.indexOf("node") == -1)
-                checked_ids.push(this.id);
+            if (this.id.indexOf("node") === -1)
+                actionIds.push(this.id);
         });
-        $('#ActionIds').val(checked_ids.join(","));
-        $( "form" ).submit();
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        var viewModel = {
+            ActionIds: actionIds,
+            RoleId: roleId
+
+        };
+
+        $.ajax({
+            type: "Post",
+            url: "/RoleManager/DynamicAccess",
+            data: {
+                __RequestVerificationToken: token,
+                viewModel
+            },
+            success: function (data) {
+
+                if (data.DataType===TypeMessage.Error) {
+                    ShowMessage(data.Message,TypeMessage.Error);
+                } else {
+                    closeWindows("#DynamicAccessForm");
+                    ShowMessage(data.Message,TypeMessage.Success);
+                }
+            }, error: function(e) {
+                console.log(e);
+            }
+        });
     }
 </script>
