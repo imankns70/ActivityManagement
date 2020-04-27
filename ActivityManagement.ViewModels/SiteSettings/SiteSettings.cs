@@ -41,7 +41,7 @@
     public class JwtSettings
     {
         public string SecretKey { get; set; }
-        public string EncrypKey { get; set; }
+        public string EncryptKey { get; set; }
 
         /// <summary>
         ///  صادر کننده توکن که باید اشاره کند به شرکت یا سایتی که آن را صادر می کند 

@@ -1,10 +1,10 @@
 using ActivityManagement.DomainClasses.Entities.Identity;
 using System.Threading.Tasks;
 
-namespace ActivityManagement.Services.Api.Contract
+namespace ActivityManagement.Services.EfInterfaces.Api
 {
-    public interface IjwtService
+    public interface IJwtService
     {
-        Task<string> GenerateTokenAsync(AppUser User);
+        Task<string> GenerateTokenAsync(AppUser user);
     }
 }
