@@ -1,47 +1,47 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using ActivityManagement.DomainClasses.Entities.Identity;
-using ActivityManagement.Services.EfInterfaces.Identity;
-using ActivityManagement.Services.Api.Contract;
-using ActivityManagement.ViewModels.DynamicAccess;
-using ActivityManagement.ViewModels.SiteSettings;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using ActivityManagement.DomainClasses.Entities.Identity;
+using ActivityManagement.Services.EfInterfaces.Api;
+using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
+using ActivityManagement.ViewModels.SiteSettings;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
-namespace ActivityManagement.Services.Api
+namespace ActivityManagement.Services.EfServices.Api
 {
-    public class jwtService : IjwtService
+    public class jwtService : IJwtService
     {
-        public readonly IApplicationUserManager _userManager;
-        public readonly IApplicationRoleManager _roleManager;
-        public readonly SiteSettings _siteSettings;
+        public readonly IApplicationUserManager UserManager;
+        public readonly IApplicationRoleManager RoleManager;
+        public readonly SiteSettings SiteSettings;
         public jwtService(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings)
         {
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _siteSettings = siteSettings.Value;
+            UserManager = userManager;
+            RoleManager = roleManager;
+            SiteSettings = siteSettings.Value;
         }
 
         public async Task<string> GenerateTokenAsync(AppUser user)
         {
-            var secretKey = Encoding.UTF8.GetBytes(_siteSettings.JwtSettings.SecretKey);
+            var secretKey = Encoding.UTF8.GetBytes(SiteSettings.JwtSettings.SecretKey);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
 
-            var encrytionKey = Encoding.UTF8.GetBytes(_siteSettings.JwtSettings.EncrypKey);
-            var encryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(encrytionKey), SecurityAlgorithms.Aes128KW, SecurityAlgorithms.Aes128CbcHmacSha256);
+            var encryptionKey = Encoding.UTF8.GetBytes(SiteSettings.JwtSettings.EncryptKey);
+            var encryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(encryptionKey), SecurityAlgorithms.Aes128KW, SecurityAlgorithms.Aes128CbcHmacSha256);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
-                Issuer = _siteSettings.JwtSettings.Issuer,
-                Audience = _siteSettings.JwtSettings.Audience,
+                Issuer = SiteSettings.JwtSettings.Issuer,
+                Audience = SiteSettings.JwtSettings.Audience,
                 IssuedAt = DateTime.Now,
-                NotBefore = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.NotBeforeMinutes),
-                Expires = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.ExpirationMinutes),
+                NotBefore = DateTime.Now.AddMinutes(SiteSettings.JwtSettings.NotBeforeMinutes),
+                Expires = DateTime.Now.AddMinutes(SiteSettings.JwtSettings.ExpirationMinutes),
                 SigningCredentials = signingCredentials,
                 Subject = new ClaimsIdentity(await GetClaimsAsync(user)),
                 EncryptingCredentials = encryptingCredentials,
@@ -55,7 +55,7 @@ namespace ActivityManagement.Services.Api
 
         public async Task<IEnumerable<Claim>> GetClaimsAsync(AppUser user)
         {
-            var Claims = new List<Claim>()
+            List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
@@ -65,17 +65,17 @@ namespace ActivityManagement.Services.Api
             };
 
 
-            List<AppRole> roles = _roleManager.GetAllRoles();
+            List<AppRole> roles = RoleManager.GetAllRoles();
 
             foreach (var item in roles)
             {
-                var roleClaim = await _roleManager.FindClaimsInRole(item.Id);
+                var roleClaim = await RoleManager.FindClaimsInRole(item.Id);
                 foreach (var claim in roleClaim.Claims)
                 {
-                    Claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
+                    claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
                 }
 
-                Claims.Add(new Claim(ClaimTypes.Role, item.Name));
+                claims.Add(new Claim(ClaimTypes.Role, item.Name));
             }
             // instead of userClaim use roleClaim 
             // var userClaims = await _userManager.GetClaimsAsync(user);
@@ -86,7 +86,7 @@ namespace ActivityManagement.Services.Api
             // foreach (var item in userRoles)
             //     Claims.Add(new Claim(ClaimTypes.Role, item));
 
-            return Claims;
+            return claims;
         }
     }
 }
