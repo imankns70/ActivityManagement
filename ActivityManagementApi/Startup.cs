@@ -20,13 +20,13 @@ namespace ActivityManagementApi
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        private readonly SiteSettings _siteSettings;
-        public IServiceProvider ServiceProvider { get; }
-        public Startup(IConfiguration configuration, IServiceProvider serviceProvider)
+        public IServiceProvider Services { get; }
+        private readonly SiteSettings SiteSettings;
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _siteSettings = configuration.GetSection(nameof(_siteSettings)).Get<SiteSettings>();
-            ServiceProvider = serviceProvider;
+            SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
+          
         }
         
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,14 +38,14 @@ namespace ActivityManagementApi
             services.AddCustomServices();
             services.AddCustomIdentityServices();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(_siteSettings);
+            services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
-         
-            services.AddAuthorization(options =>
+         services.AddAuthorization(options =>
             {
                 options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
             });
-            services.ConfigureWritable<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
+            services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,11 +53,24 @@ namespace ActivityManagementApi
         {
             var cachePeriod = env.IsDevelopment() ? "600" : "605800";
 
+            if (env.IsDevelopment())
+                appBuilder.UseDeveloperExceptionPage();
+
             appBuilder.UseCustomExceptionHandler();
 
             appBuilder.UseCustomIdentityServices();
             appBuilder.UseSwaggerAndUI();
             appBuilder.UseAuthorization();
+            appBuilder.UseEndpoints(end =>
+            {
+                end.MapControllers();
+                end.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=home}/{action=index}");
+                end.MapFallbackToController("Index", "FallBack");
+                //end.MapHub<ChatHubService>(SiteV1Routes.BaseChatPanel + "/chat");
+
+            });
         }
     }
 }
