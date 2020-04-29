@@ -18,27 +18,28 @@ namespace ActivityManagementMvc
     {
 
         public IConfiguration Configuration { get; }
-        private readonly SiteSettings _siteSettings;
-        public IServiceProvider ServiceProvider { get; }
-        public Startup(IConfiguration configuration, IServiceProvider serviceProvider)
+        public IServiceProvider Services { get; }
+        private readonly SiteSettings SiteSettings;
+
+        public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
-            _siteSettings = configuration.GetSection(nameof(_siteSettings)).Get<SiteSettings>();
-            ServiceProvider = serviceProvider;
+            SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
+           
         }
         
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.Configure<SiteSettings>(Configuration.GetSection(nameof(_siteSettings)));
+            services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
             services.AddCustomIdentityServices();
             services.AddCustomServices();
             services.AddCustomKendoUi();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(_siteSettings);
+            services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
 
             services.AddAuthorization(options =>

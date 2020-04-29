@@ -6,6 +6,7 @@
         public SiteInformation SiteInformation { get; set; }
         public SiteEmail SiteEmail { get; set; }
         public JwtSettings JwtSettings { get; set; }
+        
     }
 
 

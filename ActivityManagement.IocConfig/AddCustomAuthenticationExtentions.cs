@@ -23,13 +23,13 @@ namespace ActivityManagement.IocConfig
             {
 
                 //زمانی که بخواهیم اعتبار سنجی کاربران بر اساس توکن باشد اینها از حالت کامنت خارج می شوند
-                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
               {
-                  var secretkey = Encoding.UTF8.GetBytes(siteSettings.JwtSettings.SecretKey);
-                  var encryptionkey = Encoding.UTF8.GetBytes(siteSettings.JwtSettings.EncrypKey);
+                  var secretKey = Encoding.UTF8.GetBytes(siteSettings.JwtSettings.SecretKey);
+                  var encryptionKey = Encoding.UTF8.GetBytes(siteSettings.JwtSettings.EncryptKey);
 
                   var validationParameters = new TokenValidationParameters
                   {
@@ -38,7 +38,7 @@ namespace ActivityManagement.IocConfig
 
                       // validate secret key when server gets token
                       ValidateIssuerSigningKey = true,
-                      IssuerSigningKey = new SymmetricSecurityKey(secretkey),
+                      IssuerSigningKey = new SymmetricSecurityKey(secretKey),
 
                       RequireExpirationTime = true,
 
@@ -51,7 +51,7 @@ namespace ActivityManagement.IocConfig
                       ValidateIssuer = true, //default : false
                       ValidIssuer = siteSettings.JwtSettings.Issuer,
 
-                      TokenDecryptionKey = new SymmetricSecurityKey(encryptionkey)
+                      TokenDecryptionKey = new SymmetricSecurityKey(encryptionKey)
                   };
 
                   options.RequireHttpsMetadata = false;
@@ -78,7 +78,7 @@ namespace ActivityManagement.IocConfig
                           if (!securityStamp.HasValue())
                               context.Fail("This token has no secuirty stamp");
 
-                          var userId = claimsIdentity.GetUserId<string>();
+                          //var userId = claimsIdentity.GetUserId<string>();
                           var user = await userRepository.GetUserAsync(context.Principal);
 
                           if (user.SecurityStamp != securityStamp)
