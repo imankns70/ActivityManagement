@@ -17,9 +17,10 @@ namespace ActivityManagementApi.Controllers.v1
     {
 
         [HttpGet]
-        public async Task<ApiResult<string>> Get()
+        public ApiResult<string> Get()
         {
-             return Ok("sdddd");
+
+             return Ok("my name is iman solouki and this the my own first api service project ");
         }
     }
 }

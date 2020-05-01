@@ -24,9 +24,9 @@ namespace ActivityManagement.IocConfig.Api.Swagger
                         Description = "Through this Api you can access BookInfo",
                         Contact = new OpenApiContact
                         {
-                            Email = "arezoo.ebrahimi@gmail.com",
-                            Name = "arezoo ebrahimi",
-                            Url=  new Uri("http://www.mizfa.com"),
+                            Email = "imansoloki@gmail.com",
+                            Name = "iman soloki",
+                            Url =  new Uri("http://www.mizfa.com"),
                         },
                         License = new OpenApiLicense
                         {
@@ -43,8 +43,8 @@ namespace ActivityManagement.IocConfig.Api.Swagger
                        Description = "Through this Api you can access BookInfo",
                        Contact = new OpenApiContact
                        {
-                           Email = "arezoo.ebrahimi@gmail.com",
-                           Name = "arezoo ebrahimi",
+                           Email = "imansoloki@gmail.com",
+                           Name = "iman soloki",
                            Url = new Uri("http://www.mizfa.com"),
                        },
                        License = new OpenApiLicense
