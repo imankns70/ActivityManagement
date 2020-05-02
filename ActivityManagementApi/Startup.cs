@@ -32,18 +32,19 @@ namespace ActivityManagementApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<SiteSettings>();
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
-            services.AddCustomServices();
             services.AddCustomIdentityServices();
+            services.AddCustomServices();
             services.AddApiVersioning();
             services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
-         services.AddAuthorization(options =>
-            {
-                options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
-            });
+            services.AddAuthorization(options =>
+               {
+                   options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
+               });
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
 
         }

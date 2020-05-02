@@ -16,7 +16,7 @@ namespace ActivityManagement.IocConfig
             services.AddScoped<ITeamService, TeamService>();
             services.AddScoped<IUserTeamService, UserTeamService>();
             services.AddScoped<IEmailSender, EmailSender>();
-            services.AddTransient<IJwtService, jwtService>();
+            services.AddTransient<IJwtService, JwtService>();
             return services;
         }
     }

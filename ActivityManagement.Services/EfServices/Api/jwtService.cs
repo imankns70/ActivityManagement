@@ -15,12 +15,12 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ActivityManagement.Services.EfServices.Api
 {
-    public class jwtService : IJwtService
+    public class JwtService : IJwtService
     {
         public readonly IApplicationUserManager UserManager;
         public readonly IApplicationRoleManager RoleManager;
         public readonly SiteSettings SiteSettings;
-        public jwtService(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings)
+        public JwtService(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings)
         {
             UserManager = userManager;
             RoleManager = roleManager;
