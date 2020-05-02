@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityManagement.Common", "ActivityManagement.Common\ActivityManagement.Common.csproj", "{47C706ED-009A-4BF8-80DB-7A2F63588032}"
 EndProject
@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityManagement.Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityManagement.ViewModels", "ActivityManagement.ViewModels\ActivityManagement.ViewModels.csproj", "{49A5683C-198C-43CA-B155-4B209E4BEA37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityManagementApi", "ActivityManagementApi\ActivityManagementApi.csproj", "{F9EE315E-9036-45FF-A804-76AF0557CDD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityManagementApi", "ActivityManagementApi\ActivityManagementApi.csproj", "{F9EE315E-9036-45FF-A804-76AF0557CDD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityManagementMvc", "ActivityManagementMvc\ActivityManagementMvc.csproj", "{34824D04-2958-4949-AC7A-6FC8E5CD0317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivityManagementMvc", "ActivityManagementMvc\ActivityManagementMvc.csproj", "{34824D04-2958-4949-AC7A-6FC8E5CD0317}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

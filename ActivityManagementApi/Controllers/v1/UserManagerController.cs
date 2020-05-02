@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ namespace ActivityManagementApi.Controllers.v1
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1")]
     [ApiResultFilter]
-    public class UserManagerController : Controller
+    public class UserManagerController : ControllerBase
     {
         private readonly IApplicationUserManager _userManager;
 
@@ -24,6 +25,7 @@ namespace ActivityManagementApi.Controllers.v1
         }
 
         [HttpGet]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<List<UsersViewModel>>> Get()
         {
             List<UsersViewModel> users= await _userManager.GetAllUsersWithRolesAsync();
