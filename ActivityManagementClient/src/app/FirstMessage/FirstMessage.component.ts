@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ResultModel } from '../FirstMessage/ResultModel';
  
-
-
+ 
 
 @Component({
   selector: 'app-FirstMessage',
@@ -24,7 +23,7 @@ export class FirstMessageComponent implements OnInit {
     this.http.get<ResultModel>('http://localhost:9788/api/v1/Home').subscribe(res => {
  
       this.resultModel = res;
-      debugger;
+      
     }, error => {
      
       console.log(error);
