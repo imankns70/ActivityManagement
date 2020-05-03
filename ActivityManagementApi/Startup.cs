@@ -36,11 +36,9 @@ namespace ActivityManagementApi
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
             services.AddDbContext<ActivityManagementContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
-<<<<<<< HEAD
-=======
+ 
             
             services.AddCustomServices();
->>>>>>> 4874d892dd8de18a53485c263333b85e249338a7
             services.AddCustomIdentityServices();
             services.AddCustomServices();
             services.AddApiVersioning();

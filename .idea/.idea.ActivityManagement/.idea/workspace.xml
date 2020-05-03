@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a70e9374-1c4a-4669-9857-7f81d425cc0a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Common/obj/ActivityManagement.Common.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Common/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Common/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/ActivityManagement.DataLayer.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/ActivityManagement.DataLayer.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/ActivityManagement.DataLayer.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/ActivityManagement.DataLayer.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DataLayer/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/ActivityManagement.DomainClasses.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.DomainClasses/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/ActivityManagement.IocConfig.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.IocConfig/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Services/obj/ActivityManagement.Services.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.Services/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.Services/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/ActivityManagement.ViewModels.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/ActivityManagement.ViewModels.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/ActivityManagement.ViewModels.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/ActivityManagement.ViewModels.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagement.ViewModels/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementApi/obj/ActivityManagementApi.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementApi/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementApi/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementMvc/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementMvc/Controllers/HomeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementMvc/Controllers/UserManagerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementMvc/Controllers/UserManagerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementMvc/obj/ActivityManagementMvc.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementMvc/obj/ActivityManagementMvc.csproj.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementMvc/obj/ActivityManagementMvc.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementMvc/obj/ActivityManagementMvc.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ActivityManagementMvc/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/ActivityManagementMvc/obj/project.assets.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ActivityManagementMvc/Controllers/UserManagerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ActivityManagementMvc/Controllers/HomeController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ActivityManagement.Services/EfServices/Api/jwtService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ActivityManagementMvc/Views/UserManager/Index.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ActivityManagementMvc/Views/UserManager/_DeleteConfirmation.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ActivityManagementMvc/Views/Shared/_Profile.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ActivityManagementMvc/Controllers/HomeController.cs" />
+        <option value="$PROJECT_DIR$/ActivityManagementMvc/Controllers/UserManagerController.cs" />
+        <option value="$PROJECT_DIR$/ActivityManagementMvc/Views/UserManager/_DeleteConfirmation.cshtml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YvIOr0zECDawitxQG35IV2ElUa" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TWShift.3" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.ActivityManagementMvc">
+    <configuration name="ActivityManagementApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ActivityManagementApi/ActivityManagementApi.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="ActivityManagementApi" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityManagementApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ActivityManagementApi/ActivityManagementApi.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityManagementMvc" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ActivityManagementMvc/ActivityManagementMvc.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="ActivityManagementMvc" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ActivityManagementMvc: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/ActivityManagementMvc/ActivityManagementMvc.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="IIS Express" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a70e9374-1c4a-4669-9857-7f81d425cc0a" name="Default Changelist" comment="" />
+      <created>1583816613441</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583816613441</updated>
+      <workItem from="1583816623720" duration="532000" />
+      <workItem from="1583822941739" duration="71000" />
+      <workItem from="1583823199893" duration="651000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="WindowStateProjectService">
+    <state width="1397" height="222" key="GridCell.Tab.0.bottom" timestamp="1583823855108">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="222" key="GridCell.Tab.0.bottom/0.0.1440.860@0.0.1440.860" timestamp="1583823855108" />
+    <state width="1397" height="222" key="GridCell.Tab.0.center" timestamp="1583823855108">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="222" key="GridCell.Tab.0.center/0.0.1440.860@0.0.1440.860" timestamp="1583823855108" />
+    <state width="1397" height="222" key="GridCell.Tab.0.left" timestamp="1583823855108">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="222" key="GridCell.Tab.0.left/0.0.1440.860@0.0.1440.860" timestamp="1583823855108" />
+    <state width="1397" height="222" key="GridCell.Tab.0.right" timestamp="1583823855108">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state width="1397" height="222" key="GridCell.Tab.0.right/0.0.1440.860@0.0.1440.860" timestamp="1583823855108" />
+    <state x="221" y="72" key="SettingsEditor" timestamp="1583817017232">
+      <screen x="0" y="0" width="1440" height="860" />
+    </state>
+    <state x="221" y="72" key="SettingsEditor/0.0.1440.860@0.0.1440.860" timestamp="1583817017232" />
+  </component>
+</project>
