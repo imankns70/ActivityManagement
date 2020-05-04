@@ -1,0 +1,202 @@
+﻿ 
+
+@font-face {
+    font-family: "IRANSans";
+    src: url("../fonts/iransans/IRANSans-Light-web.woff") format("woff"), url("../fonts/iransans/IRANSans-Light-web.ttf") format("truetype");
+    font-weight: normal;
+}
+
+
+
+body,
+html {
+    background-color: #f1f2f7;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    font-family: "IRANSans", "Poppins", sans-serif;
+    font-size: 11px;
+}
+
+.fa-trash {
+    color: #ec0e6b !important;
+}
+
+.fa-edit {
+    color: #09bcce !important;
+}
+
+.fa-list {
+    color: #38e320 !important;
+}
+
+a.k-grid-add {
+    background-color: #08ae0e !important;
+    border-color: #fff !important;
+}
+
+    a.k-grid-add > *,
+    a.k-grid-excel {
+        color: #ffffff !important;
+    }
+
+.k-grid-toolbar a.k-grid-excel {
+    background-color: #6c757d;
+}
+
+    .k-grid-toolbar a.k-grid-excel .k-i-file-excel {
+        font-size: 20px;
+    }
+
+.k-grid-toolbar {
+    background-color: #428bca !important;
+    border-color: #428bca !important;
+}
+
+.k-window-action {
+    background-color: #f70606 !important;
+    color: #fff !important;
+}
+
+.k-window-titlebar.k-header {
+    background-color: #428bca !important;
+    text-align: center;
+    color: #ffffff;
+}
+
+    .k-window-titlebar.k-header span {
+        top: 2px !important;
+    }
+
+form input.form-control,
+form textarea.form-control {
+    border: 1px solid #bbb !important;
+    border-radius: 2px !important;
+}
+
+form textarea.form-control {
+    width: 500px !important;
+    height: 80px !important;
+    display: inline-block;
+    vertical-align: top;
+}
+
+form .form-group label {
+    display: inline-block;
+    width: 80px;
+}
+
+#InputBirthDate {
+    width: 100px;
+}
+
+ 
+
+.btn-save,
+.btn-close {
+    background-color: #eee;
+    border: 1px solid #cccccc;
+    width: 70px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn-save:hover,
+    .btn-save:focus {
+        background-color: #08ae0e;
+    }
+
+        .btn-save:hover,
+        .btn-save:hover i,
+        .btn-close:hover i,
+        .btn-close:hover {
+            color: #fff;
+        }
+
+    .btn-save i {
+        color: #0ec515;
+    }
+
+    .btn-close i {
+        color: #f70606;
+    }
+
+    .btn-close:hover,
+    .btn-close:focus {
+        background-color: #f70606;
+    }
+
+.jconfirm-box {
+    width: 40% !important;
+}
+
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+    overflow: hidden !important;
+}
+
+.Detail label {
+    color: #0505b5;
+}
+
+.fa-cog {
+    color: #9f9a9a !important;
+}
+
+.k-window-titlebar .k-window-actions {
+    position: absolute;
+    top: 1px !important;
+    left: 6px !important;
+}
+
+/*span#BirthDate {
+    padding: 3px 9px !important;
+    position: absolute;
+    right: 15px;
+    top: 23px;
+    cursor: pointer;
+    color: gray;
+    padding: 4px;
+    z-index: 1;
+    height: 19px;
+}*/
+div[data-provides="fileinput"] {
+    padding: 30px;
+}
+
+form label {
+    display: inline-block !important;
+}
+/*input[type=text],
+input[type=email],
+input[type=password] {
+    height: 2rem !important;
+}*/
+
+@-moz-document url-prefix() {
+
+    #InputBirthDate {
+        width: 128px;
+    }
+}
+
+#context-menu {
+    background-color: #d1eaf4;
+}
+
+    #context-menu li span{
+        color: #00435e !important;
+    }
+td[role=gridcell] .k-button {
+    color: #00435e !important;
+}
+td[role=gridcell] .k-button {
+    background-color: #daecf4;
+}
+.fileinput-new.thumbnail img {
+    width: 130px;
+}
+.customContainer {
+    margin: 10px;
+}
