@@ -2,7 +2,8 @@
 
 @font-face {
     font-family: "IRANSans";
-    src: url("../fonts/iransans/IRANSans-Light-web.woff") format("woff"), url("../fonts/iransans/IRANSans-Light-web.ttf") format("truetype");
+    src: url("../fonts/iransans/IRANSans-Light-web.woff") format("woff"),
+     url("../fonts/iransans/IRANSans-Light-web.ttf") format("truetype");
     font-weight: normal;
 }
 
