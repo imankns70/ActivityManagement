@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { RightSideMenuComponent } from './Right-Side-Menu.component';
+import { UserProfileCollapseComponent } from './user-profile-collapse.component';
 
-describe('RightSideMenuComponent', () => {
-  let component: RightSideMenuComponent;
-  let fixture: ComponentFixture<RightSideMenuComponent>;
+describe('UserProfileCollapseComponent', () => {
+  let component: UserProfileCollapseComponent;
+  let fixture: ComponentFixture<UserProfileCollapseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RightSideMenuComponent ]
+      declarations: [ UserProfileCollapseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RightSideMenuComponent);
+    fixture = TestBed.createComponent(UserProfileCollapseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -200,4 +200,8 @@ td[role=gridcell] .k-button {
 }
 .customContainer {
     margin: 10px;
+} 
+.row{
+    margin: 0;
+
 }

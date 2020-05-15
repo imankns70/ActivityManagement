@@ -24,11 +24,11 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css",
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/vendor/fontawesome/fontawesome-free/css/all.min.css",
               "src/assets/css/argon.css",
               "src/assets/css/style.css"
-              
             ],
             "scripts": [
               "src/assets/vendor/jquery/dist/jquery.min.js",
@@ -130,5 +130,8 @@
       }
     }
   },
-  "defaultProject": "ActivityManagementClient"
+  "defaultProject": "ActivityManagementClient",
+  "cli": {
+    "analytics": "61f2b74f-5cd7-41c2-be6b-9792cac0a644"
+  }
 }

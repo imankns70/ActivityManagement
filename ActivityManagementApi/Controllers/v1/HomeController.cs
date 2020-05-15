@@ -20,11 +20,11 @@ namespace ActivityManagementApi.Controllers.v1
     {
 
         [HttpGet]
-        public ApiResult<SiteInformation> Get()
+        public ApiResult<string> Get()
         {
 
 
-            return Ok();
+            return Ok("ایمان سلوکی");
         }
     }
 }

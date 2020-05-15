@@ -15,7 +15,12 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. */
 
  
-@import url('//fonts.css');
+@font-face {
+    font-family:IRANSans;
+    src: url(../fonts/iransans/IRANSans-Light-web.ttf);
+    src: url(../fonts/iransans/IRANSans-Light-web.woff);
+    src: url(../fonts/iransans/IRANSansLight.woff);
+  }
 
 .IRANSans {
     font-family: IRANSans !important;
@@ -17762,7 +17767,7 @@ textarea[resize='horizontal'] {
             height: 20px;
             padding: 0;
             cursor: pointer;
-            /* float: left; */
+            float: left;
         }
 
             .navbar-collapse .navbar-toggler span {

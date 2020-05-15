@@ -1,28 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-
-
-import { LayoutComponent } from './Shared/Layout/Layout.component';
-import { FirstMessageComponent } from './FirstMessage/FirstMessage.component';
-import { RightSideMenuComponent } from './Shared/Right-Side-Menu/Right-Side-Menu.component';
-import {UserProfileComponent} from'./Shared/User-Profile/User-Profile.component';
-import { from } from 'rxjs';
+import { LoginModule } from './login/login.module';
+import { PanelModule } from './Panel/panel.module';
+import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
+import { ActivityRoutes } from './Routes/activityroutes';
 
 @NgModule({
    declarations: [
-      LayoutComponent,
-      FirstMessageComponent,
-      RightSideMenuComponent,
-      UserProfileComponent
+      AppComponent,
    ],
    imports: [
+      LoginModule,
+      PanelModule,
       BrowserModule,
-      HttpClientModule
+      RouterModule.forRoot(ActivityRoutes)
+
    ],
    providers: [],
-   bootstrap: [
-      LayoutComponent
-   ]
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
