@@ -10,7 +10,7 @@
         public const string DuplicateRecord = "داده تکرای می باشد.";
         public const string InvalidRecord = "داده نامعتبر می باشد.";
         public const string RoleNotFounded = "هیچ نقشی یافت نشد";
-        public const string ModelNotFounded = "مورد یافت نشد";
+        public const string TargetNotFounded = "مورد یافت نشد";
         public const string RecordNotFounded = "هیچ رکوردی یافت نشد";
         public const string UserNotFound = "هیچ کاربری یافت نشد";
         public const string InvalidImage = "عکس نامعتبر است.";

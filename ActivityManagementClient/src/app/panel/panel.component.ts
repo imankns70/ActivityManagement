@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PanelComponent implements OnInit {
 
   constructor() {
-    debugger;
+   
    }
 
   ngOnInit() {

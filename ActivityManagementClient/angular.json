@@ -24,7 +24,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/vendor/bootstrap/dist/css/bootstrap-rtl.css",
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/vendor/fontawesome/fontawesome-free/css/all.min.css",
               "src/assets/css/argon.css",

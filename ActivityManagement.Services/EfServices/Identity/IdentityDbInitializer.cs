@@ -50,13 +50,9 @@ namespace ActivityManagement.Services.EfServices.Identity
         /// </summary>
         public void Initialize()
         {
-            using (var serviceScope = _scopeFactory.CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<ActivityManagementContext>())
-                {
-                    context.Database.Migrate();
-                }
-            }
+            using var serviceScope = _scopeFactory.CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<ActivityManagementContext>();
+            context.Database.Migrate();
         }
 
         /// <summary>
@@ -64,14 +60,12 @@ namespace ActivityManagement.Services.EfServices.Identity
         /// </summary>
         public void SeedData()
         {
-            using (var serviceScope = _scopeFactory.CreateScope())
+            using var serviceScope = _scopeFactory.CreateScope();
+            var identityDbSeedData = serviceScope.ServiceProvider.GetService<IIdentityDbInitializer>();
+            var result = identityDbSeedData.SeedDatabaseWithAdminUserAsync().Result;
+            if (result == IdentityResult.Failed())
             {
-                var identityDbSeedData = serviceScope.ServiceProvider.GetService<IIdentityDbInitializer>();
-                var result = identityDbSeedData.SeedDatabaseWithAdminUserAsync().Result;
-                if (result == IdentityResult.Failed())
-                {
-                    throw new InvalidOperationException(result.DumpErrors());
-                }
+                throw new InvalidOperationException(result.DumpErrors());
             }
         }
 

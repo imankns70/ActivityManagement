@@ -9407,11 +9407,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "projectUniqueName": "D:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "projectName": "ActivityManagement.DataLayer",
-      "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+      "outputPath": "D:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9428,11 +9428,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
+            "D:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
             },
-            "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+            "D:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
             }
           }
         }
@@ -9481,7 +9481,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

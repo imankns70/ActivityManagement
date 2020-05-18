@@ -6,6 +6,7 @@ using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,7 @@ namespace ActivityManagementApi.Controllers.v1
     {
 
         [HttpGet]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public ApiResult<string> Get()
         {
 

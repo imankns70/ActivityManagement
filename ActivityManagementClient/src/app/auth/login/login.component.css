@@ -1,0 +1,16 @@
+.bg-default{
+    height: 100%;
+}
+.bg-default .form-control{
+width: 92.5%;
+}
+.input-group-text i{
+    font-size: 12px;
+}
+.input-group.input-group-alternative {
+    margin-bottom: 25px;
+}
+form button{
+    font-size: 11px;
+    border-radius: 6px;
+}

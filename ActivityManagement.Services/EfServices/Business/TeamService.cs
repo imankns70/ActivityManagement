@@ -49,7 +49,7 @@ namespace ActivityManagement.Services.EfServices.Business
                 TeamId = a.TeamId,
                 Name = a.Name,
                 Description = a.Description
-            }).ToList();
+            }).AsNoTracking().ToList();
         }
 
         public async Task<LogicResult> CreateAsync(TeamViewModel viewModel)

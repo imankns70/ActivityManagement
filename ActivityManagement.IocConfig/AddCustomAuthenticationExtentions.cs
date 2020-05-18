@@ -23,9 +23,9 @@ namespace ActivityManagement.IocConfig
             {
 
                 //زمانی که بخواهیم اعتبار سنجی کاربران بر اساس توکن باشد اینها از حالت کامنت خارج می شوند
-                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
               {
                   var secretKey = Encoding.UTF8.GetBytes(siteSettings.JwtSettings.SecretKey);

@@ -72,7 +72,9 @@
 *::after {
     box-sizing: border-box;
 }
-
+[class*='shadow'] {
+    transition: all .15s ease;
+}
 html {
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -15992,9 +15994,7 @@ a.btn-icon-only {
     color: #525f7f;
 }
 
-.form-control {
-    font-size: .875rem;
-}
+  
 
     .form-control:focus:-ms-input-placeholder {
         color: #adb5bd;

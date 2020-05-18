@@ -31,12 +31,10 @@ namespace ActivityManagement.IocConfig
         private static void CallDbInitializer(this IApplicationBuilder app)
         {
             var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-            using (var scope = scopeFactory.CreateScope())
-            {
-                var identityDbInitialize = scope.ServiceProvider.GetService<IIdentityDbInitializer>();
-                identityDbInitialize.Initialize();
-                identityDbInitialize.SeedData();
-            }
+            using var scope = scopeFactory.CreateScope();
+            var identityDbInitialize = scope.ServiceProvider.GetService<IIdentityDbInitializer>();
+            identityDbInitialize.Initialize();
+            identityDbInitialize.SeedData();
         }
     }
 }

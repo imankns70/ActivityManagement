@@ -9706,11 +9706,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+      "projectUniqueName": "D:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
       "projectName": "ActivityManagement.IocConfig",
-      "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+      "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "E:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+      "outputPath": "D:\\project\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9727,11 +9727,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
+            "D:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
             },
-            "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-              "projectPath": "E:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+            "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
             }
           }
         }
@@ -9772,7 +9772,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

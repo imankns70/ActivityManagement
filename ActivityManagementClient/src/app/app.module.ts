@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LoginModule } from './login/login.module';
+import { AuthModule } from './auth/auth.module';
 import { PanelModule } from './Panel/panel.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -8,16 +8,17 @@ import { ActivityRoutes } from './Routes/activityroutes';
 
 @NgModule({
    declarations: [
-      AppComponent,
+      AppComponent
    ],
    imports: [
-      LoginModule,
+      AuthModule,
       PanelModule,
       BrowserModule,
       RouterModule.forRoot(ActivityRoutes)
-
    ],
    providers: [],
-   bootstrap: [AppComponent]
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
