@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ActivityManagement.IocConfig
 {
-    public static class AddCustomAuthenticationExtentions
+    public static class AddCustomAuthenticationExtensions
     {
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings)
         {
@@ -71,7 +71,7 @@ namespace ActivityManagement.IocConfig
                           var userRepository = context.HttpContext.RequestServices.GetRequiredService<IApplicationUserManager>();
 
                           var claimsIdentity = context.Principal.Identity as ClaimsIdentity;
-                          if (claimsIdentity.Claims?.Any() != true)
+                          if (claimsIdentity?.Claims?.Any() != true)
                               context.Fail("This token has no claims.");
 
                           var securityStamp = claimsIdentity.FindFirstValue(new ClaimsIdentityOptions().SecurityStampClaimType);

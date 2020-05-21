@@ -36,8 +36,6 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link nav-link-icon" href="#">
-                                <i class="fa fa-eye"></i>
-                                <span class="nav-link-inner--text">مشاهده سایت</span>
                             </a>
                         </li>
                     </ul>
@@ -60,48 +58,70 @@
                 <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary shadow border-0">
                         <div class="card-header bg-transparent pb-4">
-                            <div class="text-muted text-center mt-2 mb-3"><span>ورود به سایت</span></div>
+                            <div class="text-muted text-center mt-2 mb-3" style="font-size: 15px;"><span>ورود به
+                                    سایت</span></div>
 
                         </div>
-                        <div class="card-body px-lg-5 py-lg-3">
-                            <form asp-action="SignIn">
+                        <div class="card-body px-lg-5 py-lg-8">
+                            <form #loginForm="ngForm" (ngSubmit)="login()">
 
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                                        </div>
-                                        <input class="form-control" placeholder="نام کاربری" asp-for="UserName">
+
+                                        <input class="form-control" placeholder="نام کاربری" name="username"
+                                            id="username" [(ngModel)]="model.username" #username="ngModel" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group input-group-alternative">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                        </div>
-                                        <input class="form-control" asp-for="Password" placeholder="کلمه عبور"
-                                            type="password">
+
+                                        <input class="form-control" name="password" id="password"
+                                            placeholder="کلمه عبور" type="password" [(ngModel)]="model.password"
+                                            required #password="ngModel">
                                     </div>
                                 </div>
 
 
                                 <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                                    <label class="custom-control-label" for=" customCheckLogin">مرا به خاطر بسپار؟</label>
+                                    <input class="custom-control-input" name="rememberme" id="rememberme"
+                                        type="checkbox" [(ngModel)]="model.rememberme">
+                                    <label class="custom-control-label" for="rememberme">مرا به خاطر بسپار؟</label>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <p>
+                                        form valid:{{loginForm.valid}}
+                                        form touched:{{loginForm.touched}}
+                                        form dirty:{{loginForm.dirty}}
+                                        form values:{{loginForm.value | json}}
+                                        username valid:{{username.valid}}
+                                        username touched:{{username.touched}}
+                                        username dirty:{{username.dirty}}
+                                        username values:{{username.value | json}}
+                                        password valid:{{password.valid}}
+                                        password touched:{{password.touched}}
+                                        password dirty:{{password.dirty}}
+                                        password values:{{password.valid | json}}
+                                    </p> -->
+
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary my-4">ورود به سایت</button>
+                                    <button type="submit" [disabled]="!loginForm.valid"
+                                        class="btn btn-primary my-4">ورود به سایت</button>
                                 </div>
+
                             </form>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-6">
                             <a href="#" class="text-light"><small>فراموشی کلمه عبور؟</small></a>
+                            <span style="font-size:14px; padding-left: 5px; padding-right: 5px; color:#ffffff;">|</span>
+                            <a href="#" class="text-light"><small>ثبت نام</small></a>
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -16347,11 +16347,7 @@ textarea[resize='horizontal'] {
     transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);
 }
 
-.input-group-alternative {
-    transition: box-shadow .15s ease;
-    border: 0;
-    box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
-}
+ 
 
     .input-group-alternative .form-control,
     .input-group-alternative .input-group-text {
