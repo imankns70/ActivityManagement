@@ -1,0 +1,34 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators'
+ 
+import { from } from 'rxjs';
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  baseUrl = 'http://localhost:9788/api/v1/Account/';
+  constructor(private http: HttpClient) { }
+  login(viewModel: any) {
+    return this.http.post(this.baseUrl + 'SignIn', viewModel).pipe(
+      map((resp: any) => {
+
+        const apiResult = resp;
+        if (apiResult.isSuccess)
+          localStorage.setItem('token', apiResult.data)
+        return apiResult
+      })
+    );
+
+  }
+  register(viewModel: any) {
+    viewModel.gender == 'مرد' ? viewModel.gender = 1 : viewModel.gender = 2
+    return this.http.post(this.baseUrl + 'Register', viewModel).pipe(
+      map((resp: any) => {
+        const apiResult = resp;
+
+        return apiResult;
+      })
+    )
+  }
+}

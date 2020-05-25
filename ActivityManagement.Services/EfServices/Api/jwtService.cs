@@ -59,7 +59,7 @@ namespace ActivityManagement.Services.EfServices.Api
             {
                 new Claim(ClaimTypes.Name,user.UserName),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                new Claim(ClaimTypes.MobilePhone,user.PhoneNumber),
+                //new Claim(ClaimTypes.MobilePhone,user.PhoneNumber),
                 new Claim(new ClaimsIdentityOptions().SecurityStampClaimType,user.SecurityStamp),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };

@@ -32,7 +32,7 @@ namespace ActivityManagement.IocConfig.Api.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
-            List<string> Message = new List<string>();
+            List<string> message = new List<string>();
             HttpStatusCode httpStatusCode = HttpStatusCode.InternalServerError;
             ApiResultStatusCode apiResultStatus = ApiResultStatusCode.ServerError;
 
@@ -61,11 +61,11 @@ namespace ActivityManagement.IocConfig.Api.Middlewares
                     if (exception.AdditionalData != null)
                         dic.Add("AdditionalData", JsonConvert.SerializeObject(exception.AdditionalData));
 
-                    Message.Add(JsonConvert.SerializeObject(dic));
+                    message.Add(JsonConvert.SerializeObject(dic));
                 }
                 else
                 {
-                    Message.Add("خطایی رخ داده است.");
+                    message.Add("خطایی رخ داده است.");
                 }
                 await WriteToResponseAsync();
 
@@ -80,12 +80,12 @@ namespace ActivityManagement.IocConfig.Api.Middlewares
                         ["Exception"] = exception.Message,
                         ["StackTrace"] = exception.StackTrace,
                     };
-                    Message.Add(JsonConvert.SerializeObject(error));
+                    message.Add(JsonConvert.SerializeObject(error));
                 }
 
                 else
                 {
-                    Message.Add("خطایی رخ داده است.");
+                    message.Add("خطایی رخ داده است.");
                 }
 
                 await WriteToResponseAsync();
@@ -93,7 +93,7 @@ namespace ActivityManagement.IocConfig.Api.Middlewares
 
             async Task WriteToResponseAsync()
             {
-                var result = new ApiResult(false, apiResultStatus, Message);
+                var result = new ApiResult(false, apiResultStatus, message);
                 var jsonResult = JsonConvert.SerializeObject(result);
 
                 context.Response.StatusCode = (int)httpStatusCode;

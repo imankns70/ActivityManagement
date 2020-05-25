@@ -70,7 +70,7 @@ namespace ActivityManagementMvc.Controllers
             else
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message.AddRange(ModelState.GetErrorsModelState());
+                logicResult.Message.Add(ModelState.GetErrorsModelState());
             }
             return Json(logicResult);
         }
@@ -106,7 +106,7 @@ namespace ActivityManagementMvc.Controllers
             else
             {
                 logicResult.MessageType = MessageType.Error;
-                logicResult.Message = ModelState.GetErrorsModelState();
+                logicResult.Message.Add(ModelState.GetErrorsModelState());
             }
             return Json(logicResult);
         }

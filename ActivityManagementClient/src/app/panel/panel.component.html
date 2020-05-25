@@ -26,7 +26,7 @@
              </a>
              <div class="dropdown-divider"></div>
        
-             <a asp-controller="Account" href="#">
+             <a asp-controller="Account" (click)="logout()">
                  <i class="ni ni-user-run"></i>
                  <span>خروج</span>
              </a>
@@ -119,7 +119,7 @@
                       </a>
                       <div class="dropdown-divider"></div>
               
-                      <a href="#" class="dropdown-item">
+                      <a class="dropdown-item" (click)="logout()">
                           <i class="ni ni-user-run"></i>
                           <span>خروج</span>
                       </a>

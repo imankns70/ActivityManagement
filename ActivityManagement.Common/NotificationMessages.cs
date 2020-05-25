@@ -3,6 +3,9 @@
     public class NotificationMessages
     {
         public const string CreateSuccess = "درج اطلاعات با موفقیت انجام شد.";
+        public const string LoginSuccess = "ورود با موفقیت انجام شد.";
+        public const string RegisterSuccess = "ثبت نام با موفقیت انجام شد.";
+        public const string InvalidUserNameOrPassword = "نام کاربری یا کلمه عبور شما صحیح نمی باشد.";
         public const string EditSuccess = "ویرایش اطلاعات با موفقیت انجام شد.";
         public const string DeleteSuccess = "حذف اطلاعات با موفقیت انجام شد.";
         public const string OperationSuccess = "عملیات با موفقیت انجام شد.";

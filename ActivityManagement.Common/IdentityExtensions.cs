@@ -23,7 +23,7 @@ namespace ActivityManagement.Common
         /// </summary>
         public static string DumpErrors(this IdentityResult result, bool useHtmlNewLine = false)
         {
-            var results = new StringBuilder();
+            StringBuilder results = new StringBuilder();
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)

@@ -49,8 +49,8 @@ namespace ActivityManagementApi
                    options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
                });
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
-               services.AddControllers();
-               services.AddCors();
+            services.AddControllers();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

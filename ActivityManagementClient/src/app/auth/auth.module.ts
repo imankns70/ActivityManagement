@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { authRoutes } from './authRoutes.routing';
 import {FormsModule} from '@angular/forms';
-import { from } from 'rxjs';
+import { AuthService } from './services/auth.service';
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot(authRoutes),
-    FormsModule
+    FormsModule,
   ],
   declarations: [
     AuthComponent, 
     LoginComponent, 
     RegisterComponent],
+    providers:[AuthService]
 
 })
 export class AuthModule { }

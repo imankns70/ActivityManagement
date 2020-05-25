@@ -154,7 +154,7 @@ namespace ActivityManagementMvc.Controllers
                 else
                 {
                     logicResult.MessageType = MessageType.Error;
-                    logicResult.Message = ModelState.GetErrorsModelState();
+                    logicResult.Message.Add(ModelState.GetErrorsModelState());
                 }
             }
             catch (Exception e)
@@ -266,7 +266,7 @@ namespace ActivityManagementMvc.Controllers
                 else
                 {
                     logicResult.MessageType = MessageType.Error;
-                    logicResult.Message = ModelState.GetErrorsModelState();
+                    logicResult.Message.Add(ModelState.GetErrorsModelState());
                 }
             }
             catch (Exception e)
@@ -401,7 +401,7 @@ namespace ActivityManagementMvc.Controllers
                 else
                 {
                     logicResult.MessageType = MessageType.Error;
-                    logicResult.Message = ModelState.GetErrorsModelState();
+                    logicResult.Message.Add(ModelState.GetErrorsModelState());
                 }
             }
             catch (Exception e)

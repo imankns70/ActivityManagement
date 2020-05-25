@@ -27,7 +27,8 @@
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/vendor/fontawesome/fontawesome-free/css/all.min.css",
               "src/assets/css/argon.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "src/assets/vendor/jquery/dist/jquery.min.js",

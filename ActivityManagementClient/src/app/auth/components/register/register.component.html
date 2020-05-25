@@ -1,0 +1,137 @@
+<div class="bg-default">
+
+  <div class="main-content">
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
+      <div class="container px-4">
+        <a class="navbar-brand" href="#">
+          <img src="../../../assets/images/Logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <!-- Collapse header -->
+          <div class="navbar-collapse-header d-md-none">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="#">
+                  <img src="../../../assets/images/Logo.png">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main"
+                  aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Navbar items -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-7">
+
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+          xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-4">
+              <div class="text-muted text-center mt-2 mb-3" style="font-size: 15px;"><span>ثبت نام</span></div>
+
+            </div>
+            <div class="card-body px-lg-5 py-lg-8">
+              <form #registerForm="ngForm" (ngSubmit)="register()">
+
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" placeholder="نام" name="firstname" id="firstname"
+                      [(ngModel)]="model.firstname" #firstname="ngModel" required>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" placeholder="نام خانوادگی" name="lastname" id="lastname"
+                      [(ngModel)]="model.lastname" #lastname="ngModel" required>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" placeholder="نام کاربری" name="username" id="username"
+                      [(ngModel)]="model.username" #username="ngModel" required>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" placeholder="ایمیل" name="email" id="email" [(ngModel)]="model.email"
+                      #email="ngModel" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" name="password" id="password" placeholder="کلمه عبور" type="password"
+                      [(ngModel)]="model.password" required #password="ngModel">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+
+                    <input class="form-control" name="confirmpassword" id="confirmpassword"
+                      placeholder="تکرار کلمه عبور" type="password" [(ngModel)]="model.confirmpassword" required
+                      #confirmpassword="ngModel">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <select name="gender" id="gender" [(ngModel)]="model.gender" required>
+                      <option>جنسیت</option>
+                      <option>مرد</option>
+                      <option>زن</option>
+                    </select>
+
+                  </div>
+                </div>
+
+
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" name="acceptcondition" id="acceptcondition" type="checkbox"
+                    [(ngModel)]="model.acceptcondition">
+                  <label class="custom-control-label" for="">موافق شرایط و ضوابط</label>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary my-4">ثبت نام</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

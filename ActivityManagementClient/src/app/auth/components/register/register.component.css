@@ -1,0 +1,38 @@
+.bg-default{
+    height: 100%;
+}
+.bg-default .form-control{
+text-align: center;
+}
+.input-group-text i{
+    font-size: 12px;
+}
+ 
+form button{
+    font-size: 14px;
+    border-radius: 10px;
+}
+form input.form-control {
+    border: 1px solid #5265d6 !important;
+    border-radius: 25px !important;
+    height: 35px;
+}
+.custom-checkbox .custom-control-input ~ .custom-control-label {
+    font-size: 12px;
+}
+small{
+    font-size: 12px;
+}
+input {
+    color: #000000 !important;
+    font-size: 14px;
+}
+.card{
+    border-radius: 10% ;
+}
+::placeholder{
+    color: #5265d6;
+}
+.custom-control-alternative .custom-control-label::before {
+    border: 1px solid #5265d6;
+}

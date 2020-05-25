@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ActivityManagement.Common {
     public static class StringExtensions {
-        public static List<string> GetErrorsModelState (this ModelStateDictionary modelState) {
+        public static string GetErrorsModelState (this ModelStateDictionary modelState) {
             List<string> messages = new List<string> ();
             foreach (var state in modelState.Values) {
                 foreach (ModelError error in state.Errors) {
@@ -15,7 +15,7 @@ namespace ActivityManagement.Common {
                    
                 }
             }
-            return messages;
+            return string.Join(",",messages);
         }
         public static bool HasValue (this string value, bool ignoreWhiteSpace = true) {
             return ignoreWhiteSpace ? !string.IsNullOrWhiteSpace (value) : !string.IsNullOrEmpty (value);
