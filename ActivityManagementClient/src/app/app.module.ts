@@ -11,7 +11,6 @@ import { Globals } from '../app/Services/Globals'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 
 @NgModule({
@@ -24,10 +23,9 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
       BrowserModule,
       HttpClientModule,
       RouterModule.forRoot(ActivityRoutes),
+      BrowserAnimationsModule,
       LoadingBarHttpClientModule,
       LoadingBarRouterModule,
-     
-      BrowserAnimationsModule,
       ToastrModule.forRoot({
          timeOut: 10000,
          positionClass: 'toast-top-left',
