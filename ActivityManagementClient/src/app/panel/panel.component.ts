@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
-import { Globals } from '../Services/Globals';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-panel',
@@ -10,15 +9,16 @@ import { Globals } from '../Services/Globals';
 })
 export class PanelComponent implements OnInit {
 
-  constructor(private router:Router) {
-   
-   }
+  constructor(private router: Router, private authService: AuthService) {
+
+  }
 
   ngOnInit() {
   }
-  logout(){
-    
+
+  logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login'])
   }
+   
 }
