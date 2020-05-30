@@ -18,21 +18,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   login() {
-
+    debugger;
     this.authService.login(this.model).subscribe(p => {
-     
-        if (p.isSuccess == true) {
-          this.router.navigate(['/panel']);
 
-          this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
-  
-        } else {
-          this.alertService.showMessage(p.message, "خطا", this.globals.errorMessage)
-        }
-      }, error => {
-        this.alertService.showMessage(error.message, "خطا", this.globals.errorMessage)
-  
-      })
+      if (p.isSuccess == true) {
+        this.router.navigate(['/panel']);
+
+        // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
+
+      } else {
+        this.alertService.showMessage(p.message, "خطا", this.globals.errorMessage)
+      }
+    }, error => {
+      this.alertService.showMessage(error.message, "خطا", this.globals.errorMessage)
+
+    })
   }
 
 }
