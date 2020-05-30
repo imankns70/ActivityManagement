@@ -2,22 +2,19 @@ import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { authRoutes } from './authRoutes.routing';
-import {FormsModule} from '@angular/forms';
+import { AuthRoutingModule } from './auth-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 @NgModule({
   imports: [
-    BrowserModule,
-    RouterModule.forRoot(authRoutes),
+    AuthRoutingModule,
     FormsModule,
   ],
   declarations: [
-    AuthComponent, 
-    LoginComponent, 
+    AuthComponent,
+    LoginComponent,
     RegisterComponent],
-    providers:[AuthService]
+  providers: [AuthService]
 
 })
 export class AuthModule { }
