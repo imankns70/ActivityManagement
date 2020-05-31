@@ -5,7 +5,7 @@ import { PanelComponent } from './panel.component';
 const routes: Routes = [
 
     {
-        path: 'panel',
+        path: '',
         component: PanelComponent,
 
     },
