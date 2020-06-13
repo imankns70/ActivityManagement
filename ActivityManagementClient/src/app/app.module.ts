@@ -8,42 +8,43 @@ import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 import { Globals } from '../app/Services/Globals'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
-    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
+import {
+   NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
+   NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
+} from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-   pbColor:'red',
+   pbColor: 'red',
 
    bgsColor: 'red',
    bgsPosition: POSITION.bottomRight,
    bgsSize: 70,
 
-   fgsPosition:POSITION.bottomRight,
-   fgsSize:70,
-   fgsColor:'red',
+   fgsPosition: POSITION.bottomRight,
+   fgsSize: 70,
+   fgsColor: 'red',
 
 
    bgsType: SPINNER.circle, // background spinner type
    fgsType: SPINNER.circle, // foreground spinner type
    pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
    pbThickness: 4 // progress bar thickness
- };
- 
+};
+
 @NgModule({
    declarations: [
       AppComponent
    ],
    imports: [
-      AuthModule,
-      PanelModule,
       BrowserModule,
+      AppRoutingModule,
+      PanelModule,
       HttpClientModule,
-      AppRoutingModule,      
       BrowserAnimationsModule,
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
-      NgxUiLoaderHttpModule.forRoot({showForeground:true}),
+      NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
       ToastrModule.forRoot({
          timeOut: 10000,
          positionClass: 'toast-top-left',
@@ -52,7 +53,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing'
       }),
    ],
-   providers: [Globals,AuthGuard],
+   providers: [Globals, AuthGuard],
    bootstrap: [
       AppComponent
    ]

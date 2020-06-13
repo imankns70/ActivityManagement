@@ -17,6 +17,7 @@ export class AuthService {
 
         const apiResult = resp;
         if (apiResult.isSuccess)
+     
           localStorage.setItem('token', apiResult.data)
         return apiResult
       })
@@ -35,7 +36,7 @@ export class AuthService {
   }
   isSignIn(): boolean {
    
-    return false;
+    return true;
 
   }
 }

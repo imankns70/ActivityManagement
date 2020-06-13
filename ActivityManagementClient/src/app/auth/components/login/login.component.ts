@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Globals } from 'src/app/Services/Globals';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model).subscribe(p => {
 
       if (p.isSuccess == true) {
+  
         this.router.navigate(['/panel']);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)

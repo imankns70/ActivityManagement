@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
 
-   // { path: 'auth', redirectTo: '/auth/login', pathMatch: 'full' },
+   { path: 'auth', redirectTo: '/auth/login', pathMatch: 'full' },
    { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
 
    {

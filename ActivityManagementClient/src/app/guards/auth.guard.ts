@@ -8,20 +8,21 @@ import { NotificationMessageService } from '../Services/NotificationMessage.serv
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private alert: NotificationMessageService,private router:Router) {
-   
+  constructor(private authService: AuthService, private alert: NotificationMessageService, private router: Router) {
+
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
- debugger;
-      if (this.authService.isSignIn()) {
-        return true;
-  
-      } else {
-      return  this.router.navigate(['/auth/login'])
-      }
-    
+   
+    if (this.authService.isSignIn()) {
+      debugger;
+      return true;
+
+    } else {
+      return this.router.navigate(['/auth/login'])
+    }
+
   }
 
 }
