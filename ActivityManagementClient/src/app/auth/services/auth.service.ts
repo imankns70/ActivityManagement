@@ -35,16 +35,10 @@ export class AuthService {
     )
   }
   isSignIn(): boolean {
-<<<<<<< HEAD
-    debugger;
-=======
-   
-<<<<<<< HEAD
+ 
+ 
     return true;
-=======
->>>>>>> 732bc7dfee2e41b662487679b8dc3c075e09de7d
-    return false;
->>>>>>> b8161bf7a8d3af349b8219df629ea61120d8406b
+ 
 
   }
 }
