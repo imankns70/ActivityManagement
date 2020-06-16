@@ -18,13 +18,18 @@ export class LoginComponent implements OnInit {
     private globals: Globals) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel')
+
+    this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
+    
+    if (this.authService.isSignIn()) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
   login() {
     this.authService.login(this.model).subscribe(p => {
 
       if (p.isSuccess == true) {
- 
+
         this.router.navigate([this.returnUrl]);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
