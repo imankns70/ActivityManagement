@@ -10,7 +10,7 @@ namespace ActivityManagementMvc.Controllers
     public class HomeController : BaseController
     {
         [HttpGet, DisplayName("نمایش صفحه اصلی")]
-        [Authorize(Policy= ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy= ConstantPolicies.DynamicPermission)]
         public IActionResult Index()
         {
 

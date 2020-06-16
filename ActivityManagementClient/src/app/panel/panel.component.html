@@ -1,4 +1,49 @@
-  <app-navbar></app-navbar>
+
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand pt-0" href="#">
+          <img src="../../assets/images/Logo.png" class="navbar-brand-img" alt="...">
+          پنل مدیریت  مدیریت فعالیت ها
+      </a>
+    <!-- start user-profile-collapse  -->
+
+<user-profile-collapse></user-profile-collapse>
+
+    <!-- end user-profile-collapse  -->
+      
+      
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+         
+          <div class="navbar-collapse-header d-md-none">
+              <div class="row">
+                  <div class="col-9 collapse-brand">
+                      <a href="./index.html">
+                          <img src="../../assets/images/Logo.png">  مدیریت فعالیت ها
+                      </a>
+                  </div>
+                  <div class="col-3 collapse-close">
+                      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                          <span></span>
+                          <span></span>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <!-- Form -->
+
+          <hr>
+          <!-- Navigation -->
+          <!-- start right-side-menu -->
+
+         <right-side-menu></right-side-menu>
+
+          <!-- end right-side-menu -->
+      </div>
+  </div>
+</nav>
 <!-- Main content -->
 
 <div class="main-content">
