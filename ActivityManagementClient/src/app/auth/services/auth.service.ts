@@ -17,13 +17,13 @@ export class AuthService {
 
         const apiResult = resp;
         if (apiResult.isSuccess)
-     
+
           localStorage.setItem('token', apiResult.data)
         return apiResult
       })
     );
-
   }
+
   register(viewModel: any) {
     viewModel.gender == 'مرد' ? viewModel.gender = 1 : viewModel.gender = 2
     return this.http.post(this.baseUrl + 'Register', viewModel).pipe(
@@ -35,10 +35,10 @@ export class AuthService {
     )
   }
   isSignIn(): boolean {
- 
- 
+
+
     return true;
- 
+
 
   }
 }

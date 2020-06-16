@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model).subscribe(p => {
 
       if (p.isSuccess == true) {
-debugger;
+ 
         this.router.navigate([this.returnUrl]);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
