@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private globals: Globals) { }
 
   ngOnInit() {
-
+debugger;
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
     
     if (this.authService.isSignIn()) {
