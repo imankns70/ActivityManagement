@@ -9,14 +9,13 @@
          </div>
      </a>
      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-         <a href="#" class="dropdown-item">
+         <a routerLink="/panel/myprofile" routerLinkActive="is-active" class="dropdown-item">
              <i class="ni ni-single-02"></i>
              <span>نمایه من</span>
          </a>
          <div class="dropdown-divider"></div>
    
-         <!-- <a asp-controller="Account" (click)="logout()"> -->
-            <a asp-controller="Account">
+         <a asp-controller="Account" (click)="logout()">
              <i class="ni ni-user-run"></i>
              <span>خروج</span>
          </a>

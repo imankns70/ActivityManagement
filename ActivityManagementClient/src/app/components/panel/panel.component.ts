@@ -16,9 +16,6 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/auth/login'])
-  }
+ 
    
 }

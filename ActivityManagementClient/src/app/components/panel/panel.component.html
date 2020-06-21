@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
   <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,3 +44,28 @@
       </div>
   </div>
 </nav>
+<!-- Main content -->
+
+<div class="main-content">
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+        <div class="container-fluid">
+            <ul class="nav nav-sitemap justify-content-center justify-content-xl-end">
+                <li>
+                    <a class="h4 mb-0 text-white d-lg-inline-block" routerLink="/panel/dashboard"> صفحه اصلی </a>
+                </li>
+
+            </ul>
+
+              <!-- start user-profile-->
+            <user-profile></user-profile>
+              <!-- end user-profile -->
+        </div>
+    </nav>
+    <div class="header bg-gradient-primary pb-6 pt-5 pt-md-3">
+    </div>
+   
+  <!-- start dashboard -->
+<!-- <app-dashboard></app-dashboard> -->
+<router-outlet></router-outlet>
+<!-- end dashboard -->
+</div>

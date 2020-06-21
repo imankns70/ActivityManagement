@@ -1,0 +1,129 @@
+<div class="customContainer">
+    <div class="row">
+        <div class="card shadow w-100" on="">
+            <div class="card-header">
+                اطلاعات شخصی
+            </div>
+            <div class="card-body">
+                <form class="form-inline" id="EditUserForm" enctype="multipart/form-data" asp-controller="UserManager"
+                    asp-action="Edit">
+                    <div class="container">
+                        <div class="row mt-2 mb-2">
+
+                            <!-- <input type="hidden" asp-for="Id" /> -->
+
+                            <div class="col-md-3">
+                                <div class="text-center">
+                                    <p>تصویر پروفایل</p>
+                                    <div class="fileinput fileinput-new border" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="height: 100px;">
+
+                                            <img src="../../../../../assets/images/UserPic.png" />
+
+
+
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail "
+                                            style="height: 132px; width: 132px"> </div>
+                                        <div>
+                                            <div class="btn-file">
+                                                <span class="fileinput-new btn btn-success"> انتخاب</span>
+                                                <span class="fileinput-exists btn btn-success">انتخاب</span>
+                                                <input type="file"
+                                                    accept=".jpg, .png, .jpeg, .gif, .tif, .tiff, .JPG" />
+                                                <a href="javascript:;" class="btn btn-danger fileinput-exists"
+                                                    data-dismiss="fileinput"> حذف </a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">نام کاربری</label>
+
+
+                                        <input class="form-control" />
+
+                                    </div>
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">نام</label>
+                                        <input class="form-control" />
+                                    </div>
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">نام خانوادگی</label>
+
+                                        <input class="form-control" />
+                                    </div>
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">ایمیل</label>
+                                        <input class="form-control" />
+                                    </div>
+ 
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">تلفن</label>
+
+                                        <input class="form-control" />
+                                    </div>
+                                    <div class="form-group mb-3 mr-2">
+                                        <label class="control-label">تاریخ تولد</label>
+ 
+                                        <input class="form-control" type="text"/>
+
+
+                                    </div>
+
+
+
+                                    <div class="form-group  mr-2">
+                                        <label class="control-label">جنسیت</label>
+
+                                        <input type="radio" type="radio" />
+                                        <label>
+                                            مرد
+                                        </label>
+
+                                        <input type="radio" type="radio" />
+
+                                        <label>
+                                            زن
+                                        </label>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="row mt-3">
+                                    <div class="form-group mr-2">
+
+                                        <button type="button" class="btn-save"><i class="fa fa-check"></i><span
+                                                class="mr-1">ذخیره</span></button>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

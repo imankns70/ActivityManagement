@@ -35,10 +35,6 @@ export class AuthService {
     )
   }
   isSignIn(): boolean {
-
-
     return true;
-
-
   }
 }
