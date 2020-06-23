@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.Services.EfInterfaces.Identity;
@@ -24,12 +26,27 @@ namespace ActivityManagementApi.Controllers.v1
             _userManager = userManager;
         }
 
-        [HttpGet]
+        [HttpGet("GetUsers")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<List<UsersViewModel>>> Get()
+        public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
         {
-            List<UsersViewModel> users= await _userManager.GetAllUsersWithRolesAsync();
+            List<UsersViewModel> users = await _userManager.GetAllUsersWithRolesAsync();
             return Ok(users);
         }
+
+
+        [HttpGet("{id}")]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<ApiResult<UsersViewModel>> GetUser(int id)
+        {
+            int userId = User.Identity.GetUserId<int>();
+            if (userId != id)
+            {
+                return BadRequest(NotificationMessages.UserNotFound);
+            }
+            UsersViewModel user = await _userManager.FindUserWithRolesByIdAsync(id);
+            return Ok(user);
+        }
+
     }
 }

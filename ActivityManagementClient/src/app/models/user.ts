@@ -8,6 +8,11 @@ export interface User {
     email:string,
     imageUrl:string,
     birthDate:string,
-    gender:string,
+    gender:gender,
     role:string,
+}
+
+enum gender{
+    men=1,
+    women=2
 }
