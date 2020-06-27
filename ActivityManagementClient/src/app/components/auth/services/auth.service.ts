@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { JwtHelperService } from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
 
 
@@ -9,8 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.apiUrl + 'api/v1/Account/';
-  jwtHelper = new JwtHelperService();
+  baseUrl = environment.apiUrl + 'Account/';
   constructor(private http: HttpClient) { }
   login(viewModel: any) {
     return this.http.post(this.baseUrl + 'SignIn', viewModel).pipe(
@@ -36,6 +34,7 @@ export class AuthService {
     )
   }
   isSignIn(): boolean {
-    return true;
+    return localStorage.getItem('token') == null ? false : true;
+     
   }
 }

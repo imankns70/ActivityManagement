@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { User } from 'src/app/models/user';
+import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { ApiResult } from 'src/app/models/apiresult';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,9 +12,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  user: User
+  constructor(private userService: UserService, alertService: NotificationMessageService) { }
 
   ngOnInit() {
+
+    this.getUsers();
   }
 
+  getUsers() {
+    const result = this.userService.getUsers().subscribe(x => {
+      console.log(x);
+      if (x.isSuccess) {
+       
+        //this.user.firstName = x.data.firstName,
+      }
+    });
+
+  }
+
+
+  // getUser(): User {
+
+  // }
 }

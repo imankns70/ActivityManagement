@@ -1,10 +1,15 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using System.Threading.Tasks;
+using ActivityManagement.Common;
+using ActivityManagement.Common.Api;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ActivityManagement.IocConfig
 {
@@ -26,12 +31,8 @@ namespace ActivityManagement.IocConfig
              DynamicPermissionRequirement requirement)
         {
             var mvcContext = context.Resource as Endpoint;
-            if (mvcContext == null)
-            {
-                return Task.CompletedTask;
-            }
 
-            var actionDescriptor = mvcContext.Metadata.OfType<ControllerActionDescriptor>().SingleOrDefault();
+            var actionDescriptor = mvcContext?.Metadata.OfType<ControllerActionDescriptor>().SingleOrDefault();
 
             if (actionDescriptor != null)
             {
@@ -47,6 +48,13 @@ namespace ActivityManagement.IocConfig
                 if (_securityTrimmingService.CanCurrentUserAccess(area, controller, action))
                 {
                     context.Succeed(requirement);
+                }
+                else
+                {
+                    var authorizationFilterContext = context.Resource as AuthorizationFilterContext;
+
+                    authorizationFilterContext?.Result= new JsonResult(new ApiResult(false,ApiResultStatusCode.UnAuthorized,NotificationMessages.UnAuthorize));
+
                 }
             }
 

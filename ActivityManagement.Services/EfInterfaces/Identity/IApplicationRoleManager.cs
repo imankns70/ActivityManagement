@@ -32,6 +32,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
 
         #region CustomMethod
         List<AppRole> GetAllRoles();
+        List<AppRole> GetAllRolesWithClaims();
         List<RolesViewModel> GetAllRolesAndUsersCount();
         Task<AppRole> FindClaimsInRole(int roleId);
         Task<AppRole> FinRoleAndUsersCountById(int roleId);

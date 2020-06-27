@@ -69,8 +69,7 @@ namespace ActivityManagement.Common.Api
 
     }
 
-    public class ApiResult<TData> : ApiResult
-        where TData : class
+    public class ApiResult<TData> : ApiResult where TData : class
     {
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public TData Data { get; set; }

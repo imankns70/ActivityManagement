@@ -42,27 +42,30 @@ namespace ActivityManagementApi
             services.AddCustomIdentityServices();
             services.AddCustomServices();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
+            services.AddCustomAuthentication(SiteSettings);
+            services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddAuthorization(options =>
                {
                    options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
                });
-            services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
-            services.AddControllers();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
             services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder appBuilder, IWebHostEnvironment env)
         {
-            var cachePeriod = env.IsDevelopment() ? "600" : "605800";
+            //var cachePeriod = env.IsDevelopment() ? "600" : "605800";
+            appBuilder.UseCustomExceptionHandler();
 
-            if (env.IsDevelopment())
-                appBuilder.UseDeveloperExceptionPage();
+            //if (env.IsDevelopment())
+            //    appBuilder.UseDeveloperExceptionPage();
 
             appBuilder.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            appBuilder.UseCustomExceptionHandler();
             appBuilder.UseCustomIdentityServices();
             appBuilder.UseSwaggerAndUI();
             appBuilder.UseRouting();

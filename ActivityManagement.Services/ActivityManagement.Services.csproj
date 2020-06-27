@@ -3,7 +3,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ActivityManagement.DataLayer\ActivityManagement.DataLayer.csproj" />
     <ProjectReference Include="..\ActivityManagement.ViewModels\ActivityManagement.ViewModels.csproj" />
   </ItemGroup>
     <ItemGroup>

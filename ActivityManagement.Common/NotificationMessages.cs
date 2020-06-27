@@ -18,6 +18,7 @@
         public const string UserNotFound = "هیچ کاربری یافت نشد";
         public const string InvalidImage = "عکس نامعتبر است.";
         public const string InvalidFile = "عکس نامعتبر است.";
+        public const string UnAuthorize = "عدم دسترسی.";
         
     }
 }

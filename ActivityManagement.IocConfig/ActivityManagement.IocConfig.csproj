@@ -12,7 +12,6 @@
   
   <ItemGroup>
     <ProjectReference Include="..\ActivityManagement.Services\ActivityManagement.Services.csproj" />
-    <ProjectReference Include="..\ActivityManagement.ViewModels\ActivityManagement.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@ using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
+using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -65,17 +66,24 @@ namespace ActivityManagement.Services.EfServices.Api
             };
 
 
-            List<AppRole> roles = RoleManager.GetAllRoles();
-
-            foreach (var item in roles)
+            //List<AppRole> roles = RoleManager.GetAllRolesWithClaims();
+            
+            foreach (var item in user.Roles)
             {
-                var roleClaim = await RoleManager.FindClaimsInRole(item.Id);
-                foreach (var claim in roleClaim.Claims)
+                var roleClaim = await RoleManager.FindClaimsInRole(item.RoleId);
+                if (roleClaim != null)
                 {
-                    claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
+                    foreach (var claim in roleClaim.Claims)
+                    {
+                        if (claim.ClaimType == ConstantPolicies.DynamicPermission)
+                        {
+                            claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
+
+                        }
+                    }
                 }
 
-                claims.Add(new Claim(ClaimTypes.Role, item.Name));
+                claims.Add(new Claim(ClaimTypes.Role, item.Role.Name));
             }
             // instead of userClaim use roleClaim 
             // var userClaims = await _userManager.GetClaimsAsync(user);

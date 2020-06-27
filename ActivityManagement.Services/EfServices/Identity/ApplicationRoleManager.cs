@@ -56,6 +56,11 @@ namespace ActivityManagement.Services.EfServices.Identity
             return Roles.ToList();
         }
 
+        public List<AppRole> GetAllRolesWithClaims()
+        {
+            return Roles.Include(appRole=> appRole.Claims).ToList();
+        }
+
 
         public List<RolesViewModel> GetAllRolesAndUsersCount()
         {

@@ -3122,7 +3122,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.ViewModels.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -9463,7 +9466,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "ActivityManagement.DataLayer >= 1.0.0",
       "ActivityManagement.ViewModels >= 1.0.0",
       "Coravel >= 3.1.0",
       "Microsoft.IdentityModel.Tokens >= 5.6.0",
@@ -9497,9 +9499,6 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj": {
-              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj"
-            },
             "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
               "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
             }

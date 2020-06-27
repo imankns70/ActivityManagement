@@ -3699,7 +3699,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Common.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.DataLayer/1.0.0": {
         "type": "project",
@@ -3717,7 +3720,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",
@@ -3737,7 +3743,6 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "ActivityManagement.Services": "1.0.0",
-          "ActivityManagement.ViewModels": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Versioning": "4.1.1",
           "Swashbuckle.AspNetCore": "5.0.0"
         },
@@ -3746,13 +3751,15 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.IocConfig.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "ActivityManagement.DataLayer": "1.0.0",
           "ActivityManagement.ViewModels": "1.0.0",
           "Coravel": "3.1.0",
           "Microsoft.IdentityModel.Tokens": "5.6.0",
@@ -3763,7 +3770,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",
@@ -3776,7 +3786,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.ViewModels.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },

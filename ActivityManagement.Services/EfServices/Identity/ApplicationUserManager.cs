@@ -52,6 +52,12 @@ namespace ActivityManagement.Services.EfServices.Identity
 
         }
 
+        public async Task<AppUser> FindUserWithRolesByNameAsync(string userName)
+        {
+            return await Users.Include(navProp => navProp.Roles)
+                .FirstOrDefaultAsync(appUSer => appUSer.UserName == userName);
+        }
+
         public async Task<List<AppUser>> GetAllUsersAsync()
         {
             return await Users.ToListAsync();
@@ -81,7 +87,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             {
 
                 Id = user.Id,
-                LockOutEndCustom = user.LockoutEnd !=null ? user.LockoutEnd.Value.DateTime.ToLocalTime() : (DateTime?) null,
+                LockOutEndCustom = user.LockoutEnd != null ? user.LockoutEnd.Value.DateTime.ToLocalTime() : (DateTime?)null,
                 IsActive = user.IsActive,
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
@@ -92,7 +98,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 UserName = user.UserName,
                 PhoneNumber = user.PhoneNumber,
                 FirstName = user.FirstName,
-                LockoutEnabled=user.LockoutEnabled,
+                LockoutEnabled = user.LockoutEnabled,
                 LastName = user.LastName,
 
 
@@ -113,8 +119,8 @@ namespace ActivityManagement.Services.EfServices.Identity
                 IsActive = user.IsActive,
                 Image = user.Image,
                 RegisterDateTime = user.RegisterDateTime,
-                //Roles = user.Roles,
-                RoleId = user.Roles.FirstOrDefault().RoleId,
+                Roles = user.Roles,
+                //RoleId = user.Roles.FirstOrDefault().RoleId,
                 AccessFailedCount = user.AccessFailedCount,
                 EmailConfirmed = user.EmailConfirmed,
                 LockoutEnabled = user.LockoutEnabled,

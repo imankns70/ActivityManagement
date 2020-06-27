@@ -45,7 +45,7 @@ namespace ActivityManagementApi.Controllers.v1
 
             if (ModelState.IsValid)
             {
-                AppUser user = await _userManager.FindByNameAsync(viewModel.UserName);
+                AppUser user = await _userManager.FindUserWithRolesByNameAsync(viewModel.UserName);
                 if (user == null)
                 {
                     return BadRequest(NotificationMessages.UserNotFound);

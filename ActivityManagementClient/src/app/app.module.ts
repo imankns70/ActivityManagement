@@ -5,13 +5,15 @@ import { PanelModule } from './components/panel/panel.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
-import { Globals } from '../app/Services/Globals'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
    NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
+// import { JwtModule } from '@auth0/angular-jwt';
+// import { environment } from 'src/environments/environment';
+// import { tokenGetter } from 'src/app/Services/customFunction';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
@@ -41,6 +43,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      // JwtModule.forRoot({
+      //    config: {
+      //      tokenGetter: tokenGetter,
+      //      whitelistedDomains: [
+      //        environment.apiUrl + 'api/v1/UserManager',
+      //      ],
+      //      blacklistedRoutes: [
+      //        environment.apiUrl + 'api/v1/Account/SignIn',
+      //        environment.apiUrl + 'api/v1/Account/Register']
+      //    }
+      //  }),
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
@@ -52,7 +65,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing'
       }),
    ],
-   providers: [Globals, AuthGuard],
+   providers: [AuthGuard],
    bootstrap: [
       AppComponent
    ]
