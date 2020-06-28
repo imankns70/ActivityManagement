@@ -38,7 +38,7 @@ namespace ActivityManagement.IocConfig.Api.Middlewares
 
             try
             {
-                await _next(context);
+               await _next(context);
             }
 
             catch (AppException exception)

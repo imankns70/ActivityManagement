@@ -3,7 +3,7 @@ export interface Role {
     name: string,
     description: string,
     userCount: number,
-    sdasd: gender
+ 
 }
 
  

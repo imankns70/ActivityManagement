@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
-import { getTokenHeader } from 'src/app/Services/customFunction';
+import { setTokenHeader } from 'src/app/Services/customFunction';
 
 
 @Injectable({
@@ -15,7 +15,7 @@ export class UserService {
 
   getUsers(): Observable<ApiResult> {
 
-    return this.http.get<ApiResult>(this.baseUrl + 'GetUsers',{headers:getTokenHeader()})
+    return this.http.get<ApiResult>(this.baseUrl + 'GetUsers',{headers:setTokenHeader()})
 
   }
 

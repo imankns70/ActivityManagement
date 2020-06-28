@@ -11,9 +11,7 @@ import {
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
-// import { JwtModule } from '@auth0/angular-jwt';
-// import { environment } from 'src/environments/environment';
-// import { tokenGetter } from 'src/app/Services/customFunction';
+ 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',

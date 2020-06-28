@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,7 +72,7 @@ namespace ActivityManagement.Services.EfServices.Api
             foreach (var item in user.Roles)
             {
                 var roleClaim = await RoleManager.FindClaimsInRole(item.RoleId);
-                if (roleClaim != null)
+                if (roleClaim.Claims.Any())
                 {
                     foreach (var claim in roleClaim.Claims)
                     {
