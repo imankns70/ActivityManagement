@@ -26,6 +26,7 @@ namespace ActivityManagement.IocConfig
         public DynamicPermissionsAuthorizationHandler(ISecurityTrimmingService securityTrimmingService)
         {
             _securityTrimmingService = securityTrimmingService;
+            
         }
 
         protected override Task HandleRequirementAsync(
@@ -53,8 +54,11 @@ namespace ActivityManagement.IocConfig
                 }
                 else
                 {
-                    
-                    ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
+                    context.Fail();
+                   
+                    //ApiResult apiResult = new ApiResult(false, ApiResultStatusCode.UnAuthorized, new List<string>());
+                    //context.Resource = new JsonResult(apiResult);
+                    //ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
                 }
             }
 
