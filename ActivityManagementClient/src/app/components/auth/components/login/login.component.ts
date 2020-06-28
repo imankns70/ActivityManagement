@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-debugger;
+  
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
     
     if (this.authService.isSignIn()) {
