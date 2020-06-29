@@ -12,21 +12,20 @@ import { Console } from 'console';
 })
 export class MyProfileComponent implements OnInit {
 
-  user: User
+  users: User[]
   constructor(private userService: UserService, alertService: NotificationMessageService) { }
 
   ngOnInit() {
 
-    this.getUsers();
+     this.getUsers();
   }
 
   getUsers() {
-    const result = this.userService.getUsers().subscribe(x => {
-      console.log(x);
-      if (x.isSuccess) {
+    const result = this.userService.getUsers().subscribe((apiResult:ApiResult) => {
+      if(apiResult.isSuccess==true){
        
-        //this.user.firstName = x.data.firstName,
       }
+
     });
 
   }

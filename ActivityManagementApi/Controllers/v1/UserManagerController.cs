@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
@@ -14,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementApi.Controllers.v1
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]/")]
     [ApiVersion("1")]
     [ApiResultFilter]
     public class UserManagerController : ControllerBase
@@ -26,7 +27,8 @@ namespace ActivityManagementApi.Controllers.v1
             _userManager = userManager;
         }
 
-        [HttpGet("GetUsers")]
+        [HttpGet()]
+        [Route("GetUsers")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
         {
@@ -36,16 +38,21 @@ namespace ActivityManagementApi.Controllers.v1
 
 
         [HttpGet("{id}")]
-        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<UsersViewModel>> GetUser(int id)
+        [Route("GetUserLoggedIn")]
+        public async Task<ApiResult<UsersViewModel>> GetUserLoggedIn()
         {
-            int userId = User.Identity.GetUserId<int>();
-            if (userId != id)
+            if (User.Identity.IsAuthenticated)
             {
-                return BadRequest(NotificationMessages.UserNotFound);
+                UsersViewModel user = await _userManager.FindUserWithRolesByIdAsync(User.Identity.GetUserId<int>());
+                return Ok(user);
             }
-            UsersViewModel user = await _userManager.FindUserWithRolesByIdAsync(id);
-            return Ok(user);
+
+            return BadRequest(NotificationMessages.UserNotFound);
+
+
+
+
+
         }
 
     }

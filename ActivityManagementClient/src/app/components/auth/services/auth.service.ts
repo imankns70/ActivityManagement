@@ -21,7 +21,9 @@ export class AuthService {
 
           localStorage.setItem('token', apiResult.data)
         return apiResult
-      })
+      }), 
+      
+
     );
   }
 

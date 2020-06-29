@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { setTokenHeader } from 'src/app/Services/customFunction';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,12 +16,13 @@ export class UserService {
 
   getUsers(): Observable<ApiResult> {
 
-    return this.http.get<ApiResult>(this.baseUrl + 'GetUsers',{headers:setTokenHeader()})
+    return this.http.get<ApiResult>(this.baseUrl + 'GetUsers', { headers: setTokenHeader() })
+
 
   }
 
-  FindUserWithRolesById(id): Observable<ApiResult> {
-    return this.http.get<ApiResult>(this.baseUrl + id)
+  GetUserLoggedIn(): Observable<ApiResult> {
+    return this.http.get<ApiResult>(this.baseUrl+'GetUserLoggedIn')
 
   }
 }
