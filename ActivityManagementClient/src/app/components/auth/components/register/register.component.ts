@@ -17,13 +17,13 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.model).subscribe(p => {
       if (p.isSuccess == true) {
-        this.alertService.showMessage(p.message, "موفق", Globals.successMessage)
+        this.alertService.showMessage(p.message.join(","), "موفق", Globals.successMessage)
 
       } else {
-        this.alertService.showMessage(p.message, "خطا", Globals.errorMessage)
+        this.alertService.showMessage(p.message.join(","), "خطا", Globals.errorMessage)
       }
     }, error => {
-      this.alertService.showMessage(error.message, "خطا", Globals.errorMessage)
+      this.alertService.showMessage(error.message.join(","), "خطا", Globals.errorMessage)
 
     })
   }

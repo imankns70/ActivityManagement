@@ -718,3 +718,4 @@ D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\stat
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.genruntimeconfig.cache
+D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs
