@@ -30,12 +30,8 @@ namespace ActivityManagement.IocConfig
             IHttpContextAccessor httpContextAccessor)
         {
             _securityTrimmingService = securityTrimmingService;
-<<<<<<< HEAD
             _httpContextAccessor = httpContextAccessor;
 
-=======
-            
->>>>>>> 399af555ddaa587b88504402fb38356acf13577b
         }
 
         protected override Task HandleRequirementAsync(
@@ -61,26 +57,21 @@ namespace ActivityManagement.IocConfig
                 {
                     context.Succeed(requirement);
                 }
-                else
-                {
-                    context.Fail();
-<<<<<<< HEAD
-                    ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
-                    HttpStatusCode statusCode = HttpStatusCode.Unauthorized;
-                    List<string> message = new List<string>(new[] { "UnAuthorized" });
-                    ApiResult apiResult = new ApiResult(false, apiResultStatus, message);
-                    string jsonResult = JsonConvert.SerializeObject(apiResult);
-                    _httpContextAccessor.HttpContext.Response.StatusCode = (int)statusCode;
-                    _httpContextAccessor.HttpContext.Response.ContentType = "application/json";
-                    _httpContextAccessor.HttpContext.Response.WriteAsync(jsonResult);
+                //else
+                //{
+                //    context.Fail();
+                //    ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
+                //    HttpStatusCode statusCode = HttpStatusCode.Unauthorized;
+                //    List<string> message = new List<string>(new[] { "UnAuthorized" });
+                //    ApiResult apiResult = new ApiResult(false, apiResultStatus, message);
+                //    string jsonResult = JsonConvert.SerializeObject(apiResult);
+                //    _httpContextAccessor.HttpContext.Response.StatusCode = (int)statusCode;
+                //    _httpContextAccessor.HttpContext.Response.ContentType = "application/json";
+                //    _httpContextAccessor.HttpContext.Response.WriteAsync(jsonResult);
 
-=======
-                   
-                    //ApiResult apiResult = new ApiResult(false, ApiResultStatusCode.UnAuthorized, new List<string>());
-                    //context.Resource = new JsonResult(apiResult);
-                    //ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
->>>>>>> 399af555ddaa587b88504402fb38356acf13577b
-                }
+
+
+                //}
             }
 
             return Task.CompletedTask;
