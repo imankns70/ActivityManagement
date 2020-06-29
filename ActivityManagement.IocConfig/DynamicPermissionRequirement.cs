@@ -30,8 +30,12 @@ namespace ActivityManagement.IocConfig
             IHttpContextAccessor httpContextAccessor)
         {
             _securityTrimmingService = securityTrimmingService;
+<<<<<<< HEAD
             _httpContextAccessor = httpContextAccessor;
 
+=======
+            
+>>>>>>> 399af555ddaa587b88504402fb38356acf13577b
         }
 
         protected override Task HandleRequirementAsync(
@@ -60,6 +64,7 @@ namespace ActivityManagement.IocConfig
                 else
                 {
                     context.Fail();
+<<<<<<< HEAD
                     ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
                     HttpStatusCode statusCode = HttpStatusCode.Unauthorized;
                     List<string> message = new List<string>(new[] { "UnAuthorized" });
@@ -69,6 +74,12 @@ namespace ActivityManagement.IocConfig
                     _httpContextAccessor.HttpContext.Response.ContentType = "application/json";
                     _httpContextAccessor.HttpContext.Response.WriteAsync(jsonResult);
 
+=======
+                   
+                    //ApiResult apiResult = new ApiResult(false, ApiResultStatusCode.UnAuthorized, new List<string>());
+                    //context.Resource = new JsonResult(apiResult);
+                    //ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
+>>>>>>> 399af555ddaa587b88504402fb38356acf13577b
                 }
             }
 
