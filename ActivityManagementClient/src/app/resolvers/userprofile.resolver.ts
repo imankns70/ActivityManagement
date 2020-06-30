@@ -3,24 +3,27 @@ import { User } from '../models/user';
 import { UserService } from '../components/panel/services/user.service';
 import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { NotificationMessageService } from '../Services/NotificationMessage.service';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, of, empty } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Globals } from '../models/enums/Globals';
+import { ApiResult } from '../models/apiresult';
 
-@Injectable()
-export class UserProfileResolver implements Resolve<User>{
+@Injectable({ providedIn: 'root' })
+export class UserProfileResolver implements Resolve<ApiResult>{
     constructor(private userService: UserService, private router: Router, private alertService: NotificationMessageService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
 
-        this.userService.GetUserLoggedIn().pipe(
-        
-            catchError(error => {
-                console.log(error); 
-                this.alertService.showMessage(error, "خطا", Globals.errorMessage);
-                this.router.navigate['/panle/myprofile']
-                return of(null)
-            })
-        )
+        return this.userService.getUsers()
+
+            .pipe(
+
+                catchError(error => {
+
+                    this.alertService.showMessage(error, "خطا", Globals.errorMessage);
+                    this.router.navigate['/panel/myprofile']
+                    return of(null)
+                })
+            )
     }
 }

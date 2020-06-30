@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<ApiResult> {
-
+   
     return this.http.get<ApiResult>(this.baseUrl + 'GetUsers', { headers: setTokenHeader() })
 
 
