@@ -16,14 +16,14 @@ export class UserProfileResolver implements Resolve<ApiResult>{
 
         return this.userService.getUsers()
 
-            .pipe(
+            // .pipe(
 
-                catchError(error => {
+            //     catchError(error => {
 
-                    this.alertService.showMessage(error, "خطا", Globals.errorMessage);
-                    this.router.navigate['/panel/myprofile']
-                    return of(null)
-                })
-            )
+            //         this.alertService.showMessage(error, "خطا", Globals.errorMessage);
+            //         this.router.navigate['/panel/myprofile']
+            //         return of(null)
+            //     })
+            // )
     }
 }

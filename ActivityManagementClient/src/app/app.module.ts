@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PanelModule } from './components/panel/panel.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +11,8 @@ import {
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
- 
+import { HttpErrorInterceptor } from './Services/http-error.interceptor';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
@@ -41,7 +42,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
-    
+
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
@@ -53,7 +54,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing'
       }),
    ],
-   providers: [AuthGuard],
+   providers: [
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: HttpErrorInterceptor,
+         multi: true
+      },
+       AuthGuard],
    bootstrap: [
       AppComponent
    ]
