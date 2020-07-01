@@ -1,4 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { ApiResult } from '../models/apiresult';
 
 export function setTokenHeader() {
   return new HttpHeaders({
@@ -6,3 +7,4 @@ export function setTokenHeader() {
     'Authorization': 'Bearer ' + localStorage.getItem('token')
   })
 }
+ 

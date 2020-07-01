@@ -41,17 +41,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
-      // JwtModule.forRoot({
-      //    config: {
-      //      tokenGetter: tokenGetter,
-      //      whitelistedDomains: [
-      //        environment.apiUrl + 'api/v1/UserManager',
-      //      ],
-      //      blacklistedRoutes: [
-      //        environment.apiUrl + 'api/v1/Account/SignIn',
-      //        environment.apiUrl + 'api/v1/Account/Register']
-      //    }
-      //  }),
+    
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),

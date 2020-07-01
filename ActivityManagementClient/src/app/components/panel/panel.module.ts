@@ -7,6 +7,7 @@ import { RightSideMenuComponent } from './components/right-side-menu/right-side-
 import { UserProfileCollapseComponent } from './components/user-profile-collapse/user-profile-collapse.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { UserService } from './services/user.service';
+import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 
 
 
@@ -26,7 +27,10 @@ import { UserService } from './services/user.service';
 
   ],
 
-  providers: [UserService]
+  providers: [
+    UserService,
+    UserProfileResolver
+  ]
 
 })
 export class PanelModule {

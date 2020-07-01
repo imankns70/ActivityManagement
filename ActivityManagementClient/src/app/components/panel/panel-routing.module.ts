@@ -3,14 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { PanelComponent } from './panel.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
+import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 
 const routes: Routes = [
 
     {
-        path: '',component: PanelComponent,
-        children:[
-            {path:'dashboard', component:DashboardComponent},
-            {path:'myprofile', component:MyProfileComponent}
+        path: '', component: PanelComponent,
+        children: [
+            { path: 'dashboard', component: DashboardComponent },
+            { path: 'myprofile', component: MyProfileComponent, resolve: { users: UserProfileResolver } }
         ]
 
     },

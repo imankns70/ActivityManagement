@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Console } from 'console';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -12,21 +13,20 @@ import { Console } from 'console';
 })
 export class MyProfileComponent implements OnInit {
 
-  user: User
-  constructor(private userService: UserService, alertService: NotificationMessageService) { }
+  users: User[]
+  constructor(private userService: UserService, alertService: NotificationMessageService, private route:ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.getUsers();
+     this.getUsers();
   }
 
   getUsers() {
-    const result = this.userService.getUsers().subscribe(x => {
-      console.log(x);
-      if (x.isSuccess) {
-       
-        //this.user.firstName = x.data.firstName,
-      }
+    this.route.data.subscribe(data => {
+      
+      this.users = data.users.data
+      
+ 
     });
 
   }
