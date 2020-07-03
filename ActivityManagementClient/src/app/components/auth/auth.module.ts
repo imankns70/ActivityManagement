@@ -4,7 +4,7 @@ import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../auth/services/auth.service';
 @NgModule({
   imports: [
     AuthRoutingModule,

@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { setTokenHeader } from 'src/app/Services/customFunction';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/models/user';
 
 
 @Injectable({
@@ -12,17 +13,18 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class UserService {
   baseUrl = environment.apiUrl + 'UserManager/';
+   
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<ApiResult> {
-   
+
     return this.http.get<ApiResult>(this.baseUrl + 'GetUsers', { headers: setTokenHeader() })
 
 
   }
 
   GetUserLoggedIn(): Observable<ApiResult> {
-    return this.http.get<ApiResult>(this.baseUrl+'GetUserLoggedIn')
+    return this.http.get<ApiResult>(this.baseUrl + 'GetUserLoggedIn', { headers: setTokenHeader() })
 
   }
 }

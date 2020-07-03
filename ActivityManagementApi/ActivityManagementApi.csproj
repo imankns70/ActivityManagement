@@ -12,10 +12,6 @@
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ActivityManagement.IocConfig\ActivityManagement.IocConfig.csproj" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
@@ -195,6 +191,11 @@
     <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\feature.md" />
     <None Include="wwwroot\lib\bootstrap\.github\ISSUE_TEMPLATE\feature_request.md" />
     <None Include="wwwroot\lib\bootstrap\.github\SUPPORT.md" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\ActivityManagement.IocConfig\ActivityManagement.IocConfig.csproj" />
   </ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@ namespace ActivityManagementApi.Controllers.v1
             _userManager = userManager;
         }
 
-        [HttpGet()]
+        [HttpGet]
         [Route("GetUsers")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
@@ -39,6 +39,7 @@ namespace ActivityManagementApi.Controllers.v1
 
         [HttpGet("{id}")]
         [Route("GetUserLoggedIn")]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<UsersViewModel>> GetUserLoggedIn()
         {
             if (User.Identity.IsAuthenticated)

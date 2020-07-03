@@ -11,7 +11,7 @@ const routes: Routes = [
         path: '', component: PanelComponent,
         children: [
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'myprofile', component: MyProfileComponent, resolve: { users: UserProfileResolver } }
+            { path: 'myprofile', component: MyProfileComponent, resolve: { user: UserProfileResolver } }
         ]
 
     },

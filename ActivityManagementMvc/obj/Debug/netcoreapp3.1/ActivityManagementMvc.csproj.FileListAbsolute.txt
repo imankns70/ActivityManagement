@@ -477,6 +477,7 @@ E:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\Acti
 E:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csproj.CopyComplete
 E:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 E:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
+D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs
 D:\project\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\project\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\appsettings.json
 D:\project\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\libman.json
@@ -718,4 +719,3 @@ D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\stat
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.genruntimeconfig.cache
-D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs

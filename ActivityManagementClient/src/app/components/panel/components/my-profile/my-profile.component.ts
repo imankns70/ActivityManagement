@@ -13,22 +13,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MyProfileComponent implements OnInit {
 
-  users: User[]
-  constructor(private userService: UserService, alertService: NotificationMessageService, private route:ActivatedRoute) { }
+   user: User = new User();
+  constructor(private userService: UserService, alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-     this.getUsers();
+    this.getUserLoggedIn();
   }
 
-  getUsers() {
+  getUserLoggedIn(): User {
+    
     this.route.data.subscribe(data => {
-      
-      this.users = data.users.data
-      
- 
-    });
 
+      this.user.id = data.user.data.id;
+      this.user.firstName = data.user.data.firstName;
+      this.user.lastName = data.user.data.lastName;
+      this.user.birthDate = data.user.data.birthDate;
+      this.user.email = data.user.data.email;
+      this.user.phoneNumber = data.user.data.phoneNumber;
+      this.user.userName = data.user.data.userName;
+      this.user.gender = data.user.data.gender;
+
+    });
+    return this.user;
   }
 
 

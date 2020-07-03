@@ -3751,7 +3751,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.IocConfig.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.Services/1.0.0": {
         "type": "project",
@@ -3767,7 +3770,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",

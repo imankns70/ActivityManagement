@@ -23,14 +23,11 @@ namespace ActivityManagement.IocConfig
     public class DynamicPermissionsAuthorizationHandler : AuthorizationHandler<DynamicPermissionRequirement>
     {
         private readonly ISecurityTrimmingService _securityTrimmingService;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
-        public DynamicPermissionsAuthorizationHandler(ISecurityTrimmingService securityTrimmingService,
-            IHttpContextAccessor httpContextAccessor)
+        public DynamicPermissionsAuthorizationHandler(ISecurityTrimmingService securityTrimmingService)
         {
             _securityTrimmingService = securityTrimmingService;
-            _httpContextAccessor = httpContextAccessor;
 
         }
 
