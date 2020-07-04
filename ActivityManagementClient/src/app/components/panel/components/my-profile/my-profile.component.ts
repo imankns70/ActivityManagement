@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 import { ApiResult } from 'src/app/models/apiresult';
-import { Console } from 'console';
+import { gender } from '../../../../models/enums/gender';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-my-profile',
@@ -12,34 +13,40 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
-
-   user: User = new User();
+  // to reset the form we need this
+  @ViewChild('editForm', { static: false }) editForm: NgForm;
+  user: User
   constructor(private userService: UserService, alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
-    this.getUserLoggedIn();
+    this.user = this.getUserLoggedIn();
+     
   }
 
   getUserLoggedIn(): User {
-    
+  
+    let user: User = new User()
     this.route.data.subscribe(data => {
 
-      this.user.id = data.user.data.id;
-      this.user.firstName = data.user.data.firstName;
-      this.user.lastName = data.user.data.lastName;
-      this.user.birthDate = data.user.data.birthDate;
-      this.user.email = data.user.data.email;
-      this.user.phoneNumber = data.user.data.phoneNumber;
-      this.user.userName = data.user.data.userName;
-      this.user.gender = data.user.data.gender;
+
+
+      user.id = data.user.data.id;
+      user.firstName = data.user.data.firstName;
+      user.lastName = data.user.data.lastName;
+      user.birthDate = data.user.data.persianBirthDate;
+      user.email = data.user.data.email;
+      user.phoneNumber = data.user.data.phoneNumber;
+      user.userName = data.user.data.userName;
+      user.gender = data.user.data.gender != undefined ? (data.user.data.gender == 1 ? gender.men : gender.women) : null;
 
     });
-    return this.user;
+    return user;
+  }
+
+  updateMyProfile() {
+    this.editForm.reset(this.user);
   }
 
 
-  // getUser(): User {
-
-  // }
 }

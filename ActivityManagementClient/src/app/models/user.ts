@@ -1,3 +1,5 @@
+import { gender } from './enums/gender';
+
 export class User {
 
     id: number;
@@ -8,11 +10,7 @@ export class User {
     email: string;
     imageUrl: string;
     birthDate: string;
-    gender: gender;
+    gender?: gender;
     role: string;
 }
 
-enum gender {
-    men = 1,
-    women = 2
-}

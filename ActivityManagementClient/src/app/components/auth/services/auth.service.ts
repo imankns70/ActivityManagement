@@ -12,33 +12,26 @@ import { ApiResult } from 'src/app/models/apiresult';
 export class AuthService {
   baseUrl = environment.apiUrl + 'Account/';
   constructor(private http: HttpClient) { }
-  login(viewModel: any):Observable<ApiResult> {
+  login(viewModel: any): Observable<ApiResult> {
     return this.http.post(this.baseUrl + 'SignIn', viewModel).pipe(
-      map((resp: any) => {
+      map((resp: ApiResult) => {
+debugger;
+        if (resp.isSuccess)
 
-        const apiResult = resp;
-        if (apiResult.isSuccess)
+          localStorage.setItem('token', resp.data)
+        return resp
+      }),
 
-          localStorage.setItem('token', apiResult.data)
-        return apiResult
-      }), 
-      
 
     );
   }
 
-  register(viewModel: any):Observable<ApiResult> {
+  register(viewModel: any): Observable<ApiResult> {
     viewModel.gender == 'مرد' ? viewModel.gender = 1 : viewModel.gender = 2
-    return this.http.post(this.baseUrl + 'Register', viewModel).pipe(
-      map((resp: any) => {
-        const apiResult = resp;
-
-        return apiResult;
-      })
-    )
+    return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
     return localStorage.getItem('token') == null ? false : true;
-     
+
   }
 }

@@ -5,8 +5,8 @@
                 اطلاعات شخصی
             </div>
             <div class="card-body">
-                <form class="form-inline" id="EditUserForm" enctype="multipart/form-data" asp-controller="UserManager"
-                    asp-action="Edit">
+                <form class="form-inline" #editForm="ngForm" (ngSubmit)="updateMyProfile()">
+                    <input type="hidden" [(ngModel)]="user.id" name="id"/>
                     <div class="container">
                         <div class="row mt-2 mb-2">
 
@@ -48,32 +48,32 @@
                                         <label class="control-label">نام کاربری</label>
                                      
 
-                                        <input class="form-control" />
+                                        <input class="form-control" [(ngModel)]="user.userName" name="username"/>
 
                                     </div>
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">نام</label>
-                                        <input class="form-control" />
+                                        <input class="form-control" [(ngModel)]="user.firstName" name="firstname" />
                                     </div>
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">نام خانوادگی</label>
 
-                                        <input class="form-control" />
+                                        <input class="form-control" [(ngModel)]="user.lastName" name="lastname"  />
                                     </div>
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">ایمیل</label>
-                                        <input class="form-control" />
+                                        <input class="form-control" [(ngModel)]="user.email" name="email"/>
                                     </div>
 
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">تلفن</label>
 
-                                        <input class="form-control" />
+                                        <input class="form-control" [(ngModel)]="user.phoneNumber" name="phonenumber" />
                                     </div>
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">تاریخ تولد</label>
 
-                                        <input class="form-control" type="text" />
+                                        <input class="form-control" type="text" [(ngModel)]="user.birthDate" name="birthdate" />
 
 
                                     </div>
@@ -83,12 +83,12 @@
                                     <div class="form-group  mr-2">
                                         <label class="control-label">جنسیت</label>
 
-                                        <input type="radio" type="radio" />
+                                        <input type="radio" type="radio" value="gender.men" [(ngModel)]="user.gender" name="gender"  />
                                         <label>
                                             مرد
                                         </label>
 
-                                        <input type="radio" type="radio" />
+                                        <input type="radio" type="radio" value="gender.women" [(ngModel)]="user.gender" name="gender"/>
 
                                         <label>
                                             زن
@@ -106,7 +106,7 @@
                                 <div class="row mt-3">
                                     <div class="form-group mr-2">
 
-                                        <button type="button" class="btn-save"><i class="fa fa-check"></i><span
+                                        <button type="button" class="btn-save" [disabled]="!editForm.dirty"><i class="fa fa-check"></i><span
                                                 class="mr-1">ذخیره</span></button>
 
 

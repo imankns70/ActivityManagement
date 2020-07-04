@@ -56,9 +56,9 @@ namespace ActivityManagement.Services.EfServices.Identity
             return Roles.ToList();
         }
 
-        public List<AppRole> GetAllRolesWithClaims()
+        public async Task<List<AppRole>> GetAllRolesWithClaimsAsync()
         {
-            return Roles.Include(appRole=> appRole.Claims).ToList();
+            return await Roles.Include(appRole=> appRole.Claims).ToListAsync();
         }
 
 

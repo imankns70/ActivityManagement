@@ -5,11 +5,11 @@ export class ApiResult {
         this.message = new Array<string>();
         this.isSuccess= false;
         this.statusCode=0;
-        this.data= new Object;
+     
     }
     isSuccess: boolean;
     statusCode: StatusCode;
     message: string[];
-    data: object;
+    data: any;
 
 }
