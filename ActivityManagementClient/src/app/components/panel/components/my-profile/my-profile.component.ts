@@ -45,7 +45,8 @@ export class MyProfileComponent implements OnInit {
   }
 
   updateMyProfile() {
-    this.editForm.reset(this.user);
+     this.user
+     debugger;
   }
 
 

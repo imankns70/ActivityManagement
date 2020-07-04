@@ -8,6 +8,7 @@ using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Http;
@@ -37,7 +38,8 @@ namespace ActivityManagementApi.Controllers.v1
         }
 
 
-        [HttpGet("{id}")]
+        //[HttpGet("{id}")]
+        [HttpGet()]
         [Route("GetUserLoggedIn")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<UsersViewModel>> GetUserLoggedIn()
@@ -51,6 +53,25 @@ namespace ActivityManagementApi.Controllers.v1
             return BadRequest(NotificationMessages.UserNotFound);
 
 
+
+        }
+        [HttpPost]
+        [Route("UpdateUserProfile")]
+        //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<ApiResult<UsersViewModel>> UpdateUserProfile(UsersViewModel viewModel)
+        {
+
+            LogicResult logicResult = await _userManager.UpdateUserProfile(viewModel);
+
+            if (logicResult.MessageType == MessageType.Success)
+            {
+                return Ok(logicResult);
+            }
+            else
+            {
+                return BadRequest(logicResult);
+
+            }
 
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ActivityManagement.DomainClasses.Entities.Identity;
+using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
 
@@ -128,6 +129,8 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<AppUser> FindClaimsInUser(int userId);
         Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
+        Task<LogicResult> UpdateUserProfile(UsersViewModel viewModel);
+
         #endregion
     }
 }

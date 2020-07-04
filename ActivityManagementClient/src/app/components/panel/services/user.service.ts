@@ -13,7 +13,7 @@ import { User } from 'src/app/models/user';
 })
 export class UserService {
   baseUrl = environment.apiUrl + 'UserManager/';
-   
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<ApiResult> {
@@ -27,4 +27,10 @@ export class UserService {
     return this.http.get<ApiResult>(this.baseUrl + 'GetUserLoggedIn', { headers: setTokenHeader() })
 
   }
+
+  updateMyProfile(viewModel: User): Observable<ApiResult> {
+
+    return this.http.post<ApiResult>(this.baseUrl + 'UpdateUserProfile' , viewModel)
+  }
+
 }

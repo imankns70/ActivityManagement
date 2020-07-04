@@ -8,6 +8,7 @@ using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.UserManager;
 using ActivityManagement.Common;
+using ActivityManagement.ViewModels.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -215,6 +216,31 @@ namespace ActivityManagement.Services.EfServices.Identity
             }
 
             return await UpdateAsync(user);
+        }
+
+        public async Task<LogicResult> UpdateUserProfile(UsersViewModel viewModel)
+        {
+            LogicResult logicResult = new LogicResult();
+            AppUser user = await FindByIdAsync(viewModel.Id.ToString());
+            if (user != null)
+            {
+                logicResult.MessageType = MessageType.Success;
+                logicResult.Message.Add(NotificationMessages.OperationSuccess);
+                user.FirstName = viewModel.FirstName;
+                user.LastName = viewModel.LastName;
+                user.UserName = viewModel.UserName;
+                user.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
+                user.Gender = viewModel.Gender;
+                user.Email = viewModel.Email;
+                await UpdateAsync(user);
+            }
+            else
+            {
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
+            }
+
+            return logicResult;
         }
     }
 }

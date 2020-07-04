@@ -8,6 +8,7 @@ import { UserProfileCollapseComponent } from './components/user-profile-collapse
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { UserService } from './services/user.service';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
+import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { FormsModule } from '@angular/forms';
 
 
@@ -31,7 +32,8 @@ import { FormsModule } from '@angular/forms';
 
   providers: [
     UserService,
-    UserProfileResolver
+    UserProfileResolver,
+    PreventUnsavedGuard
   ]
 
 })
