@@ -229,7 +229,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 user.FirstName = viewModel.FirstName;
                 user.LastName = viewModel.LastName;
                 user.UserName = viewModel.UserName;
-                user.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
+                user.BirthDate = !string.IsNullOrWhiteSpace(viewModel.PersianBirthDate) ? viewModel.PersianBirthDate.ConvertPersianToGeorgian() : user.BirthDate;
                 user.Gender = viewModel.Gender;
                 user.Email = viewModel.Email;
                 await UpdateAsync(user);

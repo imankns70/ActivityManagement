@@ -6,6 +6,8 @@ import { ApiResult } from 'src/app/models/apiresult';
 import { gender } from '../../../../models/enums/gender';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Globals } from 'src/app/models/enums/Globals';
+import { error } from 'console';
 
 @Component({
   selector: 'app-my-profile',
@@ -15,17 +17,17 @@ import { NgForm } from '@angular/forms';
 export class MyProfileComponent implements OnInit {
   // to reset the form we need this
   @ViewChild('editForm', { static: false }) editForm: NgForm;
-  user: User
-  constructor(private userService: UserService, alertService: NotificationMessageService, private route: ActivatedRoute) { }
+  user: User;
+  constructor(private userService: UserService, private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.user = this.getUserLoggedIn();
-     
+
   }
 
   getUserLoggedIn(): User {
-  
+
     let user: User = new User()
     this.route.data.subscribe(data => {
 
@@ -45,9 +47,18 @@ export class MyProfileComponent implements OnInit {
   }
 
   updateMyProfile() {
-     this.user
-     debugger;
+    this.userService.updateMyProfile(this.user).subscribe(next => {
+      debugger;
+      if (next.isSuccess) {
+        this.alertService.showMessage(next.message.join(','), 'موفق', Globals.successMessage);
+        this.editForm.form.markAsPristine();
+      }
+    }, error => {
+      this.alertService.showMessage(error.message.join(','), 'خطا', Globals.successMessage);
+
+    })
   }
+
 
 
 }

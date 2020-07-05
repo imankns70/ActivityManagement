@@ -25,16 +25,16 @@ export class LoginComponent implements OnInit {
     }
   }
   login() {
-    this.authService.login(this.model).subscribe(p => {
-
-      if (p.isSuccess == true) {
-
+    this.authService.login(this.model).subscribe(next => {
+debugger;
+      if (next.isSuccess == true) {
+        localStorage.setItem('token', next.data)
         this.router.navigate([this.returnUrl]);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
 
       } else {
-        this.alertService.showMessage(p.message.join(","), "خطا", Globals.errorMessage)
+        this.alertService.showMessage(next.message.join(","), "خطا", Globals.errorMessage)
       }
     }, error => {
       this.alertService.showMessage(error.message.join(","), "خطا", Globals.errorMessage)

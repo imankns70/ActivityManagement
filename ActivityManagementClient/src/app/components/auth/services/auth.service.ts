@@ -13,17 +13,9 @@ export class AuthService {
   baseUrl = environment.apiUrl + 'Account/';
   constructor(private http: HttpClient) { }
   login(viewModel: any): Observable<ApiResult> {
-    return this.http.post(this.baseUrl + 'SignIn', viewModel).pipe(
-      map((resp: ApiResult) => {
-debugger;
-        if (resp.isSuccess)
-
-          localStorage.setItem('token', resp.data)
-        return resp
-      }),
+    return this.http.post<ApiResult>(this.baseUrl + 'SignIn', viewModel)
 
 
-    );
   }
 
   register(viewModel: any): Observable<ApiResult> {

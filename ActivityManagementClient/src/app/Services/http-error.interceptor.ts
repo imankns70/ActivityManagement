@@ -45,17 +45,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
                                 this.apiResult.isSuccess = false;
                                 this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push('خطا در سرور');
+                                this.apiResult.message.push(this.apiResult.message.join(','));
                                 break;
                             case StatusCode.notFound:
                                 this.apiResult.isSuccess = false;
                                 this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push('موردی یافت نشد');
+                                this.apiResult.message.push(this.apiResult.message.join(','));
                                 break;
                             case StatusCode.unAuthorized:
                                 this.apiResult.isSuccess = false;
                                 this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push('عدم دسترسی');
+                                this.apiResult.message.push(this.apiResult.message.join(','));
                                 break;
                         }
 

@@ -58,7 +58,7 @@ namespace ActivityManagementApi.Controllers.v1
         [HttpPost]
         [Route("UpdateUserProfile")]
         //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<UsersViewModel>> UpdateUserProfile(UsersViewModel viewModel)
+        public async Task<ApiResult<UsersViewModel>> UpdateUserProfile([FromBody] UsersViewModel viewModel)
         {
 
             LogicResult logicResult = await _userManager.UpdateUserProfile(viewModel);
@@ -67,13 +67,9 @@ namespace ActivityManagementApi.Controllers.v1
             {
                 return Ok(logicResult);
             }
-            else
-            {
-                return BadRequest(logicResult);
 
-            }
-
-
+            return BadRequest(logicResult);
+             
 
         }
 
