@@ -123,13 +123,14 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<List<UsersViewModel>> GetAllUsersWithRolesAsync();
         List<UsersViewModel> GetAllUsersWithRoles();
         Task<UsersViewModel> FindUserWithRolesByIdAsync(int userId);
+        Task<UserViewModelApi> FindUserApiByIdAsync(int userId);
         Task<string> GetFullName(ClaimsPrincipal user);
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
         string CheckAvatarFileName(string fileName);
         Task<AppUser> FindClaimsInUser(int userId);
         Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
-        Task<LogicResult> UpdateUserProfile(UsersViewModel viewModel);
+        Task<LogicResult> UpdateUserProfile(UserViewModelApi viewModel);
 
         #endregion
     }

@@ -90,7 +90,7 @@ namespace ActivityManagement.ViewModels.UserManager
         [Required(ErrorMessage = "انتخاب {0} الزامی است.")]
         public GenderType? Gender { get; set; }
 
-        [JsonProperty("جنسیت")]
+        
         public string GenderName { get; set; }
 
         [JsonIgnore]

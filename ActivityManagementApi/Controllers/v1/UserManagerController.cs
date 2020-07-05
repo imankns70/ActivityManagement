@@ -42,11 +42,11 @@ namespace ActivityManagementApi.Controllers.v1
         [HttpGet()]
         [Route("GetUserLoggedIn")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<UsersViewModel>> GetUserLoggedIn()
+        public async Task<ApiResult<UserViewModelApi>> GetUserLoggedIn()
         {
             if (User.Identity.IsAuthenticated)
             {
-                UsersViewModel user = await _userManager.FindUserWithRolesByIdAsync(User.Identity.GetUserId<int>());
+                UserViewModelApi user = await _userManager.FindUserApiByIdAsync(User.Identity.GetUserId<int>());
                 return Ok(user);
             }
 
@@ -58,17 +58,17 @@ namespace ActivityManagementApi.Controllers.v1
         [HttpPost]
         [Route("UpdateUserProfile")]
         //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<UsersViewModel>> UpdateUserProfile([FromBody] UsersViewModel viewModel)
+        public async Task<ApiResult<string>> UpdateUserProfile([FromBody] UserViewModelApi viewModel)
         {
 
             LogicResult logicResult = await _userManager.UpdateUserProfile(viewModel);
 
             if (logicResult.MessageType == MessageType.Success)
             {
-                return Ok(logicResult);
+                return Ok(logicResult.Message.FirstOrDefault());
             }
 
-            return BadRequest(logicResult);
+            return BadRequest(logicResult.Message.FirstOrDefault());
              
 
         }

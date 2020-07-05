@@ -23,25 +23,20 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.getUserLoggedIn();
-
   }
 
   getUserLoggedIn(): User {
 
-    let user: User = new User()
+
+    let user: User;
     this.route.data.subscribe(data => {
 
 
+      let jsonString = JSON.stringify(data.user.data)
+      user = <User>JSON.parse(jsonString)
 
-      user.id = data.user.data.id;
-      user.firstName = data.user.data.firstName;
-      user.lastName = data.user.data.lastName;
-      user.birthDate = data.user.data.persianBirthDate;
-      user.email = data.user.data.email;
-      user.phoneNumber = data.user.data.phoneNumber;
-      user.userName = data.user.data.userName;
-      user.gender = data.user.data.gender != undefined ? (data.user.data.gender == 1 ? gender.men : gender.women) : null;
 
+   
     });
     return user;
   }

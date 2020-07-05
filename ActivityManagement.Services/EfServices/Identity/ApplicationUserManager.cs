@@ -131,7 +131,21 @@ namespace ActivityManagement.Services.EfServices.Identity
                 Gender = user.Gender,
             }).FirstOrDefaultAsync();
         }
-
+        public async Task<UserViewModelApi> FindUserApiByIdAsync(int userId)
+        {
+            return await Users.Where(u => u.Id == userId).Select(user => new UserViewModelApi
+            {
+                Id = user.Id,
+                Email = user.Email,
+                UserName = user.UserName,
+                PhoneNumber = user.PhoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Image = user.Image,
+                PersianBirthDate = user.BirthDate.HasValue ? user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "",
+                Gender = user.Gender,
+            }).FirstOrDefaultAsync();
+        }
         public async Task<UsersViewModel> FindUserWithDetailIdAsync(int userId)
         {
             return await Users.Include(appUser => appUser.Roles).Where(u => u.Id == userId).Select(user => new UsersViewModel
@@ -218,7 +232,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             return await UpdateAsync(user);
         }
 
-        public async Task<LogicResult> UpdateUserProfile(UsersViewModel viewModel)
+        public async Task<LogicResult> UpdateUserProfile(UserViewModelApi viewModel)
         {
             LogicResult logicResult = new LogicResult();
             AppUser user = await FindByIdAsync(viewModel.Id.ToString());

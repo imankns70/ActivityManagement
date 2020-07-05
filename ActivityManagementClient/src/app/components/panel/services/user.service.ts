@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { setTokenHeader } from 'src/app/Services/customFunction';
-import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 
 
