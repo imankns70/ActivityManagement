@@ -256,5 +256,11 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             return logicResult;
         }
+
+        //public Task<LogicResult> UploadUserImage(UserViewModelApi viewModel)
+        //{
+        //    string fileExtension = Path.GetExtension(viewModel.File.FileName);
+        //    string path= Path.Combine()
+        //}
     }
 }

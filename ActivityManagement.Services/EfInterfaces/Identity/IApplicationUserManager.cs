@@ -131,6 +131,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
         Task<LogicResult> UpdateUserProfile(UserViewModelApi viewModel);
+        Task<LogicResult> UploadUserImage(UserViewModelApi viewModel);
 
         #endregion
     }
