@@ -10,6 +10,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public int? Id { get; set; }
 
         public string Image { get; set; }
+        public IFormFile File { get; set; }
 
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
 

@@ -206,8 +206,9 @@ namespace ActivityManagementMvc.Controllers
                     var userRoles = await _userManager.GetRolesAsync(user);
                     if (viewModel.ImageFile != null)
                     {
-                        viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
-                        string path = Path.Combine($"{_env.WebRootPath}/Users/{ viewModel.Image}");
+                        //viewModel.Image = _userManager.CheckAvatarFileName(viewModel.ImageFile.FileName);
+                        string fileExtension = Path.GetExtension(viewModel.ImageFile.FileName);
+                        string path = Path.Combine($"{_env.WebRootPath}/Users/{ Guid.NewGuid()+ fileExtension}");
                         FileExtensions.UploadFileResult fileResult = await viewModel.ImageFile.UploadFileAsync(FileExtensions.FileType.Image, path);
                         if (fileResult.IsSuccess == false)
                         {
