@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.UserManager;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace ActivityManagement.Services.EfInterfaces.Identity
@@ -131,7 +132,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task<UsersViewModel> FindUserWithDetailIdAsync(int userId);
         Task<IdentityResult> AddOrUpdateClaimsAsync(int userId, string userClaimType, IList<string> selectedUserClaimValues);
         Task<LogicResult> UpdateUserProfile(UserViewModelApi viewModel);
-        Task<LogicResult> UploadUserImage(UserViewModelApi viewModel);
+        Task<LogicResult> UploadUserImage(IFormFile file, string userId);
 
         #endregion
     }

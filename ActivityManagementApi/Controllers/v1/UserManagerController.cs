@@ -57,7 +57,7 @@ namespace ActivityManagementApi.Controllers.v1
         }
         [HttpPost]
         [Route("UpdateUserProfile")]
-        //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<string>> UpdateUserProfile([FromBody] UserViewModelApi viewModel)
         {
 
@@ -70,6 +70,29 @@ namespace ActivityManagementApi.Controllers.v1
 
             return BadRequest(logicResult.Message.FirstOrDefault());
              
+
+        }
+        [HttpPost]
+        [Route("ChangeUserPhoto")]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] UserViewModelApi viewModel)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                string userId = User.Identity.GetUserId();
+                LogicResult logicResult = await _userManager.UploadUserImage(viewModel.File, userId);
+
+                if (logicResult.MessageType == MessageType.Success)
+                {
+                    
+                    return Ok(logicResult.Message.FirstOrDefault());
+                }
+
+                return BadRequest(logicResult.Message.FirstOrDefault());
+            }
+
+            return BadRequest(NotificationMessages.UserNotFound);
+
 
         }
 

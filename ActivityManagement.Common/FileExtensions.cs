@@ -10,7 +10,7 @@ namespace ActivityManagement.Common
     {
         public static string GetContentType(string path)
         {
-            Dictionary<string,string> types = GetMimeTypes();
+            Dictionary<string, string> types = GetMimeTypes();
             string ext = Path.GetExtension(path).ToLowerInvariant();
             return types[ext];
         }
@@ -512,13 +512,13 @@ namespace ActivityManagement.Common
                 bool result = IsValidFile(memory.ToArray(), types, fileExtension.Replace('.', ' '));
                 if (result)
                 {
-                    await using FileStream stream = new FileStream(path,FileMode.Create);
+                    await using FileStream stream = new FileStream(path, FileMode.Create);
                     await file.CopyToAsync(stream);
 
                     return new UploadFileResult(true, null);
                 }
-                else
-                    return new UploadFileResult(false, new List<string>() { NotificationMessages.InvalidFile });
+
+                return new UploadFileResult(false, new List<string>() { NotificationMessages.InvalidFile });
             }
             catch (Exception e)
             {
@@ -532,7 +532,7 @@ namespace ActivityManagement.Common
         {
             if (File.Exists(path))
             {
-               File.Delete(path);
+                File.Delete(path);
             }
         }
 

@@ -9,6 +9,8 @@ using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.UserManager;
 using ActivityManagement.Common;
 using ActivityManagement.ViewModels.Base;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -27,6 +29,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         private readonly IServiceProvider _services;
         private readonly IUserStore<AppUser> _userStore;
         private readonly IEnumerable<IUserValidator<AppUser>> _userValidators;
+        private readonly IWebHostEnvironment _env;
         //private readonly IMapper _mapper;
 
         public ApplicationUserManager(
@@ -38,7 +41,8 @@ namespace ActivityManagement.Services.EfServices.Identity
             IEnumerable<IPasswordValidator<AppUser>> passwordValidators,
             IServiceProvider services,
             IUserStore<AppUser> userStore,
-            IEnumerable<IUserValidator<AppUser>> userValidators)
+            IEnumerable<IUserValidator<AppUser>> userValidators,
+            IWebHostEnvironment env)
             : base(userStore, options, passwordHasher, userValidators, passwordValidators, keyNormalizer, errors, services, logger)
         {
             _userStore = userStore;
@@ -50,7 +54,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             _options = options;
             _keyNormalizer = keyNormalizer;
             _passwordValidators = passwordValidators;
-
+            _env = env;
         }
 
         public async Task<AppUser> FindUserWithRolesByNameAsync(string userName)
@@ -258,10 +262,41 @@ namespace ActivityManagement.Services.EfServices.Identity
             return logicResult;
         }
 
-        //public Task<LogicResult> UploadUserImage(UserViewModelApi viewModel)
-        //{
-        //    string fileExtension = Path.GetExtension(viewModel.File.FileName);
-        //    string path= Path.Combine()
-        //}
+
+
+        public async Task<LogicResult> UploadUserImage(IFormFile file, string userId)
+        {
+            AppUser user = await FindByIdAsync(userId);
+            LogicResult logicResult = new LogicResult();
+
+            if (user != null)
+            {
+                FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
+
+                string fileExtension = Path.GetExtension(file.FileName);
+                string userImageUrl = Guid.NewGuid() + fileExtension;
+                string path = Path.Combine($"{_env.WebRootPath}/Users/{userImageUrl}");
+                FileExtensions.UploadFileResult fileResult = await file.UploadFileAsync(FileExtensions.FileType.Image, path);
+                if (fileResult.IsSuccess == false)
+                {
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.AddRange(fileResult.Errors);
+                }
+                else
+                {
+                    user.Image = userImageUrl;
+                    await UpdateAsync(user);
+                    logicResult.MessageType = MessageType.Success;
+                    logicResult.Message.Add(path);
+
+                }
+            }
+            else
+            {
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(NotificationMessages.UserNotFound);
+            }
+            return logicResult;
+        }
     }
 }
