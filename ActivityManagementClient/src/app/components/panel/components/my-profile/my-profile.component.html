@@ -73,7 +73,7 @@
                                     <div class="form-group mb-3 mr-2">
                                         <label class="control-label">تاریخ تولد</label>
 
-                                        <input class="form-control" type="text" [(ngModel)]="user.PersianBirthDate" name="PersianBirthDate" />
+                                        <input class="form-control" type="text" [(ngModel)]="user.persianBirthDate" name="persianBirthDate" />
 
 
                                     </div>
@@ -83,12 +83,12 @@
                                     <div class="form-group  mr-2">
                                         <label class="control-label">جنسیت</label>
 
-                                        <input type="radio" type="radio" value="gender.men" [(ngModel)]="user.gender" name="gender"  />
+                                        <input type="radio" type="radio" value="Male"  [(ngModel)]="user.gender" name="gender"  />
                                         <label>
                                             مرد
                                         </label>
 
-                                        <input type="radio" type="radio" value="gender.women" [(ngModel)]="user.gender" name="gender"/>
+                                        <input type="radio" type="radio" value="Female" [(ngModel)]="user.gender" name="gender" />
 
                                         <label>
                                             زن

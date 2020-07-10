@@ -27,23 +27,22 @@ export class MyProfileComponent implements OnInit {
 
   getUserLoggedIn(): User {
 
-
     let user: User;
     this.route.data.subscribe(data => {
-
-
+debugger;
       let jsonString = JSON.stringify(data.user.data)
       user = <User>JSON.parse(jsonString)
+     
 
-
-   
     });
     return user;
   }
 
   updateMyProfile() {
+
+
     this.userService.updateMyProfile(this.user).subscribe(next => {
-      debugger;
+
       if (next.isSuccess) {
         this.alertService.showMessage(next.message.join(','), 'موفق', Globals.successMessage);
         this.editForm.form.markAsPristine();

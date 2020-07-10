@@ -9,7 +9,7 @@ export interface User {
     phoneNumber: number,
     email: string,
     Image: string,
-    PersianBirthDate: string,
+    persianBirthDate: string,
     gender?: gender,
     //role: string,
 }

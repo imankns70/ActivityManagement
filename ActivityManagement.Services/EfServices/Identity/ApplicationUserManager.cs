@@ -243,6 +243,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 user.FirstName = viewModel.FirstName;
                 user.LastName = viewModel.LastName;
                 user.UserName = viewModel.UserName;
+                user.PhoneNumber = viewModel.PhoneNumber;
                 user.BirthDate = !string.IsNullOrWhiteSpace(viewModel.PersianBirthDate) ? viewModel.PersianBirthDate.ConvertPersianToGeorgian() : user.BirthDate;
                 user.Gender = viewModel.Gender;
                 user.Email = viewModel.Email;
