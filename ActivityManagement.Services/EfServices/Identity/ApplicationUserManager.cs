@@ -287,7 +287,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                     user.Image = userImageUrl;
                     await UpdateAsync(user);
                     logicResult.MessageType = MessageType.Success;
-                    logicResult.Message.Add(path);
+                    logicResult.Message.Add(userImageUrl);
 
                 }
             }

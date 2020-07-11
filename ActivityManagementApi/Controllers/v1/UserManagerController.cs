@@ -84,8 +84,8 @@ namespace ActivityManagementApi.Controllers.v1
 
                 if (logicResult.MessageType == MessageType.Success)
                 {
-                    
-                    return Ok(logicResult.Message.FirstOrDefault());
+                    string imageUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value},Users/{logicResult.Message.First()}";
+                    return Ok(imageUrl);
                 }
 
                 return BadRequest(logicResult.Message.FirstOrDefault());
