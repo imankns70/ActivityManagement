@@ -14,23 +14,20 @@
           </div>
   
            
-          انتخب عکس
-          <input type="file" ng2FileSelect [uploader]="uploader" />
+          انتخاب عکس
+          <input type="file"  ng2FileSelect [uploader]="uploader" />
       </div>
   
       <div class="col-md-9" style="margin-bottom: 40px">
   
-          <h3>Upload queue</h3>
-          <p>Queue length: {{ uploader?.queue?.length }}</p>
-  
+        
           <table class="table">
               <thead>
               <tr>
-                  <th width="50%">Name</th>
-                  <th>Size</th>
-                  <th>Progress</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th width="50%">نام</th>
+                  <th>اندازه</th>
+                  <th>وضعیت</th>
+                  <th>عملیات</th>
               </tr>
               </thead>
               <tbody>
@@ -48,17 +45,17 @@
                       <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
                   </td>
                   <td nowrap>
-                      <button type="button" class="btn btn-success btn-xs"
+                      <!-- <button type="button" class="btn btn-success btn-xs"
                               (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                          <span class="glyphicon glyphicon-upload"></span> Upload
+                          <span class="glyphicon glyphicon-upload"></span> آپلود
                       </button>
                       <button type="button" class="btn btn-warning btn-xs"
                               (click)="item.cancel()" [disabled]="!item.isUploading">
-                          <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                      </button>
+                          <span class="glyphicon glyphicon-ban-circle"></span> انصراف
+                      </button> -->
                       <button type="button" class="btn btn-danger btn-xs"
                               (click)="item.remove()">
-                          <span class="glyphicon glyphicon-trash"></span> Remove
+                          <span class="glyphicon glyphicon-trash"></span> حذف
                       </button>
                   </td>
               </tr>
@@ -67,23 +64,23 @@
   
           <div>
               <div>
-                  Queue progress:
-                  <div class="progress" style="">
+                 وضعیت آپلود:
+                  <div class="progress">
                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
                   </div>
               </div>
               <button type="button" class="btn btn-success btn-s"
                       (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                  <span class="glyphicon glyphicon-upload"></span> Upload all
+                  <span class="glyphicon glyphicon-upload"></span>آپلود
               </button>
               <button type="button" class="btn btn-warning btn-s"
                       (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
-                  <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                  <span class="glyphicon glyphicon-ban-circle"></span> انصراف
               </button>
-              <button type="button" class="btn btn-danger btn-s"
+              <!-- <button type="button" class="btn btn-danger btn-s"
                       (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
-                  <span class="glyphicon glyphicon-trash"></span> Remove all
-              </button>
+                  <span class="glyphicon glyphicon-trash"></span> حذف
+              </button> -->
           </div>
   
       </div>
@@ -92,13 +89,4 @@
   
   <br><br>
   
-  <div class="row">
-      <div class="col-md-12">
-          <div class="panel panel-default">
-              <div class="panel-heading">Response</div>
-              <div class="panel-body">
-                {{ response }}
-              </div>
-          </div>
-      </div>
-  </div>
+   

@@ -75,12 +75,12 @@ namespace ActivityManagementApi.Controllers.v1
         [HttpPost]
         [Route("ChangeUserPhoto")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] UserViewModelApi viewModel)
+        public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] IFormFile file)
         {
             if (User.Identity.IsAuthenticated)
             {
                 string userId = User.Identity.GetUserId();
-                LogicResult logicResult = await _userManager.UploadUserImage(viewModel.File, userId);
+                LogicResult logicResult = await _userManager.UploadUserImage(file, userId);
 
                 if (logicResult.MessageType == MessageType.Success)
                 {

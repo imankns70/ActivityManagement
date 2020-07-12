@@ -42,7 +42,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
-
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),

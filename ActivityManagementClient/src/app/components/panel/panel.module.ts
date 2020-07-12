@@ -11,8 +11,8 @@ import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { FormsModule } from '@angular/forms';
 import { ChangePicComponent } from './components/my-profile/components/change-pic/change-pic.component';
-import { FileUploadModule } from 'ng2-file-upload';
 import { CommonModule } from '@angular/common';
+import { FileUploadModule  } from 'ng2-file-upload';
 
 
 
@@ -20,11 +20,12 @@ import { CommonModule } from '@angular/common';
   imports: [
   
     PanelRoutingModule,
-    FormsModule,
     CommonModule,
+    FormsModule,
     FileUploadModule
 
   ],
+
   declarations: [
     PanelComponent,
     DashboardComponent,
@@ -32,7 +33,7 @@ import { CommonModule } from '@angular/common';
     UserProfileComponent,
     UserProfileCollapseComponent,
     MyProfileComponent,
-    ChangePicComponent
+    ChangePicComponent,
 
   ],
 

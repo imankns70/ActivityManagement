@@ -29,7 +29,7 @@ export class MyProfileComponent implements OnInit {
 
     let user: User;
     this.route.data.subscribe(data => {
-debugger;
+ 
       let jsonString = JSON.stringify(data.user.data)
       user = <User>JSON.parse(jsonString)
      

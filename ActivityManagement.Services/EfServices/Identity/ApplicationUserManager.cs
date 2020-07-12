@@ -271,24 +271,32 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             if (user != null)
             {
-                FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
-
-                string fileExtension = Path.GetExtension(file.FileName);
-                string userImageUrl = Guid.NewGuid() + fileExtension;
-                string path = Path.Combine($"{_env.WebRootPath}/Users/{userImageUrl}");
-                FileExtensions.UploadFileResult fileResult = await file.UploadFileAsync(FileExtensions.FileType.Image, path);
-                if (fileResult.IsSuccess == false)
+                if (file != null)
                 {
-                    logicResult.MessageType = MessageType.Error;
-                    logicResult.Message.AddRange(fileResult.Errors);
+                    FileExtensions.DeleteFile($"{_env.WebRootPath}/Users/{user.Image}");
+
+                    string fileExtension = Path.GetExtension(file.FileName);
+                    string userImageUrl = Guid.NewGuid() + fileExtension;
+                    string path = Path.Combine($"{_env.WebRootPath}/Users/{userImageUrl}");
+                    FileExtensions.UploadFileResult fileResult = await file.UploadFileAsync(FileExtensions.FileType.Image, path);
+                    if (fileResult.IsSuccess == false)
+                    {
+                        logicResult.MessageType = MessageType.Error;
+                        logicResult.Message.AddRange(fileResult.Errors);
+                    }
+                    else
+                    {
+                        user.Image = userImageUrl;
+                        await UpdateAsync(user);
+                        logicResult.MessageType = MessageType.Success;
+                        logicResult.Message.Add(userImageUrl);
+
+                    }
                 }
                 else
                 {
-                    user.Image = userImageUrl;
-                    await UpdateAsync(user);
-                    logicResult.MessageType = MessageType.Success;
-                    logicResult.Message.Add(userImageUrl);
-
+                    logicResult.MessageType = MessageType.Error;
+                    logicResult.Message.Add(NotificationMessages.OperationFailed);
                 }
             }
             else
