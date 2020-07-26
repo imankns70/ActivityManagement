@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { ChangePicComponent } from './components/my-profile/components/change-pic/change-pic.component';
 import { CommonModule } from '@angular/common';
 import { FileUploadModule  } from 'ng2-file-upload';
-
+//import { FileSelectDirective } from 'ng2-file-upload';
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import { FileUploadModule  } from 'ng2-file-upload';
     UserProfileCollapseComponent,
     MyProfileComponent,
     ChangePicComponent,
+    //FileSelectDirective
 
   ],
 

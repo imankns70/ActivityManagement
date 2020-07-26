@@ -5,8 +5,8 @@ import { AuthService } from 'src/app/components/auth/services/auth.service';
 
 @Component({
   selector: 'app-change-pic',
-  templateUrl: './change-pic.component.html',
-  styleUrls: ['./change-pic.component.css']
+  templateUrl: '../change-pic/change-pic.component.html',
+  styleUrls: ['../change-pic/change-pic.component.css']
 })
 export class ChangePicComponent implements OnInit {
   uploader: FileUploader;
