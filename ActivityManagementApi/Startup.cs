@@ -65,7 +65,8 @@ namespace ActivityManagementApi
             //if (env.IsDevelopment())
             //    appBuilder.UseDeveloperExceptionPage();
 
-            appBuilder.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //appBuilder.UseCors(p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            appBuilder.UseCors(p => p.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
             appBuilder.UseCustomIdentityServices();
             appBuilder.UseSwaggerAndUI();
             appBuilder.UseRouting();

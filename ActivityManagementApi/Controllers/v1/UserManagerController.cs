@@ -72,11 +72,13 @@ namespace ActivityManagementApi.Controllers.v1
              
 
         }
+    
         [HttpPost]
         [Route("ChangeUserPhoto")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] IFormFile file)
         {
+            HttpRequest request = Request;
             if (User.Identity.IsAuthenticated)
             {
                 string userId = User.Identity.GetUserId();
@@ -84,7 +86,7 @@ namespace ActivityManagementApi.Controllers.v1
 
                 if (logicResult.MessageType == MessageType.Success)
                 {
-                    string imageUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value},Users/{logicResult.Message.First()}";
+                    string imageUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/Users/{logicResult.Message.First()}";
                     return Ok(imageUrl);
                 }
 

@@ -21,8 +21,8 @@ import { FileUploadModule  } from 'ng2-file-upload';
   
     PanelRoutingModule,
     CommonModule,
-    FormsModule,
-    FileUploadModule
+    FileUploadModule,
+    FormsModule
 
   ],
 

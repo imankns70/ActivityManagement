@@ -4,17 +4,23 @@
       <div class="col-md-3">
   
           <h3>انتخاب فایل</h3>
-  
+ 
           <div ng2FileDrop 
                [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+<<<<<<< HEAD
                (fileOver)="fileOverBase($event)" [uploader]="uploader"
                class="well my-drop-zone">
+=======
+               (fileOver)="fileOverBase($event)"
+               [uploader]="uploader"
+               class="well my-drop-zone dropupload">
+>>>>>>> 5de91a8c6e69738eec018ce7773675aca7ce4828
            عکس را درگ کنید
-          </div>
+          </div> 
   
            
           انتخاب عکس
-          <input type="file"  ng2FileSelect [uploader]="uploader" />
+          <input type="file" ng2FileSelect [uploader]="uploader" />
       </div>
   
       <div class="col-md-9" style="margin-bottom: 40px">
@@ -68,11 +74,11 @@
                       <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
                   </div>
               </div>
-              <button type="button" class="btn btn-success btn-s"
+              <button type="button" class="btn btn-success btn-s float-left margt15"
                       (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                   <span class="glyphicon glyphicon-upload"></span>آپلود
               </button>
-              <button type="button" class="btn btn-warning btn-s"
+              <button type="button" class="btn btn-warning btn-s float-left margt15"
                       (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
                   <span class="glyphicon glyphicon-ban-circle"></span> انصراف
               </button>
