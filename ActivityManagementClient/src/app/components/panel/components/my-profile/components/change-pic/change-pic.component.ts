@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
 import { FileUploader } from 'ng2-file-upload';
+import { SharedService } from 'src/app/Services/Shared.service';
 
 @Component({
   selector: 'app-change-pic',
@@ -9,12 +9,12 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['../change-pic/change-pic.component.css']
 })
 export class ChangePicComponent implements OnInit {
-  @Output() getUserImageUrl= new EventEmitter<string>();
+
   uploader: FileUploader;
-  hasBaseDropZoneOver:boolean;
-  response:string;
+  hasBaseDropZoneOver: boolean;
+  response: string;
   baseUrl = environment.apiUrl;
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
     this.initializeUploader()
@@ -37,17 +37,19 @@ export class ChangePicComponent implements OnInit {
       headers: [
         { name: 'Authorization', value: 'Bearer ' + localStorage.getItem('token') }
       ],
-     
+
 
     })
-    
-    
+
+
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false }
 
-    this.uploader.onSuccessItem= (item,response,status,Headers) => {
+    this.uploader.onSuccessItem = (item, response, status, Headers) => {
 
-      if(response){
-        this.getUserImageUrl.emit(response)
+      debugger;
+      if (response) {
+       
+        this.sharedService.setUserPhoto(response)
       }
     }
   }
