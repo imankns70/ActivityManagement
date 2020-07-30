@@ -3,6 +3,7 @@
         <a href="#" class="notification notify show-count ml-4" data-count="70"></a>
     </li>
     <li class="nav-item dropdown">
+<<<<<<< HEAD
         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
@@ -25,3 +26,27 @@
         </div>
     </li>
 </ul>
+=======
+      <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="{{user.Image}}">
+                  
+              </span>
+          </div>
+      </a>
+      <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+          <a routerLink="/panel/myprofile" routerLinkActive="is-active" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>نمایه من</span>
+          </a>
+          <div class="dropdown-divider"></div>
+  
+          <a class="dropdown-item" (click)="logout()">
+              <i class="ni ni-user-run"></i>
+              <span>خروج</span>
+          </a>
+      </div>
+  </li>
+  </ul>
+>>>>>>> 2b60d52d50e9709bb4fc4f582b380ce5ad42ae83
