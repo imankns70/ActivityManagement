@@ -23,7 +23,10 @@ export class AuthService {
     return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
-    return localStorage.getItem('token') == null ? false : true;
+    return this.getToken() == null ? false : true;
 
+  }
+  getToken(): string {
+    return localStorage.getItem('token')
   }
 }
