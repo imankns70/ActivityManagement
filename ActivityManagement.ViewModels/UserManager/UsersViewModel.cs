@@ -70,6 +70,7 @@ namespace ActivityManagement.ViewModels.UserManager
             }
         }
 
+        public string Token { get; set; }
 
         [Display(Name = "تاریخ عضویت"),]
         public DateTime? RegisterDateTime { get; set; }

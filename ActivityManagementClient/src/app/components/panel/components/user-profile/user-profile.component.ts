@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
-import { SharedService } from 'src/app/Services/Shared.service';
+ 
 import { User } from 'src/app/models/user';
 @Component({
   selector: 'user-profile',
@@ -9,17 +9,13 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  imageUrl:string
 
-  user = new User();
-  constructor(private router: Router, private authService: AuthService,
-    private sharedService: SharedService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-
-    this.sharedService.imageUrl.subscribe(url => {
-      debugger;
-      this.user.Image = url
-    })
+debugger;
+    this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
   }
   logout() {
     localStorage.removeItem('token');

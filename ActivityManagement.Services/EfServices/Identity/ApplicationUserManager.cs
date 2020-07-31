@@ -137,7 +137,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
         public async Task<UserViewModelApi> FindUserApiByIdAsync(int userId)
         {
-            return await Users.Where(u => u.Id == userId).Select(user => new UserViewModelApi
+            return await Users.Include(a => a.Roles).Where(u => u.Id == userId).Select(user => new UserViewModelApi
             {
                 Id = user.Id,
                 Email = user.Email,
@@ -148,8 +148,12 @@ namespace ActivityManagement.Services.EfServices.Identity
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.HasValue ? user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "",
                 Gender = user.Gender,
+                Role = user.Roles.First().Role.Name
             }).FirstOrDefaultAsync();
         }
+
+        
+
         public async Task<UsersViewModel> FindUserWithDetailIdAsync(int userId)
         {
             return await Users.Include(appUser => appUser.Roles).Where(u => u.Id == userId).Select(user => new UsersViewModel
@@ -262,7 +266,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             return logicResult;
         }
 
-
+      
 
         public async Task<LogicResult> UploadUserImage(IFormFile file, string userId)
         {

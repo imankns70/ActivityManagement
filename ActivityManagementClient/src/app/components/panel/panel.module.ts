@@ -34,7 +34,6 @@ import { FileUploadModule  } from 'ng2-file-upload';
     UserProfileCollapseComponent,
     MyProfileComponent,
     ChangePicComponent,
-    //FileSelectDirective
 
   ],
 

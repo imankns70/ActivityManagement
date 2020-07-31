@@ -26,9 +26,10 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.authService.login(this.model).subscribe(next => {
-debugger;
+  
       if (next.isSuccess == true) {
-        localStorage.setItem('token', next.data)
+        localStorage.setItem('token', next.data.token)
+        this.authService.changeUserPhoto(next.data.image)
         this.router.navigate([this.returnUrl]);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)

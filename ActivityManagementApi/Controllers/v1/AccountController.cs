@@ -40,7 +40,7 @@ namespace ActivityManagementApi.Controllers.v1
 
         }
         [HttpPost("SignIn")]
-        public async Task<ApiResult<string>> SignIn([FromBody]SignInViewModel viewModel)
+        public async Task<ApiResult<UserViewModelApi>> SignIn([FromBody]SignInViewModel viewModel)
         {
 
             if (ModelState.IsValid)
@@ -58,7 +58,11 @@ namespace ActivityManagementApi.Controllers.v1
 
                 }
 
-                return Ok(await _jwtService.GenerateTokenAsync(user));
+                UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
+                string imageUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/Users/{userViewModel.Image}";
+                userViewModel.Token = await _jwtService.GenerateTokenAsync(user);
+                userViewModel.Image = imageUrl;
+                return Ok(userViewModel);
             }
 
             return BadRequest(ModelState.GetErrorsModelState());

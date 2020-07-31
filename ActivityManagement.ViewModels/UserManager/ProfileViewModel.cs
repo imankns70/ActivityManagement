@@ -29,7 +29,8 @@ namespace ActivityManagement.ViewModels.UserManager
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string LastName { get; set; }
 
-
+        public string Role { get; set; }
+        public string Token { get; set; }
         public string PersianBirthDate { get; set; }
 
         public GenderType? Gender { get; set; }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FileUploader } from 'ng2-file-upload';
-import { SharedService } from 'src/app/Services/Shared.service';
+import { ApiResult } from 'src/app/models/apiresult';
+import { AuthService } from 'src/app/components/auth/services/auth.service';
 
 @Component({
   selector: 'app-change-pic',
@@ -12,13 +13,13 @@ export class ChangePicComponent implements OnInit {
 
   uploader: FileUploader;
   hasBaseDropZoneOver: boolean;
-  response: string;
+  imageUrl: string;
   baseUrl = environment.apiUrl;
-  constructor(private sharedService: SharedService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.initializeUploader()
-    console.log(this.response)
+  this.authService.currentPhotoUrl
   }
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -37,7 +38,7 @@ export class ChangePicComponent implements OnInit {
       headers: [
         { name: 'Authorization', value: 'Bearer ' + localStorage.getItem('token') }
       ],
-     
+
 
     })
 
@@ -46,10 +47,13 @@ export class ChangePicComponent implements OnInit {
 
     this.uploader.onSuccessItem = (item, response, status, Headers) => {
 
+      let apiResult: ApiResult
       debugger;
-      if (response) {
-       
-        this.sharedService.setUserPhoto(response)
+      apiResult = <ApiResult>JSON.parse(response);
+    
+      if (apiResult.isSuccess) {
+
+        this.authService.changeUserPhoto(apiResult.data)
       }
     }
   }

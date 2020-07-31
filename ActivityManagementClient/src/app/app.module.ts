@@ -11,7 +11,7 @@ import {
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
-import { HttpErrorInterceptor } from './Services/http-error.interceptor';
+import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -56,7 +56,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    providers: [
       {
          provide: HTTP_INTERCEPTORS,
-         useClass: HttpErrorInterceptor,
+         useClass: AuthInterceptor,
          multi: true
       },
        AuthGuard],
