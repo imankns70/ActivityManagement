@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 
 @Injectable({
@@ -10,9 +12,10 @@ import { ApiResult } from 'src/app/models/apiresult';
 })
 export class AuthService {
   baseUrl = environment.apiUrl + 'Account/';
+  currentUser:User;
   imageUrl= new BehaviorSubject<string>('../../../../assets/images/UserPic.png');
   currentPhotoUrl= this.imageUrl.asObservable();
-  constructor(private http: HttpClient) { }
+  constructor(private router:Router,private http: HttpClient) { }
   
   login(viewModel: any): Observable<ApiResult> {
 
@@ -31,6 +34,11 @@ export class AuthService {
   }
   getToken(): string {
     return localStorage.getItem('token')
+  }
+  logout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    this.router.navigate(['/auth/login'])
   }
   changeUserPhoto(url:string){
  

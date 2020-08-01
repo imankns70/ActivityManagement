@@ -14,7 +14,6 @@ export class UserProfileCollapseComponent implements OnInit {
     this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
   }
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/auth/login'])
+    this.authService.logout()
   }
 }

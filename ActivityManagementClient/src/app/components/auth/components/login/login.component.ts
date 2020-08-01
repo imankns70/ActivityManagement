@@ -3,6 +3,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from 'src/app/models/enums/Globals';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { User } from 'src/app/models/user';
 
 
 @Component({
@@ -13,23 +14,25 @@ import { NotificationMessageService } from 'src/app/Services/NotificationMessage
 export class LoginComponent implements OnInit {
   model: any = {};
   returnUrl: any = '';
+   
   constructor(private authService: AuthService, private router: Router,
     private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-  
+
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
-    
+
     if (this.authService.isSignIn()) {
       this.router.navigate([this.returnUrl]);
     }
   }
   login() {
     this.authService.login(this.model).subscribe(next => {
-  
-      if (next.isSuccess == true) {
 
-        localStorage.setItem('user',next.data.token)
+      if (next.isSuccess == true) {
+        debugger;
+       
+        localStorage.setItem('user', JSON.stringify(next.data))
         localStorage.setItem('token', next.data.token)
         this.authService.changeUserPhoto(next.data.image)
         this.router.navigate([this.returnUrl]);

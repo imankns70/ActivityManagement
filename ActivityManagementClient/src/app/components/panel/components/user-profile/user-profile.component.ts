@@ -14,11 +14,13 @@ export class UserProfileComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-debugger;
-    this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
+ 
+    this.authService.currentPhotoUrl.subscribe(url => {
+      debugger;
+      this.imageUrl = url
+    })
   }
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/auth/login'])
+   this.authService.logout()
   }
 }
