@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.model).subscribe(next => {
   
       if (next.isSuccess == true) {
+
+        localStorage.setItem('user',next.data.token)
         localStorage.setItem('token', next.data.token)
         this.authService.changeUserPhoto(next.data.image)
         this.router.navigate([this.returnUrl]);
