@@ -14,7 +14,7 @@ import { User } from 'src/app/models/user';
 export class LoginComponent implements OnInit {
   model: any = {};
   returnUrl: any = '';
-   
+  user: User;
   constructor(private authService: AuthService, private router: Router,
     private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
@@ -28,12 +28,15 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.authService.login(this.model).subscribe(next => {
-
+      debugger;
       if (next.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data));
         localStorage.setItem('token', next.data.token);
-        this.authService.currentUser= next.data
-        this.authService.changeUserPhoto(next.data.image);
+        const imageUrl:string=next.data.image;
+        if (imageUrl) {
+          this.authService.changeUserPhoto(imageUrl);
+
+        }
         this.router.navigate([this.returnUrl]);
 
         // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)

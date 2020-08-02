@@ -18,6 +18,11 @@ export class AuthService {
   currentPhotoUrl = this.imageUrl.asObservable();
   constructor(private router: Router, private http: HttpClient) { }
 
+  changeUserPhoto(url: string) {
+
+    this.imageUrl.next(url);
+  }
+
   login(viewModel: any): Observable<ApiResult> {
 
 
@@ -41,8 +46,12 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login'])
   }
-  changeUserPhoto(url: string) {
-
-    this.imageUrl.next(url);
+  loadUser() {
+    const user = <User>JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      this.currentUser = user;
+      this.changeUserPhoto(user.image)
+    }
+    
   }
 }

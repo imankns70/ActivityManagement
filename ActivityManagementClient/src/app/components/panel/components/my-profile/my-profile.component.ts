@@ -23,6 +23,7 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.getUserLoggedIn();
+  
   }
 
   getUserLoggedIn(): User {

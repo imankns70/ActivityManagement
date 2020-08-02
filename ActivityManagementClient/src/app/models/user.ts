@@ -1,6 +1,6 @@
 import { gender } from './enums/gender';
 
-export class User {
+export interface User {
 
     id: number;
     userName: string;
@@ -8,7 +8,7 @@ export class User {
     lastName: string;
     phoneNumber: number;
     email: string;
-    Image: string;
+    image: string;
     persianBirthDate: string;
     gender?: gender;
     //role: string,

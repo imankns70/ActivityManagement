@@ -19,7 +19,6 @@ export class ChangePicComponent implements OnInit {
 
   ngOnInit() {
     this.initializeUploader()
-  this.authService.currentPhotoUrl
   }
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -50,10 +49,13 @@ export class ChangePicComponent implements OnInit {
       let apiResult: ApiResult
       debugger;
       apiResult = <ApiResult>JSON.parse(response);
-    
-      if (apiResult.isSuccess) {
 
+      if (apiResult.isSuccess) {
+        debugger;
         this.authService.changeUserPhoto(apiResult.data)
+        this.authService.currentUser.image = apiResult.data;
+        localStorage.setItem('user', JSON.stringify(this.authService.currentUser))
+
       }
     }
   }

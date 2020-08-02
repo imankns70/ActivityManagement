@@ -12,6 +12,7 @@ export class UserProfileCollapseComponent implements OnInit {
 
   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
+    this.authService.loadUser();
   }
   logout() {
     this.authService.logout()

@@ -12,6 +12,7 @@ import {
 } from 'ngx-ui-loader';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { AuthService } from '../app/components/auth/services/auth.service';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -59,7 +60,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          useClass: AuthInterceptor,
          multi: true
       },
-       AuthGuard],
+       AuthGuard,
+       AuthService],
    bootstrap: [
       AppComponent
    ]
