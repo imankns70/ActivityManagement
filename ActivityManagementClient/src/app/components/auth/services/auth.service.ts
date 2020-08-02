@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,11 +13,11 @@ import { User } from 'src/app/models/user';
 })
 export class AuthService {
   baseUrl = environment.apiUrl + 'Account/';
-  currentUser:User;
-  imageUrl= new BehaviorSubject<string>('../../../../assets/images/UserPic.png');
-  currentPhotoUrl= this.imageUrl.asObservable();
-  constructor(private router:Router,private http: HttpClient) { }
-  
+  currentUser: User;
+  imageUrl = new BehaviorSubject<string>('../../../../assets/images/UserPic.png');
+  currentPhotoUrl = this.imageUrl.asObservable();
+  constructor(private router: Router, private http: HttpClient) { }
+
   login(viewModel: any): Observable<ApiResult> {
 
 
@@ -40,8 +41,8 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/auth/login'])
   }
-  changeUserPhoto(url:string){
- 
+  changeUserPhoto(url: string) {
+
     this.imageUrl.next(url);
   }
 }
