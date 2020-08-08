@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ActivityManagement.DataLayer.Context;
 using ActivityManagement.IocConfig;
 using ActivityManagement.IocConfig.Api.Middlewares;
@@ -9,9 +10,11 @@ using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace ActivityManagementApi
@@ -71,11 +74,17 @@ namespace ActivityManagementApi
             appBuilder.UseSwaggerAndUI();
             appBuilder.UseRouting();
             appBuilder.UseAuthorization();
+            appBuilder.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot")),
+                RequestPath = new PathString("/wwwroot")
+            });
             appBuilder.UseEndpoints(end =>
             {
                 end.MapControllers();
-              
+
             });
+        
         }
     }
 }

@@ -59,55 +59,50 @@
 
             </div>
             <div class="card-body px-lg-5 py-lg-6">
-              <form #registerForm="ngForm" (ngSubmit)="register()">
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="نام" name="firstname" id="firstname"
-                      [(ngModel)]="model.firstname" #firstname="ngModel" required>
+                    <input class="form-control" formControlName="firstname" placeholder="نام" id="firstname">
                   </div>
                 </div>
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="نام خانوادگی" name="lastname" id="lastname"
-                      [(ngModel)]="model.lastname" #lastname="ngModel" required>
+                    <input class="form-control" placeholder="نام خانوادگی" id="lastname" formControlName="lastname">
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="نام کاربری" name="username" id="username"
-                      [(ngModel)]="model.username" #username="ngModel" required>
+                    <input class="form-control" placeholder="نام کاربری" id="username" formControlName="username">
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="ایمیل" name="email" id="email" [(ngModel)]="model.email"
-                      #email="ngModel" required>
+                    <input class="form-control" placeholder="ایمیل" formControlName="email" id="email">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" name="password" id="password" placeholder="کلمه عبور" type="password"
-                      [(ngModel)]="model.password" required #password="ngModel">
+                    <input class="form-control" id="password" placeholder="کلمه عبور" type="password"
+                      formControlName="password">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" name="confirmpassword" id="confirmpassword"
-                      placeholder="تکرار کلمه عبور" type="password" [(ngModel)]="model.confirmpassword" required
-                      #confirmpassword="ngModel">
+                    <input class="form-control" id="confirmpassword" placeholder="تکرار کلمه عبور" type="password"
+                      formControlName="confirmpassword">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
-                    <select name="gender" id="gender" [(ngModel)]="model.gender" required>
+                    <select id="gender" formControlName="gender">
                       <option>جنسیت</option>
                       <option>مرد</option>
                       <option>زن</option>
@@ -118,9 +113,8 @@
 
 
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" name="acceptcondition" id="acceptcondition" type="checkbox"
-                    [(ngModel)]="model.acceptcondition">
-                  <label class="custom-control-label" for="">موافق شرایط و ضوابط</label>
+                  <input class="custom-control-input" id="acceptcondition" type="checkbox" formControlName="acceptcondition">
+                  <label class="custom-control-label" for="acceptcondition">موافق شرایط و ضوابط</label>
                 </div>
 
                 <div class="text-center">
@@ -132,11 +126,11 @@
           </div>
           <div class="row mt-3">
             <div class="col-6">
-                <a class="text-light" routerLink="/auth/login"><small>ورود یه سایت</small></a>
+              <a class="text-light" routerLink="/auth/login"><small>ورود یه سایت</small></a>
 
             </div>
 
-        </div>
+          </div>
         </div>
       </div>
     </div>

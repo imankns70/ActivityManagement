@@ -13,7 +13,7 @@ import {
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
 import { AuthService } from '../app/components/auth/services/auth.service';
-
+ 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
@@ -43,6 +43,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
+    
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
@@ -60,8 +61,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          useClass: AuthInterceptor,
          multi: true
       },
-       AuthGuard,
-       AuthService],
+      AuthGuard,
+      AuthService],
    bootstrap: [
       AppComponent
    ]

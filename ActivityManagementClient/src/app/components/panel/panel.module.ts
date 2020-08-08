@@ -9,20 +9,21 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { UserService } from './services/user.service';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
-import { FormsModule } from '@angular/forms';
 import { ChangePicComponent } from './components/my-profile/components/change-pic/change-pic.component';
 import { CommonModule } from '@angular/common';
 import { FileUploadModule  } from 'ng2-file-upload';
-//import { FileSelectDirective } from 'ng2-file-upload';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   imports: [
-  
+   
     PanelRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
-    FileUploadModule,
-    FormsModule
+    FileUploadModule
+    
 
   ],
 

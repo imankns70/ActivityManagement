@@ -16,7 +16,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
 
     this.authService.currentPhotoUrl.subscribe(url => {
-      debugger
+    
 
       this.imageUrl = url
     })

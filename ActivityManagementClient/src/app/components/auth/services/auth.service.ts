@@ -5,7 +5,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { map } from 'rxjs/operators';
 
 
 @Injectable({

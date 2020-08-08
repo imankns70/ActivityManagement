@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       if (next.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data));
         localStorage.setItem('token', next.data.token);
-        const imageUrl:string=next.data.image;
+        const imageUrl: string = next.data.image;
         if (imageUrl) {
           this.authService.changeUserPhoto(imageUrl);
 
