@@ -64,45 +64,45 @@
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" formControlName="firstname" placeholder="نام" id="firstname">
+                    <input formControlName="firstname" class="form-control is-invalid" type="text" placeholder="نام" id="firstname" />
                   </div>
                 </div>
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="نام خانوادگی" id="lastname" formControlName="lastname">
+                    <input formControlName="lastname" class="form-control" placeholder="نام خانوادگی" id="lastname" />
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="نام کاربری" id="username" formControlName="username">
+                    <input formControlName="username" class="form-control" placeholder="نام کاربری" id="username" />
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" placeholder="ایمیل" formControlName="email" id="email">
+                    <input formControlName="email" class="form-control" placeholder="ایمیل" id="email" />
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" id="password" placeholder="کلمه عبور" type="password"
-                      formControlName="password">
+                    <input formControlName="password" class="form-control" id="password" placeholder="کلمه عبور"
+                      type="password" />
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input class="form-control" id="confirmpassword" placeholder="تکرار کلمه عبور" type="password"
-                      formControlName="confirmpassword">
+                    <input formControlName="confirmpassword" class="form-control" id="confirmpassword"
+                      placeholder="تکرار کلمه عبور" type="password" />
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
-                    <select id="gender" formControlName="gender">
+                    <select formControlName="gender" id="gender">
                       <option>جنسیت</option>
                       <option>مرد</option>
                       <option>زن</option>
@@ -113,7 +113,8 @@
 
 
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="acceptcondition" type="checkbox" formControlName="acceptcondition">
+                  <input formControlName="acceptcondition" class="custom-control-input" id="acceptcondition"
+                    type="checkbox" />
                   <label class="custom-control-label" for="acceptcondition">موافق شرایط و ضوابط</label>
                 </div>
 

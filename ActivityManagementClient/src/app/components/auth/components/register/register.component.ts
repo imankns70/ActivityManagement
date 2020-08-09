@@ -16,16 +16,24 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      firstname: new FormControl('نام را وارد کنید', Validators.required),
-      lastname: new FormControl('نام خانوادگی را وارد کنید', Validators.required),
-      username: new FormControl('نام کاربری را وارد کنید', Validators.required),
-      email: new FormControl('ایمیل را وارد کنید', [Validators.required, Validators.email]),
-      password: new FormControl('کلمه عبور را وارد کنید', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-      confirmpassword: new FormControl('تکرار کلمه عبور را وارد کنید', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-      gender: new FormControl('جنسیت را انتخاب کنید', Validators.required),
-      acceptcondition: new FormControl('تیک قوانین سایت را انتخاب کنید', Validators.required)
-    })
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      confirmpassword: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
+      gender: new FormControl('', Validators.required),
+      acceptcondition: new FormControl(false, Validators.required)
+    },[this.checkPasswordMatch,this.checkAcceptcondition])
   }
+   checkPasswordMatch(g:FormGroup){
+
+    return g.get('password').value === g.get('confirmpassword').value ? null  : {mismath:true}
+   }
+   checkAcceptcondition(g:FormGroup){
+
+    return g.get('acceptcondition').value === true ? null  : {mismath:true}
+   }
   register() {
     this.authService.register(this.model).subscribe(p => {
       if (p.isSuccess == true) {
