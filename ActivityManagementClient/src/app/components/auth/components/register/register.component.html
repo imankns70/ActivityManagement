@@ -62,51 +62,80 @@
               <form [formGroup]="registerForm" (ngSubmit)="register()">
 
                 <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
-
-                    <input formControlName="firstname" class="form-control is-invalid" type="text" placeholder="نام" id="firstname" />
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('firstname').errors
+                  && registerForm.get('firstname').touched }" [attr.data-validate]="registerForm.get('firstname').hasError('required')
+                  && registerForm.get('firstname').touched ? 'نام را پر کنید': null">
+                    <input formControlName="firstname" class="form-control inputborder" type="text" placeholder="نام"
+                      id="firstname" />
+                    <div *ngIf="registerForm.get('firstname').hasError('required')
+                    && registerForm.get('firstname').touched" class="messageLabel">نام را پر کنید</div>
                   </div>
                 </div>
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input formControlName="lastname" class="form-control" placeholder="نام خانوادگی" id="lastname" />
+                    <input formControlName="lastname" class="form-control inputborder" placeholder="نام خانوادگی"
+                      id="lastname" />
+
+                    <div *ngIf="registerForm.get('lastname').hasError('required')
+                      && registerForm.get('lastname').touched" class="messageLabel">نام خانوادگی را پر کنید</div>
+
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input formControlName="username" class="form-control" placeholder="نام کاربری" id="username" />
+                    <input formControlName="username" class="form-control inputborder" placeholder="نام کاربری"
+                      id="username" />
+
+                    <div *ngIf="registerForm.get('username').hasError('required')
+                      && registerForm.get('username').touched" class="messageLabel">نام کاربری را پر کنید</div>
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
 
-                    <input formControlName="email" class="form-control" placeholder="ایمیل" id="email" />
+                    <input formControlName="email" class="form-control inputborder" placeholder="ایمیل" id="email" />
+                    <div *ngIf="registerForm.get('email').hasError('required')
+                    && registerForm.get('email').touched" class="messageLabel">ایمیل را پر کنید</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input formControlName="password" class="form-control" id="password" placeholder="کلمه عبور"
-                      type="password" />
+                    <input formControlName="password" class="form-control inputborder" id="password"
+                      placeholder="کلمه عبور" type="password" />
+
+                    <div *ngIf="registerForm.get('password').hasError('required')
+                      && registerForm.get('password').touched" class="messageLabel">کلمه عبور را پر کنید</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
 
-                    <input formControlName="confirmpassword" class="form-control" id="confirmpassword"
+                    <input formControlName="confirmpassword" class="form-control inputborder" id="confirmpassword"
                       placeholder="تکرار کلمه عبور" type="password" />
+                    <div *ngIf="registerForm.get('confirmpassword').hasError('required')
+                      && registerForm.get('confirmpassword').touched" class="messageLabel">تکرار کلمه عبور را پر کنید
+                    </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
-                    <select formControlName="gender" id="gender">
+                    <label>
+                      <input type="radio" value="Male" formControlName="gender">
+                      <span>مرد</span>
+                    </label>
+                    <label>
+                      <input type="radio" value="Female" formControlName="gender">
+                      <span>زن</span>
+                    </label>
+                    <!-- <select formControlName="gender" id="gender">
                       <option>جنسیت</option>
                       <option>مرد</option>
                       <option>زن</option>
-                    </select>
+                    </select> -->
 
                   </div>
                 </div>
@@ -116,6 +145,8 @@
                   <input formControlName="acceptcondition" class="custom-control-input" id="acceptcondition"
                     type="checkbox" />
                   <label class="custom-control-label" for="acceptcondition">موافق شرایط و ضوابط</label>
+                  <div *ngIf="registerForm.get('email').hasError('required')
+                  && registerForm.get('email').touched" class="messageLabel">تیک شرایط سایت را انتخاب کنید</div>
                 </div>
 
                 <div class="text-center">
