@@ -63,7 +63,8 @@
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('firstname').errors
-                  && registerForm.get('firstname').touched }" [attr.data-validate]="registerForm.get('firstname').hasError('required')
+                  && registerForm.get('firstname').touched }" 
+                  [attr.data-validate]="registerForm.get('firstname').hasError('required')
                   && registerForm.get('firstname').touched ? 'نام را پر کنید': null">
                     <input formControlName="firstname" class="form-control inputborder" type="text" placeholder="نام"
                       id="firstname" />
@@ -74,13 +75,16 @@
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
-
+                    <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('lastname').errors
+                    && registerForm.get('lastname').touched }"
+                     [attr.data-validate]="registerForm.get('lastname').hasError('required')
+                    && registerForm.get('lastname').touched ? 'نام را پر کنید': null">
                     <input formControlName="lastname" class="form-control inputborder" placeholder="نام خانوادگی"
                       id="lastname" />
 
                     <div *ngIf="registerForm.get('lastname').hasError('required')
                       && registerForm.get('lastname').touched" class="messageLabel">نام خانوادگی را پر کنید</div>
-
+                    </div>
                   </div>
                 </div>
                 <div class="form-group mb-3">
@@ -124,7 +128,7 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <label>
-                      <input type="radio" value="Male" formControlName="gender">
+                      <input type="radio" value="Male" checked="checked" formControlName="gender">
                       <span>مرد</span>
                     </label>
                     <label>
