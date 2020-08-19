@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.authService.login(this.model).subscribe(next => {
-      debugger;
+ 
       if (next.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data));
         localStorage.setItem('token', next.data.token);

@@ -40,8 +40,6 @@ export class MyProfileComponent implements OnInit {
   }
 
   updateMyProfile() {
-
-
     this.userService.updateMyProfile(this.user).subscribe(next => {
 
       if (next.isSuccess) {
