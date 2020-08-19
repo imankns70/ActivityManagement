@@ -12,7 +12,7 @@ form button{
     font-size: 14px;
     border-radius: 10px;
 }
-form input.form-control {
+form .inputborder {
     border: 1px solid #5265d6 !important;
     border-radius: 25px !important;
     height: 35px;
@@ -36,3 +36,15 @@ input {
 .custom-control-alternative .custom-control-label::before {
     border: 1px solid #5265d6;
 }
+
+ .c-validation input{ 
+    border: 1px solid #c51244 !important;
+    position: relative; 
+    box-shadow: 1px 1px 1px #aaaaaa;
+  }
+   .messageLabel{
+color: #c51244;
+   }
+  
+  
+  
