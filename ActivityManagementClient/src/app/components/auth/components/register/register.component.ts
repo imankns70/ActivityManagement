@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
    }
    checkAcceptcondition(g:FormGroup){
 
-    return g.get('acceptcondition').value === true ? null  : {mismath:true}
+    return g.get('acceptcondition').value === true ? null  : {acceptmismath:true}
    }
   register() {
     this.authService.register(this.model).subscribe(p => {

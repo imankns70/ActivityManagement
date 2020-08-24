@@ -97,8 +97,8 @@
                   </div>
                 </div>
                 <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('email').errors
-                  && registerForm.get('email').touched }">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':(registerForm.get('email').errors
+                  && registerForm.get('email').touched) }">
 
                     <input formControlName="email" class="form-control inputborder" placeholder="ایمیل" id="email" />
                     <div *ngIf="registerForm.get('email').hasError('required')
@@ -108,27 +108,38 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('password').errors
-                  && registerForm.get('password').touched }">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':(registerForm.get('password').errors
+                  && registerForm.get('password').touched) }">
 
                     <input formControlName="password" class="form-control inputborder" id="password"
                       placeholder="کلمه عبور" type="password" />
 
-                    <div *ngIf="registerForm.get('password').hasError('required')
-                      && registerForm.get('password').touched" class="messageLabel">کلمه عبور را پر کنید</div>
+                    <div *ngIf="(registerForm.get('password').hasError('required')
+                      && registerForm.get('password').touched)" class="messageLabel">کلمه عبور را پر کنید</div>
+
+                    <div *ngIf="registerForm.get('password').hasError('minlength')
+                      && registerForm.get('password').touched" class="messageLabel">حداقل 4 کاراکتر را پر کنید</div>
+                    <div *ngIf="registerForm.get('password').hasError('maxlength')
+                      && registerForm.get('password').touched" class="messageLabel">حداکثر 10 کاراکتر را پر کنید</div>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('confirmpassword').errors
-                  && registerForm.get('confirmpassword').touched }">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':(registerForm.get('confirmpassword').errors
+                  && registerForm.get('confirmpassword').touched) || (registerForm.hasError('mismath')
+                  && registerForm.get('confirmpassword').touched) }">
 
                     <input formControlName="confirmpassword" class="form-control inputborder" id="confirmpassword"
                       placeholder="تکرار کلمه عبور" type="password" />
-                    <div *ngIf="registerForm.get('confirmpassword').hasError('required')
-                      && registerForm.get('confirmpassword').touched" class="messageLabel">تکرار کلمه عبور را پر کنید
+                 
+                    <div *ngIf="(registerForm.get('confirmpassword').hasError('required')
+                      && registerForm.get('confirmpassword').touched) " class="messageLabel">کلمه عبور را دوباره پر کنید
                     </div>
+                             
                   </div>
+                     <div *ngIf="(registerForm.hasError('mismath')
+                      && registerForm.get('confirmpassword').touched)" class="messageLabel"> پسووردها یکسان نمیباشند
+                    </div>
                 </div>
 
                 <div class="form-group">
