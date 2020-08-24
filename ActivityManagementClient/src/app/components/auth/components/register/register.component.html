@@ -76,9 +76,7 @@
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('lastname').errors
-                    && registerForm.get('lastname').touched }"
-                     [attr.data-validate]="registerForm.get('lastname').hasError('required')
-                    && registerForm.get('lastname').touched ? 'نام را پر کنید': null">
+                    && registerForm.get('lastname').touched }">
                     <input formControlName="lastname" class="form-control inputborder" placeholder="نام خانوادگی"
                       id="lastname" />
 
@@ -88,7 +86,8 @@
                   </div>
                 </div>
                 <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('username').errors
+                  && registerForm.get('username').touched }">
 
                     <input formControlName="username" class="form-control inputborder" placeholder="نام کاربری"
                       id="username" />
@@ -98,15 +97,19 @@
                   </div>
                 </div>
                 <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('email').errors
+                  && registerForm.get('email').touched }">
 
                     <input formControlName="email" class="form-control inputborder" placeholder="ایمیل" id="email" />
                     <div *ngIf="registerForm.get('email').hasError('required')
                     && registerForm.get('email').touched" class="messageLabel">ایمیل را پر کنید</div>
+                    <div *ngIf="registerForm.get('email').hasError('email')
+                    && registerForm.get('email').touched" class="messageLabel">ایمیل را به درستی وارد کنید</div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="input-group input-group-alternative">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('password').errors
+                  && registerForm.get('password').touched }">
 
                     <input formControlName="password" class="form-control inputborder" id="password"
                       placeholder="کلمه عبور" type="password" />
@@ -115,8 +118,10 @@
                       && registerForm.get('password').touched" class="messageLabel">کلمه عبور را پر کنید</div>
                   </div>
                 </div>
+
                 <div class="form-group">
-                  <div class="input-group input-group-alternative">
+                  <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('confirmpassword').errors
+                  && registerForm.get('confirmpassword').touched }">
 
                     <input formControlName="confirmpassword" class="form-control inputborder" id="confirmpassword"
                       placeholder="تکرار کلمه عبور" type="password" />
@@ -125,6 +130,7 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <label>
@@ -149,8 +155,7 @@
                   <input formControlName="acceptcondition" class="custom-control-input" id="acceptcondition"
                     type="checkbox" />
                   <label class="custom-control-label" for="acceptcondition">موافق شرایط و ضوابط</label>
-                  <div *ngIf="registerForm.get('email').hasError('required')
-                  && registerForm.get('email').touched" class="messageLabel">تیک شرایط سایت را انتخاب کنید</div>
+                  
                 </div>
 
                 <div class="text-center">
