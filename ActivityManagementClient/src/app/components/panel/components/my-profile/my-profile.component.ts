@@ -5,9 +5,8 @@ import { NotificationMessageService } from 'src/app/Services/NotificationMessage
 import { ApiResult } from 'src/app/models/apiresult';
 import { gender } from '../../../../models/enums/gender';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
-import { error } from 'console';
 
 @Component({
   selector: 'app-my-profile',
@@ -16,16 +15,30 @@ import { error } from 'console';
 })
 export class MyProfileComponent implements OnInit {
   // to reset the form we need this
-  @ViewChild('editForm', { static: false }) editForm: NgForm;
+  editForm:FormGroup
   user: User;
-  constructor(private userService: UserService, private alertService: NotificationMessageService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private alertService: NotificationMessageService, private route: ActivatedRoute,
+    private formBuilder:FormBuilder) { }
 
   ngOnInit() {
 
     this.user = this.getUserLoggedIn();
   
   }
+  updateProfileInformation(){
+    this.editForm= this.formBuilder.group({
+      id:[''],
+      username:['',Validators.required],
+      firstname:['',Validators.required],
+      lastname:['',Validators.required],
+      email:['',Validators.required],
+      phonenumber:['',Validators.required],
+      persianBirthDate:['',Validators.required],
+      gender:['',Validators.required],
 
+    })
+  }
+  
   getUserLoggedIn(): User {
 
     let user: User;
@@ -44,7 +57,7 @@ export class MyProfileComponent implements OnInit {
 
       if (next.isSuccess) {
         this.alertService.showMessage(next.message.join(','), 'موفق', Globals.successMessage);
-        this.editForm.form.markAsPristine();
+        this.editForm.reset(this.user);
       }
     }, error => {
       this.alertService.showMessage(error.message.join(','), 'خطا', Globals.successMessage);

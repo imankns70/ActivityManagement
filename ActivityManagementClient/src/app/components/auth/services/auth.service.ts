@@ -21,7 +21,7 @@ export class AuthService {
 
     this.imageUrl.next(url);
   }
-
+ 
   login(viewModel: any): Observable<ApiResult> {
 
 
@@ -51,6 +51,6 @@ export class AuthService {
       this.currentUser = user;
       this.changeUserPhoto(user.image)
     }
-    
+
   }
 }
