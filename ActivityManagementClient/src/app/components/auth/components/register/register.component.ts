@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
       confirmpassword: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]),
-      gender: new FormControl('', Validators.required),
-      acceptcondition: new FormControl(false, Validators.required)
+      gender: new FormControl(true, Validators.required),
+      acceptcondition: new FormControl(false)
     },[this.checkPasswordMatch,this.checkAcceptcondition])
   }
    checkPasswordMatch(g:FormGroup){

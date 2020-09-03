@@ -63,9 +63,7 @@
 
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('firstname').errors
-                  && registerForm.get('firstname').touched }" 
-                  [attr.data-validate]="registerForm.get('firstname').hasError('required')
-                  && registerForm.get('firstname').touched ? 'نام را پر کنید': null">
+                  && registerForm.get('firstname').touched }">
                     <input formControlName="firstname" class="form-control inputborder" type="text" placeholder="نام"
                       id="firstname" />
                     <div *ngIf="registerForm.get('firstname').hasError('required')
@@ -77,10 +75,10 @@
                   <div class="input-group input-group-alternative">
                     <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('lastname').errors
                     && registerForm.get('lastname').touched }">
-                    <input formControlName="lastname" class="form-control inputborder" placeholder="نام خانوادگی"
-                      id="lastname" />
+                      <input formControlName="lastname" class="form-control inputborder" placeholder="نام خانوادگی"
+                        id="lastname" />
 
-                    <div *ngIf="registerForm.get('lastname').hasError('required')
+                      <div *ngIf="registerForm.get('lastname').hasError('required')
                       && registerForm.get('lastname').touched" class="messageLabel">نام خانوادگی را پر کنید</div>
                     </div>
                   </div>
@@ -110,24 +108,49 @@
                 <div class="form-group">
                   <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('password').errors
                   && registerForm.get('password').touched }">
-
                     <input formControlName="password" class="form-control inputborder" id="password"
                       placeholder="کلمه عبور" type="password" />
+                     
+                     <ul role="alert">
+                      <li *ngIf="registerForm.get('password').hasError('required')
+                        && registerForm.get('password').touched" class="messageLabel">کلمه عبور را پر کنید</li>
 
-                    <div *ngIf="registerForm.get('password').hasError('required')
-                      && registerForm.get('password').touched" class="messageLabel">کلمه عبور را پر کنید</div>
+                      <li *ngIf="registerForm.get('password').hasError('minlength')
+                      && registerForm.get('password').touched" class="messageLabel">
+                        حداقل 4 کاراکتر وارد کنید
+                      </li>
+                      <li *ngIf="registerForm.get('password').hasError('maxlength') 
+                      && registerForm.get('password').touched" class="messageLabel">
+                        حداکثر 10 کاراکتر وارد کنید
+                      </li>
+                    </ul>
                   </div>
+                 
                 </div>
 
                 <div class="form-group">
                   <div class="input-group input-group-alternative" [ngClass]="{'c-validation':registerForm.get('confirmpassword').errors
                   && registerForm.get('confirmpassword').touched }">
 
-                    <input formControlName="confirmpassword" class="form-control inputborder" id="confirmpassword"
+                    <input formControlName="confirmpassword" class="form-control inputborder"
                       placeholder="تکرار کلمه عبور" type="password" />
-                    <div *ngIf="registerForm.get('confirmpassword').hasError('required')
-                      && registerForm.get('confirmpassword').touched" class="messageLabel">تکرار کلمه عبور را پر کنید
-                    </div>
+                    <ul>
+                      <li *ngIf="registerForm.get('confirmpassword').hasError('required')
+                        && registerForm.get('confirmpassword').touched" class="messageLabel">تکرار کلمه عبور را پر کنید
+                      </li>
+                      <li *ngIf="registerForm.hasError('mismath')
+                      && registerForm.get('confirmpassword').touched" class="messageLabel"> پسوورد ها یکسان نمی باشند
+                      </li>
+                      <li *ngIf="registerForm.get('confirmpassword').hasError('minlength')
+                      && registerForm.get('confirmpassword').touched" class="messageLabel">
+                        حداقل 4 کاراکتر وارد کنید
+                      </li>
+                      <li *ngIf="registerForm.get('confirmpassword').hasError('maxlength') 
+                      && registerForm.get('confirmpassword').touched" class="messageLabel">
+                        حداکثر 10 کاراکتر وارد کنید
+                      </li>
+                    </ul>
+
                   </div>
                 </div>
 
@@ -155,7 +178,7 @@
                   <input formControlName="acceptcondition" class="custom-control-input" id="acceptcondition"
                     type="checkbox" />
                   <label class="custom-control-label" for="acceptcondition">موافق شرایط و ضوابط</label>
-                  
+
                 </div>
 
                 <div class="text-center">

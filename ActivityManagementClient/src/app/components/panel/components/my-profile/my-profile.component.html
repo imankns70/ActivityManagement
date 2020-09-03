@@ -6,11 +6,11 @@
             </div>
             <div class="card-body">
                 <form class="form-inline" [formGroup]="editForm" (ngSubmit)="updateProfileInformation()">
-                    <input type="hidden" formControlName="id" name="id" />
+                    <input type="hidden" formControlName="id" />
                     <div class="container">
                         <div class="row mt-2 mb-2">
 
-                            <!-- <input type="hidden" asp-for="Id" /> -->
+
 
                             <div class="col-md-12">
                                 <app-change-pic>
@@ -43,57 +43,84 @@
 
                                     </div>
                                 </div> -->
-                              
+
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('userName').errors
                                     && editForm.get('userName').touched }">
                                         <label class="control-label">نام کاربری</label>
-                                        <input class="form-control" formControlName="username" [(ngModel)]="user.userName" />
-                                        <div *ngIf="editForm.get('userName').hasError('required')
-                                        && editForm.get('userName').touched" class="messageLabel">نام کاربری را پر کنید</div>
+                                        <input class="form-control" formControlName="userName" />
+
+
+                                        <ul role="alert">
+                                            <li *ngIf="editForm.get('userName').hasError('required') 
+                                                && editForm.get('userName').touched" class="messageLabel">نام کاربری را
+                                                پر
+                                                کنید
+                                            </li>
+                                            <li *ngIf="editForm.get('userName').hasError('minlength')
+                                                && editForm.get('userName').touched" class="messageLabel">
+                                                حداقل 2 کاراکتر وارد کنید
+                                            </li>
+                                            <li *ngIf="editForm.get('userName').hasError('maxlength') 
+                                                && editForm.get('userName').touched" class="messageLabel">
+                                                حداکثر 20 کاراکتر وارد کنید
+                                            </li>
+                                        </ul>
+
                                     </div>
 
-                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('firstname').errors
-                                    && editForm.get('firstname').touched }">
+                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('firstName').errors
+                                    && editForm.get('firstName').touched }">
                                         <label class="control-label">نام</label>
-                                        <input class="form-control" formControlName="firstname" [(ngModel)]="user.firstName"/>
-                                        <div *ngIf="editForm.get('firstname').hasError('required')
-                                        && editForm.get('firstname').touched" class="messageLabel">نام را پر کنید</div>
+                                        <input class="form-control" formControlName="firstName" />
+                                        <div *ngIf="editForm.get('firstName').hasError('required')
+                                        && editForm.get('firstName').touched" class="messageLabel">نام را پر کنید</div>
                                     </div>
 
-                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('lastname').errors
-                                    && editForm.get('lastname').touched }">
+                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('lastName').errors
+                                    && editForm.get('lastName').touched }">
                                         <label class="control-label">نام خانوادگی</label>
-                                        <input class="form-control" formControlName="lastname" [(ngModel)]="user.lastName"/>
-                                        <div *ngIf="editForm.get('lastname').hasError('required')
-                                        && editForm.get('lastname').touched" class="messageLabel">نام خانوادگی را پر کنید</div>
+                                        <input class="form-control" formControlName="lastName" />
+                                        <div *ngIf="editForm.get('lastName').hasError('required')
+                                        && editForm.get('lastName').touched" class="messageLabel">نام خانوادگی را پر
+                                            کنید</div>
                                     </div>
 
                                     <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('email').errors
                                     && editForm.get('email').touched }">
                                         <label class="control-label">ایمیل</label>
-                                        <input class="form-control" formControlName="email" [(ngModel)]="user.email"/>
-                                        <div *ngIf="editForm.get('email').hasError('required')
-                                        && editForm.get('email').touched" class="messageLabel">ایمیل را پر کنید</div>
+                                        <input class="form-control" formControlName="email" />
+                                        <ul role="alert">
+                                            <li *ngIf="editForm.get('email').hasError('required')
+                                            && editForm.get('email').touched" class="messageLabel">ایمیل را پر کنید
+                                            </li>
+                                            <li *ngIf="editForm.get('email').hasError('email')
+                                            && editForm.get('email').touched" class="messageLabel">ایمیل را به درستی
+                                                وارد کنید</li>
+
+                                        </ul>
+
                                     </div>
 
-                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('phonenumber').errors
-                                    && editForm.get('phonenumber').touched }">
+                                    <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('phoneNumber').errors
+                                    && editForm.get('phoneNumber').touched}">
                                         <label class="control-label">تلفن</label>
 
-                                        <input class="form-control" formControlName="phonenumber" [(ngModel)]="user.phoneNumber"/>
-                                        <div *ngIf="editForm.get('phonenumber').hasError('required')
-                                        && editForm.get('phonenumber').touched" class="messageLabel">تلفن را پر کنید</div>
+                                        <input class="form-control" formControlName="phoneNumber" />
+                                        <div *ngIf="editForm.get('phoneNumber').hasError('required')
+                                        && editForm.get('phoneNumber').touched" class="messageLabel">تلفن را پر کنید
+                                        </div>
                                     </div>
                                     <div class="form-group mb-3 mr-2" [ngClass]="{'c-validation':editForm.get('persianBirthDate').errors
                                     && editForm.get('persianBirthDate').touched }">
                                         <label class="control-label">تاریخ تولد</label>
 
-                                        <input class="form-control" type="text" formControlName="persianBirthDate" [(ngModel)]="user.persianBirthDate"/>
+                                        <input class="form-control" type="text" formControlName="persianBirthDate" />
                                         <div *ngIf="editForm.get('persianBirthDate').hasError('required')
-                                        && editForm.get('persianBirthDate').touched" class="messageLabel">تاریخ تولد را پر کنید</div>
+                                        && editForm.get('persianBirthDate').touched" class="messageLabel">تاریخ تولد را
+                                            پر کنید</div>
 
                                     </div>
 
@@ -125,8 +152,9 @@
                                 <div class="row mt-3">
                                     <div class="form-group mr-2">
 
-                                        <button type="submit" class="btn-save" [disabled]="!editForm.dirty"><i
-                                                class="fa fa-check"></i><span class="mr-1">ذخیره</span></button>
+                                        <button type="submit" class="btn-save"
+                                            [disabled]="!editForm.dirty || !editForm.valid">
+                                            <i class="fa fa-check"></i><span class="mr-1">ذخیره</span></button>
 
 
                                     </div>
