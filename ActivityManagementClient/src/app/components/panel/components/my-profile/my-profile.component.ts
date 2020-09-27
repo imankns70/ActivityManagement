@@ -5,6 +5,7 @@ import { NotificationMessageService } from 'src/app/Services/NotificationMessage
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
+import { gender } from 'src/app/models/enums/gender';
 
 @Component({
   selector: 'app-my-profile',
@@ -21,6 +22,7 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
 
     this.user = this.getUserLoggedIn();
+    console.log(this.user.gender)
     this.updateProfileInformation();
   }
   updateProfileInformation() {
@@ -33,7 +35,7 @@ export class MyProfileComponent implements OnInit {
       email: [this.user.email, [Validators.required,Validators.email]],
       phoneNumber: [this.user.phoneNumber, Validators.required],
       persianBirthDate: [this.user.persianBirthDate, Validators.required],
-      gender: [this.user.gender, Validators.required],
+      gender: [this.user.gender ==gender.Male ? "Male":"Female", Validators.required],
 
     })
   }
@@ -45,7 +47,6 @@ export class MyProfileComponent implements OnInit {
 
       let jsonString = JSON.stringify(data.user.data)
       user = <User>JSON.parse(jsonString)
-
 
     });
     return user;
