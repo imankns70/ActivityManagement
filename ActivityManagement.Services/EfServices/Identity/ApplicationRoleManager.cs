@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.RoleManager;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ActivityManagement.Services.EfServices.Identity
 {
-    public class ApplicationRoleManager : RoleManager<AppRole> , IApplicationRoleManager
+    public class ApplicationRoleManager : RoleManager<AppRole>, IApplicationRoleManager
     {
         private readonly IdentityErrorDescriber _errors;
         private readonly IApplicationUserManager _userManager;
@@ -58,7 +60,21 @@ namespace ActivityManagement.Services.EfServices.Identity
 
         public async Task<List<AppRole>> GetAllRolesWithClaimsAsync()
         {
-            return await Roles.Include(appRole=> appRole.Claims).ToListAsync();
+            return await Roles.Include(appRole => appRole.Claims).ToListAsync();
+        }
+
+        public async Task<List<Claim>> GetDynamicPermissionClaimsByRoleIdAsync(int roleId)
+        {
+            List<Claim> claimsList = new List<Claim>();
+            AppRole role = await Roles.Include(nav => nav.Claims).FirstOrDefaultAsync(x => x.Id == roleId);
+            if (role != null)
+            {
+                claimsList.AddRange(role.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
+                    .Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue)).ToList());
+            }
+
+            return claimsList;
+
         }
 
 
@@ -83,10 +99,10 @@ namespace ActivityManagement.Services.EfServices.Identity
         {
             return await Roles.Include(s => s.Users).FirstOrDefaultAsync(a => a.Id == roleId);
         }
-        public async Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId,string roleClaimType,IList<string> selectedRoleClaimValues)
+        public async Task<IdentityResult> AddOrUpdateClaimsAsync(int roleId, string roleClaimType, IList<string> selectedRoleClaimValues)
         {
             var role = await FindClaimsInRole(roleId);
-            if(role==null)
+            if (role == null)
             {
                 return IdentityResult.Failed(new IdentityError
                 {
@@ -100,18 +116,18 @@ namespace ActivityManagement.Services.EfServices.Identity
                 selectedRoleClaimValues = new List<string>();
 
             var newClaimValuesToAdd = selectedRoleClaimValues.Except(currentRoleClaimValues).ToList();
-            foreach(var claim in newClaimValuesToAdd)
+            foreach (var claim in newClaimValuesToAdd)
             {
                 role.Claims.Add(new RoleClaim
                 {
-                    RoleId=roleId,
-                    ClaimType=roleClaimType,
-                    ClaimValue=claim,
+                    RoleId = roleId,
+                    ClaimType = roleClaimType,
+                    ClaimValue = claim,
                 });
             }
 
             var removedClaimValues = currentRoleClaimValues.Except(selectedRoleClaimValues).ToList();
-            foreach(var claim in removedClaimValues)
+            foreach (var claim in removedClaimValues)
             {
                 var roleClaim = role.Claims.SingleOrDefault(r => r.ClaimValue == claim && r.ClaimType == roleClaimType);
                 if (roleClaim != null)
@@ -123,7 +139,7 @@ namespace ActivityManagement.Services.EfServices.Identity
 
         public async Task<bool> CheckUserInThisRole(AppRole role)
         {
-          return  await Roles.Include(a => a.Users).AnyAsync(a => a.Id == role.Id && a.Users.Any());
+            return await Roles.Include(a => a.Users).AnyAsync(a => a.Id == role.Id && a.Users.Any());
         }
 
         public async Task<List<UsersViewModel>> GetUsersInRoleAsync(int roleId)
@@ -171,8 +187,8 @@ namespace ActivityManagement.Services.EfServices.Identity
         //    return roles;
         //}
 
-     
 
 
-     }
+
+    }
 }

@@ -19,13 +19,13 @@ namespace ActivityManagement.Services.EfServices.Api
 {
     public class JwtService : IJwtService
     {
-        public readonly IApplicationUserManager UserManager;
-        public readonly IApplicationRoleManager RoleManager;
+        public readonly IApplicationUserManager _userManager;
+        public readonly IApplicationRoleManager _roleManager;
         public readonly SiteSettings SiteSettings;
         public JwtService(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings)
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
             SiteSettings = siteSettings.Value;
         }
 
@@ -63,29 +63,32 @@ namespace ActivityManagement.Services.EfServices.Api
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 //new Claim(ClaimTypes.MobilePhone,user.PhoneNumber),
                 new Claim(new ClaimsIdentityOptions().SecurityStampClaimType,user.SecurityStamp),
-                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+                
             };
 
-
+            claims.AddRange(await _roleManager.GetDynamicPermissionClaimsByRoleIdAsync(user.Roles.First().RoleId));
             //List<AppRole> roles = RoleManager.GetAllRolesWithClaims();
             
-            foreach (var item in user.Roles)
-            {
-                var roleClaim = await RoleManager.FindClaimsInRole(item.RoleId);
-                if (roleClaim.Claims.Any())
-                {
-                    foreach (var claim in roleClaim.Claims)
-                    {
-                        if (claim.ClaimType == ConstantPolicies.DynamicPermission)
-                        {
-                            claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
+            //foreach (var item in user.Roles)
+            //{
+            //    var roleClaim = await _roleManager.FindClaimsInRole(item.RoleId);
+            //    if (roleClaim.Claims.Any())
+            //    {
+            //        foreach (var claim in roleClaim.Claims)
+            //        {
+            //            if (claim.ClaimType == ConstantPolicies.DynamicPermission)
+            //            {
+            //                claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
 
-                        }
-                    }
-                }
+            //            }
+            //        }
+            //    }
 
-                claims.Add(new Claim(ClaimTypes.Role, item.Role.Name));
-            }
+            //    claims.Add(new Claim(ClaimTypes.Role, item.Role.Name));
+            //}
+
+
             // instead of userClaim use roleClaim 
             // var userClaims = await _userManager.GetClaimsAsync(user);
             // var userRoles = await _userManager.GetRolesAsync(user);

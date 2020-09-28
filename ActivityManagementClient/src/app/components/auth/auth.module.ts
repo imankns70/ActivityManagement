@@ -5,6 +5,7 @@ import { RegisterComponent } from '../auth/components/register/register.componen
 import { AuthRoutingModule } from './auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LoginRedirectGuard } from 'src/app/guards/login-redirect.guard';
  @NgModule({
   imports: [
     AuthRoutingModule,
@@ -16,7 +17,7 @@ import { CommonModule } from '@angular/common';
     AuthComponent,
     LoginComponent,
     RegisterComponent],
-  providers: []
+  providers: [LoginRedirectGuard]
 
 })
 export class AuthModule { }
