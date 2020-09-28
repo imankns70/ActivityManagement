@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.ViewModels.RoleManager;
@@ -33,6 +34,7 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         #region CustomMethod
         List<AppRole> GetAllRoles();
         Task<List<AppRole>> GetAllRolesWithClaimsAsync();
+        Task<List<Claim>> GetDynamicPermissionClaimsByRoleIdAsync(int roleId);
         List<RolesViewModel> GetAllRolesAndUsersCount();
         Task<AppRole> FindClaimsInRole(int roleId);
         Task<AppRole> FinRoleAndUsersCountById(int roleId);

@@ -13,6 +13,7 @@ import { ChangePicComponent } from './components/my-profile/components/change-pi
 import { CommonModule } from '@angular/common';
 import { FileUploadModule  } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RoleListComponent } from './components/role/role-list/role-list.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserProfileCollapseComponent,
     MyProfileComponent,
     ChangePicComponent,
+    RoleListComponent
 
   ],
 

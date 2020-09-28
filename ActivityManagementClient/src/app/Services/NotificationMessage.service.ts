@@ -15,6 +15,8 @@ export class NotificationMessageService {
       this.toastrAlert.success(textMessage, textTitle)
     } else if (textType == Globals.errorMessage) {
       this.toastrAlert.error(textMessage, textTitle)
+    }  else if (textType == Globals.warningMessage) {
+      this.toastrAlert.warning(textMessage, textTitle)
     }
   }
 }

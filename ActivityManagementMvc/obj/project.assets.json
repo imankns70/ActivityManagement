@@ -3717,7 +3717,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",
@@ -3761,7 +3764,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",
