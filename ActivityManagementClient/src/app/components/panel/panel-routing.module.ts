@@ -18,7 +18,7 @@ const routes: Routes = [
              canDeactivate:[PreventUnsavedGuard]
              },
 
-             {path:'rolemanagement',component:RoleListComponent}
+             {path:'role/rolelist',component:RoleListComponent}
         ]
 
     },
