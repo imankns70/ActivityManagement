@@ -7,6 +7,7 @@ using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,18 +18,19 @@ namespace ActivityManagementMvc
     public class Startup
     {
 
+        public readonly IHttpContextAccessor _httpContextAccessor;
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
         private readonly SiteSettings SiteSettings;
-
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
 
             Configuration = configuration;
             SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
-           
+            _httpContextAccessor = httpContextAccessor;
+
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -39,7 +41,7 @@ namespace ActivityManagementMvc
             services.AddCustomServices();
             services.AddCustomKendoUi();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(SiteSettings);
+            services.AddCustomAuthentication(SiteSettings, _httpContextAccessor);
             services.AddSwagger();
 
             services.AddAuthorization(options =>

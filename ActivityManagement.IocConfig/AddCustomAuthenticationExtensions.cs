@@ -12,12 +12,15 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace ActivityManagement.IocConfig
 {
     public static class AddCustomAuthenticationExtensions
     {
-        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings)
+        
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings,
+            IHttpContextAccessor httpContextAccessor)
         {
             services.AddAuthentication(options =>
             {
