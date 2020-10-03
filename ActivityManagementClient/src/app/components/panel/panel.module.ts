@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadModule  } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleListComponent } from './components/role/role-list/role-list.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { RoleListComponent } from './components/role/role-list/role-list.compone
   providers: [
     UserService,
     UserProfileResolver,
-    PreventUnsavedGuard
+    PreventUnsavedGuard,
+    AuthGuard,
   ]
 
 })
