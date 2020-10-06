@@ -78,7 +78,7 @@ namespace ActivityManagementApi.Controllers.v1
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] IFormFile file)
         {
-            HttpRequest request = Request;
+          
             if (User.Identity.IsAuthenticated)
             {
                 string userId = User.Identity.GetUserId();

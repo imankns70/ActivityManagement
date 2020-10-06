@@ -63,6 +63,7 @@ export class AuthInterceptor implements HttpInterceptor {
               this.apiResult.message.push(this.apiResult.message.join(','));
               break;
             case StatusCode.unAuthorized:
+              this.authService.logout();
               this.apiResult.isSuccess = false;
               this.apiResult.statusCode = error.error.StatusCode;
               this.apiResult.message.push(this.apiResult.message.join(','));
