@@ -19,8 +19,7 @@ namespace ActivityManagement.IocConfig
     public static class AddCustomAuthenticationExtensions
     {
         
-        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings,
-            IHttpContextAccessor httpContextAccessor)
+        public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings)
         {
             services.AddAuthentication(options =>
             {
@@ -100,6 +99,7 @@ namespace ActivityManagement.IocConfig
 
                   };
               });
+
             //.AddGoogle(options =>
             //{
             //    options.ClientId = "315654760867-d01fsd0fb847vft0fbo6hvbgqghrt5ph.apps.googleusercontent.com";

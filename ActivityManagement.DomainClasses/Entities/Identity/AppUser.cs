@@ -14,6 +14,8 @@ namespace ActivityManagement.DomainClasses.Entities.Identity
         public DateTime? BirthDate { get; set; }
         public string Image { get; set; }
         public DateTime? RegisterDateTime { get; set; }
+        public DateTime? LastVisitDateTime { get; set; }
+
         public bool IsActive { get; set; }
         public string Mobile { get; set; }
         public GenderType? Gender { get; set; }
@@ -22,6 +24,7 @@ namespace ActivityManagement.DomainClasses.Entities.Identity
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<UserClaim> Claims { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
     }
 
     public enum GenderType
