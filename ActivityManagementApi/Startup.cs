@@ -22,16 +22,16 @@ namespace ActivityManagementApi
 
     public class Startup
     {
-        public readonly IHttpContextAccessor _httpContextAccessor;
+        
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
         private readonly SiteSettings SiteSettings;
-        public Startup(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
             SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
-            _httpContextAccessor = httpContextAccessor;
+    
 
         }
 
@@ -49,7 +49,7 @@ namespace ActivityManagementApi
             services.AddCustomServices();
             services.AddApiVersioning();
             services.AddSwagger();
-            services.AddCustomAuthentication(SiteSettings, _httpContextAccessor);
+            services.AddCustomAuthentication(SiteSettings);
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddAuthorization(options =>
                {

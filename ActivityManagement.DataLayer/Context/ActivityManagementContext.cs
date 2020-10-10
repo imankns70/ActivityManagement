@@ -21,6 +21,7 @@ namespace ActivityManagement.DataLayer.Context
         public DbSet<TeamTitle> TeamTitles { get; set; }
         public DbSet<UserTeam> UserTeams { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public ActivityManagementContext(DbContextOptions options) : base(options)
         {

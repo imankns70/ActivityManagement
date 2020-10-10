@@ -18,16 +18,16 @@ namespace ActivityManagementMvc
     public class Startup
     {
 
-        public readonly IHttpContextAccessor _httpContextAccessor;
+         
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
         private readonly SiteSettings SiteSettings;
-        public Startup(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
             SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
-            _httpContextAccessor = httpContextAccessor;
+   
 
         }
 
@@ -41,7 +41,7 @@ namespace ActivityManagementMvc
             services.AddCustomServices();
             services.AddCustomKendoUi();
             services.AddApiVersioning();
-            services.AddCustomAuthentication(SiteSettings, _httpContextAccessor);
+            services.AddCustomAuthentication(SiteSettings);
             services.AddSwagger();
 
             services.AddAuthorization(options =>

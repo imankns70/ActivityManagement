@@ -13,6 +13,15 @@ namespace ActivityManagement.DataLayer.Mapping
             modelBuilder.Entity<RoleClaim>().ToTable("AppRoleClaim");
             modelBuilder.Entity<UserClaim>().ToTable("AppUserClaim");
 
+            modelBuilder.Entity<RefreshToken>().ToTable("RefreshTokens").Property(x => x.ClientId).IsRequired();
+            modelBuilder.Entity<RefreshToken>().Property(x =>x.ClientId).IsRequired();
+            modelBuilder.Entity<RefreshToken>().Property(x =>  x.ExpireDate).IsRequired();
+            modelBuilder.Entity<RefreshToken>().Property(x => x.Value).IsRequired();
+                
+            modelBuilder.Entity<AppUser>()
+                .HasMany(user => user.RefreshTokens)
+                .WithOne(token => token.User).HasForeignKey(r => r.UserId).IsRequired();
+
             modelBuilder.Entity<UserRole>()
                 .HasOne(userRole => userRole.Role)
                 .WithMany(role => role.Users).HasForeignKey(r => r.RoleId);
