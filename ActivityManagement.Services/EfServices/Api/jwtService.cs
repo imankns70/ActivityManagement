@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.Api.RefreshToken;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
@@ -29,7 +30,7 @@ namespace ActivityManagement.Services.EfServices.Api
             SiteSettings = siteSettings.Value;
         }
 
-        public async Task<string> GenerateTokenAsync(AppUser user)
+        public async Task<string> GenerateAccessTokenAsync(AppUser user)
         {
             var secretKey = Encoding.UTF8.GetBytes(SiteSettings.JwtSettings.SecretKey);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
@@ -54,7 +55,27 @@ namespace ActivityManagement.Services.EfServices.Api
             return tokenHandler.WriteToken(securityToken);
         }
 
+        public async Task<string> GenerateRefreshToken(RequestTokenViewModel requestToken)
+        {
+            AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
 
+            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.PassWord)) ;
+
+            RefreshToken newRefreshToken = CreateRefreshToken(requestToken.ClientId, appUser.Id);
+            return "";
+        }
+
+
+        private RefreshToken CreateRefreshToken(string ClientId, int userId)
+        {
+            return new RefreshToken
+            {
+                ClientId = ClientId,
+                UserId = userId,
+                Value = Guid.NewGuid().ToString("N"),
+                ExpireDate = DateTime.Now.AddDays(1)
+            };
+        }
         public async Task<IEnumerable<Claim>> GetClaimsAsync(AppUser user)
         {
             List<Claim> claims = new List<Claim>()
@@ -64,12 +85,12 @@ namespace ActivityManagement.Services.EfServices.Api
                 //new Claim(ClaimTypes.MobilePhone,user.PhoneNumber),
                 new Claim(new ClaimsIdentityOptions().SecurityStampClaimType,user.SecurityStamp),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                
+
             };
 
             claims.AddRange(await _roleManager.GetDynamicPermissionClaimsByRoleIdAsync(user.Roles.First().RoleId));
             //List<AppRole> roles = RoleManager.GetAllRolesWithClaims();
-            
+
             //foreach (var item in user.Roles)
             //{
             //    var roleClaim = await _roleManager.FindClaimsInRole(item.RoleId);

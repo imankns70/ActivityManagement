@@ -60,7 +60,7 @@ namespace ActivityManagementApi.Controllers.v1
 
                 UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
                 userViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
-                userViewModel.Token = await _jwtService.GenerateTokenAsync(user);
+                userViewModel.Token = await _jwtService.GenerateAccessTokenAsync(user);
                 return Ok(userViewModel);
             }
 

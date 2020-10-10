@@ -37,7 +37,10 @@ namespace ActivityManagement.DataLayer.Context
             builder.Entity<Activity>().Property(x => x.SystemDate).HasDefaultValueSql("CONVERT(datetime,GetDate())");
             builder.Entity<AppUser>().Property(x => x.RegisterDateTime).HasDefaultValueSql("CONVERT(datetime,GetDate())");
             builder.Entity<AppUser>().Property(x => x.IsActive).HasDefaultValueSql("1");
-            
+
+            builder.Entity<RefreshToken>().Property(x => x.DateCreated).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+            builder.Entity<RefreshToken>().Property(x => x.DateModified).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+
         }
        
     }
