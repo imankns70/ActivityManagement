@@ -6,7 +6,7 @@
         public SiteInformation SiteInformation { get; set; }
         public SiteEmail SiteEmail { get; set; }
         public JwtSettings JwtSettings { get; set; }
-        
+
     }
 
 
@@ -43,6 +43,7 @@
     {
         public string SecretKey { get; set; }
         public string EncryptKey { get; set; }
+        public string ClientId { get; set; }
 
         /// <summary>
         ///  صادر کننده توکن که باید اشاره کند به شرکت یا سایتی که آن را صادر می کند 
