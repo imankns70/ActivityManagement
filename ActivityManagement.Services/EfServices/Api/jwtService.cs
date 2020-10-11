@@ -18,33 +18,38 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace ActivityManagement.Services.EfServices.Api
 {
-    public class JwtService : IJwtService
+    public class JwtService : IjwtService
     {
+        public readonly IRefreshTokenService _refreshTokenService;
         public readonly IApplicationUserManager _userManager;
         public readonly IApplicationRoleManager _roleManager;
-        public readonly SiteSettings SiteSettings;
-        public JwtService(IApplicationUserManager userManager, IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings)
+        public readonly SiteSettings _siteSettings;
+
+        public JwtService(IApplicationUserManager userManager,
+            IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings,
+            IRefreshTokenService refreshTokenService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            SiteSettings = siteSettings.Value;
+            _siteSettings = siteSettings.Value;
+            _refreshTokenService = refreshTokenService;
         }
 
         public async Task<string> GenerateAccessTokenAsync(AppUser user)
         {
-            var secretKey = Encoding.UTF8.GetBytes(SiteSettings.JwtSettings.SecretKey);
+            var secretKey = Encoding.UTF8.GetBytes(_siteSettings.JwtSettings.SecretKey);
             var signingCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature);
 
-            var encryptionKey = Encoding.UTF8.GetBytes(SiteSettings.JwtSettings.EncryptKey);
+            var encryptionKey = Encoding.UTF8.GetBytes(_siteSettings.JwtSettings.EncryptKey);
             var encryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(encryptionKey), SecurityAlgorithms.Aes128KW, SecurityAlgorithms.Aes128CbcHmacSha256);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
-                Issuer = SiteSettings.JwtSettings.Issuer,
-                Audience = SiteSettings.JwtSettings.Audience,
+                Issuer = _siteSettings.JwtSettings.Issuer,
+                Audience = _siteSettings.JwtSettings.Audience,
                 IssuedAt = DateTime.Now,
-                NotBefore = DateTime.Now.AddMinutes(SiteSettings.JwtSettings.NotBeforeMinutes),
-                Expires = DateTime.Now.AddMinutes(SiteSettings.JwtSettings.ExpirationMinutes),
+                NotBefore = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.NotBeforeMinutes),
+                Expires = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.ExpirationMinutes),
                 SigningCredentials = signingCredentials,
                 Subject = new ClaimsIdentity(await GetClaimsAsync(user)),
                 EncryptingCredentials = encryptingCredentials,
@@ -55,14 +60,31 @@ namespace ActivityManagement.Services.EfServices.Api
             return tokenHandler.WriteToken(securityToken);
         }
 
-        public async Task<string> GenerateRefreshToken(RequestTokenViewModel requestToken)
+        public async Task<ResponseTokenViewModel> GenerateNewToken(RequestTokenViewModel requestToken)
         {
+            ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
             AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
 
-            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.PassWord)) ;
+            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.PassWord))
+            {
+                RefreshToken newRefreshToken = CreateRefreshToken(_siteSettings.JwtSettings.ClientId, appUser.Id);
+                List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
+                if (getRefreshTokens.Any())
+                {
+                    await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
 
-            RefreshToken newRefreshToken = CreateRefreshToken(requestToken.ClientId, appUser.Id);
-            return "";
+                    await _refreshTokenService.AddRefreshTokenAsync(newRefreshToken);
+
+
+                    responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
+                    responseToken.RefreshToken = "";
+
+
+                }
+
+            }
+
+            return responseToken;
         }
 
 

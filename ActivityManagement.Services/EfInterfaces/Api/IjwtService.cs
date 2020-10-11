@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ActivityManagement.Services.EfInterfaces.Api
 {
-    public interface IJwtService
+    public interface IjwtService
     {
         Task<string> GenerateAccessTokenAsync(AppUser user);
 

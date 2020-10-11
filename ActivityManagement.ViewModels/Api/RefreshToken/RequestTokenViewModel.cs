@@ -13,6 +13,6 @@ namespace ActivityManagement.ViewModels.Api.RefreshToken
         [EmailAddress(ErrorMessage = "ایمیل وارد شده صحیح نمی باشد.")]
         public string UserName { get; set; }
         public string RefreshToken { get; set; }
-        public string PassWord { get; set; }
+        public string Password { get; set; }
     }
 }

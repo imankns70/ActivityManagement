@@ -7,6 +7,7 @@ using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
+using ActivityManagement.ViewModels.Api.RefreshToken;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +22,11 @@ namespace ActivityManagementApi.Controllers.v1
 
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
-        private readonly IJwtService _jwtService;
+        private readonly IjwtService _jwtService;
 
 
         public AccountController(IApplicationUserManager userManager, IApplicationRoleManager roleManager,
-            IJwtService jwtService)
+            IjwtService jwtService)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -38,6 +39,37 @@ namespace ActivityManagementApi.Controllers.v1
             _jwtService = jwtService;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
 
+        }
+        public async Task<ApiResult<ResponseTokenViewModel>> Auth(RequestTokenViewModel requestToken)
+        {
+            if (ModelState.IsValid)
+            {
+                ResponseTokenViewModel responseTokenViewModel = new ResponseTokenViewModel();
+                if (requestToken.GrantType == "Password")
+                {
+                    AppUser user = await _userManager.FindUserWithRolesByNameAsync(requestToken.UserName);
+                    if (user == null)
+                    {
+                        return BadRequest(NotificationMessages.UserNotFound);
+                    }
+
+                    bool result = await _userManager.CheckPasswordAsync(user, requestToken.Password);
+                    if (!result)
+                    {
+                        return BadRequest(NotificationMessages.InvalidUserNameOrPassword);
+
+                    }
+
+                    UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
+                    userViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
+                    userViewModel.Token = await _jwtService.GenerateAccessTokenAsync(user);
+                }
+                else if (requestToken.GrantType == "RefreshToken")
+                {
+
+                }
+            }
+            return BadRequest(ModelState.GetErrorsModelState());
         }
         [HttpPost("SignIn")]
         public async Task<ApiResult<UserViewModelApi>> SignIn([FromBody]SignInViewModel viewModel)
@@ -88,7 +120,7 @@ namespace ActivityManagementApi.Controllers.v1
                     Gender = viewModel.Gender ?? viewModel.Gender
 
                 };
-                IdentityResult identityResult = await _userManager.CreateAsync(user,viewModel.Password);
+                IdentityResult identityResult = await _userManager.CreateAsync(user, viewModel.Password);
                 if (identityResult.Succeeded)
                 {
 
