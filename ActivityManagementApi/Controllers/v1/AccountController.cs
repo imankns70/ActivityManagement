@@ -8,6 +8,7 @@ using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Api.RefreshToken;
+using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +20,16 @@ namespace ActivityManagementApi.Controllers.v1
     [ApiResultFilter]
     public class AccountController : ControllerBase
     {
-
+        public readonly IRefreshTokenService _refreshTokenService;
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IjwtService _jwtService;
+        private readonly SiteSettings _siteSettings;
+
 
 
         public AccountController(IApplicationUserManager userManager, IApplicationRoleManager roleManager,
-            IjwtService jwtService)
+            IjwtService jwtService, IRefreshTokenService refreshToken, SiteSettings siteSettings)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -39,6 +42,10 @@ namespace ActivityManagementApi.Controllers.v1
             _jwtService = jwtService;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
 
+            _refreshTokenService = refreshToken;
+            _userManager.CheckArgumentIsNull(nameof(_refreshTokenService));
+
+            _siteSettings = siteSettings;
         }
         public async Task<ApiResult<ResponseTokenViewModel>> Auth(RequestTokenViewModel requestToken)
         {
@@ -61,11 +68,25 @@ namespace ActivityManagementApi.Controllers.v1
                     }
 
                     UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
-                    userViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
-                    userViewModel.Token = await _jwtService.GenerateAccessTokenAsync(user);
+                    responseTokenViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
+
+                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, user.Id, requestToken.IsRemember);
+                    await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
+
+                    responseTokenViewModel.AccessToken = await _jwtService.GenerateAccessTokenAsync(user);
+                    responseTokenViewModel.RefreshToken = refreshToken.Value;
                 }
                 else if (requestToken.GrantType == "RefreshToken")
                 {
+
+                    responseTokenViewModel = await _jwtService.GenerateAccessAndRefreshToken(requestToken);
+                    if (responseTokenViewModel.Status)
+                    {
+                        return Ok(responseTokenViewModel);
+
+                    }
+
+                    return BadRequest(responseTokenViewModel.Message);
 
                 }
             }

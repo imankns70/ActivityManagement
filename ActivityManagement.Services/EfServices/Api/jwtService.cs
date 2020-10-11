@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using ActivityManagement.Common;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
@@ -59,46 +60,7 @@ namespace ActivityManagement.Services.EfServices.Api
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(securityToken);
         }
-
-        public async Task<ResponseTokenViewModel> GenerateNewToken(RequestTokenViewModel requestToken)
-        {
-            ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
-            AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
-
-            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.PassWord))
-            {
-                RefreshToken newRefreshToken = CreateRefreshToken(_siteSettings.JwtSettings.ClientId, appUser.Id);
-                List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
-                if (getRefreshTokens.Any())
-                {
-                    await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
-
-                    await _refreshTokenService.AddRefreshTokenAsync(newRefreshToken);
-
-
-                    responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
-                    responseToken.RefreshToken = "";
-
-
-                }
-
-            }
-
-            return responseToken;
-        }
-
-
-        private RefreshToken CreateRefreshToken(string ClientId, int userId)
-        {
-            return new RefreshToken
-            {
-                ClientId = ClientId,
-                UserId = userId,
-                Value = Guid.NewGuid().ToString("N"),
-                ExpireDate = DateTime.Now.AddDays(1)
-            };
-        }
-        public async Task<IEnumerable<Claim>> GetClaimsAsync(AppUser user)
+        private async Task<IEnumerable<Claim>> GetClaimsAsync(AppUser user)
         {
             List<Claim> claims = new List<Claim>()
             {
@@ -143,5 +105,49 @@ namespace ActivityManagement.Services.EfServices.Api
 
             return claims;
         }
+        public async Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken)
+        {
+            ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
+            AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
+
+            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.Password))
+            {
+                RefreshToken refreshToken = new RefreshToken();
+                RefreshToken oldRefreshToken = await _refreshTokenService.OldRefreshToken(_siteSettings.RefreshTokenSetting.ClientId, requestToken.RefreshToken);
+
+                if (oldRefreshToken != null)
+                {
+                    refreshToken = oldRefreshToken;
+
+                }
+                else
+                {
+                    refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember);
+                    List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
+                    if (getRefreshTokens.Any())
+                    {
+                        await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
+                        await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
+
+
+                    }
+                }
+                responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
+                responseToken.RefreshToken = refreshToken.Value;
+                responseToken.Status = true;
+
+            }
+            else
+            {
+                responseToken.Status = false;
+                responseToken.Message = NotificationMessages.InvalidUserNameOrPassword;
+            }
+
+            return responseToken;
+        }
+
+
+
+
     }
 }

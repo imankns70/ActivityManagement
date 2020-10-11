@@ -8,6 +8,6 @@ namespace ActivityManagement.Services.EfInterfaces.Api
     {
         Task<string> GenerateAccessTokenAsync(AppUser user);
 
-        Task<string> GenerateRefreshToken(RequestTokenViewModel requestToken);
+        Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken);
     }
 }

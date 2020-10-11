@@ -6,6 +6,7 @@
         public SiteInformation SiteInformation { get; set; }
         public SiteEmail SiteEmail { get; set; }
         public JwtSettings JwtSettings { get; set; }
+        public RefreshTokenSetting RefreshTokenSetting { get; set; }
 
     }
 
@@ -64,5 +65,11 @@
         public int NotBeforeMinutes { get; set; }
         public int ExpirationMinutes { get; set; }
 
+    }
+
+    public class RefreshTokenSetting
+    {
+        public string ClientId { get; set; }
+        public int ExpireDate { get; set; }
     }
 }

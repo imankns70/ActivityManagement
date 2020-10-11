@@ -432,7 +432,6 @@ D:\project\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\Acti
 D:\project\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\ActivityManagement.ViewModels.pdb
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csprojAssemblyReference.cache
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csproj.CoreCompileInputs.cache
-D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cache
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.RazorAssemblyInfo.cache
 D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.RazorAssemblyInfo.cs

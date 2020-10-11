@@ -13,6 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System;
 
 namespace ActivityManagement.IocConfig
 {
@@ -53,7 +54,9 @@ namespace ActivityManagement.IocConfig
                       ValidateIssuer = true, //default : false
                       ValidIssuer = siteSettings.JwtSettings.Issuer,
 
-                      TokenDecryptionKey = new SymmetricSecurityKey(encryptionKey)
+                      TokenDecryptionKey = new SymmetricSecurityKey(encryptionKey),
+                      ClockSkew= TimeSpan.Zero,
+                      
                   };
 
                   options.RequireHttpsMetadata = false;
