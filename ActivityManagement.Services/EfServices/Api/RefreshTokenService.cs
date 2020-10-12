@@ -23,7 +23,7 @@ namespace ActivityManagement.Services.EfServices.Api
             _refreshTokens = _unitOfWork.Set<RefreshToken>();
         }
 
-        public RefreshToken CreateRefreshToken(RefreshTokenSetting refreshTokenSetting, int userId, bool IsRemember)
+        public RefreshToken CreateRefreshToken(RefreshTokenSetting refreshTokenSetting, int userId, bool IsRemember, string ipAddress)
         {
 
             
@@ -31,6 +31,7 @@ namespace ActivityManagement.Services.EfServices.Api
             {
                 ClientId = refreshTokenSetting.ClientId,
                 UserId = userId,
+                Ip= ipAddress,
                 Value = Guid.NewGuid().ToString("N"),
                 ExpireDate = IsRemember ? DateTime.Now.AddDays(refreshTokenSetting.ExpireDate) : DateTime.Now.AddDays(1)
             };
@@ -47,9 +48,10 @@ namespace ActivityManagement.Services.EfServices.Api
             return await _refreshTokens.Where(x => x.UserId == userId).ToListAsync();
         }
 
-        public async Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken)
+        public async Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken, string ipAddress)
         {
-           return await _refreshTokens.FirstOrDefaultAsync(x => x.ClientId == clientId && x.Value == refreshToken && x.ExpireDate > DateTime.Now );
+           return await _refreshTokens.FirstOrDefaultAsync(x => x.ClientId == clientId && x.Value == refreshToken && 
+           x.Ip== ipAddress);
  
         }
 
@@ -59,5 +61,7 @@ namespace ActivityManagement.Services.EfServices.Api
             await _unitOfWork.SaveChangesAsync();
 
         }
+
+        
     }
 }

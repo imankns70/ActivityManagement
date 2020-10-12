@@ -10,11 +10,13 @@ namespace ActivityManagement.Services.EfInterfaces.Api
 {
     public interface IRefreshTokenService
     {
-        RefreshToken CreateRefreshToken(RefreshTokenSetting refreshTokenSetting, int userId, bool IsRemember);
+        RefreshToken CreateRefreshToken(RefreshTokenSetting refreshTokenSetting, int userId, bool IsRemember, string ipAddress);
         Task AddRefreshTokenAsync(RefreshToken refreshToken);
         Task RemoveAllRefreshTokenAsync(List<RefreshToken> refreshTokens);
         Task<List<RefreshToken>> GetAllRefreshTokenByUserIdAsync(int userId);
 
-        Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken);
+        Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken, string ipAddress);
+
+        //Task<bool> CheckRefreshToken(DateTime expireDate, int userId);
     }
 }

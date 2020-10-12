@@ -6,11 +6,11 @@ namespace ActivityManagement.ViewModels.Api.RefreshToken
     {
         [Required]
         public string GrantType { get; set; }
-        [Required]
+      
         public string ClientId { get; set; }
 
-        [Required]
-        [EmailAddress(ErrorMessage = "ایمیل وارد شده صحیح نمی باشد.")]
+        [Required(ErrorMessage = "نام کاربری وارد شده صحیح نمی باشد.")]
+      
         public string UserName { get; set; }
         public string RefreshToken { get; set; }
         public string Password { get; set; }

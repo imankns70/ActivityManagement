@@ -7,6 +7,7 @@ namespace ActivityManagement.DomainClasses.Entities.Identity
     {
         public int Id { get; set; }
         public string ClientId { get; set; }
+        public string Ip { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
         public string Value { get; set; }

@@ -10,6 +10,7 @@ using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Api.RefreshToken;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,11 +26,12 @@ namespace ActivityManagementApi.Controllers.v1
         private readonly IApplicationRoleManager _roleManager;
         private readonly IjwtService _jwtService;
         private readonly SiteSettings _siteSettings;
-
+        public readonly IHttpContextAccessor _httpContextAccessor;
 
 
         public AccountController(IApplicationUserManager userManager, IApplicationRoleManager roleManager,
-            IjwtService jwtService, IRefreshTokenService refreshToken, SiteSettings siteSettings)
+            IjwtService jwtService, IRefreshTokenService refreshToken, SiteSettings siteSettings,
+              IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
@@ -45,12 +47,17 @@ namespace ActivityManagementApi.Controllers.v1
             _refreshTokenService = refreshToken;
             _userManager.CheckArgumentIsNull(nameof(_refreshTokenService));
 
+            _httpContextAccessor = httpContextAccessor;
+            _userManager.CheckArgumentIsNull(nameof(_httpContextAccessor));
+
             _siteSettings = siteSettings;
         }
-        public async Task<ApiResult<ResponseTokenViewModel>> Auth(RequestTokenViewModel requestToken)
+        [HttpPost("Auth")]
+        public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
         {
             if (ModelState.IsValid)
             {
+                string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
                 ResponseTokenViewModel responseTokenViewModel = new ResponseTokenViewModel();
                 if (requestToken.GrantType == "Password")
                 {
@@ -70,7 +77,7 @@ namespace ActivityManagementApi.Controllers.v1
                     UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
                     responseTokenViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
 
-                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, user.Id, requestToken.IsRemember);
+                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
                     await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
 
                     responseTokenViewModel.AccessToken = await _jwtService.GenerateAccessTokenAsync(user);
@@ -88,6 +95,10 @@ namespace ActivityManagementApi.Controllers.v1
 
                     return BadRequest(responseTokenViewModel.Message);
 
+                }
+                else
+                {
+                    return BadRequest(NotificationMessages.UnAuthorize);
                 }
             }
             return BadRequest(ModelState.GetErrorsModelState());

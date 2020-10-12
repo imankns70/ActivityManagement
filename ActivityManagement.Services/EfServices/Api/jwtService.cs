@@ -13,6 +13,7 @@ using ActivityManagement.ViewModels.Api.RefreshToken;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -21,6 +22,7 @@ namespace ActivityManagement.Services.EfServices.Api
 {
     public class JwtService : IjwtService
     {
+        public readonly IHttpContextAccessor _httpContextAccessor;
         public readonly IRefreshTokenService _refreshTokenService;
         public readonly IApplicationUserManager _userManager;
         public readonly IApplicationRoleManager _roleManager;
@@ -28,12 +30,13 @@ namespace ActivityManagement.Services.EfServices.Api
 
         public JwtService(IApplicationUserManager userManager,
             IApplicationRoleManager roleManager, IOptionsSnapshot<SiteSettings> siteSettings,
-            IRefreshTokenService refreshTokenService)
+            IRefreshTokenService refreshTokenService, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _siteSettings = siteSettings.Value;
             _refreshTokenService = refreshTokenService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<string> GenerateAccessTokenAsync(AppUser user)
@@ -110,31 +113,52 @@ namespace ActivityManagement.Services.EfServices.Api
             ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
             AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
 
-            if (appUser != null && await _userManager.CheckPasswordAsync(appUser, requestToken.Password))
+            if (appUser != null)
             {
+                string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
                 RefreshToken refreshToken = new RefreshToken();
-                RefreshToken oldRefreshToken = await _refreshTokenService.OldRefreshToken(_siteSettings.RefreshTokenSetting.ClientId, requestToken.RefreshToken);
+                RefreshToken oldRefreshToken = await _refreshTokenService.OldRefreshToken(_siteSettings.RefreshTokenSetting.ClientId, requestToken.RefreshToken, ipAddress);
 
                 if (oldRefreshToken != null)
                 {
-                    refreshToken = oldRefreshToken;
+                    AppUser userToken = await _userManager.FindByIdAsync(oldRefreshToken.UserId.ToString());
+                    if (userToken == null)
+                    {
+                        responseToken.Status = false;
+                        responseToken.Message = NotificationMessages.UserNotFound;
+                    }
+                    if (oldRefreshToken.ExpireDate < DateTime.Now)
+                    {
+                        responseToken.Status = false;
+                        responseToken.Message = NotificationMessages.OperationFailed;
+                    }
+
+                    else
+                    {
+                        responseToken.RefreshToken = refreshToken.Value;
+                        responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
+                        responseToken.Status = true;
+                    }
+
+
 
                 }
                 else
                 {
-                    refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember);
+                    refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember, ipAddress);
                     List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
                     if (getRefreshTokens.Any())
                     {
                         await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
                         await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
 
+                        responseToken.RefreshToken = refreshToken.Value;
+                        responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
+                        responseToken.Status = true;
 
                     }
                 }
-                responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
-                responseToken.RefreshToken = refreshToken.Value;
-                responseToken.Status = true;
+
 
             }
             else
