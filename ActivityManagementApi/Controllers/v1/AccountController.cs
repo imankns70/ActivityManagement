@@ -5,6 +5,7 @@ using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.IocConfig.Api.Exceptions;
+using ActivityManagement.Services.EfInterfaces;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Api.RefreshToken;
@@ -13,6 +14,7 @@ using ActivityManagement.ViewModels.UserManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace ActivityManagementApi.Controllers.v1
 {
@@ -25,12 +27,12 @@ namespace ActivityManagementApi.Controllers.v1
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IjwtService _jwtService;
-        private readonly SiteSettings _siteSettings;
         public readonly IHttpContextAccessor _httpContextAccessor;
+        public readonly SiteSettings _settings;
 
 
         public AccountController(IApplicationUserManager userManager, IApplicationRoleManager roleManager,
-            IjwtService jwtService, IRefreshTokenService refreshToken, SiteSettings siteSettings,
+            IjwtService jwtService, IRefreshTokenService refreshToken, IOptionsSnapshot<SiteSettings> settings,
               IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
@@ -50,7 +52,10 @@ namespace ActivityManagementApi.Controllers.v1
             _httpContextAccessor = httpContextAccessor;
             _userManager.CheckArgumentIsNull(nameof(_httpContextAccessor));
 
-            _siteSettings = siteSettings;
+            _settings = settings.Value;
+            _userManager.CheckArgumentIsNull(nameof(_settings));
+
+
         }
         [HttpPost("Auth")]
         public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
@@ -58,6 +63,7 @@ namespace ActivityManagementApi.Controllers.v1
             if (ModelState.IsValid)
             {
                 string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
+
                 ResponseTokenViewModel responseTokenViewModel = new ResponseTokenViewModel();
                 if (requestToken.GrantType == "Password")
                 {
@@ -77,16 +83,18 @@ namespace ActivityManagementApi.Controllers.v1
                     UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
                     responseTokenViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
 
-                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
+                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_settings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
                     await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
 
                     responseTokenViewModel.AccessToken = await _jwtService.GenerateAccessTokenAsync(user);
                     responseTokenViewModel.RefreshToken = refreshToken.Value;
+                    return Ok(responseTokenViewModel);
+
                 }
                 else if (requestToken.GrantType == "RefreshToken")
                 {
-
-                    responseTokenViewModel = await _jwtService.GenerateAccessAndRefreshToken(requestToken);
+                    
+                    responseTokenViewModel = await _jwtService.GenerateAccessAndRefreshToken(requestToken, ipAddress);
                     if (responseTokenViewModel.Status)
                     {
                         return Ok(responseTokenViewModel);

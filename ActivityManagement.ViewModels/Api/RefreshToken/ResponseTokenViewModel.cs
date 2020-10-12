@@ -1,4 +1,6 @@
-﻿namespace ActivityManagement.ViewModels.Api.RefreshToken
+﻿using ActivityManagement.ViewModels.UserManager;
+
+namespace ActivityManagement.ViewModels.Api.RefreshToken
 {
     public class ResponseTokenViewModel
     {
@@ -7,6 +9,7 @@
         public bool Status { get; set; }
         public string Message { get; set; }
         public string Image { get; set; }
+        public UserViewModelApi User { get; set; }
         
     }
 }
