@@ -25,12 +25,12 @@ namespace ActivityManagementApi
         
         public IConfiguration Configuration { get; }
         public IServiceProvider Services { get; }
-        private readonly SiteSettings SiteSettings;
+        private readonly SiteSettings _siteSettings;
         public Startup(IConfiguration configuration)
         {
 
             Configuration = configuration;
-            SiteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
+            _siteSettings = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
     
 
         }
@@ -49,7 +49,7 @@ namespace ActivityManagementApi
             services.AddCustomServices();
             services.AddApiVersioning();
             services.AddSwagger();
-            services.AddCustomAuthentication(SiteSettings);
+            services.AddCustomAuthentication(_siteSettings);
             services.ConfigureWritable<SiteSettings>(Configuration.GetSection("SiteSettings"));
             services.AddAuthorization(options =>
                {

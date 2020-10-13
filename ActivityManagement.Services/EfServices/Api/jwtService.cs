@@ -108,15 +108,13 @@ namespace ActivityManagement.Services.EfServices.Api
 
             return claims;
         }
-        public async Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken)
+        public async Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken, string ipAddress)
         {
             ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
-            AppUser appUser = await _userManager.FindByNameAsync(requestToken.UserName);
+            AppUser appUser = await _userManager.FindUserWithRolesByNameAsync(requestToken.UserName);
 
-            if (appUser != null)
+            if (appUser != null && !string.IsNullOrWhiteSpace(requestToken.RefreshToken))
             {
-                string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
-                RefreshToken refreshToken = new RefreshToken();
                 RefreshToken oldRefreshToken = await _refreshTokenService.OldRefreshToken(_siteSettings.RefreshTokenSetting.ClientId, requestToken.RefreshToken, ipAddress);
 
                 if (oldRefreshToken != null)
@@ -135,7 +133,7 @@ namespace ActivityManagement.Services.EfServices.Api
 
                     else
                     {
-                        responseToken.RefreshToken = refreshToken.Value;
+                        responseToken.RefreshToken = oldRefreshToken.Value;
                         responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
                         responseToken.Status = true;
                     }
@@ -145,17 +143,23 @@ namespace ActivityManagement.Services.EfServices.Api
                 }
                 else
                 {
-                    refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember, ipAddress);
                     List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
                     if (getRefreshTokens.Any())
                     {
+                        RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember, ipAddress);
                         await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
                         await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
 
                         responseToken.RefreshToken = refreshToken.Value;
                         responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
+                        responseToken.User = await _userManager.FindUserApiByIdAsync(appUser.Id);
                         responseToken.Status = true;
 
+                    }
+                    else
+                    {
+                        responseToken.Status = false;
+                        responseToken.Message = NotificationMessages.OperationFailed;
                     }
                 }
 

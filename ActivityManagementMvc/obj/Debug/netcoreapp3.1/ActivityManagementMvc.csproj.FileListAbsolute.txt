@@ -718,3 +718,4 @@ D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\sta
 D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\staticwebassets\ActivityManagementMvc.StaticWebAssets.xml
 D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 D:\projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
+D:\project\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs
