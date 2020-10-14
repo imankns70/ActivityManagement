@@ -21,9 +21,8 @@ export class JwtInterCeptor implements HttpInterceptor {
     private attachTokenToRequest(req: HttpRequest<any>) {
         return req.clone({
             setHeaders: {
-
-                'Authorization': `Bearer ${this.authService.getToken()}`,
+                Authorization: `Bearer ${this.authService.getToken()}`,
             },
         })
-    }
+    } 
 }
