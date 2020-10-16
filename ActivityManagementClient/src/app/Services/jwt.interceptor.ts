@@ -1,6 +1,7 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { AuthService } from '../components/auth/services/auth.service';
 
 @Injectable({
@@ -15,7 +16,15 @@ export class JwtInterCeptor implements HttpInterceptor {
 
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(this.attachTokenToRequest(req))
+        return next.handle(this.attachTokenToRequest(req)).pipe(
+            tap((event:HttpEvent<any>) => {
+
+                if (event instanceof HttpResponse ) {
+                    console.log('success');
+                    
+                }
+            })
+        )
     }
 
     private attachTokenToRequest(req: HttpRequest<any>) {
