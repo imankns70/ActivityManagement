@@ -10,8 +10,8 @@ import {
    NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
- import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
 import { AuthService } from '../app/components/auth/services/auth.service';
+import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
  
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -55,11 +55,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       }),
    ],
    providers: [
-      {
-         provide: HTTP_INTERCEPTORS,
-         useClass: AuthInterceptor,
-         multi: true
-      },
+      ErrorInterceptorPrivider,
     
       AuthService],
    bootstrap: [

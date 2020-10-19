@@ -12,5 +12,6 @@ export enum StatusCode {
     logicError = 5,
 
     unAuthorized = 6,
+    
     ClientError=7,
 }

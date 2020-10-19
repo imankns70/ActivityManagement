@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,11 +22,11 @@ export class AuthService {
 
     this.imageUrl.next(url);
   }
- 
-  login(viewModel: any): Observable<ApiResult> {
+
+  login(viewModel: any): Observable<any> {
 
 
-    return this.http.post<ApiResult>(this.baseUrl + 'SignIn', viewModel)
+    return this.http.post<any>(this.baseUrl + 'Auth', viewModel)
 
   }
 
@@ -43,7 +44,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    this.router.navigate(['/auth/login'])
+    this.currentUser = null;
+
   }
   loadUser() {
     const user = <User>JSON.parse(localStorage.getItem('user'));
@@ -51,6 +53,30 @@ export class AuthService {
       this.currentUser = user;
       this.changeUserPhoto(user.image)
     }
+
+  }
+
+  getNewRefreshToken(): Observable<any> {
+    const user = <User>JSON.parse(localStorage.getItem('user'));
+    const userName = user.userName;
+    const refreshToken = localStorage.getItem('refreshToken');
+    const grantType = 'refreshToken';
+
+    return this.http.post<ApiResult>(this.baseUrl + 'Auth', { userName, refreshToken, grantType }).pipe(
+      map((res: any) => {
+      
+        if (res.data && res.data.AccessToken) {
+          localStorage.setItem('token', res.data.AccessToken);
+          //localStorage.setItem('refreshToken', res.data.RefreshToken);
+          //localStorage.setItem('user',JSON.stringify(res.data.User));
+          //this.currentUser= res.data.User;
+          //this.changeUserPhoto(res.data.Image);
+
+        }
+        return res as any;
+      })
+    )
+
 
   }
 }

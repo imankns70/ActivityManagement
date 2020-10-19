@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
+using ActivityManagement.Common.Api;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
@@ -122,20 +123,20 @@ namespace ActivityManagement.Services.EfServices.Api
                     AppUser userToken = await _userManager.FindByIdAsync(oldRefreshToken.UserId.ToString());
                     if (userToken == null)
                     {
-                        responseToken.Status = false;
+                        responseToken.IsSuccess = false;
                         responseToken.Message = NotificationMessages.UserNotFound;
                     }
                     if (oldRefreshToken.ExpireDate < DateTime.Now)
                     {
-                        responseToken.Status = false;
-                        responseToken.Message = NotificationMessages.OperationFailed;
+                        responseToken.IsSuccess = false;
+                        responseToken.Message = NotificationMessages.UnAuthorize;
                     }
 
                     else
                     {
                         responseToken.RefreshToken = oldRefreshToken.Value;
                         responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
-                        responseToken.Status = true;
+                        responseToken.IsSuccess = true;
                     }
 
 
@@ -143,32 +144,17 @@ namespace ActivityManagement.Services.EfServices.Api
                 }
                 else
                 {
-                    List<RefreshToken> getRefreshTokens = await _refreshTokenService.GetAllRefreshTokenByUserIdAsync(appUser.Id);
-                    if (getRefreshTokens.Any())
-                    {
-                        RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, appUser.Id, requestToken.IsRemember, ipAddress);
-                        await _refreshTokenService.RemoveAllRefreshTokenAsync(getRefreshTokens);
-                        await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
+                    responseToken.IsSuccess = false;
+                    responseToken.Message = NotificationMessages.UnAuthorize;
 
-                        responseToken.RefreshToken = refreshToken.Value;
-                        responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
-                        responseToken.User = await _userManager.FindUserApiByIdAsync(appUser.Id);
-                        responseToken.Status = true;
-
-                    }
-                    else
-                    {
-                        responseToken.Status = false;
-                        responseToken.Message = NotificationMessages.OperationFailed;
-                    }
                 }
 
 
             }
             else
             {
-                responseToken.Status = false;
-                responseToken.Message = NotificationMessages.InvalidUserNameOrPassword;
+                responseToken.IsSuccess = false;
+                responseToken.Message = NotificationMessages.UnAuthorize;
             }
 
             return responseToken;
