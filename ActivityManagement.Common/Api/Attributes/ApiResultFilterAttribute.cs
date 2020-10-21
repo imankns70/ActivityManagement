@@ -61,6 +61,8 @@ namespace ActivityManagement.Common.Api.Attributes
                 var apiResult = new ApiResult<object>(true, ApiResultStatusCode.Success, objectResult.Value);
                 context.Result = new JsonResult(apiResult) { StatusCode = objectResult.StatusCode };
             }
+            
+            
           
 
             base.OnResultExecuting(context);

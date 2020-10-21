@@ -107,13 +107,13 @@ namespace ActivityManagementApi.Controllers.v1
                         return Ok(responseTokenViewModel);
 
                     }
-
+                   
                     return BadRequest(responseTokenViewModel.Message);
 
                 }
                 else
                 {
-                    return BadRequest(NotificationMessages.UnAuthorize);
+                    return BadRequest(NotificationMessages.OperationFailed);
                 }
             }
             return BadRequest(ModelState.GetErrorsModelState());
@@ -142,7 +142,7 @@ namespace ActivityManagementApi.Controllers.v1
                 userViewModel.Token = await _jwtService.GenerateAccessTokenAsync(user);
                 return Ok(userViewModel);
             }
-
+           
             return BadRequest(ModelState.GetErrorsModelState());
 
 

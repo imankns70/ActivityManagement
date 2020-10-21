@@ -8,9 +8,7 @@ namespace ActivityManagement.ViewModels.Api.RefreshToken
         public string GrantType { get; set; }
       
         public string ClientId { get; set; }
-
-        [Required(ErrorMessage = "نام کاربری وارد شده صحیح نمی باشد.")]
-      
+                   
         public string UserName { get; set; }
         public string RefreshToken { get; set; }
         public string Password { get; set; }
