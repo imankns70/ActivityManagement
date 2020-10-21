@@ -33,7 +33,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         private alertService: NotificationMessageService, private route: Router) {
 
     }
-    apiResult: ApiResult = new ApiResult()
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         return next.handle(this.attachTokenToRequest(request)).pipe(
@@ -103,12 +102,18 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 switchMap((tokenResponse: any) => {
                     this.tokenSubject.next(tokenResponse.AccessToken);
                     localStorage.setItem('token', tokenResponse.AccessToken);
-                    localStorage.setItem('refreshToken', tokenResponse.RefreshToken);
-                    localStorage.setItem('user', JSON.stringify(tokenResponse.User));
+                    //localStorage.setItem('refreshToken', tokenResponse.RefreshToken);
+                    //localStorage.setItem('user', JSON.stringify(tokenResponse.User));
                     return next.handle(this.attachTokenToRequest(request))
+                }),catchError(err => {
+
                 })
             );
 
+        }
+        else {
+            return  this.authService.logout() as any;
+           
         }
 
     }
@@ -119,7 +124,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             },
         })
     }
+private handError(http:HttpErrorResponse){
 
+}
 }
 export const ErrorInterceptorPrivider = {
     provide: HTTP_INTERCEPTORS,
