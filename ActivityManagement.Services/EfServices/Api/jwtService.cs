@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.DomainClasses.Entities.Identity;
+using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Api;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Api.RefreshToken;
@@ -18,6 +20,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace ActivityManagement.Services.EfServices.Api
 {
@@ -124,12 +127,14 @@ namespace ActivityManagement.Services.EfServices.Api
                     if (userToken == null)
                     {
                         responseToken.IsSuccess = false;
-                        responseToken.Message = NotificationMessages.UserNotFound;
+                        throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+
                     }
                     if (oldRefreshToken.ExpireDate < DateTime.Now)
                     {
                         responseToken.IsSuccess = false;
-                        responseToken.Message = NotificationMessages.UnAuthorize;
+                        throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                        //throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
                     }
 
                     else
@@ -145,7 +150,8 @@ namespace ActivityManagement.Services.EfServices.Api
                 else
                 {
                     responseToken.IsSuccess = false;
-                    responseToken.Message = NotificationMessages.UnAuthorize;
+                    throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+
 
                 }
 
@@ -154,7 +160,7 @@ namespace ActivityManagement.Services.EfServices.Api
             else
             {
                 responseToken.IsSuccess = false;
-                responseToken.Message = NotificationMessages.UnAuthorize;
+                throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
             }
 
             return responseToken;
