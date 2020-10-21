@@ -10,59 +10,119 @@ import {
 
     HttpResponse,
 
-    HttpErrorResponse
+    HttpErrorResponse,
+    HTTP_INTERCEPTORS
 
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, tap, switchMap } from 'rxjs/operators';
 import { StatusCode } from '../models/enums/StatusCode';
 import { ApiResult } from '../models/apiresult';
+import { AuthService } from '../components/auth/services/auth.service';
+import { NotificationMessageService } from './NotificationMessage.service';
+import { Router } from '@angular/router';
 
 
 export class HttpErrorInterceptor implements HttpInterceptor {
+    private isTokenRefreshing = false;
+    tokenSubject = new BehaviorSubject<string>(null);
 
+    constructor(private authService: AuthService,
+        private alertService: NotificationMessageService, private route: Router) {
+
+    }
     apiResult: ApiResult = new ApiResult()
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<ApiResult>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        return next.handle(request)
+        return next.handle(this.attachTokenToRequest(request)).pipe(
+            tap((event: HttpEvent<any>) => {
 
-            .pipe(
-                retry(1),
-                catchError((error: HttpErrorResponse) => {
-                    debugger;
-                    if (error.error instanceof ErrorEvent) {
-                        //client side errors
+                if (event instanceof HttpResponse) {
+                    console.log('success');
 
-                        this.apiResult.isSuccess = false;
-                        this.apiResult.message.push('خطا در کلاینت');
+                }
+            }),
+            catchError((error: HttpErrorResponse) => {
 
-                    } else {
-                        // server side errors
-                        switch (error.error.StatusCode) {
-                            case StatusCode.serverError:
+                if (error.error instanceof ErrorEvent) {
+                    //client side errors
+                    console.log('client side errors occured');
 
-                                this.apiResult.isSuccess = false;
-                                this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push(this.apiResult.message.join(','));
-                                break;
-                            case StatusCode.notFound:
-                                this.apiResult.isSuccess = false;
-                                this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push(this.apiResult.message.join(','));
-                                break;
-                            case StatusCode.unAuthorized:
-                                this.apiResult.isSuccess = false;
-                                this.apiResult.statusCode = error.error.StatusCode;
-                                this.apiResult.message.push(this.apiResult.message.join(','));
-                                break;
-                        }
+                } else {
+                    // server side errors
+                    switch (error.error.StatusCode) {
+                        case StatusCode.serverError:
+
+                            error.message
+
+                            break;
+                        case StatusCode.unAuthorized:
+                            console.log('attempting refresh token ...');
+                            this.HandleHttpResponseError(request, next);
+                            break;
+                        case StatusCode.notFound:
+                            this.route.navigate(['/auth/login'])
+                            this.authService.logout()
+                            break;
+                            
+                        case StatusCode.badRequest:
+                            this.route.navigate(['/auth/login'])
+                            this.authService.logout()
+                            break;
+
+                        case StatusCode.listEmpty:
+                            this.route.navigate(['/auth/login'])
+                            this.authService.logout()
+                            break;
+
+                        case StatusCode.logicError:
+                            this.route.navigate(['/auth/login'])
+                            this.authService.logout()
+                            break;
+
+                         
 
                     }
 
-                    return throwError(this.apiResult)
-                })
-            )
+                }
+
+                return throwError(this.apiResult)
+            })
+        )
+
     }
+    private HandleHttpResponseError(request: HttpRequest<any>, next: HttpHandler) {
+
+        if (!this.isTokenRefreshing) {
+            this.isTokenRefreshing = true;
+            this.tokenSubject.next(null);
+
+            return this.authService.getNewRefreshToken().pipe(
+                switchMap((tokenResponse: any) => {
+                    this.tokenSubject.next(tokenResponse.AccessToken);
+                    localStorage.setItem('token', tokenResponse.AccessToken);
+                    localStorage.setItem('refreshToken', tokenResponse.RefreshToken);
+                    localStorage.setItem('user', JSON.stringify(tokenResponse.User));
+                    return next.handle(this.attachTokenToRequest(request))
+                })
+            );
+
+        }
+
+    }
+    private attachTokenToRequest(req: HttpRequest<any>) {
+        return req.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.authService.getToken()}`,
+            },
+        })
+    }
+
+}
+export const ErrorInterceptorPrivider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true
 }

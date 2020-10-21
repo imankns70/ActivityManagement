@@ -83,6 +83,13 @@ namespace ActivityManagementApi.Controllers.v1
                     UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
                     responseTokenViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
 
+                    RefreshToken oldRefreshToken = await _refreshTokenService.GetRefreshTokenByUserIdAsync(user.Id);
+                    if (oldRefreshToken != null)
+                    {
+                        await _refreshTokenService.RemoveRefreshTokenAsync(oldRefreshToken);
+
+                    }
+
                     RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_settings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
                     await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
 
@@ -93,9 +100,9 @@ namespace ActivityManagementApi.Controllers.v1
                 }
                 else if (requestToken.GrantType == "RefreshToken")
                 {
-                    
+
                     responseTokenViewModel = await _jwtService.GenerateAccessAndRefreshToken(requestToken, ipAddress);
-                    if (responseTokenViewModel.Status)
+                    if (responseTokenViewModel.IsSuccess)
                     {
                         return Ok(responseTokenViewModel);
 

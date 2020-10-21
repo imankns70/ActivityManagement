@@ -12,8 +12,8 @@ namespace ActivityManagement.Services.EfInterfaces.Api
     {
         RefreshToken CreateRefreshToken(RefreshTokenSetting refreshTokenSetting, int userId, bool IsRemember, string ipAddress);
         Task AddRefreshTokenAsync(RefreshToken refreshToken);
-        Task RemoveAllRefreshTokenAsync(List<RefreshToken> refreshTokens);
-        Task<List<RefreshToken>> GetAllRefreshTokenByUserIdAsync(int userId);
+        Task RemoveRefreshTokenAsync(RefreshToken refreshTokens);
+        Task<RefreshToken> GetRefreshTokenByUserIdAsync(int userId);
 
         Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken, string ipAddress);
 

@@ -3179,10 +3179,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",

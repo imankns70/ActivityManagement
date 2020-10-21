@@ -43,9 +43,9 @@ namespace ActivityManagement.Services.EfServices.Api
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<List<RefreshToken>> GetAllRefreshTokenByUserIdAsync(int userId)
+        public async Task<RefreshToken> GetRefreshTokenByUserIdAsync(int userId)
         {
-            return await _refreshTokens.Where(x => x.UserId == userId).ToListAsync();
+            return await _refreshTokens.FirstOrDefaultAsync(x => x.UserId == userId);
         }
 
         public async Task<RefreshToken> OldRefreshToken(string clientId, string refreshToken, string ipAddress)
@@ -55,9 +55,9 @@ namespace ActivityManagement.Services.EfServices.Api
  
         }
 
-        public async Task RemoveAllRefreshTokenAsync(List<RefreshToken> refreshTokens)
+        public async Task RemoveRefreshTokenAsync(RefreshToken refreshTokens)
         {
-            _refreshTokens.RemoveRange(refreshTokens);
+            _refreshTokens.Remove(refreshTokens);
             await _unitOfWork.SaveChangesAsync();
 
         }
