@@ -62,62 +62,13 @@ namespace ActivityManagementApi.Controllers.v1
         {
             if (ModelState.IsValid)
             {
-                string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
 
-                ResponseTokenViewModel responseTokenViewModel = new ResponseTokenViewModel();
-                if (requestToken.GrantType == "Password")
-                {
-                    AppUser user = await _userManager.FindUserWithRolesByNameAsync(requestToken.UserName);
-                    if (user == null)
-                    {
-                        return BadRequest(NotificationMessages.UserNotFound);
-                    }
+                return (await _jwtService.AuthenticateUser(Request, requestToken));
 
-                    bool result = await _userManager.CheckPasswordAsync(user, requestToken.Password);
-                    if (!result)
-                    {
-                        return BadRequest(NotificationMessages.InvalidUserNameOrPassword);
-
-                    }
-
-                    UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
-                    responseTokenViewModel.Image = $"{Request.Scheme}://{Request.Host}{Request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
-
-                    RefreshToken oldRefreshToken = await _refreshTokenService.GetRefreshTokenByUserIdAsync(user.Id);
-                    if (oldRefreshToken != null)
-                    {
-                        await _refreshTokenService.RemoveRefreshTokenAsync(oldRefreshToken);
-
-                    }
-
-                    RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_settings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
-                    await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
-
-                    responseTokenViewModel.AccessToken = await _jwtService.GenerateAccessTokenAsync(user);
-                    responseTokenViewModel.RefreshToken = refreshToken.Value;
-                    return Ok(responseTokenViewModel);
-
-                }
-                else if (requestToken.GrantType == "RefreshToken")
-                {
-
-                    responseTokenViewModel = await _jwtService.GenerateAccessAndRefreshToken(requestToken, ipAddress);
-                    if (responseTokenViewModel.IsSuccess)
-                    {
-                        return Ok(responseTokenViewModel);
-
-                    }
-                   
-                    return BadRequest(responseTokenViewModel.Message);
-
-                }
-                else
-                {
-                    return BadRequest(NotificationMessages.OperationFailed);
-                }
             }
             return BadRequest(ModelState.GetErrorsModelState());
         }
+       
         [HttpPost("SignIn")]
         public async Task<ApiResult<UserViewModelApi>> SignIn([FromBody]SignInViewModel viewModel)
         {
@@ -142,7 +93,7 @@ namespace ActivityManagementApi.Controllers.v1
                 userViewModel.Token = await _jwtService.GenerateAccessTokenAsync(user);
                 return Ok(userViewModel);
             }
-           
+
             return BadRequest(ModelState.GetErrorsModelState());
 
 

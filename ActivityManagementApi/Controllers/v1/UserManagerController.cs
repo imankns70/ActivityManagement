@@ -52,8 +52,6 @@ namespace ActivityManagementApi.Controllers.v1
 
             return BadRequest(NotificationMessages.UserNotFound);
 
-
-
         }
         [HttpPost]
         [Route("UpdateUserProfile")]

@@ -23,10 +23,9 @@ export class AuthService {
     this.imageUrl.next(url);
   }
 
-  login(viewModel: any): Observable<any> {
+  login(requestToken: any): Observable<any> {
 
-
-    return this.http.post<any>(this.baseUrl + 'Auth', viewModel)
+    return this.http.post<any>(this.baseUrl + 'Auth', requestToken)
 
   }
 
@@ -42,13 +41,15 @@ export class AuthService {
     return localStorage.getItem('token')
   }
   logout() {
+
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     this.currentUser = null;
-
+    this.router.navigate(['/auth/login'])
   }
   loadUser() {
-    const user = <User>JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       this.currentUser = user;
       this.changeUserPhoto(user.image)
@@ -57,25 +58,33 @@ export class AuthService {
   }
 
   getNewRefreshToken(): Observable<any> {
-    const user = <User>JSON.parse(localStorage.getItem('user'));
+
+    const user: User = JSON.parse(localStorage.getItem('user'));
     const userName = user.userName;
     const refreshToken = localStorage.getItem('refreshToken');
-    const grantType = 'refreshToken';
+    const grantType = 'RefreshToken';
 
-    return this.http.post<ApiResult>(this.baseUrl + 'Auth', { userName, refreshToken, grantType }).pipe(
-      map((res: any) => {
-      
-        if (res.data && res.data.AccessToken) {
-          localStorage.setItem('token', res.data.AccessToken);
-          //localStorage.setItem('refreshToken', res.data.RefreshToken);
-          //localStorage.setItem('user',JSON.stringify(res.data.User));
-          //this.currentUser= res.data.User;
-          //this.changeUserPhoto(res.data.Image);
+    const requestToken = {
+      userName: userName,
+      refreshToken: refreshToken,
+      grantType: grantType
+    }
+   debugger;
+    var ffff= this.http.post<any>(this.baseUrl + 'Auth', requestToken)
+    
 
-        }
-        return res as any;
-      })
-    )
+    return ffff
+    // .pipe(
+    //   map((res: any) => {
+    //     debugger;
+    //     if (res.data && res.data.accessToken) {
+    //       localStorage.setItem('token', res.data.accessToken);
+        
+
+    //     }
+    //     return res as any;
+    //   })
+    // )
 
 
   }

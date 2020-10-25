@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // return current url
     //let stateName: string = state.url.replace('/', '')
-
+ 
     if (this.authService.isSignIn()) {
 
       return true;

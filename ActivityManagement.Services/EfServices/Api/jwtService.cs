@@ -112,7 +112,7 @@ namespace ActivityManagement.Services.EfServices.Api
 
             return claims;
         }
-        public async Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken, string ipAddress)
+        private async Task<ResponseTokenViewModel> GenerateAccessAndRefreshToken(RequestTokenViewModel requestToken, string ipAddress)
         {
             ResponseTokenViewModel responseToken = new ResponseTokenViewModel();
             AppUser appUser = await _userManager.FindUserWithRolesByNameAsync(requestToken.UserName);
@@ -126,22 +126,19 @@ namespace ActivityManagement.Services.EfServices.Api
                     AppUser userToken = await _userManager.FindByIdAsync(oldRefreshToken.UserId.ToString());
                     if (userToken == null)
                     {
-                        responseToken.IsSuccess = false;
                         throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
 
                     }
                     if (oldRefreshToken.ExpireDate < DateTime.Now)
                     {
-                        responseToken.IsSuccess = false;
+
                         throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
-                        //throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
                     }
 
                     else
                     {
                         responseToken.RefreshToken = oldRefreshToken.Value;
                         responseToken.AccessToken = await GenerateAccessTokenAsync(appUser);
-                        responseToken.IsSuccess = true;
                     }
 
 
@@ -149,9 +146,7 @@ namespace ActivityManagement.Services.EfServices.Api
                 }
                 else
                 {
-                    responseToken.IsSuccess = false;
-                    throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
-
+                    throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.NotFound);
 
                 }
 
@@ -159,15 +154,70 @@ namespace ActivityManagement.Services.EfServices.Api
             }
             else
             {
-                responseToken.IsSuccess = false;
-                throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.NotFound);
             }
 
             return responseToken;
         }
 
 
+        public async Task<ResponseTokenViewModel> AuthenticateUser(HttpRequest request, RequestTokenViewModel requestToken)
+        {
+            
+            string ipAddress = _httpContextAccessor.HttpContext.Connection?.RemoteIpAddress.ToString();
 
+            ResponseTokenViewModel responseTokenViewModel = new ResponseTokenViewModel();
+            if (requestToken.GrantType == "Password")
+            {
+                AppUser user = await _userManager.FindUserWithRolesByNameAsync(requestToken.UserName);
+                if (user == null)
+                {
+                    throw new AppException(ApiResultStatusCode.BadRequest, NotificationMessages.UserNotFound, HttpStatusCode.BadRequest);
+
+                }
+
+                bool result = await _userManager.CheckPasswordAsync(user, requestToken.Password);
+                if (!result)
+                {
+                    throw new AppException(ApiResultStatusCode.BadRequest, NotificationMessages.InvalidUserNameOrPassword, HttpStatusCode.BadRequest);
+
+ 
+                }
+
+                UserViewModelApi userViewModel = await _userManager.FindUserApiByIdAsync(user.Id);
+                userViewModel.Image = $"{request.Scheme}://{request.Host}{request.PathBase.Value}/wwwroot/Users/{userViewModel.Image}";
+                
+                RefreshToken oldRefreshToken = await _refreshTokenService.GetRefreshTokenByUserIdAsync(user.Id);
+                if (oldRefreshToken != null)
+                {
+                    await _refreshTokenService.RemoveRefreshTokenAsync(oldRefreshToken);
+
+                }
+
+                RefreshToken refreshToken = _refreshTokenService.CreateRefreshToken(_siteSettings.RefreshTokenSetting, user.Id, requestToken.IsRemember, ipAddress);
+                await _refreshTokenService.AddRefreshTokenAsync(refreshToken);
+
+                responseTokenViewModel.AccessToken = await GenerateAccessTokenAsync(user);
+                responseTokenViewModel.RefreshToken = refreshToken.Value;
+                responseTokenViewModel.User = userViewModel;
+                
+
+            }
+            else if (requestToken.GrantType == "RefreshToken")
+            {
+
+                responseTokenViewModel = await GenerateAccessAndRefreshToken(requestToken, ipAddress);
+                
+
+
+            }
+            else
+            {
+                throw new AppException(ApiResultStatusCode.BadRequest, NotificationMessages.TargetNotFounded, HttpStatusCode.BadRequest);
+            }
+            return responseTokenViewModel;
+        }
+         
 
     }
 }

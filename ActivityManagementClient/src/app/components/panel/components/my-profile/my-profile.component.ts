@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
 import { gender } from 'src/app/models/enums/gender';
+import { AuthService } from 'src/app/components/auth/services/auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -16,11 +17,12 @@ export class MyProfileComponent implements OnInit {
   // to reset the form we need this
   editForm: FormGroup
   user: User;
-  constructor(private userService: UserService, private alertService: NotificationMessageService, private route: ActivatedRoute,
+  constructor(private userService: UserService, private alertService: NotificationMessageService,
+    private route: ActivatedRoute,
     private formBuilder: FormBuilder) { }
-
+  
   ngOnInit() {
-
+  
     this.user = this.getUserLoggedIn();
     console.log(this.user.gender)
     this.updateProfileInformation();
@@ -32,10 +34,10 @@ export class MyProfileComponent implements OnInit {
       userName: [this.user.userName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
-      email: [this.user.email, [Validators.required,Validators.email]],
+      email: [this.user.email, [Validators.required, Validators.email]],
       phoneNumber: [this.user.phoneNumber, Validators.required],
       persianBirthDate: [this.user.persianBirthDate, Validators.required],
-      gender: [this.user.gender ==gender.Male ? "Male":"Female", Validators.required],
+      gender: [this.user.gender == gender.Male ? "Male" : "Female", Validators.required],
 
     })
   }

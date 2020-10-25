@@ -19,19 +19,21 @@ export class LoginComponent implements OnInit {
     private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.model.grantType = 'Password';
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
 
     if (this.authService.isSignIn()) {
       this.router.navigate([this.returnUrl]);
     }
   }
+
   login() {
     this.authService.login(this.model).subscribe(next => {
- 
+  
       if (next.isSuccess == true) {
-        localStorage.setItem('user', JSON.stringify(next.data));
-        localStorage.setItem('token', next.data.token);
+        localStorage.setItem('user', JSON.stringify(next.data.user));
+        localStorage.setItem('token', next.data.accessToken);
+        localStorage.setItem('refreshToken', next.data.refreshToken);
         const imageUrl: string = next.data.image;
         if (imageUrl) {
           this.authService.changeUserPhoto(imageUrl);

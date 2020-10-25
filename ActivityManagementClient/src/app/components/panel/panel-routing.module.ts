@@ -15,7 +15,8 @@ const routes: Routes = [
         children: [
             { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },
             {
-                path: 'myprofile', canActivate: [AuthGuard], component: MyProfileComponent,
+                path: 'myprofile', canActivate: [AuthGuard], 
+                component: MyProfileComponent,
                 resolve: { user: UserProfileResolver },
                 canDeactivate: [PreventUnsavedGuard]
             },

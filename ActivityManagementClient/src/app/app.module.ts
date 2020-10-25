@@ -51,13 +51,14 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          positionClass: 'toast-top-left',
          preventDuplicates: true,
          progressBar: true,
-         progressAnimation: 'decreasing'
+         progressAnimation: 'decreasing',
+         
       }),
    ],
    providers: [
       ErrorInterceptorPrivider,
-    
       AuthService],
+      
    bootstrap: [
       AppComponent
    ]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/components/auth/services/auth.service';
 
 @Component({
   selector: 'app-role-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoleListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+   
+
+    const hhhh = this.authService.getNewRefreshToken().subscribe(eee=> {
+
+      debugger;
+    })
   }
 
 }

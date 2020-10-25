@@ -4,7 +4,7 @@ import {
 
     HttpInterceptor,
 
-    HttpHandler,
+    
 
     HttpRequest,
 
@@ -17,28 +17,28 @@ import {
 
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
-import { retry, catchError, tap, switchMap, finalize, filter, take, switchMapTo } from 'rxjs/operators';
+import { catchError, tap, switchMap, finalize, filter, take } from 'rxjs/operators';
 import { StatusCode } from '../models/enums/StatusCode';
-import { ApiResult } from '../models/apiresult';
 import { AuthService } from '../components/auth/services/auth.service';
 import { NotificationMessageService } from './NotificationMessage.service';
 import { Router } from '@angular/router';
-
+import { Injectable } from '@angular/core';
+import { HttpHandler } from '@angular/common/http';
+@Injectable({
+    providedIn: 'root'
+})
 
 export class HttpErrorInterceptor implements HttpInterceptor {
     private isTokenRefreshing = false;
-    tokenSubject = new BehaviorSubject<string>(null);
+    private tokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
     constructor(private authService: AuthService,
         private alertService: NotificationMessageService, private route: Router) {
 
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 86d7693b2278186bc08513b4eaa76125e75497b8
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+        debugger;
         return next.handle(this.attachTokenToRequest(request)).pipe(
             tap((event: HttpEvent<any>) => {
 
@@ -47,8 +47,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
                 }
             }),
-            catchError((error: HttpErrorResponse) => {
-
+            catchError((error): Observable<any> => {
 
 
                 return this.handleError(error, request, next);
@@ -56,48 +55,52 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         )
 
     }
+
     private HandleHttpResponseError(request: HttpRequest<any>, next: HttpHandler) {
 
         if (!this.isTokenRefreshing) {
             this.isTokenRefreshing = true;
+
             this.tokenSubject.next(null);
+            // if (!this.isRefreshing) {
+            //     this.isRefreshing = true;
+            //     this.refreshTokenSubject.next(null);
+            
+            //     return this.authService.refreshToken().pipe(
+            //       switchMap((token: any) => {
+            //         this.isRefreshing = false;
+            //         this.refreshTokenSubject.next(token.jwt);
+            //         return next.handle(this.addToken(request, token.jwt));
+            //       }));
+            
+            //   }
+            return this.authService.getNewRefreshToken().subscribe( nex => {
 
-            return this.authService.getNewRefreshToken().pipe(
+           
+
                 switchMap((tokenResponse: any) => {
-<<<<<<< HEAD
-                    this.tokenSubject.next(tokenResponse.AccessToken);
-                    localStorage.setItem('token', tokenResponse.AccessToken);
-                    //localStorage.setItem('refreshToken', tokenResponse.RefreshToken);
-                    //localStorage.setItem('user', JSON.stringify(tokenResponse.User));
-                    return next.handle(this.attachTokenToRequest(request))
-                }),catchError(err => {
-
-=======
+                    debugger;
                     if (tokenResponse) {
-                        this.tokenSubject.next(tokenResponse.AccessToken);
-                        localStorage.setItem('token', tokenResponse.AccessToken);
-                        localStorage.setItem('refreshToken', tokenResponse.RefreshToken);
-                        localStorage.setItem('user', JSON.stringify(tokenResponse.User));
+                        debugger
+                        this.tokenSubject.next(tokenResponse.accessToken);
+                        localStorage.setItem('token', tokenResponse.accessToken);
                         return next.handle(this.attachTokenToRequest(request))
+
                     }
-                    return this.authService.logout() as any
+
                 }), catchError(err => {
-                    this.authService.logout()
+
                     return this.handleError(err, request, next)
 
                 }), finalize(() => {
 
                     this.isTokenRefreshing = false;
->>>>>>> 86d7693b2278186bc08513b4eaa76125e75497b8
                 })
+            }
             );
 
         }
         else {
-<<<<<<< HEAD
-            return  this.authService.logout() as any;
-           
-=======
             this.isTokenRefreshing = false;
 
             return this.tokenSubject.pipe(
@@ -105,25 +108,17 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                 take(1),
                 switchMap(token => {
                     return next.handle(this.attachTokenToRequest(request))
-                })
-
-            )
->>>>>>> 86d7693b2278186bc08513b4eaa76125e75497b8
+                }));
         }
 
     }
     private attachTokenToRequest(req: HttpRequest<any>) {
-        return req.clone({
-            setHeaders: {
-                Authorization: `Bearer ${this.authService.getToken()}`,
-            },
-        })
+        const token = this.authService.getToken();
+        return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } })
     }
-<<<<<<< HEAD
-private handError(http:HttpErrorResponse){
-=======
     private handleError(error: HttpErrorResponse, request: HttpRequest<any>, next: HttpHandler) {
         let message: string = '';
+        debugger;
         if (error.error instanceof ErrorEvent) {
             //client side errors
             console.log('client side errors occured');
@@ -172,9 +167,8 @@ private handError(http:HttpErrorResponse){
         return throwError(message)
     }
 
->>>>>>> 86d7693b2278186bc08513b4eaa76125e75497b8
 
-}
+
 }
 export const ErrorInterceptorPrivider = {
     provide: HTTP_INTERCEPTORS,
