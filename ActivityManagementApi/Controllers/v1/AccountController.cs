@@ -11,6 +11,7 @@ using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Api.RefreshToken;
 using ActivityManagement.ViewModels.SiteSettings;
 using ActivityManagement.ViewModels.UserManager;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,7 @@ namespace ActivityManagementApi.Controllers.v1
 
         }
         [HttpPost("Auth")]
+        [AllowAnonymous]
         public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
         {
             if (ModelState.IsValid)

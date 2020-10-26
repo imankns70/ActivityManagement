@@ -4,7 +4,7 @@ import {
 
     HttpInterceptor,
 
-    
+
 
     HttpRequest,
 
@@ -65,19 +65,20 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // if (!this.isRefreshing) {
             //     this.isRefreshing = true;
             //     this.refreshTokenSubject.next(null);
-            
+
             //     return this.authService.refreshToken().pipe(
             //       switchMap((token: any) => {
             //         this.isRefreshing = false;
             //         this.refreshTokenSubject.next(token.jwt);
             //         return next.handle(this.addToken(request, token.jwt));
             //       }));
-            
+
             //   }
-            return this.authService.getNewRefreshToken().subscribe( nex => {
 
-           
+            return this.authService.refreshToken().subscribe(nex => {
 
+
+                debugger;
                 switchMap((tokenResponse: any) => {
                     debugger;
                     if (tokenResponse) {
@@ -113,7 +114,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
     }
     private attachTokenToRequest(req: HttpRequest<any>) {
-        const token = this.authService.getToken();
+        const token = this.authService.getJwtToken();
         return req.clone({ setHeaders: { Authorization: 'Bearer ' + token } })
     }
     private handleError(error: HttpErrorResponse, request: HttpRequest<any>, next: HttpHandler) {

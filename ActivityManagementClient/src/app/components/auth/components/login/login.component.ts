@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
+    this.authService.login(this.model)
+    .subscribe(next => {
   
       if (next.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data.user));
@@ -41,7 +42,6 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigate([this.returnUrl]);
 
-        // this.alertService.showMessage(p.message, "موفق", this.globals.successMessage)
 
       } else {
         this.alertService.showMessage(next.message.join(","), "خطا", Globals.errorMessage)

@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -34,10 +34,10 @@ export class AuthService {
     return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
-    return this.getToken() == null ? false : true;
+    return this.getJwtToken() == null ? false : true;
 
   }
-  getToken(): string {
+  getJwtToken(): string {
     return localStorage.getItem('token')
   }
   logout() {
@@ -56,36 +56,50 @@ export class AuthService {
     }
 
   }
+  private getRefreshToken() {
+    return localStorage.getItem('refreshToken');
+  }
 
-  getNewRefreshToken(): Observable<any> {
-
+  refreshToken() {
     const user: User = JSON.parse(localStorage.getItem('user'));
-    const userName = user.userName;
-    const refreshToken = localStorage.getItem('refreshToken');
-    const grantType = 'RefreshToken';
-
     const requestToken = {
-      userName: userName,
-      refreshToken: refreshToken,
-      grantType: grantType
+      userName: user.userName,
+      refreshToken: this.getRefreshToken(),
+      grantType: 'RefreshToken'
     }
-   debugger;
-    var ffff= this.http.post<any>(this.baseUrl + 'Auth', requestToken)
+    return  this.http.post<any>(this.baseUrl + 'Auth', requestToken).pipe(
+      tap((res: any) => {
+      this.storeJwtToken(res.data.accessToken);
+    }));
+  }
+
+
+  private storeJwtToken(jwt: string) {
+    localStorage.setItem('token', jwt);
+  }
+  // refreshToken(): Observable<any> {
+
+  //   const user: User = JSON.parse(localStorage.getItem('user'));
+  //   const requestToken = {
+  //     userName: user.userName,
+  //     refreshToken: this.getRefreshToken(),
+  //     grantType: 'RefreshToken'
+  //   }
+  //  debugger;
+  //  return  this.http.post<any>(this.baseUrl + 'Auth', requestToken)
     
 
-    return ffff
-    // .pipe(
-    //   map((res: any) => {
-    //     debugger;
-    //     if (res.data && res.data.accessToken) {
-    //       localStorage.setItem('token', res.data.accessToken);
+  //   .pipe(
+  //     map((res: any) => {
+  //       debugger;
+  //       if (res.data && res.data.accessToken) {
+  //         localStorage.setItem('token', res.data.accessToken);
         
 
-    //     }
-    //     return res as any;
-    //   })
-    // )
-
-
-  }
+  //       }
+  //       return res as any;
+  //     })
+  //   )
+ 
+  // }
 }

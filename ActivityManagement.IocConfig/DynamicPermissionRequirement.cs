@@ -56,7 +56,8 @@ namespace ActivityManagement.IocConfig
                 }
                 else
                 {
-                    throw new AppException(ApiResultStatusCode.UnAuthorized, new List<string>(new[] { "UnAuthorized" }));
+                    throw new AppException(ApiResultStatusCode.UnAuthorized, "Authentication failed.", HttpStatusCode.Unauthorized, null);
+                    //throw new AppException(ApiResultStatusCode.UnAuthorized, new List<string>(new[] { "UnAuthorized" }));
                     //context.Fail();
                     //ApiResultStatusCode apiResultStatus = ApiResultStatusCode.UnAuthorized;
                     //HttpStatusCode statusCode = HttpStatusCode.Unauthorized;

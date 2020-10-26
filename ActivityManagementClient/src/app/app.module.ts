@@ -11,8 +11,9 @@ import {
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
 import { AuthService } from '../app/components/auth/services/auth.service';
-import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
- 
+//import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
+import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
@@ -42,7 +43,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
-    
+
       NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
@@ -52,13 +53,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          preventDuplicates: true,
          progressBar: true,
          progressAnimation: 'decreasing',
-         
+
       }),
    ],
    providers: [
-      ErrorInterceptorPrivider,
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: AuthInterceptor,
+         multi: true
+      },
       AuthService],
-      
+
    bootstrap: [
       AppComponent
    ]
