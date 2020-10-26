@@ -64,11 +64,13 @@ namespace ActivityManagement.IocConfig
                   options.TokenValidationParameters = validationParameters;
                   options.Events = new JwtBearerEvents
                   {
+                      
                       OnAuthenticationFailed = context =>
                       {
                           if (context.Exception != null)
-                              context.Fail(context.Exception);
-                              //throw new AppException(ApiResultStatusCode.UnAuthorized, "Authentication failed.", HttpStatusCode.Unauthorized, context.Exception, null);
+                              //context.Fail(context.Exception);
+                              throw new AppException(ApiResultStatusCode.RefreshToken, "Authentication failed.", HttpStatusCode.Unauthorized, context.Exception, null);
+
                           return Task.CompletedTask;
                       },
 

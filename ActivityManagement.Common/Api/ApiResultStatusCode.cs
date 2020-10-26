@@ -23,6 +23,9 @@ namespace ActivityManagement.Common.Api
         LogicError = 5,
 
         [Display(Name = "خطای احراز هویت")]
-        UnAuthorized = 6
+        UnAuthorized = 6,
+
+        [Display(Name = "خطای توکن نامعتبر")]
+        RefreshToken = 7
     }
 }
