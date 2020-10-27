@@ -1,36 +1,77 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, filter, take, switchMap } from 'rxjs/operators';
+import { catchError, filter, take, switchMap, tap } from 'rxjs/operators';
 import { AuthService } from '../components/auth/services/auth.service';
+import { StatusCode } from '../models/enums/StatusCode';
+import { Router } from '@angular/router';
+import { NotificationMessageService } from './NotificationMessage.service';
+import { Globals } from '../models/enums/Globals';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
+  baseUrl = environment.apiUrl + 'Account/';
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private route: Router, private alertService: NotificationMessageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.authService.getJwtToken()) {
-      request = this.addToken(request, this.authService.getJwtToken());
+    debugger;
+    if (request.url.indexOf(this.baseUrl + 'Auth') != 0) {
+      if (this.authService.getJwtToken()) {
+        request = this.addToken(request, this.authService.getJwtToken());
+      }
+    }
+    else {
+      const newHeader = request.headers.delete('Authorization')
+      const newRequest = request.clone({ headers: newHeader })
     }
 
+
+
+
+
     return next.handle(request).pipe(
-    
+      tap((event: HttpEvent<any>) => {
+
+        if (event instanceof HttpResponse) {
+          console.log('success');
+
+        }
+      }),
       catchError(error => {
-        debugger;
-      if (error instanceof HttpErrorResponse && error.status === 401) {
-        
-        return this.handle401Error(request, next,this.authService.getJwtToken());
-      } else {
-        
-        console.log(error.error.message);
-        return throwError(error.error.message);
-      }
-    }));
+        if (error.error instanceof ErrorEvent) {
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error('An error occurred:', error.error.message);
+        }
+        if (error instanceof HttpErrorResponse && error.status === 401) {
+
+          if (error.error.StatusCode == StatusCode.unAuthorized) {
+
+
+            return this.handleRefreshToken(request, next);
+          }
+          if (error.error.StatusCode == StatusCode.logOut) {
+            this.alertService.showMessage('خطا در اعتبار سنجی', 'خطا', Globals.errorMessage)
+            this.authService.logout()
+
+          }
+        }
+        if (error.error.StatusCode == StatusCode.redirectToHome) {
+          this.route.navigate(['/dashboard'])
+
+        }
+
+        else {
+
+          console.log(error.error.message);
+          this.alertService.showMessage(error.error.message, 'خطا', Globals.errorMessage)
+          return throwError(error.error.message);
+        }
+      }));
   }
 
   private addToken(request: HttpRequest<any>, token: string) {
@@ -41,14 +82,17 @@ export class AuthInterceptor implements HttpInterceptor {
     });
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler, token:string) {
+
+  private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
     if (!this.isRefreshing) {
-      request.headers.delete('Authorization')
+      debugger;
+
+
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
-      debugger;
+
       return this.authService.refreshToken().pipe(
-        
+
         switchMap((token: any) => {
           debugger;
           this.isRefreshing = false;

@@ -25,6 +25,12 @@ namespace ActivityManagement.Common.Api
         [Display(Name = "خطای احراز هویت")]
         UnAuthorized = 6,
 
-         
+        [Display(Name = "خروج از برنامه")]
+        LogOut = 7,
+
+        [Display(Name = "هدایت به صفحه اصلی")]
+        RedirectToHome = 8,
+
+
     }
 }

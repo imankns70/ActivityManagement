@@ -56,7 +56,7 @@ namespace ActivityManagement.IocConfig
                 }
                 else
                 {
-                    throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
+                    throw new AppException(ApiResultStatusCode.RedirectToHome, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
 
 
                 }

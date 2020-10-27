@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
@@ -61,16 +61,22 @@ export class AuthService {
   }
 
   refreshToken() {
+
+    // const newHeader = new HttpHeaders({
+    //   Authorization:  `Bearer 455454`
+    // })
+
+
     const user: User = JSON.parse(localStorage.getItem('user'));
     const requestToken = {
       userName: user.userName,
       refreshToken: this.getRefreshToken(),
       grantType: 'RefreshToken'
     }
-    return  this.http.post<any>(this.baseUrl + 'Auth', requestToken).pipe(
+    return this.http.post<any>(this.baseUrl + 'Auth', requestToken).pipe(
       tap((res: any) => {
-      this.storeJwtToken(res.data.accessToken);
-    }));
+        this.storeJwtToken(res.data.accessToken);
+      }));
   }
 
 
@@ -87,19 +93,19 @@ export class AuthService {
   //   }
   //  debugger;
   //  return  this.http.post<any>(this.baseUrl + 'Auth', requestToken)
-    
+
 
   //   .pipe(
   //     map((res: any) => {
   //       debugger;
   //       if (res.data && res.data.accessToken) {
   //         localStorage.setItem('token', res.data.accessToken);
-        
+
 
   //       }
   //       return res as any;
   //     })
   //   )
- 
+
   // }
 }

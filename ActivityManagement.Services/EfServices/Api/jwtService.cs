@@ -132,7 +132,7 @@ namespace ActivityManagement.Services.EfServices.Api
                     if (oldRefreshToken.ExpireDate < DateTime.Now)
                     {
 
-                        throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                        throw new AppException(ApiResultStatusCode.LogOut, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
                     }
 
                     else
@@ -146,7 +146,7 @@ namespace ActivityManagement.Services.EfServices.Api
                 }
                 else
                 {
-                    throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
+                    throw new AppException(ApiResultStatusCode.LogOut, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
 
                 }
 
@@ -154,7 +154,7 @@ namespace ActivityManagement.Services.EfServices.Api
             }
             else
             {
-                throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
+                throw new AppException(ApiResultStatusCode.LogOut, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
             }
 
             return responseToken;
