@@ -126,13 +126,13 @@ namespace ActivityManagement.Services.EfServices.Api
                     AppUser userToken = await _userManager.FindByIdAsync(oldRefreshToken.UserId.ToString());
                     if (userToken == null)
                     {
-                        throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                        throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
 
                     }
                     if (oldRefreshToken.ExpireDate < DateTime.Now)
                     {
 
-                        throw new AppException(ApiResultStatusCode.UnAuthorized, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                        throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
                     }
 
                     else
@@ -146,7 +146,7 @@ namespace ActivityManagement.Services.EfServices.Api
                 }
                 else
                 {
-                    throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.NotFound);
+                    throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
 
                 }
 
@@ -154,7 +154,7 @@ namespace ActivityManagement.Services.EfServices.Api
             }
             else
             {
-                throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.NotFound);
+                throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UserNotFound, HttpStatusCode.Unauthorized);
             }
 
             return responseToken;

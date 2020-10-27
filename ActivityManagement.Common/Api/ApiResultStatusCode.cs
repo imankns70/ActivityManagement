@@ -25,7 +25,6 @@ namespace ActivityManagement.Common.Api
         [Display(Name = "خطای احراز هویت")]
         UnAuthorized = 6,
 
-        [Display(Name = "خطای توکن نامعتبر")]
-        RefreshToken = 7
+         
     }
 }

@@ -22,11 +22,11 @@ export class AuthInterceptor implements HttpInterceptor {
     
       catchError(error => {
         debugger;
-      if (error instanceof HttpErrorResponse && error.error.StatusCode === 7) {
+      if (error instanceof HttpErrorResponse && error.status === 401) {
         
-        return this.handle401Error(request, next);
+        return this.handle401Error(request, next,this.authService.getJwtToken());
       } else {
-        debugger;
+        
         console.log(error.error.message);
         return throwError(error.error.message);
       }
@@ -41,8 +41,9 @@ export class AuthInterceptor implements HttpInterceptor {
     });
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+  private handle401Error(request: HttpRequest<any>, next: HttpHandler, token:string) {
     if (!this.isRefreshing) {
+      request.headers.delete('Authorization')
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
       debugger;

@@ -56,9 +56,7 @@ namespace ActivityManagement.IocConfig
                 }
                 else
                 {
-                    throw new AppException(ApiResultStatusCode.UnAuthorized, "Authentication failed.", HttpStatusCode.Unauthorized, null);
-                   
-
+                    throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
 
 
                 }

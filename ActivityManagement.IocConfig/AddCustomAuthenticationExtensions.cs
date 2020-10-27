@@ -19,7 +19,7 @@ namespace ActivityManagement.IocConfig
 {
     public static class AddCustomAuthenticationExtensions
     {
-        
+
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SiteSettings siteSettings)
         {
             services.AddAuthentication(options =>
@@ -55,8 +55,8 @@ namespace ActivityManagement.IocConfig
                       ValidIssuer = siteSettings.JwtSettings.Issuer,
 
                       TokenDecryptionKey = new SymmetricSecurityKey(encryptionKey),
-                      ClockSkew= TimeSpan.Zero,
-                      
+                      ClockSkew = TimeSpan.Zero,
+
                   };
 
                   options.RequireHttpsMetadata = false;
@@ -64,16 +64,18 @@ namespace ActivityManagement.IocConfig
                   options.TokenValidationParameters = validationParameters;
                   options.Events = new JwtBearerEvents
                   {
-                      
+                      // invoked this event when the bearer token is manupulated or token is expired
                       OnAuthenticationFailed = context =>
                       {
                           if (context.Exception != null)
                               //context.Fail(context.Exception);
-                              throw new AppException(ApiResultStatusCode.RefreshToken, "Authentication failed.", HttpStatusCode.Unauthorized, context.Exception, null);
+                              // need to send refresh token
+                              throw new AppException(ApiResultStatusCode.UnAuthorized, "Authentication failed.", HttpStatusCode.Unauthorized, context.Exception, null);
 
                           return Task.CompletedTask;
                       },
-
+                     
+                      // invoked this event for content of token
                       OnTokenValidated = async context =>
                       {
                           var userRepository = context.HttpContext.RequestServices.GetRequiredService<IApplicationUserManager>();
@@ -96,11 +98,17 @@ namespace ActivityManagement.IocConfig
                               context.Fail("User is not active.");
                       },
 
+                      // invoked this event when the request has no bearer token in its header
                       OnChallenge = context =>
                       {
                           if (context.AuthenticateFailure != null)
+
                               throw new AppException(ApiResultStatusCode.UnAuthorized, "Authenticate failure.", HttpStatusCode.Unauthorized, context.AuthenticateFailure, null);
+
+                          //else
                           throw new AppException(ApiResultStatusCode.UnAuthorized, "You are unauthorized to access this resource.", HttpStatusCode.Unauthorized);
+
+
                       }
 
                   };
