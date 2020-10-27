@@ -208,8 +208,6 @@ namespace ActivityManagement.Services.EfServices.Api
 
                 responseTokenViewModel = await GenerateAccessAndRefreshToken(requestToken, ipAddress);
                 
-
-
             }
             else
             {

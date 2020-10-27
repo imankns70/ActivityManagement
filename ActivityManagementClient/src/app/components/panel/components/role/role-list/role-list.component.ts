@@ -13,10 +13,7 @@ export class RoleListComponent implements OnInit {
   ngOnInit() {
    
 
-    const hhhh = this.authService.refreshToken().subscribe(aaa=> {
-      debugger;
-
-    });
+  
   }
 
 }

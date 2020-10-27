@@ -13,5 +13,6 @@ export enum StatusCode {
 
     unAuthorized = 6,
     
-    ClientError=7,
+    RefreshToken=7,
+
 }

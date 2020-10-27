@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     
       catchError(error => {
         debugger;
-      if (error instanceof HttpErrorResponse && error.status === 401) {
+      if (error instanceof HttpErrorResponse && error.error.StatusCode === 7) {
         
         return this.handle401Error(request, next);
       } else {
