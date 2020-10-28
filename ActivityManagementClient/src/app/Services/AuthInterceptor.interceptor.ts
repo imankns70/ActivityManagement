@@ -14,25 +14,18 @@ export class AuthInterceptor implements HttpInterceptor {
   baseUrl = environment.apiUrl + 'Account/';
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
+  private newRequest: HttpRequest<any>
   constructor(public authService: AuthService, private route: Router, private alertService: NotificationMessageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    debugger;
+ 
+   
     if (request.url.indexOf(this.baseUrl + 'Auth') != 0) {
       if (this.authService.getJwtToken()) {
         request = this.addToken(request, this.authService.getJwtToken());
       }
     }
-    else {
-      const newHeader = request.headers.delete('Authorization')
-      const newRequest = request.clone({ headers: newHeader })
-    }
-
-
-
-
+    
 
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
@@ -43,12 +36,13 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }),
       catchError(error => {
+         
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
         }
         if (error instanceof HttpErrorResponse && error.status === 401) {
-
+debugger;
           if (error.error.StatusCode == StatusCode.unAuthorized) {
 
 
@@ -67,9 +61,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
         else {
 
-          console.log(error.error.message);
-          this.alertService.showMessage(error.error.message, 'خطا', Globals.errorMessage)
-          return throwError(error.error.message);
+         
+          this.alertService.showMessage(error.error.Message, 'خطا', Globals.errorMessage)
+          return throwError(error.error.Message);
         }
       }));
   }
@@ -85,7 +79,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
     if (!this.isRefreshing) {
-      debugger;
+    
 
 
       this.isRefreshing = true;
@@ -94,7 +88,7 @@ export class AuthInterceptor implements HttpInterceptor {
       return this.authService.refreshToken().pipe(
 
         switchMap((token: any) => {
-          debugger;
+        
           this.isRefreshing = false;
           this.refreshTokenSubject.next(token.data.accessToken);
           return next.handle(this.addToken(request, token.data.accessToken));

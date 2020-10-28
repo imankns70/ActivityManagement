@@ -59,7 +59,6 @@ namespace ActivityManagementApi.Controllers.v1
 
         }
         [HttpPost("Auth")]
-        [AllowAnonymous]
         public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
         {
             if (ModelState.IsValid)
@@ -70,7 +69,7 @@ namespace ActivityManagementApi.Controllers.v1
             }
             return BadRequest(ModelState.GetErrorsModelState());
         }
-       
+
         [HttpPost("SignIn")]
         public async Task<ApiResult<UserViewModelApi>> SignIn([FromBody]SignInViewModel viewModel)
         {
