@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using System.Threading.Tasks;
-using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.IocConfig.Api.Exceptions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Newtonsoft.Json;
 
 namespace ActivityManagement.IocConfig
 {

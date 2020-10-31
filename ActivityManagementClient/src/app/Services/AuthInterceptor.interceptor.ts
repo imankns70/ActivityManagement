@@ -14,12 +14,12 @@ export class AuthInterceptor implements HttpInterceptor {
   baseUrl = environment.apiUrl + 'Account/';
   private isRefreshing = false;
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private newRequest: HttpRequest<any>
+  
   constructor(public authService: AuthService, private route: Router, private alertService: NotificationMessageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
  
-   
+  
     if (request.url.indexOf(this.baseUrl + 'Auth') != 0) {
       if (this.authService.getJwtToken()) {
         request = this.addToken(request, this.authService.getJwtToken());
@@ -36,13 +36,13 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }),
       catchError(error => {
-         
+      
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
         }
         if (error instanceof HttpErrorResponse && error.status === 401) {
-debugger;
+
           if (error.error.StatusCode == StatusCode.unAuthorized) {
 
 
@@ -61,7 +61,7 @@ debugger;
 
         else {
 
-         
+      debugger;
           this.alertService.showMessage(error.error.Message, 'خطا', Globals.errorMessage)
           return throwError(error.error.Message);
         }

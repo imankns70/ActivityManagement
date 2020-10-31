@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model)
     .subscribe(next => {
-  
-      if (next.isSuccess == true) {
+  debugger;
+      if (next.data.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data.user));
         localStorage.setItem('token', next.data.accessToken);
         localStorage.setItem('refreshToken', next.data.refreshToken);
@@ -44,11 +44,8 @@ export class LoginComponent implements OnInit {
 
 
       } else {
-        this.alertService.showMessage(next.message.join(","), "خطا", Globals.errorMessage)
+        this.alertService.showMessage(next.data.message, "خطا", Globals.errorMessage)
       }
-    }, error => {
-      this.alertService.showMessage(error.message.join(","), "خطا", Globals.errorMessage)
-
     })
   }
 

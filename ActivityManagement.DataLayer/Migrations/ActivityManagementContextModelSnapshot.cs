@@ -296,6 +296,51 @@ namespace ActivityManagement.DataLayer.Migrations
                     b.ToTable("AppUsers");
                 });
 
+            modelBuilder.Entity("ActivityManagement.DomainClasses.Entities.Identity.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+
+                    b.Property<DateTime>("DateModified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("CONVERT(datetime,GetDate())");
+
+                    b.Property<bool>("EnterEmail")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnterSms")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("EnterTelegram")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ExitEmail")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ExitSms")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ExitTelegram")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("ActivityManagement.DomainClasses.Entities.Identity.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -475,6 +520,15 @@ namespace ActivityManagement.DataLayer.Migrations
 
                     b.HasOne("ActivityManagement.DomainClasses.Entities.Identity.AppUser", "User")
                         .WithMany("Teams")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ActivityManagement.DomainClasses.Entities.Identity.Notification", b =>
+                {
+                    b.HasOne("ActivityManagement.DomainClasses.Entities.Identity.AppUser", "User")
+                        .WithMany("Notifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

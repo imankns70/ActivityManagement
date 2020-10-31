@@ -8,6 +8,7 @@ namespace ActivityManagement.ViewModels.Base
             Message= new List<string>();
         }
         public MessageType MessageType { get; set; }
+       
         public List<string> Message { get; set; }
         public string Html { get; set; }
         public string Script { get; set; }
