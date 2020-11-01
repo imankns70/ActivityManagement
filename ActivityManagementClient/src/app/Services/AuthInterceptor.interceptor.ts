@@ -61,7 +61,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         else {
 
-      debugger;
+      
           this.alertService.showMessage(error.error.Message, 'خطا', Globals.errorMessage)
           return throwError(error.error.Message);
         }

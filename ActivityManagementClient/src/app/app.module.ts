@@ -13,6 +13,8 @@ import {
 import { AuthService } from '../app/components/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -55,6 +57,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing',
 
       }),
+      GridModule,
    ],
    providers: [
       {
