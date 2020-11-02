@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
 import { gender } from 'src/app/models/enums/gender';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-my-profile',

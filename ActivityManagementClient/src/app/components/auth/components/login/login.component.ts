@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.model.grantType = 'Password';
+    debugger;
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
 
     if (this.authService.isSignIn()) {

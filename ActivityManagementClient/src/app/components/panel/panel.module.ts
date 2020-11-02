@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PanelComponent } from './panel.component';
 import { PanelRoutingModule } from './panel-routing.module';
-import { DashboardComponent } from '../panel/dashboard/dashboard.component';
+import { DashboardComponent } from '../panel/components/dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RightSideMenuComponent } from './right-side-menu/right-side-menu.component';
+import { RightSideMenuComponent } from '../panel/components/right-side-menu/right-side-menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileCollapseComponent } from './user-profile-collapse/user-profile-collapse.component';
 
@@ -16,7 +16,8 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
     PanelRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FileUploadModule
  
 
 

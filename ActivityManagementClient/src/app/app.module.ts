@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PanelModule } from './components/panel/panel.module';
+//import { PanelModule } from './components/panel/panel.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
@@ -40,9 +40,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       AppComponent
    ],
    imports: [
-      BrowserModule,
       AppRoutingModule,
-      PanelModule,
+      BrowserModule,
+      //PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
 

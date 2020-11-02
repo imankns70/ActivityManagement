@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PanelComponent } from './panel.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from '../panel/components/dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -15,11 +15,8 @@ const routes: Routes = [
     },
     { path: 'user', loadChildren: () => import('../panel/components/user/user.module').then(m => m.UserModule) },
 
-    {path: 'team', loadChildren: () => import('../panel/components/team/team.module').then(m => m.TeamModule) },
  
-    {path: 'teamTitle',
-    loadChildren: () => import('../panel/components/team-title/team-title.module').then(m => m.TeamTitleModule)
-  },
+    
  
     { path: '**', redirectTo: '/auth/login', pathMatch: 'full' },
 
