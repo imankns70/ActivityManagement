@@ -1,0 +1,9 @@
+.c-validation input{ 
+    border: 1px solid #c51244 !important;
+    position: relative; 
+    box-shadow: 1px 1px 1px #aaaaaa;
+  }
+   .messageLabel{
+color: #c51244;
+   }
+  

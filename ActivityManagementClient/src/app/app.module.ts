@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { PanelModule } from './components/panel/panel.module';
+//import { PanelModule } from './components/panel/panel.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
@@ -13,6 +13,8 @@ import {
 import { AuthService } from '../app/components/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -38,9 +40,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       AppComponent
    ],
    imports: [
-      BrowserModule,
       AppRoutingModule,
-      PanelModule,
+      BrowserModule,
+      //PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
 
@@ -55,6 +57,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing',
 
       }),
+      GridModule,
    ],
    providers: [
       {

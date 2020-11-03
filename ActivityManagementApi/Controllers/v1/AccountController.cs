@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
@@ -59,18 +60,16 @@ namespace ActivityManagementApi.Controllers.v1
 
         }
         [HttpPost("Auth")]
-        [AllowAnonymous]
         public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
         {
-            if (ModelState.IsValid)
-            {
 
-                return (await _jwtService.AuthenticateUser(Request, requestToken));
 
-            }
-            return BadRequest(ModelState.GetErrorsModelState());
+
+           return Ok(await _jwtService.AuthenticateUser(Request, requestToken));
+
+           
         }
-       
+
         [HttpPost("SignIn")]
         public async Task<ApiResult<UserViewModelApi>> SignIn([FromBody]SignInViewModel viewModel)
         {
@@ -117,8 +116,21 @@ namespace ActivityManagementApi.Controllers.v1
                     LastName = viewModel.LastName,
                     PasswordHash = viewModel.Password,
                     Email = viewModel.Email,
-                    Gender = viewModel.Gender ?? viewModel.Gender
-
+                    Gender = viewModel.Gender ?? viewModel.Gender,
+                    Notifications= new List<Notification>
+                    {
+                        new Notification
+                        {
+                            EnterEmail=true,
+                            ExitEmail=true,
+                            EnterTelegram=true,
+                            ExitTelegram=true,
+                            EnterSms=false,
+                            ExitSms=false,
+                         
+                        }
+                    }
+                    
                 };
                 IdentityResult identityResult = await _userManager.CreateAsync(user, viewModel.Password);
                 if (identityResult.Succeeded)

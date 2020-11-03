@@ -22,6 +22,7 @@ namespace ActivityManagement.DataLayer.Context
         public DbSet<UserTeam> UserTeams { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public ActivityManagementContext(DbContextOptions options) : base(options)
         {
@@ -40,6 +41,9 @@ namespace ActivityManagement.DataLayer.Context
 
             builder.Entity<RefreshToken>().Property(x => x.DateCreated).HasDefaultValueSql("CONVERT(datetime,GetDate())");
             builder.Entity<RefreshToken>().Property(x => x.DateModified).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+
+            builder.Entity<Notification>().Property(x => x.DateCreated).HasDefaultValueSql("CONVERT(datetime,GetDate())");
+            builder.Entity<Notification>().Property(x => x.DateModified).HasDefaultValueSql("CONVERT(datetime,GetDate())");
 
         }
        

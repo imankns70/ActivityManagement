@@ -25,6 +25,7 @@ namespace ActivityManagement.DomainClasses.Entities.Identity
         public virtual ICollection<UserClaim> Claims { get; set; }
         public virtual ICollection<Activity> Activities { get; set; }
         public virtual ICollection<RefreshToken> RefreshTokens { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 
     public enum GenderType
