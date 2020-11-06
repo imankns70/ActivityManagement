@@ -10,7 +10,8 @@ import { ChangePicComponent } from '../user/components/change-pic/change-pic.com
 import { UserRoutingModule } from './user-routing.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+//import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
+import { GridComponent } from '@progress/kendo-angular-grid';
 
 @NgModule({
   imports: [
@@ -18,8 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    FileUploadModule
-
+    FileUploadModule,
+    //KendoModule
+    GridComponent
    
   ],
   declarations: [

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PanelComponent } from './panel.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { DashboardComponent } from '../panel/components/dashboard/dashboard.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
 
@@ -13,12 +14,13 @@ const routes: Routes = [
         ]
 
     },
-    { path: 'user', loadChildren: () => import('../panel/components/user/user.module').then(m => m.UserModule) },
+    { path: 'user', component:PanelComponent,
+     loadChildren: () => import('../panel/components/user/user.module').then(m => m.UserModule) },
 
  
     
  
-    { path: '**', redirectTo: '/auth/login', pathMatch: 'full' },
+    //{ path: '**', redirectTo: '/auth/login', pathMatch: 'full' },
 
 ];
 

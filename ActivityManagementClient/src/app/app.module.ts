@@ -42,7 +42,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    imports: [
       AppRoutingModule,
       BrowserModule,
-      //PanelModule,
       HttpClientModule,
       BrowserAnimationsModule,
 
@@ -57,7 +56,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing',
 
       }),
-      GridModule,
+      //GridModule,
    ],
    providers: [
       {

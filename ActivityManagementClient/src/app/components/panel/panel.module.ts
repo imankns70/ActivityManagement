@@ -3,9 +3,7 @@ import { PanelComponent } from './panel.component';
 import { PanelRoutingModule } from './panel-routing.module';
 import { DashboardComponent } from '../panel/components/dashboard/dashboard.component';
 import { CommonModule } from '@angular/common';
-import { FileUploadModule } from 'ng2-file-upload';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RightSideMenuComponent } from '../panel/components/right-side-menu/right-side-menu.component';
+import { RightSideMenuComponent } from './components/right-side-menu/right-side-menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileCollapseComponent } from './user-profile-collapse/user-profile-collapse.component';
 
@@ -14,11 +12,8 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
   imports: [
 
     PanelRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    FileUploadModule
- 
+    CommonModule
+
 
 
   ],
@@ -26,9 +21,9 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
   declarations: [
     PanelComponent,
     DashboardComponent,
+    RightSideMenuComponent,
     UserProfileComponent,
     UserProfileCollapseComponent,
-    RightSideMenuComponent,
   ],
 
 
