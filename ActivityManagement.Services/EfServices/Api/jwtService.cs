@@ -126,7 +126,7 @@ namespace ActivityManagement.Services.EfServices.Api
                     AppUser userToken = await _userManager.FindByIdAsync(oldRefreshToken.UserId.ToString());
                     if (userToken == null)
                     {
-                        throw new AppException(ApiResultStatusCode.NotFound, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
+                        throw new AppException(ApiResultStatusCode.LogOut, NotificationMessages.UnAuthorize, HttpStatusCode.Unauthorized);
 
                     }
                     if (oldRefreshToken.ExpireDate < DateTime.Now)

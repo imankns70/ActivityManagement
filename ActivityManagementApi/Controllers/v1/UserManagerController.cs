@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -30,6 +31,7 @@ namespace ActivityManagementApi.Controllers.v1
 
         [HttpGet]
         [Route("GetUsers")]
+        [DisplayName("لیست کاربران")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
         {

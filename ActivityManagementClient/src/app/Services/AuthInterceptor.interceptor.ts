@@ -55,7 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
           }
         }
         if (error.error.StatusCode == StatusCode.redirectToHome) {
-          this.route.navigate(['/dashboard'])
+          this.route.navigate(['/panel/dashboard'])
 
         }
 
