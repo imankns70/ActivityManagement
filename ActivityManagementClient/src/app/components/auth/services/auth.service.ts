@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/user/user';
 import { map, tap } from 'rxjs/operators';
 
 

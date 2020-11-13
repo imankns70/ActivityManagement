@@ -11,6 +11,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserBindigDirective } from './user-list/user-bindig.directive';
 
 @NgModule({
   imports: [
@@ -26,6 +28,8 @@ import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
     UserComponent,
     MyProfileComponent,
     ChangePicComponent,
+    UserListComponent,
+    UserBindigDirective,
     
   ],
   providers: [

@@ -3,7 +3,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from 'src/app/models/enums/Globals';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/user/user';
 
 
 @Component({

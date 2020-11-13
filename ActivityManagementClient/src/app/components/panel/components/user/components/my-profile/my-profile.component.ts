@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/user/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

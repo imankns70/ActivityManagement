@@ -12,6 +12,8 @@ using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.UserManager;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,9 +35,9 @@ namespace ActivityManagementApi.Controllers.v1
         [Route("GetUsers")]
         [DisplayName("لیست کاربران")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
+        public async Task<ApiResult<List<UsersViewModel>>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
-            List<UsersViewModel> users = await _userManager.GetAllUsersWithRolesAsync();
+            DataSourceResult users = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
             return Ok(users);
         }
 
@@ -69,16 +71,16 @@ namespace ActivityManagementApi.Controllers.v1
             }
 
             return BadRequest(logicResult.Message.FirstOrDefault());
-             
+
 
         }
-    
+
         [HttpPost]
         [Route("ChangeUserPhoto")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<string>> ChangeUserPhoto([FromForm] IFormFile file)
         {
-          
+
             if (User.Identity.IsAuthenticated)
             {
                 string userId = User.Identity.GetUserId();

@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/models/user/user';
+
 
 
 @Injectable({

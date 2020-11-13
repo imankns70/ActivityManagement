@@ -1,3 +1,15 @@
-<p>
-  user-list works!
-</p>
+<kendo-grid
+            [data]="users"
+            [pageSize]="state.take"
+            [skip]="state.skip"
+            [sort]="state.sort"
+            [sortable]="true"
+            [pageable]="true"
+            [scrollable]="'scrollable'"
+            [groupable]="true"
+            [group]="state.group"
+            [filterable]="true"
+            [filter]="state.filter"
+            (dataStateChange)="dataStateChange($event)"
+            [height]="370">
+</kendo-grid>

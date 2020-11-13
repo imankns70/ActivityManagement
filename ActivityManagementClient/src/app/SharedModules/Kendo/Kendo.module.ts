@@ -6,6 +6,7 @@ import { RTL } from '@progress/kendo-angular-l10n';
   imports: [
     GridModule
   ],
+  exports: [GridModule],
   providers: [{ provide: RTL, useValue: true }]
 })
 export class KendoModule { }

@@ -5,7 +5,7 @@ import { UserService } from '../../../services/user.service';
 @Directive({
   selector: '[appUserBindigDirective]'
 })
-export class UserBindigDirectiveDirective extends DataBindingDirective {
+export class UserBindigDirective extends DataBindingDirective {
 
   constructor(private userService: UserService, grid: GridComponent) {
 
