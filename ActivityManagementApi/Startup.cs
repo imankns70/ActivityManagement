@@ -47,6 +47,7 @@ namespace ActivityManagementApi
             services.AddCustomServices();
             services.AddCustomIdentityServices();
             services.AddCustomServices();
+            services.AddCustomKendoUi();
             services.AddApiVersioning();
             services.AddSwagger();
             services.AddCustomAuthentication(_siteSettings);
