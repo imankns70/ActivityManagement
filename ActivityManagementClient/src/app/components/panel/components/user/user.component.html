@@ -7,7 +7,16 @@
   
             </div>
             <div class="card-body">
-              
+                <kendo-grid
+                UsersBindig
+                [pageSize]="10"
+                [pageable]="true"
+                [sortable]="true"
+                [height]="270">
+            <kendo-grid-column field="id" width="80"></kendo-grid-column>
+            <kendo-grid-column field="username"></kendo-grid-column>
+            
+           </kendo-grid>
             </div>
         </div>
     </div>

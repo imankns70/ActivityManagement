@@ -33,7 +33,7 @@ namespace ActivityManagementApi.Controllers.v1
         [Route("GetUsers")]
         [DisplayName("لیست کاربران")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<List<UsersViewModel>>> GetUsers()
+        public async Task<ApiResult<List<UsersViewModel>>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
             List<UsersViewModel> users = await _userManager.GetAllUsersWithRolesAsync();
             return Ok(users);
@@ -51,7 +51,7 @@ namespace ActivityManagementApi.Controllers.v1
                 UserViewModelApi user = await _userManager.FindUserApiByIdAsync(User.Identity.GetUserId<int>());
                 return Ok(user);
             }
-
+          
             return BadRequest(NotificationMessages.UserNotFound);
 
         }
