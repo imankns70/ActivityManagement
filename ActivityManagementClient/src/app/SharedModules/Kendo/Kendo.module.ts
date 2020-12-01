@@ -4,9 +4,11 @@ import { RTL } from '@progress/kendo-angular-l10n';
 
 @NgModule({
   imports: [
-    GridModule
+    GridModule,
   ],
-  exports: [GridModule],
+  exports: [
+    GridModule,
+  ],
   providers: [{ provide: RTL, useValue: true }]
 })
 export class KendoModule { }
