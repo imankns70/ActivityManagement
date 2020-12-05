@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserBindigDirective } from './user-list/user-bindig.directive';
+import { CreateUserComponent } from './user-list/create/create-user/create-user.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { UserBindigDirective } from './user-list/user-bindig.directive';
     ChangePicComponent,
     UserListComponent,
     UserBindigDirective,
+    CreateUserComponent
     
   ],
   providers: [

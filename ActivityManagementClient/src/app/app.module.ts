@@ -13,6 +13,8 @@ import {
 import { AuthService } from '../app/components/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
 
 
 
@@ -56,6 +58,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          progressAnimation: 'decreasing',
 
       }),
+      DialogsModule,
 
    ],
    providers: [

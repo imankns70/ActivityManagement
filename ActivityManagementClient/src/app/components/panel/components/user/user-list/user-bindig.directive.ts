@@ -20,6 +20,7 @@ export class UserBindigDirective extends DataBindingDirective {
       debugger;
       this.grid.data = result.data;
       this.notifyDataChange();
+     
 
     })
 
