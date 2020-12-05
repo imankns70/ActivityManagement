@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.model.grantType = 'Password';
-    debugger;
+   
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
 
     if (this.authService.isSignIn()) {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model)
     .subscribe(next => {
-  debugger;
+ 
       if (next.data.isSuccess == true) {
         localStorage.setItem('user', JSON.stringify(next.data.user));
         localStorage.setItem('token', next.data.accessToken);
