@@ -50,6 +50,7 @@ namespace ActivityManagementApi.Controllers.v1
         {
             if (User.Identity.IsAuthenticated)
             {
+             
                 UserViewModelApi user = await _userManager.FindUserApiByIdAsync(User.Identity.GetUserId<int>());
                 return Ok(user);
             }

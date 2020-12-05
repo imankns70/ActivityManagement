@@ -7855,11 +7855,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
       "projectName": "ActivityManagement.Common",
-      "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
+      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\ActivityManagement\\ActivityManagement.Common\\obj\\",
+      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",

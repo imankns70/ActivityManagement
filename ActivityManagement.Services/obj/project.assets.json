@@ -9465,11 +9465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "projectName": "ActivityManagement.Services",
-      "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "D:\\project\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9486,8 +9486,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
-              "projectPath": "D:\\project\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+            "D:\\Projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
             }
           }
         }
