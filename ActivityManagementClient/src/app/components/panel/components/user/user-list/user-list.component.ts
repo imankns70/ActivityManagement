@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit {
     take: 5
   }
 
-
+ 
   constructor(private windowService: WindowService) { }
 
   ngOnInit() {
@@ -48,4 +48,6 @@ export class UserListComponent implements OnInit {
     createInfo.age = '5';
   }
 
+
+ 
 }
