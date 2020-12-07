@@ -9388,11 +9388,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "projectName": "ActivityManagement.DataLayer",
+      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
+      "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+=======
       "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "projectName": "ActivityManagement.DataLayer",
       "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\ActivityManagement.DataLayer.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
       "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DataLayer\\obj\\",
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9410,11 +9418,19 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+<<<<<<< HEAD
+            "D:\\Projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
+              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
+            },
+            "D:\\Projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
+              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+=======
             "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj": {
               "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Common\\ActivityManagement.Common.csproj"
             },
             "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj": {
               "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.DomainClasses\\ActivityManagement.DomainClasses.csproj"
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
             }
           }
         }

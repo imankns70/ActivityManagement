@@ -9462,11 +9462,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "projectName": "ActivityManagement.Services",
+      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
+      "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+=======
       "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "projectName": "ActivityManagement.Services",
       "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
       "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\obj\\",
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9484,8 +9492,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+<<<<<<< HEAD
+            "D:\\Projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
+              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+=======
             "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj": {
               "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.ViewModels\\ActivityManagement.ViewModels.csproj"
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
             }
           }
         }

@@ -9688,11 +9688,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+      "projectName": "ActivityManagement.IocConfig",
+      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
+      "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+=======
       "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
       "projectName": "ActivityManagement.IocConfig",
       "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
       "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\obj\\",
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9710,8 +9718,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+<<<<<<< HEAD
+            "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
+              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
+=======
             "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj": {
               "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.Services\\ActivityManagement.Services.csproj"
+>>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
             }
           }
         }
