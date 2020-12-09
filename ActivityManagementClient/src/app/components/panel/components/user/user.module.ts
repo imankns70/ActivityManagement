@@ -34,6 +34,7 @@ import { CreateUserComponent } from './user-list/create/create-user/create-user.
     CreateUserComponent
     
   ],
+  entryComponents: [CreateUserComponent],
   providers: [
     UserService,
     UserProfileResolver,

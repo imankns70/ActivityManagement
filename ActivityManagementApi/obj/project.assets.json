@@ -3699,10 +3699,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Common.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.DataLayer/1.0.0": {
         "type": "project",
@@ -3720,10 +3717,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",
@@ -3751,10 +3745,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.IocConfig.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.Services/1.0.0": {
         "type": "project",
@@ -3770,10 +3761,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",
@@ -3786,10 +3774,7 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.ViewModels.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
@@ -8033,7 +8018,6 @@
       "path": "system.linq.queryable/4.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/monoandroid10/_._",
@@ -10881,19 +10865,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-      "projectName": "ActivityManagementApi",
-      "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
-      "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
-=======
       "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
       "projectName": "ActivityManagementApi",
       "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
       "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
       "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
->>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -10911,13 +10887,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-<<<<<<< HEAD
-            "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
-              "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
-=======
             "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
               "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
->>>>>>> b09bdcd638929b21929ec058e7f9a8ed4250149f
             }
           }
         }
