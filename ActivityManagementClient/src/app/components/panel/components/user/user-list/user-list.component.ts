@@ -1,6 +1,6 @@
 import { CreateUserComponent } from '../user-list/create/create-user/create-user.component';
-import { Component, OnInit } from '@angular/core';
-import { WindowService } from '@progress/kendo-angular-dialog/dist/es2015/window/window.service';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { WindowService } from '@progress/kendo-angular-dialog';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { DataSourceRequestState } from '@progress/kendo-data-query';
 
@@ -10,7 +10,8 @@ import { DataSourceRequestState } from '@progress/kendo-data-query';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-
+@ViewChild('container',{read:ViewContainerRef})
+public containerRef:ViewContainerRef;
   public opened = true;
   public dataSaved = false;
   public users: GridDataResult;
@@ -38,6 +39,7 @@ export class UserListComponent implements OnInit {
   public showWindow() {
     const windowRef = this.windowService.open({
 
+      appendTo:this.containerRef,
       title: 'ایجاد کاربر',
       content: CreateUserComponent,
       width: 600

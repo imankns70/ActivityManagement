@@ -25,6 +25,7 @@ import { CreateUserComponent } from './user-list/create/create-user/create-user.
     KendoModule
    
   ],
+  entryComponents: [CreateUserComponent],
   declarations: [
     UserComponent,
     MyProfileComponent,

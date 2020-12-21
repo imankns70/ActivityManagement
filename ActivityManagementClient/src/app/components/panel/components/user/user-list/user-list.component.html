@@ -1,4 +1,12 @@
-<!-- <kendo-grid
+<div class="customContainer">
+    <div class="row">
+        <div class="card shadow w-100" on="">
+            <div class="card-header">
+                کاربران
+
+            </div>
+            <div class="card-body">
+                <!-- <kendo-grid
             [data]="users"
             [pageSize]="state.take"
             [skip]="state.skip"
@@ -13,5 +21,10 @@
             (dataStateChange)="dataStateChange($event)"
             [height]="370">
 </kendo-grid> -->
-<button (click)="showWindow()" class="k-button k-button-icontext k-primary">
- 
+                <button (click)="showWindow()" class="k-button k-button-icontext k-primary">show window</button>
+                <ng-container #container></ng-container>
+
+            </div>
+        </div>
+    </div>
+</div>

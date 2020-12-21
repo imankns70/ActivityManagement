@@ -46,7 +46,6 @@ namespace ActivityManagementMvc.Controllers
             _env = env;
             _env.CheckArgumentIsNull(nameof(_env));
 
-
         }
 
         [HttpGet, DisplayName("نمایش نقش ها")]
