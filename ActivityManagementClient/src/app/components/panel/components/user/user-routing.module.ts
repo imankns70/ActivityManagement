@@ -21,7 +21,11 @@ const routes: Routes = [
             {
                 path: 'userlist', canActivate: [AuthGuard],
                 component: UserListComponent,
+<<<<<<< HEAD
             }
+=======
+            },
+>>>>>>> f09bac7c1f31fb28c065bfeb44e24ecceec8fbe8
             
         ]
     }

@@ -8069,7 +8069,6 @@
       "path": "system.linq.queryable/4.0.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/monoandroid10/_._",
@@ -10954,11 +10953,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
       "projectName": "ActivityManagementApi",
       "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
       "packagesPath": "C:\\Users\\iman\\.nuget\\packages\\",
       "outputPath": "D:\\Projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
+=======
+      "projectUniqueName": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+      "projectName": "ActivityManagementApi",
+      "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\ActivityManagementApi.csproj",
+      "packagesPath": "C:\\Users\\i.solouki\\.nuget\\packages\\",
+      "outputPath": "D:\\projects\\ActivityManagement\\ActivityManagementApi\\obj\\",
+>>>>>>> f09bac7c1f31fb28c065bfeb44e24ecceec8fbe8
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10975,8 +10982,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
               "projectPath": "D:\\Projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
+=======
+            "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj": {
+              "projectPath": "D:\\projects\\ActivityManagement\\ActivityManagement.IocConfig\\ActivityManagement.IocConfig.csproj"
+>>>>>>> f09bac7c1f31fb28c065bfeb44e24ecceec8fbe8
             }
           }
         }

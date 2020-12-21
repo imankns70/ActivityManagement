@@ -1,5 +1,9 @@
 import { CreateUserComponent } from '../user-list/create/create-user/create-user.component';
+<<<<<<< HEAD
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> f09bac7c1f31fb28c065bfeb44e24ecceec8fbe8
 import { WindowService } from '@progress/kendo-angular-dialog';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { DataSourceRequestState } from '@progress/kendo-data-query';
@@ -20,7 +24,7 @@ public containerRef:ViewContainerRef;
     take: 5
   }
 
-
+ 
   constructor(private windowService: WindowService) { }
 
   ngOnInit() {
@@ -50,4 +54,6 @@ public containerRef:ViewContainerRef;
     createInfo.age = '5';
   }
 
+
+ 
 }
