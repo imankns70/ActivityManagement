@@ -63,8 +63,6 @@ namespace ActivityManagementApi.Controllers.v1
         public async Task<ApiResult<ResponseTokenViewModel>> Auth([FromBody]RequestTokenViewModel requestToken)
         {
 
-
-
            return Ok(await _jwtService.AuthenticateUser(Request, requestToken));
 
            
