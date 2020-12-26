@@ -1,9 +1,5 @@
 import { CreateUserComponent } from '../user-list/create/create-user/create-user.component';
-<<<<<<< HEAD
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-=======
-import { Component, OnInit } from '@angular/core';
->>>>>>> f09bac7c1f31fb28c065bfeb44e24ecceec8fbe8
 import { WindowService } from '@progress/kendo-angular-dialog';
 import { DataStateChangeEvent, GridDataResult } from '@progress/kendo-angular-grid';
 import { DataSourceRequestState } from '@progress/kendo-data-query';
@@ -17,6 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class UserListComponent implements OnInit {
 @ViewChild('container',{read:ViewContainerRef})
+
 public containerRef:ViewContainerRef;
   public opened = true;
   public dataSaved = false;
@@ -30,6 +27,7 @@ public containerRef:ViewContainerRef;
   constructor(private windowService: WindowService, private userGridService:UserGridService) { }
 
   ngOnInit() {
+    debugger;
     this.users= this.userGridService;
     this.userGridService.read(this.state)
   }

@@ -28,13 +28,13 @@ public fetch(state: State): Observable<GridDataResult> {
   return this.http.get(this.baseUrl + 'GetUsers?' + queryStr)
     .pipe(
 
-      map(({ data, total }: GridDataResult): GridDataResult => {
+      map((response: GridDataResult): GridDataResult => {
 
-        
+        debugger;
         return {
 
-          data: data,
-          total: total
+          data: response.data,
+          total: response.total
         };
       }
       ));
