@@ -7,20 +7,15 @@ import { User } from 'src/app/models/user/user';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   baseUrl = environment.apiUrl + 'UserManager/';
-
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
-
-    return this.http.get<any>(this.baseUrl + 'GetUsers')
-
-
-  }
+ 
 
   GetUserLoggedIn(): Observable<ApiResult> {
     return this.http.get<ApiResult>(this.baseUrl + 'GetUserLoggedIn')
@@ -28,7 +23,8 @@ export class UserService {
   }
 
   updateMyProfile(viewModel: User): Observable<ApiResult> {
-    return this.http.post<ApiResult>(this.baseUrl + 'UpdateUserProfile' , viewModel)
+    return this.http.post<ApiResult>(this.baseUrl + 'UpdateUserProfile', viewModel)
   }
 
+ 
 }

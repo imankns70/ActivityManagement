@@ -146,11 +146,11 @@ form .form-group label {
     color: #9f9a9a !important;
 }
 
-.k-window-titlebar .k-window-actions {
+/* .k-window-titlebar .k-window-actions {
     position: absolute;
     top: 1px !important;
     left: 6px !important;
-}
+} */
 
 /*span#BirthDate {
     padding: 3px 9px !important;

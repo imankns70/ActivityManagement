@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
@@ -21,7 +21,7 @@ const routes: Routes = [
             {
                 path: 'userlist', canActivate: [AuthGuard],
                 component: UserListComponent,
-            },
+            }
             
         ]
     }
