@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(public authService: AuthService, private route: Router, private alertService: NotificationMessageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
- 
+
   
     if (request.url.indexOf(this.baseUrl + 'Auth') != 0) {
       if (this.authService.getJwtToken()) {
@@ -29,11 +29,12 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
+      
+        if (event instanceof HttpResponse) {
+         
+          console.log('success');
 
-        // if (event instanceof HttpResponse) {
-        //   console.log('success');
-
-        // }
+        }
       }),
       catchError(error => {
       

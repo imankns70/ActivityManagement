@@ -27,8 +27,7 @@ public containerRef:ViewContainerRef;
   constructor(private windowService: WindowService, private userGridService:UserGridService) { }
 
   ngOnInit() {
-    debugger;
-    this.users= this.userGridService;
+     this.users= this.userGridService;
     this.userGridService.read(this.state)
   }
   

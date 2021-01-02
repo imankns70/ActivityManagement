@@ -30,12 +30,13 @@ namespace ActivityManagementApi.Controllers.v1
         {
             _userManager = userManager;
         }
+       
 
         [HttpGet]
         [Route("GetUsers")]
         [DisplayName("لیست کاربران")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<ApiResult<List<UsersViewModel>>> GetUsers([DataSourceRequest] DataSourceRequest request)
+        public async Task<ApiResult<DataSourceResult>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult users = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
             return Ok(users);
