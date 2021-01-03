@@ -17,24 +17,29 @@ export class UserListComponent implements OnInit {
 public containerRef:ViewContainerRef;
   public opened = true;
   public dataSaved = false;
-  public users: Observable<GridDataResult>;
+  public users: GridDataResult;
   public state: DataSourceRequestState = {
     skip: 0,
     take: 5
   }
 
  
-  constructor(private windowService: WindowService, private userGridService:UserGridService) { }
+  constructor(private windowService: WindowService, private userGridService:UserGridService) { 
+
+    this.userGridService.read(this.state).subscribe(x=> this.users= x)
+
+  }
 
   ngOnInit() {
-     this.users= this.userGridService;
-    this.userGridService.read(this.state)
+ 
+      
   }
   
 
   public dataStateChange(stateChanges: DataStateChangeEvent): void {
     this.state = stateChanges;
     this.userGridService.read(this.state)
+    .subscribe(x=> this.users= x)
 
   }
 
