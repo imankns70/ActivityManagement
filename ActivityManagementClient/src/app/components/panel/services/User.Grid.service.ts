@@ -9,21 +9,14 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserGridService extends BehaviorSubject<GridDataResult> {
+export class UserGridService  {
   baseUrl = environment.apiUrl + 'UserManager/';
 
 constructor(private http: HttpClient) {
-  super(null);
+ 
 }
 
 public read(state: State){
-  this.fetch(state)
-  .subscribe(x=> super.next(x))
-}
-
-
-
-public fetch(state: State): Observable<GridDataResult> {
   const queryStr = `${toODataString(state)}&count=true`;
 
   return this.http.get(this.baseUrl + 'GetUsers?' + queryStr)
@@ -31,7 +24,7 @@ public fetch(state: State): Observable<GridDataResult> {
 
       map((response:ApiResult): GridDataResult => {
 
-        debugger
+       
         return {
           
           data: response.data.data,
@@ -39,7 +32,9 @@ public fetch(state: State): Observable<GridDataResult> {
         };
       }
       ));
-
 }
+
+
+ 
 }
  
