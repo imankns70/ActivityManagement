@@ -24,7 +24,7 @@ public read(state: State){
 
       map((response:ApiResult): GridDataResult => {
 
-       
+       debugger;
         return {
           
           data: response.data.data,

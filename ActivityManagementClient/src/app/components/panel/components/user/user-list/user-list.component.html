@@ -16,14 +16,14 @@
             <ng-template kendoGridToolbarTemplate>
                 <button kendoGridAddCommand>Add new</button>
               </ng-template>
-              <kendo-grid-column field="Id" title="نام کاربری" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="FirstName" title="نام" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="LastName" title="نام خانوادگی" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="UserName" title="نام کاربری" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="Email" title="ایمیل"></kendo-grid-column>
-              <kendo-grid-command-column title="command" width="220">
+              <kendo-grid-column field="id" title="ردیف" [editable]="false"></kendo-grid-column>
+              <kendo-grid-column field="firstName" title="نام" [editable]="false"></kendo-grid-column>
+              <kendo-grid-column field="lastName" title="نام خانوادگی" [editable]="false"></kendo-grid-column>
+              <kendo-grid-column field="userName" title="نام کاربری" [editable]="false"></kendo-grid-column>
+              <kendo-grid-column field="email" title="ایمیل"></kendo-grid-column>
+              <kendo-grid-command-column title="عملیات" width="220">
                 <ng-template kendoGridCellTemplate let-isNew="isNew">
-                  <button kendoGridEditCommand [primary]="true">Edit</button>
+                  <button kendoGridEditCommand  [primary]="true">Edit</button>
                   <button kendoGridRemoveCommand>Remove</button>
                   <!-- <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> -->
                   <!-- <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button> -->

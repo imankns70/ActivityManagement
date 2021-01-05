@@ -51,11 +51,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
       ToastrModule.forRoot({
-         timeOut: 10000,
+         timeOut: 10000,         
          positionClass: 'toast-top-left',
          preventDuplicates: true,
          progressBar: true,
-         progressAnimation: 'decreasing',
+         //progressAnimation: 'decreasing',
 
       }),
       DialogsModule,
