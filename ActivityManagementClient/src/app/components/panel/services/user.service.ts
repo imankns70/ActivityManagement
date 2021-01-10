@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { User } from 'src/app/models/user/user';
+import { KednoGridService } from 'src/app/Services/kedno-grid.service';
 
 
 
@@ -11,9 +12,11 @@ import { User } from 'src/app/models/user/user';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService  {
   baseUrl = environment.apiUrl + 'UserManager/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+
+  }
 
  
 

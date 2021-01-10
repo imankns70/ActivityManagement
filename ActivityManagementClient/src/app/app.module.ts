@@ -21,7 +21,7 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
-
+   bgsOpacity:0.5,
    bgsColor: 'red',
    bgsPosition: POSITION.bottomRight,
    bgsSize: 70,

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RightSideMenuComponent } from './components/right-side-menu/right-side-menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileCollapseComponent } from './user-profile-collapse/user-profile-collapse.component';
+import { KednoGridService } from 'src/app/Services/kedno-grid.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
     UserProfileComponent,
     UserProfileCollapseComponent,
   ],
-
+providers:[]
 
 
 })

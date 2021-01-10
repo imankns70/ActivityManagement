@@ -1,36 +1,19 @@
- 
-                <kendo-grid
-            [data]="users"
-            [pageSize]="state.take"
-            [skip]="state.skip"
-            [sort]="state.sort"
-            [sortable]="true"
-            [pageable]="true"
-            [scrollable]="'scrollable'"
-             
-            [group]="state.group"
-            [filterable]="true"
-            [filter]="state.filter"
-            (dataStateChange)="dataStateChange($event)"
-            [height]="370">
-            <ng-template kendoGridToolbarTemplate>
-                <button kendoGridAddCommand>Add new</button>
-              </ng-template>
-              <kendo-grid-column field="id" title="ردیف" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="firstName" title="نام" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="lastName" title="نام خانوادگی" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="userName" title="نام کاربری" [editable]="false"></kendo-grid-column>
-              <kendo-grid-column field="email" title="ایمیل"></kendo-grid-column>
-              <kendo-grid-command-column title="عملیات" width="220">
-                <ng-template kendoGridCellTemplate let-isNew="isNew">
-                  <button kendoGridEditCommand  [primary]="true">Edit</button>
-                  <button kendoGridRemoveCommand>Remove</button>
-                  <!-- <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> -->
-                  <!-- <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button> -->
-                </ng-template>
-              </kendo-grid-command-column>
+<kendo-grid UsersBinding [pageSize]="10" [pageable]="true" [sortable]="true" [height]="270">
+  <ng-template kendoGridToolbarTemplate>
+    <button kendoGridAddCommand (click)="showWindow()">Add new</button>
+  </ng-template>
+  <kendo-grid-column field="id" title="ردیف" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="firstName" title="نام" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="lastName" title="نام خانوادگی" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="userName" title="نام کاربری" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="email" title="ایمیل"></kendo-grid-column>
+  <kendo-grid-command-column title="عملیات" width="220">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <button kendoGridRemoveCommand>Remove</button>
+      <!-- <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> -->
+      <!-- <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button> -->
+    </ng-template>
+  </kendo-grid-command-column>
 </kendo-grid>
-                <button (click)="showWindow()" class="k-button k-button-icontext k-primary">show window</button>
-                <ng-container #container></ng-container>
-
-        
+<ng-container #container></ng-container>
