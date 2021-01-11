@@ -21,13 +21,13 @@ export abstract class KednoGridService extends BehaviorSubject<GridDataResult> {
 
 
   public query(state: any): void {
-    debugger;
+  
     this.fetch(this.action, state)
       .subscribe(x => super.next(x));
   }
 
   protected fetch(action: string, state: any): Observable<GridDataResult> {
-    debugger;
+    
     const queryStr = `${toODataString(state)}&$count=true`;
 
     this.loading = true;

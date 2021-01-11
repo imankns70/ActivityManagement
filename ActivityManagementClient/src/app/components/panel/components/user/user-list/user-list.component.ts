@@ -30,7 +30,10 @@ export class UserListComponent implements OnInit {
 
   }
 
+ public editHandler({dataItem}){
  
+ console.log(dataItem);
+ }
 
   public showWindow() {
     const windowRef = this.windowService.open({

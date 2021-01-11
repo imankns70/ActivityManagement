@@ -1,4 +1,6 @@
-<kendo-grid UsersBinding [pageSize]="10" [pageable]="true" [sortable]="true" [height]="270">
+<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270"
+
+(edit)="editHandler($event)">
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand (click)="showWindow()">Add new</button>
   </ng-template>
