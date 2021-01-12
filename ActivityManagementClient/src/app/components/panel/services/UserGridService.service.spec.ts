@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { UserGridService } from './User.Grid.service';
+import { UserGridService } from '../components/user/services/User.Grid.service';
 
 describe('Service: UserGridService', () => {
   beforeEach(() => {

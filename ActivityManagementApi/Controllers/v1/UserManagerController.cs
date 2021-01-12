@@ -38,8 +38,8 @@ namespace ActivityManagementApi.Controllers.v1
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<DataSourceResult>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
-            DataSourceResult users = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
-            return Ok(users);
+            DataSourceResult dataResult = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
+            return Ok(dataResult);
         }
 
 

@@ -13,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { CreateUserComponent } from './user-list/create/create-user/create-user.component';
-import { UserGridService } from '../../services/User.Grid.service';
+import { UsersBindingDirective } from './user-list/users-binding.directive';
+import { UserGridService } from './services/User.Grid.service';
 
 @NgModule({
   imports: [
@@ -30,16 +31,17 @@ import { UserGridService } from '../../services/User.Grid.service';
     MyProfileComponent,
     ChangePicComponent,
     UserListComponent,
+    UsersBindingDirective,
     CreateUserComponent
     
   ],
   entryComponents: [CreateUserComponent],
   providers: [
     UserService,
-    UserGridService,
     UserProfileResolver,
     PreventUnsavedGuard,
     AuthGuard,
+    UserGridService
   ]
 })
 export class UserModule { }
