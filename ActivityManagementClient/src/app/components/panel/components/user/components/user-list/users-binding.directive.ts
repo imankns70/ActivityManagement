@@ -2,7 +2,7 @@ import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { DataBindingDirective, GridComponent } from '@progress/kendo-angular-grid';
 import { State } from '@progress/kendo-data-query';
 import { Subscription } from 'rxjs';
-import { UserGridService } from '../services/User.Grid.service';
+import { UserGridService } from '../../services/User.Grid.service';
 
 @Directive({
   selector: '[UsersBinding]'

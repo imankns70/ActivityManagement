@@ -1,7 +1,7 @@
 <kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270"
-(edit)="editHandler($event)">
+(edit)="editUser($event)">
   <ng-template kendoGridToolbarTemplate>
-    <button kendoGridAddCommand (click)="showWindow()">Add new</button>
+    <button kendoGridAddCommand (click)="addUser()">Add new</button>
   </ng-template>
   <kendo-grid-column field="id" title="ردیف" [editable]="false"></kendo-grid-column>
   <kendo-grid-column field="firstName" title="نام" [editable]="false"></kendo-grid-column>
