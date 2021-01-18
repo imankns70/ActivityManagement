@@ -12,18 +12,18 @@ export class UserGridService extends KednoGridService {
 
   }
 
-  public queryForUserName(userName: string, state: any) {
+  // public queryForUserName(userName: string, state: any) {
 
-    this.query(Object.assign({}, state, {
-      filter: {
-        filters: [{
-          filed: 'username', operator: 'contains', value: userName
-        }],
-        logic: 'and'
-      }
+  //   this.query(Object.assign({}, state, {
+  //     filter: {
+  //       filters: [{
+  //         filed: 'username', operator: 'contains', value: userName
+  //       }],
+  //       logic: 'and'
+  //     }
 
-    }))
-  }
+  //   }))
+  // }
 
 
 

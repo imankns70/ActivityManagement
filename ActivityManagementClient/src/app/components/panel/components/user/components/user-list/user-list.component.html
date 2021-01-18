@@ -1,5 +1,5 @@
-<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270"
-(edit)="editUser($event)">
+<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270"  filterable="menu"
+  (edit)="editUser($event)">
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand (click)="addUser()">Add new</button>
   </ng-template>
