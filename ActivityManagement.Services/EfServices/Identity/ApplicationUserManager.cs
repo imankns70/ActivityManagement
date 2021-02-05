@@ -19,7 +19,7 @@ using Microsoft.Extensions.Options;
 namespace ActivityManagement.Services.EfServices.Identity
 {
     public class ApplicationUserManager : UserManager<AppUser>, IApplicationUserManager
-    {
+    { 
         private readonly ApplicationIdentityErrorDescriber _errors;
         private readonly ILookupNormalizer _keyNormalizer;
         private readonly ILogger<ApplicationUserManager> _logger;
@@ -137,6 +137,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
         public async Task<UserViewModelApi> FindUserApiByIdAsync(int userId)
         {
+            //var sss = await Users.Include(a => a.Roles).Where(u => u.Id == userId).Select(user=> user.Roles.SelectMany(userRole=>userRole.Role.Name.ToString()).ToList()).FirstOrDefaultAsync();
             return await Users.Include(a => a.Roles).Where(u => u.Id == userId).Select(user => new UserViewModelApi
             {
                 Id = user.Id,
@@ -148,11 +149,9 @@ namespace ActivityManagement.Services.EfServices.Identity
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.HasValue ? user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "",
                 Gender = user.Gender,
-                Role = user.Roles.First().Role.Name
+                Roles = user.Roles.Select(s=> s.Role.Name)
             }).FirstOrDefaultAsync();
         }
-
-        
 
         public async Task<UsersViewModel> FindUserWithDetailIdAsync(int userId)
         {
@@ -178,9 +177,6 @@ namespace ActivityManagement.Services.EfServices.Identity
             AppUser userInfo = await GetUserAsync(user);
             return userInfo.FirstName + " " + userInfo.LastName;
         }
-
-
-
 
         public string CheckAvatarFileName(string fileName)
         {
@@ -265,8 +261,6 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             return logicResult;
         }
-
-      
 
         public async Task<LogicResult> UploadUserImage(IFormFile file, string userId)
         {

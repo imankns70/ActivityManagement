@@ -56,6 +56,17 @@ namespace ActivityManagementApi
                {
                    options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
                });
+
+            //services.AddAuthorization(opt =>
+            //{
+            ////example of a policy only for one role
+
+            //    opt.AddPolicy("RequireAdmin", policy => policy.RequireRole("Admin"));
+
+
+            ////example of a policy only for multiple role
+            //    opt.AddPolicy("AccessBank", policy => policy.RequireRole("Admin","Bloger","Writer"));
+            //});
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore

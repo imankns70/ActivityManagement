@@ -5,16 +5,16 @@ import { MyProfileComponent } from '../user/components/my-profile/my-profile.com
 import { UserService } from '../../services/user.service';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
-import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ChangePicComponent } from '../user/components/change-pic/change-pic.component';
 import { UserRoutingModule } from './user-routing.module';
 import { FileUploadModule } from 'ng2-file-upload';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UsersBindingDirective } from './components/user-list/users-binding.directive';
 import { UserGridService } from './services/User.Grid.service';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -32,16 +32,17 @@ import { UserGridService } from './services/User.Grid.service';
     ChangePicComponent,
     UserListComponent,
     UsersBindingDirective,
-    CreateUserComponent
+    CreateUserComponent,
+    CreateUserComponent, 
+    EditUserComponent
     
   ],
-  entryComponents: [CreateUserComponent],
+   
   providers: [
     UserService,
     UserProfileResolver,
     PreventUnsavedGuard,
-    AuthGuard,
-    UserGridService
+    UserGridService,
   ]
 })
 export class UserModule { }

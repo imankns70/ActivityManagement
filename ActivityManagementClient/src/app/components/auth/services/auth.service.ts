@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -83,29 +83,29 @@ export class AuthService {
   private storeJwtToken(jwt: string) {
     localStorage.setItem('token', jwt);
   }
-  // refreshToken(): Observable<any> {
-
-  //   const user: User = JSON.parse(localStorage.getItem('user'));
-  //   const requestToken = {
-  //     userName: user.userName,
-  //     refreshToken: this.getRefreshToken(),
-  //     grantType: 'RefreshToken'
-  //   }
-  //  debugger;
-  //  return  this.http.post<any>(this.baseUrl + 'Auth', requestToken)
 
 
-  //   .pipe(
-  //     map((res: any) => {
-  //       debugger;
-  //       if (res.data && res.data.accessToken) {
-  //         localStorage.setItem('token', res.data.accessToken);
+  roleMatch(allowedRoles): boolean {
 
+    let isMatch = false;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const roles = user.roles as Array<string>
+    allowedRoles.forEach(element => {
+      if (roles.includes(element)) {
+        isMatch = true;
+      }
+    });
 
-  //       }
-  //       return res as any;
-  //     })
-  //   )
+    return isMatch;
 
-  // }
+  }
+
+  getUser(): any {
+    return JSON.parse(localStorage.getItem('user'));
+
+  }
+
+  createUser(viewModel: User): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + 'Auth', viewModel)
+  }
 }

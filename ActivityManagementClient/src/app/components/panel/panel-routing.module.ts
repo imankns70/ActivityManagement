@@ -9,11 +9,14 @@ const routes: Routes = [
     {
         path: '', component: PanelComponent,
         children: [
-            { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent },    
+            { path: 'dashboard',
+              canActivate: [AuthGuard],
+              data:{roles:['Admin','User']},
+              component: DashboardComponent },    
         ]
 
     },
-    { path: 'user', component:PanelComponent,
+    { path: 'user', component:PanelComponent, data:{roles:['Admin']},
      loadChildren: () => import('../panel/components/user/user.module').then(m => m.UserModule) },
 
  

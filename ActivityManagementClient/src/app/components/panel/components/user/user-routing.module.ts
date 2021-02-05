@@ -20,6 +20,7 @@ const routes: Routes = [
             },
             {
                 path: 'userlist', canActivate: [AuthGuard],
+                data:{roles:['Admin']},
                 component: UserListComponent,
             }
             

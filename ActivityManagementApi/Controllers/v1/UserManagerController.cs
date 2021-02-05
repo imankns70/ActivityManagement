@@ -8,37 +8,43 @@ using System.Threading.Tasks;
 using ActivityManagement.Common;
 using ActivityManagement.Common.Api;
 using ActivityManagement.Common.Api.Attributes;
+using ActivityManagement.DomainClasses.Entities.Identity;
+using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.Base;
 using ActivityManagement.ViewModels.DynamicAccess;
 using ActivityManagement.ViewModels.UserManager;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivityManagementApi.Controllers.v1
 {
     [Route("api/v{version:apiVersion}/[controller]/")]
     [ApiVersion("1")]
-    [ApiResultFilter]
+    //[ApiResultFilter]
     public class UserManagerController : ControllerBase
     {
         private readonly IApplicationUserManager _userManager;
+        private readonly IApplicationRoleManager _roleManager;
 
         public UserManagerController(IApplicationUserManager userManager)
         {
             _userManager = userManager;
         }
-       
 
-        [HttpGet]
-        [Route("GetUsers")]
+
+        [HttpGet(template: "GetUsers")]
         [DisplayName("لیست کاربران")]
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<DataSourceResult>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
+
             DataSourceResult dataResult = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
+
             return Ok(dataResult);
         }
 
@@ -51,11 +57,11 @@ namespace ActivityManagementApi.Controllers.v1
         {
             if (User.Identity.IsAuthenticated)
             {
-             
+
                 UserViewModelApi user = await _userManager.FindUserApiByIdAsync(User.Identity.GetUserId<int>());
                 return Ok(user);
             }
-          
+
             return BadRequest(NotificationMessages.UserNotFound);
 
         }
@@ -64,13 +70,24 @@ namespace ActivityManagementApi.Controllers.v1
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<string>> UpdateUserProfile([FromBody] UserViewModelApi viewModel)
         {
-
-            LogicResult logicResult = await _userManager.UpdateUserProfile(viewModel);
-
-            if (logicResult.MessageType == MessageType.Success)
+            LogicResult logicResult = new LogicResult();
+            try
             {
-                return Ok(logicResult.Message.FirstOrDefault());
+                logicResult = await _userManager.UpdateUserProfile(viewModel);
+
+                if (logicResult.MessageType == MessageType.Success)
+                {
+                    return Ok(logicResult.Message.FirstOrDefault());
+                }
             }
+            catch (Exception ex)
+            {
+                logicResult.MessageType = MessageType.Error;
+                logicResult.Message.Add(ex.Message);
+
+            }
+
+
 
             return BadRequest(logicResult.Message.FirstOrDefault());
 
@@ -101,6 +118,79 @@ namespace ActivityManagementApi.Controllers.v1
 
 
         }
+        [HttpPost]
+        [Route("CreateUser")]
+        public async Task<ApiResult<string>> CreateUser(UsersViewModel viewModel)
+        {
+
+        //    try
+        //    {
+                //if (ModelState.IsValid)
+                //{
+
+                //    IdentityResult result;
+                //    AppUser user = new AppUser();
+
+                //    if (!string.IsNullOrWhiteSpace(viewModel.PersianBirthDate))
+                //        viewModel.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
+
+
+                //    user.EmailConfirmed = true;
+                //    user.UserName = viewModel.UserName;
+                //    user.FirstName = viewModel.FirstName;
+                //    user.LastName = viewModel.LastName;
+                //    user.PasswordHash = viewModel.Password;
+                //    user.Email = viewModel.Email;
+                //    user.BirthDate = viewModel.BirthDate;
+                //    user.PhoneNumber = viewModel.PhoneNumber;
+                //    user.IsActive = true;
+                //    user.Image = viewModel.ImageFile != null ? viewModel.ImageFile.FileName : "";
+                //    if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
+
+                //    result = await _userManager.CreateAsync(user, viewModel.Password);
+                //    if (result.Succeeded)
+                //    {
+                //        var role = await _roleManager.FindByIdAsync(viewModel.RoleId.ToString());
+                //        if (role != null)
+                //        {
+                //            await _userManager.AddToRoleAsync(user, role.Name);
+                //        }
+                //    }
+
+
+                //    //if (result.Succeeded)
+                //    //{
+                //    //    logicResult.MessageType = MessageType.Success;
+
+                //    //    logicResult.Message.Add(NotificationMessages.CreateSuccess);
+
+                //    //}
+
+
+                //    //else
+                //    //{
+                //    //    logicResult.MessageType = MessageType.Error;
+                //    //    logicResult.Message.Add(result.DumpErrors());
+                //    //}
+
+
+
+                //}
+                //else
+                //{
+                //    throw new AppException(ModelState.GetErrorsModelState());
+                //}
+            //}
+            //catch (Exception e)
+            //{
+
+            //    throw new AppException(e.Message);
+
+            //}
+
+            return Ok(NotificationMessages.CreateSuccess);
+        }
+
 
     }
 }

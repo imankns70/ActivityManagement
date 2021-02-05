@@ -26,7 +26,7 @@ export abstract class KednoGridService extends BehaviorSubject<GridDataResult> {
       .subscribe(x => super.next(x));
   }
 
-  protected fetch(action: string, state: any): Observable<GridDataResult> {
+  public fetch(action: string, state: any): Observable<GridDataResult> {
 
     //const queryStr = `${toODataString(state)}&$count=true`;
     const queryStr = `${toDataSourceRequestString(state)}`;

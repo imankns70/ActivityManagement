@@ -20,6 +20,7 @@ export class SharedService {
       width: width ? width : 600
     })
    
+    
 
   }
 }

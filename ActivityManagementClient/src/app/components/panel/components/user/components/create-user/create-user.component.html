@@ -1,10 +1,72 @@
-<div class="container-fluid">
-  <p>The following person was deleted successfully!</p>
-  <dl class="row">
-      <dt class="col-sm-6">Username:</dt>
-      <!-- <dd class="col-sm-6">{{ user.firstName }}</dd> -->
+<kendo-dialog *ngIf="isActiveForm" [width]="400" [height]="550" (close)="closeForm($event)">
+    <kendo-dialog-titlebar>
+        ایجاد کاربر جدید
+    </kendo-dialog-titlebar>
 
-      <dt class="col-sm-6">Age:</dt>
-      <!-- <dd class="col-sm-6">{{ user.lastName }}</dd> -->
-  </dl>
-</div>
+    <form class="k-form" [formGroup]="useForm">
+        <kendo-formfield>
+            <kendo-label [for]="firstname" text="نام"></kendo-label>
+            <input formControlName="firstname" kendoTextBox #firstname required />
+
+            <!-- <kendo-formhint>Type product name</kendo-formhint> -->
+            <kendo-formerror>نام را وارد کنید</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label [for]="lastname" text="نام خانوادگی"></kendo-label>
+            <input formControlName="lastname" kendoTextBox #lastname required />
+
+            <!-- <kendo-formhint>Type unit price</kendo-formhint> -->
+            <kendo-formerror>نام خانوادگی را وارد کنید</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label [for]="username" text="نام کاربری"></kendo-label>
+            <input formControlName="username" kendoTextBox #username required />
+
+
+            <!-- <kendo-formhint>Type units</kendo-formhint> -->
+            <kendo-formerror>نام کاربری را وارد کنید</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label [for]="email" text="ایمیل"></kendo-label>
+            <input formControlName="email" kendoTextBox #email required />
+
+            <!-- <kendo-formhint>Type units</kendo-formhint> -->
+            <kendo-formerror>ایمیل را وارد کنید</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label [for]="password" text="کلمه عبور"> </kendo-label>
+            <input formControlName="password" #password kendoTextBox required />
+            <kendo-formerror>کلمه عبور را وارد کنید</kendo-formerror>
+            <kendo-formerror>
+                حداکثر 10 کاراکتر وارد کنید
+            </kendo-formerror>
+            <kendo-formerror>
+                حداقل 4 کاراکتر وارد کنید
+            </kendo-formerror>
+
+        </kendo-formfield>
+
+   
+        <kendo-formfield>
+        <kendo-label class="k-radio-label" [for]="female" text="مرد"></kendo-label>
+        <input type="radio" formControlName="gender" value="male" #female kendoRadioButton />
+    </kendo-formfield>
+
+    <kendo-formfield>
+        <kendo-label class="k-radio-label" [for]="female" text="زن"></kendo-label>
+        <input type="radio" formControlName="gender" value="female" #female kendoRadioButton />
+            <!-- <kendo-label [for]="gender"  text="جنسیت"> </kendo-label>
+              <input formControlName="gender"  #gender type="radio" /> -->
+
+    </kendo-formfield>
+    </form>
+
+    <kendo-dialog-actions>
+        <button class="k-button" (click)="closeForm($event)">انصراف</button>
+        <button class="k-button k-primary" [disabled]="!useForm.valid" (click)="onSave($event)">ذخیره</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

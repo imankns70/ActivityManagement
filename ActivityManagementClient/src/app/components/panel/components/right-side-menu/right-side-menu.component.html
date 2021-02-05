@@ -2,20 +2,20 @@
 
   <!--#َregio Admin-->
   <li class="nav-item pt-2 pb-2 pl-2">
-    <a class="nav-link" routerLink="/panel/role/rolelist">
+    <a class="nav-link"  *appHasRole="['Admin']" routerLink="/panel/role/rolelist">
       <i class="fa fa-user text-pink"></i> مدیریت نقش ها
     </a>
 
   </li>
   <li class="nav-item pt-2 pb-2 pl-2">
-    <a class="nav-link" routerLink="/panel/user/userlist">
+    <a class="nav-link" *appHasRole="['Admin']" routerLink="/panel/user/userlist">
       <i class="fa fa-user-circle text-yellow"></i> مدیریت کاربران
     </a>
 
 
   </li>
   <li class="nav-item pt-2 pb-2 pl-2">
-    <a class="nav-link" routerLink="/panel/team">
+    <a class="nav-link"  *appHasRole="['Admin']" routerLink="/panel/team">
       <i class="fa fa-users text-blue"></i> تیم ها
     </a>
 
@@ -26,7 +26,7 @@
 
   <!--#region user-->
   <li class="nav-item pt-2 pb-2 pl-2">
-    <a class="nav-link" href="#">
+    <a class="nav-link"  *appHasRole="['Admin','User']" href="#">
       <i class="fa fa-users text-blue"></i> تنظیمات
     </a>
 

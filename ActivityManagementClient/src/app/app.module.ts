@@ -14,6 +14,7 @@ import { AuthService } from '../app/components/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
 import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -43,6 +44,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    ],
    imports: [
       AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
       BrowserModule,
       HttpClientModule,
       BrowserAnimationsModule,

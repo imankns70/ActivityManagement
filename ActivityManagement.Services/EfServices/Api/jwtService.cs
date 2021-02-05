@@ -59,7 +59,7 @@ namespace ActivityManagement.Services.EfServices.Api
                 NotBefore = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.NotBeforeMinutes),
                 Expires = DateTime.Now.AddMinutes(_siteSettings.JwtSettings.ExpirationMinutes),
                 SigningCredentials = signingCredentials,
-                Subject = new ClaimsIdentity(await GetClaimsAsync(user)),
+                Subject = new ClaimsIdentity(GetClaimsAsync(user)),
                 EncryptingCredentials = encryptingCredentials,
             };
 
@@ -67,7 +67,7 @@ namespace ActivityManagement.Services.EfServices.Api
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(securityToken);
         }
-        private async Task<IEnumerable<Claim>> GetClaimsAsync(AppUser user)
+        private IEnumerable<Claim> GetClaimsAsync(AppUser user)
         {
             List<Claim> claims = new List<Claim>()
             {
@@ -79,36 +79,8 @@ namespace ActivityManagement.Services.EfServices.Api
 
             };
 
-            claims.AddRange(await _roleManager.GetDynamicPermissionClaimsByRoleIdAsync(user.Roles.First().RoleId));
-            //List<AppRole> roles = RoleManager.GetAllRolesWithClaims();
-
-            //foreach (var item in user.Roles)
-            //{
-            //    var roleClaim = await _roleManager.FindClaimsInRole(item.RoleId);
-            //    if (roleClaim.Claims.Any())
-            //    {
-            //        foreach (var claim in roleClaim.Claims)
-            //        {
-            //            if (claim.ClaimType == ConstantPolicies.DynamicPermission)
-            //            {
-            //                claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, claim.ClaimValue));
-
-            //            }
-            //        }
-            //    }
-
-            //    claims.Add(new Claim(ClaimTypes.Role, item.Role.Name));
-            //}
-
-
-            // instead of userClaim use roleClaim 
-            // var userClaims = await _userManager.GetClaimsAsync(user);
-            // var userRoles = await _userManager.GetRolesAsync(user);
-            // foreach (var item in userClaims)
-            //     Claims.Add(new Claim(ConstantPolicies.DynamicPermissionClaimType, item.Value));
-
-            // foreach (var item in userRoles)
-            //     Claims.Add(new Claim(ClaimTypes.Role, item));
+            claims.AddRange(_roleManager.GetDynamicPermissionClaimsByRoleIdAsync(user.Roles.ToList()));
+            
 
             return claims;
         }

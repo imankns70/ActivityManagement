@@ -49,8 +49,12 @@ export class UsersBindingDirective extends DataBindingDirective implements OnIni
 }
 
   public rebind() {
-    debugger;
+    
     this.grid.loading = true;
     this.userGridService.query(this.state)
+  }
+
+  addHandler(){
+    
   }
 }
