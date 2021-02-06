@@ -4,7 +4,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { UserProfileResolver } from 'src/app/resolvers/userprofile.resolver';
 import { MyProfileComponent } from '../user/components/my-profile/my-profile.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
@@ -20,6 +20,7 @@ const routes: Routes = [
             },
             {
                 path: 'userlist', canActivate: [AuthGuard],
+                data:{roles:['Admin']},
                 component: UserListComponent,
             }
             

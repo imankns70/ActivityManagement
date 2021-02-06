@@ -6,11 +6,14 @@ import { KednoGridService } from 'src/app/Services/kedno-grid.service';
 @Injectable()
 export class UserGridService extends KednoGridService {
 
+
   constructor(http: HttpClient) {
-  
+
     super(http, "UserManager/GetUsers")
 
   }
+
+
 
   public queryForUserName(userName: string, state: any) {
 

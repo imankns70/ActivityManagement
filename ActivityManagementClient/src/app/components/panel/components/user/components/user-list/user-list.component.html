@@ -1,7 +1,7 @@
-<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270"
-(edit)="editHandler($event)">
+<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270" filterable="menu" 
+  (add)="renderUser()">
   <ng-template kendoGridToolbarTemplate>
-    <button kendoGridAddCommand (click)="showWindow()">Add new</button>
+    <button kendoGridAddCommand>ایجاد کاربر</button>
   </ng-template>
   <kendo-grid-column field="id" title="ردیف" [editable]="false"></kendo-grid-column>
   <kendo-grid-column field="firstName" title="نام" [editable]="false"></kendo-grid-column>
@@ -17,4 +17,13 @@
     </ng-template>
   </kendo-grid-command-column>
 </kendo-grid>
-<ng-container #container></ng-container>
+
+<app-create-user  
+[isActiveForm]="isActiveForm"
+(cancel)="cancelHandler()"
+(save)="saveHandler($event)"
+>
+</app-create-user>
+<!-- <app-edit-user>
+</app-edit-user> -->
+<!-- <ng-container #container></ng-container> -->

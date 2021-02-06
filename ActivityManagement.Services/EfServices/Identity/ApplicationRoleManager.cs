@@ -63,14 +63,18 @@ namespace ActivityManagement.Services.EfServices.Identity
             return await Roles.Include(appRole => appRole.Claims).ToListAsync();
         }
 
-        public async Task<List<Claim>> GetDynamicPermissionClaimsByRoleIdAsync(int roleId)
+        public List<Claim> GetDynamicPermissionClaimsByRoleIdAsync(List<UserRole> userRoles)
         {
             List<Claim> claimsList = new List<Claim>();
-            AppRole role = await Roles.Include(nav => nav.Claims).FirstOrDefaultAsync(x => x.Id == roleId);
-            if (role != null)
+            IEnumerable<int> roleIds = userRoles.Select(x => x.RoleId);
+            IEnumerable<AppRole> rolesModel =  Roles.Include(nav => nav.Claims).Where(x => roleIds.Contains(x.Id));
+            if (rolesModel != null)
             {
-                claimsList.AddRange(role.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
-                    .Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue)).ToList());
+                claimsList.AddRange(rolesModel.SelectMany(s => s.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
+                 .Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue))).ToList());
+
+                    //(role.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
+                    //.Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue)).ToList());
             }
 
             return claimsList;

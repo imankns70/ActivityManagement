@@ -24,9 +24,12 @@
               "src/assets"
             ],
             "styles": [
+           
               {
                 "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                 
               },
+              
               "src/assets/vendor/nucleo/css/nucleo.css",
               "src/assets/vendor/fontawesome/fontawesome-free/css/all.min.css",
               "src/assets/css/argon.css",

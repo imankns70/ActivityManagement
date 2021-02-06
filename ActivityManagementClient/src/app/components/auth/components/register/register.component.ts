@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
     },[this.checkPasswordMatch,this.checkAcceptcondition])
   }
    checkPasswordMatch(g:FormGroup){
-
     return g.get('password').value === g.get('confirmpassword').value ? null  : {mismath:true}
    }
    checkAcceptcondition(g:FormGroup){

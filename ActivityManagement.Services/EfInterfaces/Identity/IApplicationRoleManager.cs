@@ -28,13 +28,13 @@ namespace ActivityManagement.Services.EfInterfaces.Identity
         Task UpdateNormalizedRoleNameAsync(AppRole role);
         Task<string> GetRoleNameAsync(AppRole role);
         Task<IdentityResult> SetRoleNameAsync(AppRole role, string name);
-        #endregion
 
+        #endregion
 
         #region CustomMethod
         List<AppRole> GetAllRoles();
         Task<List<AppRole>> GetAllRolesWithClaimsAsync();
-        Task<List<Claim>> GetDynamicPermissionClaimsByRoleIdAsync(int roleId);
+        List<Claim> GetDynamicPermissionClaimsByRoleIdAsync(List<UserRole> roles);
         List<RolesViewModel> GetAllRolesAndUsersCount();
         Task<AppRole> FindClaimsInRole(int roleId);
         Task<AppRole> FinRoleAndUsersCountById(int roleId);

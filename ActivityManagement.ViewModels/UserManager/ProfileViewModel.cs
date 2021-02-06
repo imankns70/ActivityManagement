@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using ActivityManagement.DomainClasses.Entities.Identity;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,7 @@ namespace ActivityManagement.ViewModels.UserManager
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
         public string LastName { get; set; }
 
-        public string Role { get; set; }
+        public IEnumerable<string> Roles { get; set; }
         public string Token { get; set; }
         public string PersianBirthDate { get; set; }
 

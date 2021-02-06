@@ -7,7 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
 import { gender } from 'src/app/models/enums/gender';
 import { UserService } from '../../../../services/user.service';
-
+import { $ } from '../../../../../../../assets/vendor/jquery/dist/jquery-2.2.4.min.js';
+import { __assign } from 'tslib';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -19,10 +21,13 @@ export class MyProfileComponent implements OnInit {
   user: User;
   constructor(private userService: UserService, private alertService: NotificationMessageService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder) { }
-  
+    private formBuilder: FormBuilder, private title: Title) {
+
+      title.setTitle('پروفایل کاربر')
+     }
+
   ngOnInit() {
-  
+
     this.user = this.getUserLoggedIn();
     console.log(this.user.gender)
     this.updateProfileInformation();
@@ -30,14 +35,14 @@ export class MyProfileComponent implements OnInit {
   updateProfileInformation() {
 
     this.editForm = this.formBuilder.group({
-      id: [this.user.id],
+      //id: [this.user.id],
       userName: [this.user.userName, [Validators.required, Validators.minLength(2), Validators.maxLength(20)]],
       firstName: [this.user.firstName, Validators.required],
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.email]],
       phoneNumber: [this.user.phoneNumber, Validators.required],
       persianBirthDate: [this.user.persianBirthDate, Validators.required],
-      gender: [this.user.gender == gender.Male ? "Male" : "Female", Validators.required],
+      gender: [this.user.gender == gender.male ? "Male" : "Female", Validators.required],
 
     })
   }
@@ -55,11 +60,15 @@ export class MyProfileComponent implements OnInit {
   }
 
   updateMyProfile() {
-    this.userService.updateMyProfile(this.user).subscribe(next => {
+    
+   let editedUser = Object.assign({},this.editForm.value);
+   editedUser.id= this.user.id;
+    
+    this.userService.updateMyProfile(editedUser).subscribe(next => {
 
       if (next.isSuccess) {
         this.alertService.showMessage(next.message.join(','), 'موفق', Globals.successMessage);
-        this.editForm.reset(this.user);
+        this.user=editedUser;
       }
     }, error => {
       this.alertService.showMessage(error.message.join(','), 'خطا', Globals.successMessage);
@@ -67,6 +76,11 @@ export class MyProfileComponent implements OnInit {
     })
   }
 
+  goToSaveButton() {
+    $('html , body').animate({
 
+      scrollTop: $('#btnsave').offset().top + 20
+    }, 500)
+  }
 
 }
