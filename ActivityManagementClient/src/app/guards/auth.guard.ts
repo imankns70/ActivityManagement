@@ -19,15 +19,16 @@ export class AuthGuard implements CanActivate {
     //let stateName: string = state.url.replace('/', '')
 
     if (this.authService.isSignIn()) {
+       
       const roles = next.data['roles'] as Array<string>
       if (roles) {
-
         const isMatch = this.authService.roleMatch(roles);
         if (isMatch) {
           return true;
         } else {
-          this.router.navigate(['/panel/dashboard']);
           this.alert.showMessage('شما به این بخش دسترسی ندارید', 'عدم دسترسی', Globals.errorMessage);
+          return  this.router.navigate(['/auth/login']);
+        
 
         }
       }
