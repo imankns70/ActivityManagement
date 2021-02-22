@@ -3,7 +3,14 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+  
     "ActivityManagementClient": {
+        "i18n": {
+        "sourceLocale": "fa-IR",
+        "locales": {
+          "fa": "src/locale/messages.fa.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -44,7 +51,11 @@
             ]
           },
           "configurations": {
-            "production": {
+            "fa": {
+              "localize": ["fa"]
+            },
+            "production-fa": {
+              "localize": ["fa"],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -80,6 +91,12 @@
             "browserTarget": "ActivityManagementClient:build"
           },
           "configurations": {
+            "fa": {
+              "browserTarget": "ActivityManagementClient:build:fa"
+            },
+            "production-fa": {
+              "browserTarget": "ActivityManagementClient:build:production-fa"
+            },
             "production": {
               "browserTarget": "ActivityManagementClient:build:production"
             }

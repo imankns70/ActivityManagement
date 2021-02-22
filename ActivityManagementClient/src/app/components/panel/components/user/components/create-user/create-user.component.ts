@@ -29,13 +29,17 @@ export class CreateUserComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required, Validators.minLength(4), Validators.maxLength(10)],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       gender: ['', Validators.required],
 
     }, [this.checkPasswordMatch, this.checkAcceptcondition])
 
   }
+ 
+
+get passwordField() {return this.useForm.get('password');}
+get emailField() { return this.useForm.get('email');}
 
   checkPasswordMatch(g: FormGroup) {
     return g.get('password').value === g.get('confirmpassword').value ? null : { mismath: true }
