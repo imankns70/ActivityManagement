@@ -57,28 +57,35 @@
                 <kendo-formerror *ngIf="passwordField.errors.minlength">
                     حداقل 4 کاراکتر وارد کنید
                 </kendo-formerror>
+
+                <kendo-formerror *ngIf="passwordField.errors.maxlength">
+                    حداکثر 10 کاراکتر وارد کنید
+                </kendo-formerror>
             </div>
-            <!-- <kendo-formerror *ngIf="f.password.errors?.maxlength && 
-            (f.password.touched || f.password.dirty)">
-                حداکثر 10 کاراکتر وارد کنید
-            </kendo-formerror> -->
+
 
 
 
         </kendo-formfield>
 
 
-        <kendo-formfield>
-            <kendo-label class="k-radio-label" [for]="female" text="مرد"></kendo-label>
-            <input type="radio" formControlName="gender" value="male" #female kendoRadioButton />
-        </kendo-formfield>
+        <kendo-formfield [orientation]="'horizontal'" [showHints]="'initial'">
+            <label class="k-label">جنسیت</label>
 
-        <kendo-formfield>
-            <kendo-label class="k-radio-label" [for]="female" text="زن"></kendo-label>
-            <input type="radio" formControlName="gender" value="female" #female kendoRadioButton />
-            <!-- <kendo-label [for]="gender"  text="جنسیت"> </kendo-label>
-              <input formControlName="gender"  #gender type="radio" /> -->
+            <ul class="k-radio-list k-list-horizontal">
+                <li class="k-radio-item">
+                    <input type="radio" #male value="male" kendoRadioButton [formControlName]="'gender'" />
+                    <kendo-label class="k-radio-label" [for]="male" text="مرد"></kendo-label>
+                </li>
 
+                <li class="k-radio-item">
+                    <input type="radio" #female value="female" kendoRadioButton [formControlName]="'gender'" />
+                    <kendo-label class="k-radio-label" [for]="female" text="زن"></kendo-label>
+                </li>
+                
+            </ul>
+
+            <kendo-formerror>جنسیت اجباری می باشد</kendo-formerror>
         </kendo-formfield>
     </form>
 

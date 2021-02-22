@@ -42,6 +42,7 @@ export class UserListComponent implements OnInit {
   }
   saveHandler(user: User) {
    debugger;
+   console.log(user);
       // const user = Object.assign({}, this.useForm.value)
       // this.authService.createUser(user).subscribe(res => {
   

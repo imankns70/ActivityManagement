@@ -190,7 +190,6 @@ D:\Projects\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\Act
 D:\Projects\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\ActivityManagement.Services.pdb
 D:\Projects\ActivityManagement\ActivityManagementMvc\bin\Debug\netcoreapp3.1\ActivityManagement.ViewModels.pdb
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csprojAssemblyReference.cache
-D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csproj.CoreCompileInputs.cache
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cs
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.MvcApplicationPartsAssemblyInfo.cache
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.RazorAssemblyInfo.cache
@@ -238,4 +237,3 @@ D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\sta
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\staticwebassets\ActivityManagementMvc.StaticWebAssets.xml
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
-D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.genruntimeconfig.cache

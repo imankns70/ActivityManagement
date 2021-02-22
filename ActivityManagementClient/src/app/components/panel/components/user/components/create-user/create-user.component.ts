@@ -30,16 +30,17 @@ export class CreateUserComponent implements OnInit {
       lastname: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       gender: ['', Validators.required],
 
     }, [this.checkPasswordMatch, this.checkAcceptcondition])
 
   }
- 
 
-get passwordField() {return this.useForm.get('password');}
-get emailField() { return this.useForm.get('email');}
+
+  get passwordField() { return this.useForm.get('password'); }
+  get emailField() { return this.useForm.get('email'); }
+  get genderField() { return this.useForm.get('gender'); }
 
   checkPasswordMatch(g: FormGroup) {
     return g.get('password').value === g.get('confirmpassword').value ? null : { mismath: true }
@@ -50,7 +51,7 @@ get emailField() { return this.useForm.get('email');}
   }
 
   onSave(e) {
-  
+    console.log(e);
     this.save.emit(this.useForm.value);
     this.isActiveForm = false;
 
