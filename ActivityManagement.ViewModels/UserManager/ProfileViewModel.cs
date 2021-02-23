@@ -33,6 +33,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public IEnumerable<string> Roles { get; set; }
         public string Token { get; set; }
         public string PersianBirthDate { get; set; }
+        public string Password { get; set; }
 
         public GenderType? Gender { get; set; }
 

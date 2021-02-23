@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { User } from 'src/app/models/user/user';
-import { KednoGridService } from 'src/app/Services/kedno-grid.service';
 
 
 
@@ -28,6 +27,10 @@ export class UserService  {
   updateMyProfile(viewModel: User): Observable<ApiResult> {
     return this.http.post<ApiResult>(this.baseUrl + 'UpdateUserProfile', viewModel)
   }
-
- 
+  
+  createUser(viewModel: User): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + 'CreateUser', viewModel)
+  }
 }
+ 
+ 

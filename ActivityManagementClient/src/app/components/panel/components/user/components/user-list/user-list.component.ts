@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { State } from '@progress/kendo-data-query';
 import { UserGridService } from '../../services/User.Grid.service';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
 import { User } from 'src/app/models/user/user';
+import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { Globals } from 'src/app/models/enums/Globals';
+import { UserService } from 'src/app/components/panel/services/user.service';
 
 
 @Component({
@@ -11,11 +13,8 @@ import { User } from 'src/app/models/user/user';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  //@ViewChild('container', { read: ViewContainerRef })
-
-  // public containerRef: ViewContainerRef;
-  // public opened = true;
-  public isActiveForm : boolean;
+  
+  public isActiveForm: boolean;
   public state: State = {
     skip: 1,
     take: 10,
@@ -26,7 +25,8 @@ export class UserListComponent implements OnInit {
 
   }
 
-  constructor(private userGridService: UserGridService, private authService: AuthService) {
+  constructor(private userGridService: UserGridService, private userService: UserService,
+    private alertService: NotificationMessageService) {
   }
 
   ngOnInit() {
@@ -35,30 +35,32 @@ export class UserListComponent implements OnInit {
 
   }
 
-  renderUser() {
-   
+  renderAddUser() {
+
     this.isActiveForm = true;
 
   }
+ 
   saveHandler(user: User) {
-   debugger;
-   console.log(user);
-      // const user = Object.assign({}, this.useForm.value)
-      // this.authService.createUser(user).subscribe(res => {
-  
-      //   if (res.isSuccess) {
-      //     this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
-  
-      //   } else {
-      //     this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
-  
-      //   }
-  
-      // }, error => {
-      //   this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
-      // });
-  
+    debugger;
+      
+    this.userService.createUser(user).subscribe(res => {
+      debugger;
+      if (res.isSuccess) {
+        this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
+        this.userGridService.query(this.state);
+      } else {
+        this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
+
+      }
+
+    }, error => {
+      this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
+    });
+
   }
+
+  
   cancelHandler() {
     this.isActiveForm = false;
   }
@@ -66,18 +68,5 @@ export class UserListComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-  // public editUser({ dataItem }) {
-
-  //   const windowRef = this.sharedService.renderWindow(this.containerRef, EditUserComponent, 'ویرایش کاربر').content.instance
-  //   windowRef.user = dataItem;
-
-
-  // }
 
 }

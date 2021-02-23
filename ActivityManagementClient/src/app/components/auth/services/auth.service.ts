@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   register(viewModel: any): Observable<ApiResult> {
-    viewModel.gender == 'مرد' ? viewModel.gender = 1 : viewModel.gender = 2
+    viewModel.gender == 'male' ? viewModel.gender = 1 : viewModel.gender = 2
     return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
@@ -105,7 +105,5 @@ export class AuthService {
 
   }
 
-  createUser(viewModel: User): Observable<ApiResult> {
-    return this.http.post<ApiResult>(this.baseUrl + 'Auth', viewModel)
-  }
+
 }

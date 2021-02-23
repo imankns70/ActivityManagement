@@ -237,3 +237,5 @@ D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\sta
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\staticwebassets\ActivityManagementMvc.StaticWebAssets.xml
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.dll
 D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.pdb
+D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.csproj.CoreCompileInputs.cache
+D:\Projects\ActivityManagement\ActivityManagementMvc\obj\Debug\netcoreapp3.1\ActivityManagementMvc.genruntimeconfig.cache

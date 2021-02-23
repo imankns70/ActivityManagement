@@ -47,7 +47,7 @@
 
         <kendo-formfield>
             <kendo-label [for]="password" text="کلمه عبور"> </kendo-label>
-            <input formControlName="password" #password kendoTextBox required />
+            <input formControlName="password" #password kendoTextBox required/>
             <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)">
 
                 <kendo-formerror *ngIf="passwordField.errors.required">

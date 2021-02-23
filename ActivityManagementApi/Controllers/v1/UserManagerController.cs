@@ -118,75 +118,74 @@ namespace ActivityManagementApi.Controllers.v1
 
 
         }
-        [HttpPost]
-        [Route("CreateUser")]
-        public async Task<ApiResult<string>> CreateUser(UsersViewModel viewModel)
+        [HttpPost("CreateUser")]
+        public async Task<ApiResult<string>> CreateUser([FromBody]UserViewModelApi viewModel)
         {
 
-        //    try
-        //    {
-                //if (ModelState.IsValid)
-                //{
+            try
+            {
+                if (ModelState.IsValid)
+                {
 
-                //    IdentityResult result;
-                //    AppUser user = new AppUser();
+                    IdentityResult result;
+                    AppUser user = new AppUser();
 
-                //    if (!string.IsNullOrWhiteSpace(viewModel.PersianBirthDate))
-                //        viewModel.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
-
-
-                //    user.EmailConfirmed = true;
-                //    user.UserName = viewModel.UserName;
-                //    user.FirstName = viewModel.FirstName;
-                //    user.LastName = viewModel.LastName;
-                //    user.PasswordHash = viewModel.Password;
-                //    user.Email = viewModel.Email;
-                //    user.BirthDate = viewModel.BirthDate;
-                //    user.PhoneNumber = viewModel.PhoneNumber;
-                //    user.IsActive = true;
-                //    user.Image = viewModel.ImageFile != null ? viewModel.ImageFile.FileName : "";
-                //    if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
-
-                //    result = await _userManager.CreateAsync(user, viewModel.Password);
-                //    if (result.Succeeded)
-                //    {
-                //        var role = await _roleManager.FindByIdAsync(viewModel.RoleId.ToString());
-                //        if (role != null)
-                //        {
-                //            await _userManager.AddToRoleAsync(user, role.Name);
-                //        }
-                //    }
+                    if (!string.IsNullOrWhiteSpace(viewModel.PersianBirthDate))
+                        viewModel.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
 
 
-                //    //if (result.Succeeded)
-                //    //{
-                //    //    logicResult.MessageType = MessageType.Success;
+                    user.EmailConfirmed = true;
+                    user.UserName = viewModel.UserName;
+                    user.FirstName = viewModel.FirstName;
+                    user.LastName = viewModel.LastName;
+                    user.PasswordHash = viewModel.Password;
+                    user.Email = viewModel.Email;
+                    user.BirthDate = viewModel.BirthDate;
+                    user.PhoneNumber = viewModel.PhoneNumber;
+                    user.IsActive = true;
+                    user.Image = viewModel.ImageFile != null ? viewModel.ImageFile.FileName : "";
+                    if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
 
-                //    //    logicResult.Message.Add(NotificationMessages.CreateSuccess);
-
-                //    //}
-
-
-                //    //else
-                //    //{
-                //    //    logicResult.MessageType = MessageType.Error;
-                //    //    logicResult.Message.Add(result.DumpErrors());
-                //    //}
-
+                    result = await _userManager.CreateAsync(user, viewModel.Password);
+                    if (result.Succeeded)
+                    {
+                        var role = await _roleManager.FindByIdAsync(viewModel.RoleId.ToString());
+                        if (role != null)
+                        {
+                            await _userManager.AddToRoleAsync(user, role.Name);
+                        }
+                    }
 
 
-                //}
-                //else
-                //{
-                //    throw new AppException(ModelState.GetErrorsModelState());
-                //}
-            //}
-            //catch (Exception e)
-            //{
+                    //if (result.Succeeded)
+                    //{
+                    //    logicResult.MessageType = MessageType.Success;
 
-            //    throw new AppException(e.Message);
+                    //    logicResult.Message.Add(NotificationMessages.CreateSuccess);
 
-            //}
+                    //}
+
+
+                    //else
+                    //{
+                    //    logicResult.MessageType = MessageType.Error;
+                    //    logicResult.Message.Add(result.DumpErrors());
+                    //}
+
+
+
+                }
+                else
+                {
+                    throw new AppException(ModelState.GetErrorsModelState());
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new AppException(e.Message);
+
+            }
 
             return Ok(NotificationMessages.CreateSuccess);
         }

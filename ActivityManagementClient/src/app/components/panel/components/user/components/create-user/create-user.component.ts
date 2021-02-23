@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/components/auth/services/auth.service';
+import { ApiResult } from 'src/app/models/apiresult';
 import { User } from 'src/app/models/user/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 import { UserGridService } from '../../services/User.Grid.service';
@@ -25,7 +26,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
 
     this.useForm = this.formBuilder.group({
-
+      id: [],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
@@ -51,14 +52,14 @@ export class CreateUserComponent implements OnInit {
   }
 
   onSave(e) {
-    console.log(e);
+    e.preventDefault();
     this.save.emit(this.useForm.value);
-    this.isActiveForm = false;
+    //this.isActiveForm = false;
 
   }
 
   closeForm(e) {
-
+    e.preventDefault();
     this.isActiveForm = false;
     this.cancel.emit();
   }
