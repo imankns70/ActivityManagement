@@ -15,6 +15,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { UsersBindingDirective } from './components/user-list/users-binding.directive';
 import { UserGridService } from './services/User.Grid.service';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { DpDatePickerModule } from 'ng2-jalali-date-picker';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     ReactiveFormsModule,
     CommonModule,
     FileUploadModule,
-    KendoModule
+    KendoModule,
+    DpDatePickerModule
    
   ],
   declarations: [
