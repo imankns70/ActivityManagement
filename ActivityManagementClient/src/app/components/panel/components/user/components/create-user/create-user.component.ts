@@ -21,8 +21,8 @@ export class CreateUserComponent implements OnInit {
   @Output() save: EventEmitter<User> = new EventEmitter();
 
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService,
-    private userGridService: UserGridService, private alertService: NotificationMessageService) { }
+  constructor(private formBuilder: FormBuilder,
+   private alertService: NotificationMessageService) { }
   ngOnInit() {
 
     this.useForm = this.formBuilder.group({
