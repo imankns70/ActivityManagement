@@ -9,6 +9,7 @@ namespace ActivityManagement.ViewModels.UserManager
     public class UserViewModelApi
     {
         public int? Id { get; set; }
+        public int? RoleId { get; set; }
 
         public string Image { get; set; }
         public IFormFile File { get; set; }
@@ -33,6 +34,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public IEnumerable<string> Roles { get; set; }
         public string Token { get; set; }
         public string PersianBirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string Password { get; set; }
 
         public GenderType? Gender { get; set; }

@@ -143,7 +143,7 @@ namespace ActivityManagementApi.Controllers.v1
                     user.BirthDate = viewModel.BirthDate;
                     user.PhoneNumber = viewModel.PhoneNumber;
                     user.IsActive = true;
-                    user.Image = viewModel.ImageFile != null ? viewModel.ImageFile.FileName : "";
+                    //user.Image = viewModel.File != null ? viewModel.File.FileName : "";
                     if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
 
                     result = await _userManager.CreateAsync(user, viewModel.Password);

@@ -46,6 +46,23 @@
         </kendo-formfield>
 
         <kendo-formfield>
+            <kendo-label [for]="persianBirthDate" text="تاریخ تولد"></kendo-label>
+            <!-- <input formControlName="persianBirthDate" kendoTextBox #persianBirthDate required /> -->
+            <dp-date-picker 
+            required
+            kendoTextBox
+            #persianBirthDate
+            dir="rtl"
+            formControlName="persianBirthDate"
+            mode="day"
+            theme="dp-material"
+            >
+          </dp-date-picker>
+
+            <!-- <kendo-formhint>Type units</kendo-formhint> -->
+            <kendo-formerror> تاریخ تولد را وارد کنید</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
             <kendo-label [for]="password" text="کلمه عبور"> </kendo-label>
             <input formControlName="password" #password kendoTextBox required/>
             <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)">

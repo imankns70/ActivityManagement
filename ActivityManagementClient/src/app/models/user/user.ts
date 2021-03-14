@@ -1,7 +1,7 @@
 import { gender } from 'src/app/models/enums/gender';
 
 export interface User {
-    id: string,
+    id: number,
     firstName: string,
     lastName: string,
     userName: string,

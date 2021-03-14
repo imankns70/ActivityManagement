@@ -27,9 +27,11 @@ export class CreateUserComponent implements OnInit {
 
     this.useForm = this.formBuilder.group({
       id: [],
+      roleId: [2],
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
+      persianBirthDate: ['1395-11-22', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       gender: ['', Validators.required],
