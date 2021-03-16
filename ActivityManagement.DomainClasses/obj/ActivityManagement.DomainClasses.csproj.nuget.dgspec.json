@@ -24,7 +24,14 @@
           "netcoreapp3.1"
         ],
         "sources": {
+<<<<<<< HEAD
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+=======
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {}
+>>>>>>> 7417351a277fb20e1f56a9a8e2cee385059763b5
         },
         "frameworks": {
           "netcoreapp3.1": {
