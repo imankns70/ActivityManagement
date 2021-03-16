@@ -1,5 +1,6 @@
-<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="270" filterable="menu" 
-  (add)="renderAddUser()">
+<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="600" filterable="menu" 
+  (add)="renderAddUser()"
+  (edit)="renderEditUser($event)">
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand>ایجاد کاربر</button>
   </ng-template>
@@ -9,9 +10,9 @@
   <kendo-grid-column field="userName" title="نام کاربری" [editable]="false"></kendo-grid-column>
   <kendo-grid-column field="email" title="ایمیل"></kendo-grid-column>
   <kendo-grid-command-column title="عملیات" width="220">
-    <ng-template kendoGridCellTemplate let-isNew="isNew">
-      <button kendoGridEditCommand [primary]="true">Edit</button>
-      <button kendoGridRemoveCommand>Remove</button>
+    <ng-template kendoGridCellTemplate>
+      <button kendoGridEditCommand [primary]="true">ویرایش</button>
+      <!-- <button kendoGridRemoveCommand>Remove</button> -->
       <!-- <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> -->
       <!-- <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button> -->
     </ng-template>
@@ -19,11 +20,17 @@
 </kendo-grid>
 
 <app-create-user  
-[isActiveForm]="isActiveForm"
-(cancel)="cancelHandler()"
+[isActiveCreateForm]="isActiveCreateForm"
 (save)="saveHandler($event)"
 >
 </app-create-user>
+
+<app-edit-user [model]="editUser" 
+[isActiveEditForm]="isActiveEditForm"
+(save)="saveHandler($event)"
+>
+</app-edit-user>
+
 <!-- <app-edit-user>
 </app-edit-user> -->
 <!-- <ng-container #container></ng-container> -->

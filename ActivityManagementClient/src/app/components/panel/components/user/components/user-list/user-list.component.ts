@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
 import { Globals } from 'src/app/models/enums/Globals';
 import { UserService } from 'src/app/components/panel/services/user.service';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -13,8 +14,10 @@ import { UserService } from 'src/app/components/panel/services/user.service';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  
-  public isActiveForm: boolean;
+
+  public isActiveEditForm: boolean;
+  public isActiveCreateForm: boolean;
+  public editUser: User;
   public state: State = {
     skip: 1,
     take: 10,
@@ -31,38 +34,54 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
 
-
-
   }
 
   renderAddUser() {
 
-    this.isActiveForm = true;
+    this.isActiveCreateForm = true;
 
   }
+
+
+
+  saveHandler(formbuilder: FormGroup) {
+    this.isActiveCreateForm = false;
+    const user: User = formbuilder.value
+    if (user.id != null) {
+
+      this.userService.createUser(formbuilder.value).subscribe(res => {
+
+        if (res.isSuccess) {
+
+          formbuilder.reset()
+          this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
+          this.userGridService.query(this.state);
+        } else {
+          this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
+
+        }
+
+      }, error => {
+
+        this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
+      });
+    }
+    else {
+      console.log(user);
+    }
+
+  }
+
+  renderEditUser({dataItem}) {
  
-  saveHandler(user: User) {
-    debugger;
-      
-    this.userService.createUser(user).subscribe(res => {
-      debugger;
-      if (res.isSuccess) {
-        this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
-        this.userGridService.query(this.state);
-      } else {
-        this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
-
-      }
-
-    }, error => {
-      this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
-    });
-
+    this.isActiveEditForm = true;
+    this.editUser = dataItem;
   }
 
-  
   cancelHandler() {
-    this.isActiveForm = false;
+    this.isActiveEditForm = false;
+    this.isActiveEditForm = false;
+
   }
 
 
