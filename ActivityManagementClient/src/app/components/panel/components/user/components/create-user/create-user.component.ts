@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
-import { ApiResult } from 'src/app/models/apiresult';
 import { User } from 'src/app/models/user/user';
 import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
-import { UserGridService } from '../../services/User.Grid.service';
 
 @Component({
   selector: 'app-create-user',
@@ -16,13 +13,11 @@ export class CreateUserComponent implements OnInit {
 
   useForm: FormGroup;
 
-  @Input() public isActiveForm = false;
-  @Output() cancel: EventEmitter<any> = new EventEmitter();
-  @Output() save: EventEmitter<User> = new EventEmitter();
+  @Input() public isActiveCreateForm = false;
+  @Output() save: EventEmitter<FormGroup> = new EventEmitter();
 
 
-  constructor(private formBuilder: FormBuilder,
-   private alertService: NotificationMessageService) { }
+  constructor(private formBuilder: FormBuilder) { }
   ngOnInit() {
 
     this.useForm = this.formBuilder.group({
@@ -31,7 +26,7 @@ export class CreateUserComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      persianBirthDate: ['1395-11-22', Validators.required],
+      persianBirthDate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10)]],
       gender: ['', Validators.required],
@@ -55,14 +50,14 @@ export class CreateUserComponent implements OnInit {
 
   onSave(e) {
     e.preventDefault();
-    this.save.emit(this.useForm.value);
+    this.save.emit(this.useForm);
     //this.isActiveForm = false;
 
   }
 
   closeForm(e) {
     e.preventDefault();
-    this.isActiveForm = false;
-    this.cancel.emit();
+    this.isActiveCreateForm = false;
+    //this.cancel.emit();
   }
 }

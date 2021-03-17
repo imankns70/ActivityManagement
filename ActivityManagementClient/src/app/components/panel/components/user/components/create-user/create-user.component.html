@@ -1,4 +1,4 @@
-<kendo-dialog *ngIf="isActiveForm" [width]="400" [height]="550" (close)="closeForm($event)">
+<kendo-dialog *ngIf="isActiveCreateForm" [width]="400" [height]="550" (close)="closeForm($event)">
     <kendo-dialog-titlebar>
         ایجاد کاربر جدید
     </kendo-dialog-titlebar>
@@ -49,7 +49,7 @@
             <kendo-label [for]="persianBirthDate" text="تاریخ تولد"></kendo-label>
             <!-- <input formControlName="persianBirthDate" kendoTextBox #persianBirthDate required /> -->
             <dp-date-picker 
-            required
+          
             kendoTextBox
             #persianBirthDate
             dir="rtl"
@@ -60,7 +60,7 @@
           </dp-date-picker>
 
             <!-- <kendo-formhint>Type units</kendo-formhint> -->
-            <kendo-formerror> تاریخ تولد را وارد کنید</kendo-formerror>
+            <!-- <kendo-formerror> تاریخ تولد را وارد کنید</kendo-formerror> -->
         </kendo-formfield>
         <kendo-formfield>
             <kendo-label [for]="password" text="کلمه عبور"> </kendo-label>

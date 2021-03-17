@@ -31,9 +31,10 @@ namespace ActivityManagementApi.Controllers.v1
         private readonly IApplicationUserManager _userManager;
         private readonly IApplicationRoleManager _roleManager;
 
-        public UserManagerController(IApplicationUserManager userManager)
+        public UserManagerController(IApplicationUserManager userManager, IApplicationRoleManager roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
 
