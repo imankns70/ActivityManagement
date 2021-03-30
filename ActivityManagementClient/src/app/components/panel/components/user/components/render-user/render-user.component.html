@@ -1,12 +1,12 @@
-<kendo-dialog *ngIf="isActiveCreateForm" [width]="400" [height]="550" (close)="closeForm($event)">
-    <kendo-dialog-titlebar>
-        ایجاد کاربر جدید
-    </kendo-dialog-titlebar>
+<kendo-dialog *ngIf="active" [width]="400" [height]="550" (close)="closeForm()">
 
+    <kendo-dialog-titlebar>
+        {{ modalTitle }}
+    </kendo-dialog-titlebar>
     <form class="k-form" [formGroup]="useForm">
         <kendo-formfield>
             <kendo-label [for]="firstname" text="نام"></kendo-label>
-            <input formControlName="firstname" kendoTextBox #firstname required />
+            <input formControlName="firstName" kendoTextBox #firstname required />
 
             <!-- <kendo-formhint>Type product name</kendo-formhint> -->
             <kendo-formerror>نام را وارد کنید</kendo-formerror>
@@ -14,7 +14,7 @@
 
         <kendo-formfield>
             <kendo-label [for]="lastname" text="نام خانوادگی"></kendo-label>
-            <input formControlName="lastname" kendoTextBox #lastname required />
+            <input formControlName="lastName" kendoTextBox #lastname required />
 
             <!-- <kendo-formhint>Type unit price</kendo-formhint> -->
             <kendo-formerror>نام خانوادگی را وارد کنید</kendo-formerror>
@@ -22,7 +22,7 @@
 
         <kendo-formfield>
             <kendo-label [for]="username" text="نام کاربری"></kendo-label>
-            <input formControlName="username" kendoTextBox #username required />
+            <input formControlName="userName" kendoTextBox #username required />
 
 
             <!-- <kendo-formhint>Type units</kendo-formhint> -->
@@ -47,24 +47,19 @@
 
         <kendo-formfield>
             <kendo-label [for]="persianBirthDate" text="تاریخ تولد"></kendo-label>
-            <!-- <input formControlName="persianBirthDate" kendoTextBox #persianBirthDate required /> -->
-            <dp-date-picker 
-          
-            kendoTextBox
-            #persianBirthDate
-            dir="rtl"
-            formControlName="persianBirthDate"
-            mode="day"
-            theme="dp-material"
-            >
-          </dp-date-picker>
+            <input type="text" formControlName="persianBirthDate" #persianBirthDate />
 
-            <!-- <kendo-formhint>Type units</kendo-formhint> -->
-            <!-- <kendo-formerror> تاریخ تولد را وارد کنید</kendo-formerror> -->
+            <ng-persian-datepicker [input]="persianBirthDate" [uiTheme]="'default'" [dateInitValue]="true"
+                [timeMeridian]="true">
+            </ng-persian-datepicker>
+
+
+
         </kendo-formfield>
+
         <kendo-formfield>
             <kendo-label [for]="password" text="کلمه عبور"> </kendo-label>
-            <input formControlName="password" #password kendoTextBox required/>
+            <input formControlName="password" #password kendoTextBox required />
             <div *ngIf="passwordField.invalid && (passwordField.dirty || passwordField.touched)">
 
                 <kendo-formerror *ngIf="passwordField.errors.required">
@@ -81,6 +76,7 @@
             </div>
 
 
+            <!-- <kendo-formhint>Type units</kendo-formhint> -->
 
 
         </kendo-formfield>
@@ -91,15 +87,16 @@
 
             <ul class="k-radio-list k-list-horizontal">
                 <li class="k-radio-item">
-                    <input type="radio" #male value="male" kendoRadioButton [formControlName]="'gender'" />
-                    <kendo-label class="k-radio-label" [for]="male" text="مرد"></kendo-label>
+                    <input type="radio" value="male" formControlName="gender"/>
+                    <kendo-label class="k-radio-label" text="مرد"></kendo-label>
                 </li>
 
                 <li class="k-radio-item">
-                    <input type="radio" #female value="female" kendoRadioButton [formControlName]="'gender'" />
-                    <kendo-label class="k-radio-label" [for]="female" text="زن"></kendo-label>
+
+                    <input type="radio" value="female" formControlName="gender"/>
+                    <kendo-label class="k-radio-label" text="زن"></kendo-label>
                 </li>
-                
+
             </ul>
 
             <kendo-formerror>جنسیت اجباری می باشد</kendo-formerror>
@@ -107,7 +104,8 @@
     </form>
 
     <kendo-dialog-actions>
-        <button class="k-button" (click)="closeForm($event)">انصراف</button>
+        <button class="k-button" (click)="closeForm()">انصراف</button>
         <button class="k-button k-primary" [disabled]="!useForm.valid" (click)="onSave($event)">ذخیره</button>
     </kendo-dialog-actions>
+
 </kendo-dialog>

@@ -14,16 +14,18 @@ const routes: Routes = [
         children: [
             {
                 path: 'myprofile', canActivate: [AuthGuard],
+                data: { title: ['پروفایل شخصی'] },
                 component: MyProfileComponent,
                 resolve: { user: UserProfileResolver },
                 canDeactivate: [PreventUnsavedGuard]
             },
             {
                 path: 'userlist', canActivate: [AuthGuard],
-                data:{roles:['Admin']},
+
+                data: { roles: ['Admin'], title: ['لیست کاربران'] },
                 component: UserListComponent,
             }
-            
+
         ]
     }
 

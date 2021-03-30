@@ -65,19 +65,21 @@ namespace ActivityManagement.Services.EfServices.Identity
 
         public List<Claim> GetDynamicPermissionClaimsByRoleIdAsync(List<UserRole> userRoles)
         {
+
             List<Claim> claimsList = new List<Claim>();
             IEnumerable<int> roleIds = userRoles.Select(x => x.RoleId);
-            IEnumerable<AppRole> rolesModel =  Roles.Include(nav => nav.Claims).Where(x => roleIds.Contains(x.Id));
+            IEnumerable<AppRole> rolesModel = Roles.Include(nav => nav.Claims).Where(x => roleIds.Contains(x.Id));
             if (rolesModel != null)
             {
                 claimsList.AddRange(rolesModel.SelectMany(s => s.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
                  .Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue))).ToList());
 
-                    //(role.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
-                    //.Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue)).ToList());
+                //(role.Claims.Where(a => a.ClaimType == ConstantPolicies.DynamicPermission)
+                //.Select(x => new Claim(ConstantPolicies.DynamicPermissionClaimType, x.ClaimValue)).ToList());
             }
 
             return claimsList;
+
 
         }
 

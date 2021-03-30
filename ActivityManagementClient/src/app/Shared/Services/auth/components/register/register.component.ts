@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../auth/services/auth.service';
-import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { AuthService } from '../../services/auth.service';
+import { NotificationMessageService } from 'src/app/Shared/Services/NotificationMessage.service';
 import { Globals } from 'src/app/models/enums/Globals';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 

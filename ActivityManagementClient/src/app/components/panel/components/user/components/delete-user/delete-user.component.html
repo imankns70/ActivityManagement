@@ -1,0 +1,12 @@
+<kendo-dialog *ngIf="active" [width]="300" [height]="150" (close)="closeForm()">
+  <kendo-dialog-titlebar>
+   حذف کاربر
+</kendo-dialog-titlebar>
+  <p>
+    {{userInfo}}
+   </p>
+   <button class="k-button" (click)="closeForm()">انصراف</button>
+   <button class="k-button k-primary" (click)="onDelete()">ذخیره</button>
+</kendo-dialog>
+
+

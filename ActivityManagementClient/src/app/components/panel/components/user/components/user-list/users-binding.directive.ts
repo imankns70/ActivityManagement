@@ -10,16 +10,16 @@ import { UserGridService } from '../../services/User.Grid.service';
 export class UsersBindingDirective extends DataBindingDirective implements OnInit, OnDestroy {
 
   private serviceSubscription: Subscription;
+   
   public state: State = {
     skip: 1,
-    take: 20,
+    take: 10,
     // filter: { filters: [], logic: 'or' },
     group: [],
     sort: [],
-    
+
 
   }
-
   constructor(private userGridService: UserGridService, grid: GridComponent) {
 
     super(grid)
@@ -49,9 +49,9 @@ export class UsersBindingDirective extends DataBindingDirective implements OnIni
 }
 
   public rebind() {
-    
+
     this.grid.loading = true;
-    this.userGridService.query(this.state)
+    this.userGridService.read(this.state)
   }
 
   addHandler(){

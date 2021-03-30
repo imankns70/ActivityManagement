@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Globals } from '../models/enums/Globals';
+import { Globals } from '../../models/enums/Globals';
 
 @Injectable({
   providedIn: 'root'

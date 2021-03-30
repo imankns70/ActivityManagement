@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { GridDataResult } from '@progress/kendo-angular-grid';
-import { toDataSourceRequestString } from '@progress/kendo-data-query';
+import { State, toDataSourceRequestString } from '@progress/kendo-data-query';
 import { BehaviorSubject, Observable, } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ApiResult } from '../models/apiresult';
+import { ApiResult } from '../../models/apiresult';
 
 
 export abstract class KednoGridService extends BehaviorSubject<GridDataResult> {
@@ -12,17 +12,16 @@ export abstract class KednoGridService extends BehaviorSubject<GridDataResult> {
   baseUrl = environment.apiUrl;
 
   public loading: boolean;
-
+ 
   constructor(private http: HttpClient, protected action: string) {
     super(null);
-
 
   }
 
 
-  public query(state: any): void {
+  public read(state: any): void {
 
-    this.fetch(this.action, state)
+    this.fetch(this.action,state)
       .subscribe(x => super.next(x));
   }
 
@@ -36,7 +35,6 @@ export abstract class KednoGridService extends BehaviorSubject<GridDataResult> {
       .get(`${this.baseUrl}${action}?${queryStr}`)
       .pipe(
         map((response: ApiResult): GridDataResult => {
-
 
           return {
 

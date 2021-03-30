@@ -14,7 +14,16 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "ng-persian-datepicker": [
+        "dist/ng-persian-datepicker"
+      ],
+      "ng-persian-datepicker/*": [
+        "dist/ng-persian-datepicker/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { State } from '@progress/kendo-data-query';
 import { UserGridService } from '../../services/User.Grid.service';
 import { User } from 'src/app/models/user/user';
-import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { NotificationMessageService } from 'src/app/Shared/Services/NotificationMessage.service';
 import { Globals } from 'src/app/models/enums/Globals';
 import { UserService } from 'src/app/components/panel/services/user.service';
 import { FormGroup } from '@angular/forms';
+import { error } from '@angular/compiler/src/util';
+import { debugOutputAstAsTypeScript } from '@angular/compiler';
 
 
 @Component({
@@ -15,9 +17,11 @@ import { FormGroup } from '@angular/forms';
 })
 export class UserListComponent implements OnInit {
 
-  public isActiveEditForm: boolean;
-  public isActiveCreateForm: boolean;
-  public editUser: User;
+  public isNew: boolean;
+  //public activeDeleteUser = false;
+  public userDataItem: User;
+  public userDelete: User;
+
   public state: State = {
     skip: 1,
     take: 10,
@@ -33,29 +37,37 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
 
+
+  renderDeleteUser({ dataItem }) {
+
+    //this.isActiveEditForm = true;
+    this.userDelete = dataItem;
+
+  }
+  renderEditUser({ dataItem }) {
+    //this.isActiveEditForm = true;
+    this.userDataItem = dataItem;
+    this.isNew = false;
   }
 
   renderAddUser() {
-
-    this.isActiveCreateForm = true;
-
+    this.isNew = true;
+    this.userDataItem = {} as User;
   }
 
+  saveHandler(user: User) {
+    user.roleId = 2;
+    if (user.id == null) {
 
-
-  saveHandler(formbuilder: FormGroup) {
-    this.isActiveCreateForm = false;
-    const user: User = formbuilder.value
-    if (user.id != null) {
-
-      this.userService.createUser(formbuilder.value).subscribe(res => {
+      this.userService.createUser(user).subscribe(res => {
 
         if (res.isSuccess) {
 
-          formbuilder.reset()
+
           this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
-          this.userGridService.query(this.state);
+          this.userGridService.read(this.state);
         } else {
           this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
 
@@ -67,20 +79,55 @@ export class UserListComponent implements OnInit {
       });
     }
     else {
-      console.log(user);
+   
+      this.userService.editUser(user).subscribe(res => {
+
+        if (res.isSuccess) {
+
+
+          this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
+          this.userGridService.read(this.state);
+        } else {
+          this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
+
+        }
+
+      }, error => {
+
+        this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
+      });
     }
 
   }
 
-  renderEditUser({dataItem}) {
+  deleteHandler(user: User) {
  
-    this.isActiveEditForm = true;
-    this.editUser = dataItem;
+    this.userService.deleteUser(user).subscribe(res => {
+      if (res.isSuccess) {
+
+        this.alertService.showMessage(res.data, 'عملیات موفقیت آمیز', Globals.successMessage);
+        this.userGridService.read(this.state);
+
+      }
+      else {
+        this.alertService.showMessage(res.data, 'خطا در عملیات', Globals.errorMessage);
+
+      }
+
+    }, error => {
+      this.alertService.showMessage('خطا رخ داده است', error, Globals.errorMessage);
+
+
+    });
+
   }
 
   cancelHandler() {
-    this.isActiveEditForm = false;
-    this.isActiveEditForm = false;
+    debugger;
+    this.userDataItem = undefined;
+
+    //this.isActiveEditForm = false;
+    //this.isActiveEditForm = false;
 
   }
 

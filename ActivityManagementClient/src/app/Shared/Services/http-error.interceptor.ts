@@ -18,8 +18,8 @@ import {
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 
 import { catchError, tap, switchMap, finalize, filter, take } from 'rxjs/operators';
-import { StatusCode } from '../models/enums/StatusCode';
-import { AuthService } from '../components/auth/services/auth.service';
+import { StatusCode } from '../../models/enums/StatusCode';
+import { AuthService } from './auth/services/auth.service';
 import { NotificationMessageService } from './NotificationMessage.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';

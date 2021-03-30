@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { UserService } from '../components/panel/services/user.service';
 import { Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { NotificationMessageService } from '../Services/NotificationMessage.service';
+import { NotificationMessageService } from '../Shared/Services/NotificationMessage.service';
 import { Observable, of, empty } from 'rxjs';
  import { ApiResult } from '../models/apiresult';
 

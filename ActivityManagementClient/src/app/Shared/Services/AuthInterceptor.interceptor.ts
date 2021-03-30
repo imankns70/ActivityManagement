@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, filter, take, switchMap, tap } from 'rxjs/operators';
-import { AuthService } from '../components/auth/services/auth.service';
-import { StatusCode } from '../models/enums/StatusCode';
+import { AuthService } from './auth/services/auth.service';
+import { StatusCode } from '../../models/enums/StatusCode';
 import { Router } from '@angular/router';
 import { NotificationMessageService } from './NotificationMessage.service';
-import { Globals } from '../models/enums/Globals';
+import { Globals } from '../../models/enums/Globals';
 import { environment } from 'src/environments/environment';
 
 @Injectable()

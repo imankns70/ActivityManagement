@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 import { ApiResult } from 'src/app/models/apiresult';
-import { AuthService } from 'src/app/components/auth/services/auth.service';
+import { AuthService } from 'src/app/Shared/Services/auth/services/auth.service';
 
 @Component({
   selector: 'app-change-pic',

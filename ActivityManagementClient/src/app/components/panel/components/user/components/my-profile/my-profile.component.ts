@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from 'src/app/models/user/user';
-import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { NotificationMessageService } from 'src/app/Shared/Services/NotificationMessage.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Globals } from 'src/app/models/enums/Globals';
@@ -41,7 +41,7 @@ export class MyProfileComponent implements OnInit {
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.email]],
       phoneNumber: [this.user.phoneNumber, Validators.required],
-      persianBirthDate: [this.user.persianBirthDate, Validators.required],
+      persianBirthDate: ['', Validators.required],
       gender: [this.user.gender == gender.male ? "Male" : "Female", Validators.required],
 
     })

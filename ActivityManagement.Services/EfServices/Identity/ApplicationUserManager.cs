@@ -88,6 +88,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
         public List<UsersViewModel> GetAllUsersWithRoles()
         {
+            
             return Users.Include(user => user.Roles).Select(user => new UsersViewModel
             {
 
@@ -95,9 +96,12 @@ namespace ActivityManagement.Services.EfServices.Identity
                 LockOutEndCustom = user.LockoutEnd != null ? user.LockoutEnd.Value.DateTime.ToLocalTime() : (DateTime?)null,
                 IsActive = user.IsActive,
                 Image = user.Image,
-                PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                //PersianBirthDate = user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd"),
+                PersianBirthDate = user.BirthDate.HasValue ? user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "",
+
                 PersianRegisterDateTime = user.RegisterDateTime.ConvertGeorgianToPersian("yyyy/MM/dd"),
                 GenderName = user.Gender != null ? user.Gender == GenderType.Male ? "مرد" : "زن" : "",
+                Gender= user.Gender,
                 RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault(),
                 Email = user.Email,
                 UserName = user.UserName,

@@ -13,7 +13,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
     DialogsModule,
     DialogModule,
     InputsModule,
-    LabelModule
+    LabelModule,
+
   ],
   exports: [
     GridModule,

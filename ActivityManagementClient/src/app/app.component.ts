@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TitleService } from './Shared/Services/titleservice.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+   
+  constructor(private titleService :TitleService) {
+       
+  }
+ngOnInit(){
+  this.titleService.init()
+}
 
-  title = 'test-one';
 
 }

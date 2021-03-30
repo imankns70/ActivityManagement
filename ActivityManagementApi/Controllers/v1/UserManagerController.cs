@@ -25,7 +25,7 @@ namespace ActivityManagementApi.Controllers.v1
 {
     [Route("api/v{version:apiVersion}/[controller]/")]
     [ApiVersion("1")]
-    //[ApiResultFilter]
+    [ApiResultFilter]
     public class UserManagerController : ControllerBase
     {
         private readonly IApplicationUserManager _userManager;
@@ -189,6 +189,95 @@ namespace ActivityManagementApi.Controllers.v1
             }
 
             return Ok(NotificationMessages.CreateSuccess);
+        }
+
+        [HttpPost("EditUser")]
+        public async Task<ApiResult<string>> EditUser([FromBody]UserViewModelApi viewModel)
+        {
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    IdentityResult result;
+                    AppUser user = new AppUser();
+                    viewModel.BirthDate = viewModel.PersianBirthDate.ConvertPersianToGeorgian();
+
+
+                    user = await _userManager.FindByIdAsync(viewModel.Id.ToString());
+
+                    var userRoles = await _userManager.GetRolesAsync(user);
+                    result = await _userManager.RemoveFromRolesAsync(user, userRoles);
+                    if (result.Succeeded)
+                    {
+                        user.UserName = viewModel.UserName;
+                        user.FirstName = viewModel.FirstName;
+                        user.LastName = viewModel.LastName;
+                        user.BirthDate = viewModel.BirthDate;
+                        user.Email = viewModel.Email;
+                        user.PhoneNumber = viewModel.PhoneNumber;
+                        user.IsActive = viewModel.IsActive;
+                        if (viewModel.Gender != null) user.Gender = viewModel.Gender.Value;
+
+                        result = await _userManager.UpdateAsync(user);
+
+                        await _userManager.UpdateSecurityStampAsync(user);
+
+                        
+                    }
+
+
+                }
+                else
+                {
+                    throw new AppException(ModelState.GetErrorsModelState());
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw new AppException(e.Message);
+
+            }
+
+            return Ok(NotificationMessages.CreateSuccess);
+        }
+
+        [HttpPost("DeleteUser")]
+        public async Task<ApiResult<string>> DeleteUser([FromBody]UserViewModelApi viewModel)
+        {
+
+            try
+            {
+
+                var user = await _userManager.FindByIdAsync(viewModel.Id.ToString());
+                if (user == null)
+                {
+
+                    throw new AppException(NotificationMessages.UserNotFound);
+
+                }
+
+                else
+                {
+                    await _userManager.DeleteAsync(user);
+
+
+                }
+
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                throw new AppException(e.Message);
+
+            }
+
+            return Ok(NotificationMessages.OperationSuccess);
         }
 
 

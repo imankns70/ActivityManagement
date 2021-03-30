@@ -10,9 +10,9 @@ import {
    NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
-import { AuthService } from '../app/components/auth/services/auth.service';
+import { AuthService } from './Shared/Services/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
-import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { AuthInterceptor } from './Shared/Services/AuthInterceptor.interceptor';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

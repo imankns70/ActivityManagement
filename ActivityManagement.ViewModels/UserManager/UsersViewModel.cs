@@ -59,16 +59,16 @@ namespace ActivityManagement.ViewModels.UserManager
 
         [Display(Name = "تاریخ تولد")]
         [Required(ErrorMessage = "وارد نمودن {0} الزامی است.")]
-        public string PersianBirthDate
-        {
+        public string PersianBirthDate { get; set; }
+    //    {
 
-            get => BirthDate.HasValue ? BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "";
-            set
-            {
-                if (value == null) throw new ArgumentNullException("برای تاریخ تولد به شمسی مقدار خالی پر نشود");
+    //        get => BirthDate.HasValue? BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "";
+    //        set
+    //        {
+    //            if (value == null) throw new ArgumentNullException("برای تاریخ تولد به شمسی مقدار خالی پر نشود");
 
-            }
-        }
+    //}
+//}
 
         public string Token { get; set; }
 

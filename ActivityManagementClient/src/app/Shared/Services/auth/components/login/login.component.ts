@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../auth/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from 'src/app/models/enums/Globals';
-import { NotificationMessageService } from 'src/app/Services/NotificationMessage.service';
+import { NotificationMessageService } from 'src/app/Shared/Services/NotificationMessage.service';
 import { User } from 'src/app/models/user/user';
 
 
