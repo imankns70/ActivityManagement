@@ -6,6 +6,7 @@ import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { tap } from 'rxjs/operators';
+import { url } from 'inspector';
 
 
 @Injectable({
@@ -90,16 +91,58 @@ export class AuthService {
     let isMatch = false;
     const user = JSON.parse(localStorage.getItem('user'));
     const roles = user.roles as Array<string>
-    allowedRoles.forEach(element => {
-      if (roles.includes(element)) {
-        isMatch = true;
-      }
-    });
+
+    if (Array.isArray(roles)) {
+
+      allowedRoles.forEach(element => {
+        if (roles.includes(element)) {
+          isMatch = true;
+        }
+      });
+
+    } else {
+
+      allowedRoles.forEach(element => {
+        if (roles === element) {
+          isMatch = true;
+        }
+      });
+    }
+
 
     return isMatch;
 
   }
 
+  getDashboardUrls(routeRoles: Array<string>): string {
+    let url = '';
+
+
+    if (Array.isArray(routeRoles)) {
+
+
+      if (routeRoles.includes('Admin')) {
+        url = 'set url admin ...';
+      }
+
+      if (routeRoles.includes('user')) {
+        url = 'set url user ...';
+      }
+
+    }
+    else {
+      if (routeRoles === 'Admin') {
+        url = 'set url admin ...';
+      }
+
+      if (routeRoles === 'user') {
+        url = 'set url user ...';
+      }
+
+    }
+    return url;
+
+  }
   getUser(): any {
     return JSON.parse(localStorage.getItem('user'));
 

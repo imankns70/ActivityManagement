@@ -3158,7 +3158,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Common.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.DataLayer/1.0.0": {
         "type": "project",
@@ -3176,7 +3179,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.DataLayer.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.DomainClasses/1.0.0": {
         "type": "project",
@@ -3205,7 +3211,10 @@
         },
         "runtime": {
           "bin/placeholder/ActivityManagement.Services.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "ActivityManagement.ViewModels/1.0.0": {
         "type": "project",
@@ -9708,6 +9717,7 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+        "D:\\Projects\\Nuget": {},
         "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
         "https://api.nuget.org/v3/index.json": {}
       },

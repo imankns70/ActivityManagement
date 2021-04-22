@@ -23,6 +23,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -102,6 +103,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -184,6 +186,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -244,6 +247,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -315,6 +319,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -390,6 +395,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -421,6 +427,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -448,6 +457,7 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files (x86)\\Progress\\Telerik UI for ASP.NET Core R3 2019\\wrappers\\aspnetcore\\Binaries\\AspNet.Core": {},
+          "D:\\Projects\\Nuget": {},
           "http://tfsapp:8080/tfs/TFSKSCCollection/_packaging/NugetPackageFeed/nuget/v3/index.json": {},
           "https://api.nuget.org/v3/index.json": {}
         },

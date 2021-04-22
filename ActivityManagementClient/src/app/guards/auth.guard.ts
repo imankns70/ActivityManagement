@@ -28,6 +28,9 @@ export class AuthGuard implements CanActivate {
         } else {
           this.alert.showMessage('شما به این بخش دسترسی ندارید', 'عدم دسترسی', Globals.errorMessage);
           return  this.router.navigate(['/auth/login']);
+          // ریداریکت کدن کاربر به بخش ماژول خودش
+          //return  this.router.navigate([this.authService.getDashboardUrls(roles));
+          
         
 
         }
