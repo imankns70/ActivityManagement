@@ -19,7 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
-
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
    bgsOpacity:0.5,
