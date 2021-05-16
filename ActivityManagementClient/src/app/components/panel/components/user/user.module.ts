@@ -16,6 +16,7 @@ import { UserGridService } from './services/User.Grid.service';
 import { RenderUserComponent } from './components/render-user/render-user.component';
 import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
 import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+ 
 @NgModule({
   imports: [
     UserRoutingModule,
@@ -24,7 +25,9 @@ import { DeleteUserComponent } from './components/delete-user/delete-user.compon
     CommonModule,
     FileUploadModule,
     KendoModule,
-    NgPersianDatepickerModule
+    NgPersianDatepickerModule,
+  
+
  
    
   ],

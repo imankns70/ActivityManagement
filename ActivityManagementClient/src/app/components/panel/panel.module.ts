@@ -9,10 +9,8 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
 import { SharedService } from 'src/app/Shared/Services/shared-service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
-import { StoreModule } from '@ngrx/store';
-import { helloMessageReducer } from 'src/app/store/helloWorld/helloMessage.reducer';
  
-
+ 
 
 
 @NgModule({
@@ -20,7 +18,8 @@ import { helloMessageReducer } from 'src/app/store/helloWorld/helloMessage.reduc
 
     PanelRoutingModule,
     CommonModule,
-    StoreModule.forRoot({helloMessage:helloMessageReducer}),
+ 
+ 
 
 
   ],

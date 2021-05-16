@@ -15,6 +15,8 @@ import { AuthService } from './Shared/Services/auth/services/auth.service';
 import { AuthInterceptor } from './Shared/Services/AuthInterceptor.interceptor';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule, } from '@ngrx/store';
+import { EffectsModule, } from '@ngrx/effects';
 
 
 
@@ -61,6 +63,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
       }),
       DialogsModule,
+      StoreModule.forRoot({}),
+      //StoreRouterConnectingModule,
+      EffectsModule.forRoot([])
 
    ],
    providers: [
