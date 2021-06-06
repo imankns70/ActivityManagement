@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { gender } from 'src/app/models/enums/gender';
 import { User } from 'src/app/models/user/user';
+import { RouterStateUrl } from 'src/app/store/_model/routerStateUrl';
+import * as fromLocalStore from '../../store'
 
 @Component({
   selector: 'app-render-user',
@@ -9,6 +12,9 @@ import { User } from 'src/app/models/user/user';
   styleUrls: ['./render-user.component.scss']
 })
 export class RenderUserComponent implements OnInit {
+
+  userId: number;
+ 
 
   useForm: FormGroup;
 
@@ -42,10 +48,11 @@ export class RenderUserComponent implements OnInit {
   @Output() cancel: EventEmitter<any> = new EventEmitter();
   modalTitle: string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private store: Store<RouterStateUrl>) { }
 
   ngOnInit() {
 
+    this.store.select(fromLocalStore.getRouterUserId).subscribe(console.log)
     this.modalTitle = this.isNew ? 'ویرایش کاربر' : 'ایجادکاربر';
 
     this.useForm = this.formBuilder.group({

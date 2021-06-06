@@ -1,12 +1,17 @@
-import { ActionReducerMap } from "@ngrx/store";
-import { LoggedUserState } from "../_model/loggedUserState";
+import { ActionReducerMap, createFeatureSelector, createSelector } from "@ngrx/store";
+import { loggedUserReducer, UserLoggedState } from "./loggedUser.reducer";
+import * as fromRouter from '@ngrx/router-store';
+import { RouterStateUrl } from "../_model/routerStateUrl";
 
+
+ 
 export interface State {
-
-   // loggedUser:LoggedUserState
+    routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
+    loggedUser: UserLoggedState;
 }
 
-export const reducers :ActionReducerMap<State> ={
-  
-    //loggedUser:LoggedUserReducer
+export const reducers: ActionReducerMap<State> = {
+    routerReducer: fromRouter.routerReducer,
+    loggedUser: loggedUserReducer
 }
+ 

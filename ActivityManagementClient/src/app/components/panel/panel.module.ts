@@ -9,8 +9,11 @@ import { UserProfileCollapseComponent } from './user-profile-collapse/user-profi
 import { SharedService } from 'src/app/Shared/Services/shared-service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
- 
- 
+import { StoreModule } from '@ngrx/store';
+import { reducers } from 'src/app/store';
+import { EffectsModule } from '@ngrx/effects';
+
+
 
 
 @NgModule({
@@ -18,8 +21,10 @@ import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
 
     PanelRoutingModule,
     CommonModule,
- 
- 
+    StoreModule.forFeature('loggedUser', reducers),
+    //EffectsModule.forFeature()
+    
+
 
 
   ],
@@ -32,9 +37,9 @@ import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
     UserProfileCollapseComponent,
     HasRoleDirective
   ],
-providers:[SharedService,
-  AuthGuard 
-]
+  providers: [SharedService,
+    AuthGuard
+  ]
 
 
 })

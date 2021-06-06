@@ -38,7 +38,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        debugger;
+   
         return next.handle(this.attachTokenToRequest(request)).pipe(
             tap((event: HttpEvent<any>) => {
 
@@ -78,11 +78,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             return this.authService.refreshToken().subscribe(nex => {
 
 
-                debugger;
+      
                 switchMap((tokenResponse: any) => {
-                    debugger;
+            
                     if (tokenResponse) {
-                        debugger
+                     
                         this.tokenSubject.next(tokenResponse.accessToken);
                         localStorage.setItem('token', tokenResponse.accessToken);
                         return next.handle(this.attachTokenToRequest(request))

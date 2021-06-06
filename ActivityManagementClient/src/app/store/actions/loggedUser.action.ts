@@ -9,11 +9,11 @@ export enum loggedIUserTypes {
 
 export class EditLoggedUser implements Action {
 readonly type= loggedIUserTypes.EDIT_LOGGEDUSER;
-constructor(paylod:User){}
+constructor(public payload:User){}
 }
 export class ResetLoggedUser implements Action {
 readonly type= loggedIUserTypes.RESET_LOGGEDUSER;
  
 
 }
-export type AllLoggedUserAction= EditLoggedUser |ResetLoggedUser
+export type All= EditLoggedUser |ResetLoggedUser

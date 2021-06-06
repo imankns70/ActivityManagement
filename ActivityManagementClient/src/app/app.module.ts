@@ -17,13 +17,17 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule, } from '@ngrx/store';
 import { EffectsModule, } from '@ngrx/effects';
+import { reducers } from './store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store'
+import { CustomRouteSerializer } from './Shared/helpers/customRouteSerializer';
+import { environment } from 'src/environments/environment';
 
 
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
-   bgsOpacity:0.5,
+   bgsOpacity: 0.5,
    bgsColor: 'red',
    bgsPosition: POSITION.bottomRight,
    bgsSize: 70,
@@ -55,7 +59,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
       ToastrModule.forRoot({
-         timeOut: 10000,         
+         timeOut: 10000,
          positionClass: 'toast-top-left',
          preventDuplicates: true,
          progressBar: true,
@@ -63,18 +67,26 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
       }),
       DialogsModule,
-      StoreModule.forRoot({}),
-      //StoreRouterConnectingModule,
-      EffectsModule.forRoot([])
+      StoreModule.forRoot(reducers),
+      StoreRouterConnectingModule.forRoot({
+
+         serializer:CustomRouteSerializer
+      }),
+      EffectsModule.forRoot([]),
+      //environment.Isdevelopment ? StoreDev
 
    ],
    providers: [
+      // {
+      //    provide: HTTP_INTERCEPTORS,
+      //    useClass: AuthInterceptor,
+      //    multi: true
+      // }
+      AuthInterceptor,
+      AuthService,
       {
-         provide: HTTP_INTERCEPTORS,
-         useClass: AuthInterceptor,
-         multi: true
-      },
-      AuthService],
+         provide: RouterStateSerializer, useClass: CustomRouteSerializer
+      }],
 
    bootstrap: [
       AppComponent
