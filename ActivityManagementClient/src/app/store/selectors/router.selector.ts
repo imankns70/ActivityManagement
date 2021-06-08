@@ -3,30 +3,33 @@ import { User } from "src/app/models/user/user";
 import { RouterStateUrl } from "../_model/routerStateUrl";
 import * as fromRouter from '@ngrx/router-store';
 
+//--------------------------------Router---------------------------------
+export const getRouterParams =
+    (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.params;
+export const getRouterQueryParams =
+    (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.queryParams;
+export const getRouterUrl =
+    (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.url;
+export const getRouterNavigationId =
+    (state: fromRouter.RouterReducerState<RouterStateUrl>) => state.navigationId;
 
-export const getRouterParams = 
-(state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.params;
-export const getRouterQueryParams = 
-(state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.queryParams;
-export const getRouterUrl = 
-(state: fromRouter.RouterReducerState<RouterStateUrl>) => state.state.url;
-export const getRouterNavigationId = 
-(state: fromRouter.RouterReducerState<RouterStateUrl>) => state.navigationId;
+
+export const getRouterState = createFeatureSelector<fromRouter.RouterReducerState<RouterStateUrl>>('router');
+
+export const getRouterParamsState = createSelector(getRouterState, getRouterParams);
+
+export const getRouterQueryParamsState = createSelector(getRouterState, getRouterQueryParams);
+
+export const getRouterUrlState = createSelector(getRouterState, getRouterUrl);
+
+//--------------------------------LoggedUser---------------------------------
  
+export const selectLoggedUserFirstName = (state: User) => state.firstName;
+export const selectLoggedUserPhotoUrl= (state: User) => state.image;
 
-export const getRouterState = createFeatureSelector
-<fromRouter.RouterReducerState<RouterStateUrl>>('routerReducer');
-
-export const getRouterParamsState=createSelector(getRouterState, getRouterParams);
-
-export const getRouterQueryParamsState=createSelector(getRouterState,getRouterQueryParams);
-
-export const getRouterUrlState=createSelector(getRouterState, getRouterUrl);
-
-export const selectLoggedUserName = (state: User) => state.userName;
-
-// return userState
+// return user
 export const getUserLoggedState = createFeatureSelector<User>('loggedUser');
 
-// return userName
-export const getUserLoggedUserName = createSelector(getUserLoggedState, selectLoggedUserName)
+ 
+export const getUserLoggedFirstUser = createSelector(getUserLoggedState, selectLoggedUserFirstName) 
+export const getUserLoggedPhotoUrl= createSelector(getUserLoggedState, selectLoggedUserPhotoUrl)
