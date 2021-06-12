@@ -21,7 +21,8 @@ import { reducers } from './store';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store'
 import { CustomRouteSerializer } from './Shared/helpers/customRouteSerializer';
 import { environment } from 'src/environments/environment';
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { effects } from './store/effects';
 
 
 
@@ -29,7 +30,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
    bgsOpacity: 0.5,
    bgsColor: 'red',
-   bgsPosition: POSITION.bottomRight,
+   bgsPosition: POSITION.bottomRight, 
    bgsSize: 70,
 
    fgsPosition: POSITION.bottomRight,
@@ -72,17 +73,20 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
          serializer:CustomRouteSerializer
       }),
-      EffectsModule.forRoot([]),
-      //environment.Isdevelopment ? StoreDev
+      EffectsModule.forRoot(effects),
+      StoreDevtoolsModule.instrument({
+         maxAge: 25, // Retains last 25 states
+         logOnly: environment.Isdevelopment, // Restrict extension to log-only mode
+       }),
+     
 
    ],
    providers: [
-      // {
-      //    provide: HTTP_INTERCEPTORS,
-      //    useClass: AuthInterceptor,
-      //    multi: true
-      // }
-      AuthInterceptor,
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: AuthInterceptor,
+         multi: true
+      },
       AuthService,
       {
          provide: RouterStateSerializer, useClass: CustomRouteSerializer

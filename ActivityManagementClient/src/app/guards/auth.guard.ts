@@ -17,12 +17,12 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // return current url
     //let stateName: string = state.url.replace('/', '')
-
+ debugger;
     if (this.authService.isSignIn()) {
        
-      const roles = next.data['roles'] as Array<string>
-      if (roles) {
-        const isMatch = this.authService.roleMatch(roles);
+      const alloweRoles = next.data['roles'] as Array<string>
+      if (alloweRoles) {
+        const isMatch = this.authService.roleMatch(alloweRoles);
         if (isMatch) {
           return true;
         } else {

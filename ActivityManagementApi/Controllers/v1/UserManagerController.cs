@@ -53,9 +53,9 @@ namespace ActivityManagementApi.Controllers.v1
         //[HttpGet("{id}")]
         [HttpGet()]
         [Route("GetUserLoggedIn")]
-        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<UserViewModelApi>> GetUserLoggedIn()
-        {
+         {
             if (User.Identity.IsAuthenticated)
             {
 

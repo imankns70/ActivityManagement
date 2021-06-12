@@ -3,6 +3,9 @@ import { User } from 'src/app/models/user/user';
 
 export enum loggedIUserTypes {
 
+    LOADLOGGEDUSER = '[Logged User] Load',
+    LOADLOGGEDUSER_SUCCESS = '[Logged User] Success',
+    LOADLOGGEDUSER_FAIL = '[Logged User] Fail',
     EDIT_LOGGEDUSER = '[Logged User] Edit',
     RESET_LOGGEDUSER = '[Logged User] Reset',
     EDIT_LOGGEDUSERPHOTOURL = '[Logged User PhotoUrl] Edit',
@@ -10,6 +13,23 @@ export enum loggedIUserTypes {
 
 }
 
+export class LoadLoggedUser implements Action {
+    readonly type = loggedIUserTypes.LOADLOGGEDUSER;
+
+
+}
+
+export class LoadLoggedUserSuccess implements Action {
+    readonly type = loggedIUserTypes.LOADLOGGEDUSER_SUCCESS;
+    constructor(public payload: User) { }
+
+}
+
+export class LoadLoggedUserFail implements Action {
+    readonly type = loggedIUserTypes.LOADLOGGEDUSER_FAIL;
+    constructor(public payload: string) { }
+
+}
 export class EditLoggedUser implements Action {
     readonly type = loggedIUserTypes.EDIT_LOGGEDUSER;
     constructor(public payload: User) { }
@@ -34,4 +54,13 @@ export class EditLoggedUserName implements Action {
 
 }
 
-export type All = EditLoggedUser | ResetLoggedUser | EditLoggedUserPhotoUrl | EditLoggedUserName
+
+
+export type All =
+    EditLoggedUser |
+    ResetLoggedUser |
+    EditLoggedUserPhotoUrl |
+    EditLoggedUserName |
+    LoadLoggedUser |
+    LoadLoggedUserSuccess |
+    LoadLoggedUserFail

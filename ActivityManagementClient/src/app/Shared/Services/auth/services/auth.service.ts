@@ -6,27 +6,50 @@ import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { tap } from 'rxjs/operators';
-import { url } from 'inspector';
-
+import { Store } from '@ngrx/store';
+import * as fromStore from 'src/app/store'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   baseUrl = environment.apiUrl + 'Account/';
+  roles: Array<string>;
   currentUser: User;
-  imageUrl = new BehaviorSubject<string>('../../../../assets/images/UserPic.png');
-  currentPhotoUrl = this.imageUrl.asObservable();
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient,
+    private generalStore: Store<fromStore.State>) {
 
-  changeUserPhoto(url: string) {
-
-    this.imageUrl.next(url);
+debugger;
+    this.generalStore.select(fromStore.getUserLoggedState).subscribe(user => {
+      debugger;
+      this.currentUser = user
+    });
   }
 
-  login(requestToken: any): Observable<any> {
 
-    return this.http.post<any>(this.baseUrl + 'Auth', requestToken)
+
+  login(requestToken: any): Observable<ApiResult> {
+
+    return this.http.post<ApiResult>(this.baseUrl + 'Auth', requestToken).pipe(
+
+      tap((resp: ApiResult) => {
+
+        if (resp.isSuccess) {
+
+          this.generalStore.dispatch(new fromStore.EditLoggedUser(resp.data.user));
+
+          localStorage.setItem('token', resp.data.accessToken);
+          localStorage.setItem('refreshToken', resp.data.refreshToken);
+
+        } else {
+          console.log(resp.message);
+
+        }
+
+
+      }
+      )
+    );
 
   }
 
@@ -35,7 +58,7 @@ export class AuthService {
     return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
-    return this.getJwtToken() == null ? false : true;
+    return this.getJwtToken() !== '';
 
   }
   getJwtToken(): string {
@@ -43,40 +66,30 @@ export class AuthService {
   }
   logout() {
 
-    localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
-    this.currentUser = null;
+    this.generalStore.dispatch(new fromStore.ResetLoggedUser());
+    this.roles = [];
     this.router.navigate(['/auth/login'])
   }
-  loadUser() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      this.currentUser = user;
-      this.changeUserPhoto(user.image)
-    }
 
-  }
   private getRefreshToken() {
     return localStorage.getItem('refreshToken');
   }
 
   refreshToken() {
 
-    // const newHeader = new HttpHeaders({
-    //   Authorization:  `Bearer 455454`
-    // })
-
-
-    const user: User = JSON.parse(localStorage.getItem('user'));
+    debugger;
     const requestToken = {
-      userName: user.userName,
+      userName: this.currentUser.userName,
       refreshToken: this.getRefreshToken(),
       grantType: 'RefreshToken'
     }
     return this.http.post<any>(this.baseUrl + 'Auth', requestToken).pipe(
-      tap((res: any) => {
+      tap((res: ApiResult) => {
         this.storeJwtToken(res.data.accessToken);
+        this.generalStore.dispatch(new fromStore.EditLoggedUser(res.data.user));
+        this.roles = res.data.roles
       }));
   }
 
@@ -87,15 +100,25 @@ export class AuthService {
 
 
   roleMatch(allowedRoles): boolean {
-
+    debugger;
     let isMatch = false;
-    const user = JSON.parse(localStorage.getItem('user'));
-    const roles = user.roles as Array<string>
 
-    if (Array.isArray(roles)) {
+    if (this.currentUser.id != 0) {
+
+      this.roles = this.currentUser.roles as Array<string>
+    }
+    else {
+      this.generalStore.dispatch(new fromStore.LoadLoggedUser());
+      this.generalStore.select(fromStore.getUserLoggedState).subscribe(user => {
+        this.currentUser = user
+
+      })
+    }
+
+    if (Array.isArray(this.roles)) {
 
       allowedRoles.forEach(element => {
-        if (roles.includes(element)) {
+        if (this.roles.includes(element)) {
           isMatch = true;
         }
       });
@@ -103,7 +126,7 @@ export class AuthService {
     } else {
 
       allowedRoles.forEach(element => {
-        if (roles === element) {
+        if (this.roles === element) {
           isMatch = true;
         }
       });
@@ -114,38 +137,36 @@ export class AuthService {
 
   }
 
-  getDashboardUrls(routeRoles: Array<string>): string {
+  getDashboardUrls(): string {
     let url = '';
 
+    this.roles = this.currentUser.roles as Array<string>
 
-    if (Array.isArray(routeRoles)) {
+    if (this.roles.length != 0) {
 
 
-      if (routeRoles.includes('Admin')) {
-        url = 'set url admin ...';
+      if (this.roles.includes('Admin')) {
+        url = '/panel/dashboard';
       }
 
-      if (routeRoles.includes('user')) {
-        url = 'set url user ...';
+      if (this.roles.includes('user')) {
+        url = '/panel/dashboard';
       }
 
     }
     else {
-      if (routeRoles === 'Admin') {
-        url = 'set url admin ...';
-      }
-
-      if (routeRoles === 'user') {
-        url = 'set url user ...';
-      }
+      url = '/auth/login';
 
     }
     return url;
 
   }
   getUser(): any {
-    return JSON.parse(localStorage.getItem('user'));
+    if (this.currentUser.id === 0) {
+      this.generalStore.dispatch(new fromStore.LoadLoggedUser())
+    }
 
+    return this.currentUser;
   }
 
 

@@ -22,14 +22,3 @@ export const getRouterQueryParamsState = createSelector(getRouterState, getRoute
 
 export const getRouterUrlState = createSelector(getRouterState, getRouterUrl);
 
-//--------------------------------LoggedUser---------------------------------
- 
-export const selectLoggedUserFirstName = (state: User) => state.firstName;
-export const selectLoggedUserPhotoUrl= (state: User) => state.image;
-
-// return user
-export const getUserLoggedState = createFeatureSelector<User>('loggedUser');
-
- 
-export const getUserLoggedFirstUser = createSelector(getUserLoggedState, selectLoggedUserFirstName) 
-export const getUserLoggedPhotoUrl= createSelector(getUserLoggedState, selectLoggedUserPhotoUrl)

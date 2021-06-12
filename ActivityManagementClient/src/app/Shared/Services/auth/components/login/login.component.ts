@@ -6,6 +6,7 @@ import { NotificationMessageService } from 'src/app/Shared/Services/Notification
 import { User } from 'src/app/models/user/user';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private alertService: NotificationMessageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    debugger;
     this.model.grantType = 'Password';
    
     this.route.queryParams.subscribe(params => this.returnUrl = params['return'] || '/panel/dashboard')
@@ -31,16 +33,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model)
     .subscribe(next => {
- 
+  debugger;
       if (next.data.isSuccess == true) {
-        localStorage.setItem('user', JSON.stringify(next.data.user));
-        localStorage.setItem('token', next.data.accessToken);
-        localStorage.setItem('refreshToken', next.data.refreshToken);
-        const imageUrl: string = next.data.image;
-        if (imageUrl) {
-          this.authService.changeUserPhoto(imageUrl);
+       
 
-        }
+        
         this.router.navigate([this.returnUrl]);
 
 
