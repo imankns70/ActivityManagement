@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../components/auth/services/auth.service';
+import { AuthService } from '../Shared/Services/auth/services/auth.service';
 import { Globals } from '../models/enums/Globals';
-import { NotificationMessageService } from '../Services/NotificationMessage.service';
+import { NotificationMessageService } from '../Shared/Services/NotificationMessage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -16,15 +16,15 @@ export class LoginRedirectGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):
      Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
-         
-
+        debugger;
+ 
         if (!this.authService.isSignIn()) {
             
             return true
         }
         else {
             this.router.navigate(['/panel/dashboard']);
+            //this.router.navigate([this.authService.getDashboardUrls()]);
             this.alertService.showMessage('شما قبلا وارد شدید','موفق',Globals.warningMessage)
             return false
         }

@@ -9,6 +9,7 @@ export interface User {
     phoneNumber: number,
     roleId: number,
     roleName: string,
+    roles: Array<string>,
     email: string,
     image: string,
     isActive: boolean,

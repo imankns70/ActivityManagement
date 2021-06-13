@@ -10,21 +10,27 @@ import {
    NgxUiLoaderModule, NgxUiLoaderHttpModule, NgxUiLoaderRouterModule,
    NgxUiLoaderConfig, POSITION, SPINNER, PB_DIRECTION
 } from 'ngx-ui-loader';
-import { AuthService } from '../app/components/auth/services/auth.service';
+import { AuthService } from './Shared/Services/auth/services/auth.service';
 //import { ErrorInterceptorPrivider } from './Services/http-error.interceptor';
-import { AuthInterceptor } from './Services/AuthInterceptor.interceptor';
+import { AuthInterceptor } from './Shared/Services/AuthInterceptor.interceptor';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { StoreModule, } from '@ngrx/store';
+import { EffectsModule, } from '@ngrx/effects';
+import { reducers } from './store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store'
+import { CustomRouteSerializer } from './Shared/helpers/customRouteSerializer';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { effects } from './store/effects';
 
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
    pbColor: 'red',
-   bgsOpacity:0.5,
+   bgsOpacity: 0.5,
    bgsColor: 'red',
-   bgsPosition: POSITION.bottomRight,
+   bgsPosition: POSITION.bottomRight, 
    bgsSize: 70,
 
    fgsPosition: POSITION.bottomRight,
@@ -54,7 +60,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       NgxUiLoaderRouterModule,
       NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
       ToastrModule.forRoot({
-         timeOut: 10000,         
+         timeOut: 10000,
          positionClass: 'toast-top-left',
          preventDuplicates: true,
          progressBar: true,
@@ -62,6 +68,17 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 
       }),
       DialogsModule,
+      StoreModule.forRoot(reducers),
+      StoreRouterConnectingModule.forRoot({
+
+         serializer:CustomRouteSerializer
+      }),
+      EffectsModule.forRoot(effects),
+      StoreDevtoolsModule.instrument({
+         maxAge: 25, // Retains last 25 states
+         logOnly: environment.Isdevelopment, // Restrict extension to log-only mode
+       }),
+     
 
    ],
    providers: [
@@ -70,7 +87,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
          useClass: AuthInterceptor,
          multi: true
       },
-      AuthService],
+      AuthService,
+      {
+         provide: RouterStateSerializer, useClass: CustomRouteSerializer
+      }],
 
    bootstrap: [
       AppComponent

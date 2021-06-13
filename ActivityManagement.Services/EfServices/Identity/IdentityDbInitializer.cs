@@ -24,7 +24,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         private readonly ILogger<IdentityDbInitializer> _logger;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IServiceScopeFactory _scopeFactory;
-        public readonly IMvcActionsDiscoveryService _mvcActionsDiscovery;
+        public  readonly  IMvcActionsDiscoveryService _mvcActionsDiscovery;
 
 
         public IdentityDbInitializer(

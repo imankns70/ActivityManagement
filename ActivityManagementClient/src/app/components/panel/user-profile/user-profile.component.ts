@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../auth/services/auth.service';
-
+import { Observable } from 'rxjs';
+import { AuthService } from '../../../Shared/Services/auth/services/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromStore from 'src/app/store'
 
 @Component({
   selector: 'user-profile',
@@ -9,13 +10,14 @@ import { AuthService } from '../../auth/services/auth.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  imageUrl: string
+  imageUrl$: Observable<string>
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private generalStore: Store<fromStore.State>, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
-    this.authService.loadUser();
+    this.imageUrl$ = this.generalStore.select(fromStore.getUserLoggedPhotoUrl);
+    // this.authService.currentPhotoUrl.subscribe(url => this.imageUrl = url)
+    // this.authService.loadUser();
   }
   logout() {
     this.authService.logout();

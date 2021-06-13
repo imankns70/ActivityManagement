@@ -8,15 +8,15 @@ import { PreventUnsavedGuard } from 'src/app/guards/prevent-unsaved.guard';
 import { ChangePicComponent } from '../user/components/change-pic/change-pic.component';
 import { UserRoutingModule } from './user-routing.module';
 import { FileUploadModule } from 'ng2-file-upload';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { KendoModule } from 'src/app/SharedModules/Kendo/Kendo.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { KendoModule } from 'src/app/Shared/Modules/Kendo.module';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { CreateUserComponent } from './components/create-user/create-user.component';
 import { UsersBindingDirective } from './components/user-list/users-binding.directive';
 import { UserGridService } from './services/User.Grid.service';
-import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { DpDatePickerModule } from 'ng2-jalali-date-picker';
-
+import { RenderUserComponent } from './components/render-user/render-user.component';
+import { NgPersianDatepickerModule } from 'ng-persian-datepicker';
+import { DeleteUserComponent } from './components/delete-user/delete-user.component';
+ 
 @NgModule({
   imports: [
     UserRoutingModule,
@@ -25,7 +25,10 @@ import { DpDatePickerModule } from 'ng2-jalali-date-picker';
     CommonModule,
     FileUploadModule,
     KendoModule,
-    DpDatePickerModule
+    NgPersianDatepickerModule,
+  
+
+ 
    
   ],
   declarations: [
@@ -34,9 +37,9 @@ import { DpDatePickerModule } from 'ng2-jalali-date-picker';
     ChangePicComponent,
     UserListComponent,
     UsersBindingDirective,
-    CreateUserComponent,
-    CreateUserComponent, 
-    EditUserComponent
+    RenderUserComponent,
+    DeleteUserComponent
+    
     
   ],
    

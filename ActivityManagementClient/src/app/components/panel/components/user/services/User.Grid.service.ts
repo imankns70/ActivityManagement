@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { KednoGridService } from 'src/app/Services/kedno-grid.service';
+import { KednoGridService } from 'src/app/Shared/Services/kedno-grid.service';
 
 
 @Injectable()
@@ -17,7 +17,7 @@ export class UserGridService extends KednoGridService {
 
   public queryForUserName(userName: string, state: any) {
 
-    this.query(Object.assign({}, state, {
+    this.read(Object.assign({}, state, {
       filter: {
         filters: [{
           filed: 'username', operator: 'contains', value: userName

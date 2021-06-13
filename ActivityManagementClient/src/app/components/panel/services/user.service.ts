@@ -31,6 +31,14 @@ export class UserService  {
   createUser(viewModel: User): Observable<ApiResult> {
     return this.http.post<ApiResult>(this.baseUrl + 'CreateUser', viewModel)
   }
+  
+  editUser(viewModel: User): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + 'EditUser', viewModel)
+  }
+  
+  deleteUser(viewModel: User): Observable<ApiResult> {
+    return this.http.post<ApiResult>(this.baseUrl + 'DeleteUser', viewModel)
+  }
 }
  
  

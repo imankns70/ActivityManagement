@@ -1,6 +1,6 @@
-<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="600" filterable="menu" 
-  (add)="renderAddUser()"
-  (edit)="renderEditUser($event)">
+<kendo-grid UsersBinding [pageable]="true" [sortable]="true" [height]="520" filterable="menu" (add)="renderAddUser()"
+  (edit)="renderEditUser($event)" (remove)="renderDeleteUser($event)">
+
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand>ایجاد کاربر</button>
   </ng-template>
@@ -12,25 +12,20 @@
   <kendo-grid-command-column title="عملیات" width="220">
     <ng-template kendoGridCellTemplate>
       <button kendoGridEditCommand [primary]="true">ویرایش</button>
-      <!-- <button kendoGridRemoveCommand>Remove</button> -->
+      <button kendoGridRemoveCommand>حذف</button>
       <!-- <button kendoGridSaveCommand [disabled]="formGroup?.invalid">{{ isNew ? 'Add' : 'Update' }}</button> -->
       <!-- <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button> -->
     </ng-template>
   </kendo-grid-command-column>
 </kendo-grid>
 
-<app-create-user  
-[isActiveCreateForm]="isActiveCreateForm"
-(save)="saveHandler($event)"
->
-</app-create-user>
+<app-render-user [isNew]="isNew" [model]="userDataItem" (save)="saveHandler($event)" (cancel)="cancelHandler()">
+</app-render-user>
 
-<app-edit-user [model]="editUser" 
-[isActiveEditForm]="isActiveEditForm"
-(save)="saveHandler($event)"
->
-</app-edit-user>
+<app-delete-user [model]="userDelete" (delete)="deleteHandler($event)"
+  (cancel)="cancelHandler()">
+</app-delete-user>
 
-<!-- <app-edit-user>
-</app-edit-user> -->
+
+
 <!-- <ng-container #container></ng-container> -->

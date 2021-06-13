@@ -6,16 +6,24 @@ import { CommonModule } from '@angular/common';
 import { RightSideMenuComponent } from './components/right-side-menu/right-side-menu.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserProfileCollapseComponent } from './user-profile-collapse/user-profile-collapse.component';
-import { SharedService } from 'src/app/Services/shared-service';
+import { SharedService } from 'src/app/Shared/Services/shared-service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
+// import { StoreModule } from '@ngrx/store';
+// import { reducers } from 'src/app/store';
+// import { EffectsModule } from '@ngrx/effects';
+
+
 
 
 @NgModule({
   imports: [
 
     PanelRoutingModule,
-    CommonModule
+    CommonModule,
+    //StoreModule.forFeature('loggedUser', reducers),
+    //EffectsModule.forFeature()
+    
 
 
 
@@ -29,9 +37,9 @@ import { HasRoleDirective } from 'src/app/directives/hasRole.directive';
     UserProfileCollapseComponent,
     HasRoleDirective
   ],
-providers:[SharedService,
-  AuthGuard 
-]
+  providers: [SharedService,
+    AuthGuard
+  ]
 
 
 })

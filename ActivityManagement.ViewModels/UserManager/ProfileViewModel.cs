@@ -36,6 +36,7 @@ namespace ActivityManagement.ViewModels.UserManager
         public string PersianBirthDate { get; set; }
         public DateTime? BirthDate { get; set; }
         public string Password { get; set; }
+        public bool IsActive { get; set; }
 
         public GenderType? Gender { get; set; }
 

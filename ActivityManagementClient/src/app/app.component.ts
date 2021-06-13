@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { TitleService } from './Shared/Services/titleservice.service';
+ 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +10,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(private titleService :TitleService) {
+       
+  }
+ngOnInit(){
 
-  title = 'test-one';
+  this.titleService.init()
+}
+
 
 }
