@@ -29,7 +29,6 @@ export const initUserLoggedState: User = {
 
 }
 export function loggedUserReducer(state = initUserLoggedState, action: Action) {
-debugger
     switch (action.type) {
 
         case loggedUserAction.loggedIUserTypes.LOADLOGGEDUSER:

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+ 
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, filter, take, switchMap, tap } from 'rxjs/operators';
+import { catchError, filter, take, switchMap, map, tap, finalize} from 'rxjs/operators';
 import { AuthService } from './auth/services/auth.service';
 import { StatusCode } from '../../models/enums/StatusCode';
 import { Router } from '@angular/router';
 import { NotificationMessageService } from './NotificationMessage.service';
 import { Globals } from '../../models/enums/Globals';
 import { environment } from 'src/environments/environment';
+import { ApiResult } from 'src/app/models/apiresult';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,19 +19,25 @@ export class AuthInterceptor implements HttpInterceptor {
 
   constructor(public authService: AuthService, private route: Router, private alertService: NotificationMessageService) { }
 
+  //intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    debugger;
+    
     if (request.url.indexOf(this.baseUrl + 'Auth') != 0) {
       if (this.authService.getJwtToken()) {
-        request = this.addToken(request, this.authService.getJwtToken());
+        request = this.attachTokenToRequest(request, this.authService.getJwtToken());
       }
     }
 
+ 
 
-    return next.handle(request).pipe(
+  
+
+  return next.handle(request).pipe(
+      //filter(e => e.type !== 0),
       tap((event: any) => {
-        debugger;
+        
+
+        
         if (event instanceof HttpResponse) {
 
           console.log('success');
@@ -38,8 +46,8 @@ export class AuthInterceptor implements HttpInterceptor {
        
       
       }),
-      catchError(error => {
-        debugger;
+      catchError((error):Observable<any> => {
+        
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
@@ -69,22 +77,22 @@ export class AuthInterceptor implements HttpInterceptor {
           this.alertService.showMessage(error.error.Message, 'خطا', Globals.errorMessage)
           return throwError(error.error.Message);
         }
-      }));
+      }),
+      
+       );
+
+   
   }
 
-  private addToken(request: HttpRequest<any>, token: string) {
-
-    return request.clone({
-      setHeaders: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+  private attachTokenToRequest(request: HttpRequest<any>, token: string) {
+     
+    return request.clone({setHeaders: { 'Authorization': `Bearer ${token}`} });
   }
 
 
   private handleRefreshToken(request: HttpRequest<any>, next: HttpHandler) {
 
-    debugger;
+ 
     if (!this.isRefreshing) {
 
 
@@ -93,11 +101,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
       return this.authService.refreshToken().pipe(
 
-        switchMap((token: any) => {
+        switchMap((result: ApiResult) => {
 
           this.isRefreshing = false;
-          this.refreshTokenSubject.next(token.data.accessToken);
-          return next.handle(this.addToken(request, token.data.accessToken));
+          this.refreshTokenSubject.next(result.data.accessToken);
+          return next.handle(this.attachTokenToRequest(request, result.data.accessToken));
         }));
 
     } else {
@@ -105,7 +113,7 @@ export class AuthInterceptor implements HttpInterceptor {
         filter(token => token != null),
         take(1),
         switchMap(jwt => {
-          return next.handle(this.addToken(request, jwt));
+          return next.handle(this.attachTokenToRequest(request, jwt));
         }));
     }
   }

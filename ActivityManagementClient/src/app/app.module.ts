@@ -23,6 +23,7 @@ import { CustomRouteSerializer } from './Shared/helpers/customRouteSerializer';
 import { environment } from 'src/environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { effects } from './store/effects';
+import { HttpErrorInterceptor } from './Shared/Services/http-error.interceptor';
 
 
 
@@ -85,6 +86,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       {
          provide: HTTP_INTERCEPTORS,
          useClass: AuthInterceptor,
+         //useClass: HttpErrorInterceptor,
          multi: true
       },
       AuthService,

@@ -20,7 +20,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
 namespace ActivityManagementApi.Controllers.v1
 {
     [Route("api/v{version:apiVersion}/[controller]/")]
@@ -43,7 +42,7 @@ namespace ActivityManagementApi.Controllers.v1
         [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<DataSourceResult>> GetUsers([DataSourceRequest] DataSourceRequest request)
         {
-
+            
             DataSourceResult dataResult = await _userManager.GetAllUsersWithRoles().ToDataSourceResultAsync(request);
 
             return Ok(dataResult);
@@ -53,13 +52,16 @@ namespace ActivityManagementApi.Controllers.v1
         //[HttpGet("{id}")]
         [HttpGet()]
         [Route("GetUserLoggedIn")]
-        //[JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
+        [JwtAuthentication(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ApiResult<UserViewModelApi>> GetUserLoggedIn()
          {
             if (User.Identity.IsAuthenticated)
             {
-
+                 
                 UserViewModelApi user = await _userManager.FindUserApiByIdAsync(User.Identity.GetUserId<int>());
+
+                user.Image = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}{HttpContext.Request.PathBase.Value}/wwwroot/Users/{user.Image}";
+
                 return Ok(user);
             }
 

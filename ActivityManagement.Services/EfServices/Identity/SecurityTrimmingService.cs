@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
+using ActivityManagement.Common.Api;
+using ActivityManagement.IocConfig.Api.Exceptions;
 using ActivityManagement.Services.EfInterfaces.Identity;
 using ActivityManagement.ViewModels.DynamicAccess;
 using Microsoft.AspNetCore.Http;
@@ -36,7 +39,9 @@ namespace ActivityManagement.Services.EfServices.Identity
 
             if (!user.Identity.IsAuthenticated)
             {
-                return false;
+                // return false;
+                throw new AppException(ApiResultStatusCode.LogOut, "You are not loggin.", HttpStatusCode.Unauthorized);
+
             }
 
             return user.HasClaim(claim => claim.Type == ConstantPolicies.DynamicPermissionClaimType &&

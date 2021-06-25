@@ -16,8 +16,6 @@ export class LoginRedirectGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot):
      Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-        debugger;
- 
         if (!this.authService.isSignIn()) {
             
             return true
@@ -30,5 +28,5 @@ export class LoginRedirectGuard implements CanActivate {
         }
 
 
-    }
+    } 
 }

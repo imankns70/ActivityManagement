@@ -19,7 +19,7 @@ using Microsoft.Extensions.Options;
 namespace ActivityManagement.Services.EfServices.Identity
 {
     public class ApplicationUserManager : UserManager<AppUser>, IApplicationUserManager
-    { 
+    {
         private readonly ApplicationIdentityErrorDescriber _errors;
         private readonly ILookupNormalizer _keyNormalizer;
         private readonly ILogger<ApplicationUserManager> _logger;
@@ -88,7 +88,7 @@ namespace ActivityManagement.Services.EfServices.Identity
         }
         public List<UsersViewModel> GetAllUsersWithRoles()
         {
-            
+
             return Users.Include(user => user.Roles).Select(user => new UsersViewModel
             {
 
@@ -101,7 +101,7 @@ namespace ActivityManagement.Services.EfServices.Identity
 
                 PersianRegisterDateTime = user.RegisterDateTime.ConvertGeorgianToPersian("yyyy/MM/dd"),
                 GenderName = user.Gender != null ? user.Gender == GenderType.Male ? "مرد" : "زن" : "",
-                Gender= user.Gender,
+                Gender = user.Gender,
                 RoleName = user.Roles.Select(r => r.Role.Name).FirstOrDefault(),
                 Email = user.Email,
                 UserName = user.UserName,
@@ -144,6 +144,7 @@ namespace ActivityManagement.Services.EfServices.Identity
             //var sss = await Users.Include(a => a.Roles).Where(u => u.Id == userId).Select(user=> user.Roles.SelectMany(userRole=>userRole.Role.Name.ToString()).ToList()).FirstOrDefaultAsync();
             return await Users.Include(a => a.Roles).Where(u => u.Id == userId).Select(user => new UserViewModelApi
             {
+
                 Id = user.Id,
                 Email = user.Email,
                 UserName = user.UserName,
@@ -153,7 +154,7 @@ namespace ActivityManagement.Services.EfServices.Identity
                 Image = user.Image,
                 PersianBirthDate = user.BirthDate.HasValue ? user.BirthDate.ConvertGeorgianToPersian("yyyy/MM/dd") : "",
                 Gender = user.Gender,
-                Roles = user.Roles.Select(s=> s.Role.Name)
+                Roles = user.Roles.Select(s => s.Role.Name)
             }).FirstOrDefaultAsync();
         }
 

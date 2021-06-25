@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // return current url
     //let stateName: string = state.url.replace('/', '')
- debugger;
     if (this.authService.isSignIn()) {
        
       const alloweRoles = next.data['roles'] as Array<string>
@@ -25,16 +24,17 @@ export class AuthGuard implements CanActivate {
         const isMatch = this.authService.roleMatch(alloweRoles);
         if (isMatch) {
           return true;
+     
         } else {
           this.alert.showMessage('شما به این بخش دسترسی ندارید', 'عدم دسترسی', Globals.errorMessage);
-          return  this.router.navigate(['/auth/login']);
+          // return  this.router.navigate(['/auth/login']);
           // ریداریکت کدن کاربر به بخش ماژول خودش
-          //return  this.router.navigate([this.authService.getDashboardUrls(roles));
-          
         
+          return  this.router.navigate([this.authService.getDashboardUrls()])
 
         }
       }
+
       return true;
 
     } else {

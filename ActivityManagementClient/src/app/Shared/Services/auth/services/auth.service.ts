@@ -1,32 +1,35 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ApiResult } from 'src/app/models/apiresult';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as fromStore from 'src/app/store'
+import { UserService } from 'src/app/components/panel/services/user.service';
+import { debug } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
+  subManager = new Subscription();
   baseUrl = environment.apiUrl + 'Account/';
   roles: Array<string>;
   currentUser: User;
   constructor(private router: Router, private http: HttpClient,
     private generalStore: Store<fromStore.State>) {
-
-debugger;
     this.generalStore.select(fromStore.getUserLoggedState).subscribe(user => {
-      debugger;
       this.currentUser = user
-    });
+
+    })
   }
 
-
+  ngOnDestroy() {
+    this.subManager.unsubscribe();
+  }
 
   login(requestToken: any): Observable<ApiResult> {
 
@@ -40,6 +43,8 @@ debugger;
 
           localStorage.setItem('token', resp.data.accessToken);
           localStorage.setItem('refreshToken', resp.data.refreshToken);
+          localStorage.setItem('userName', resp.data.user.userName);
+
 
         } else {
           console.log(resp.message);
@@ -58,11 +63,12 @@ debugger;
     return this.http.post<ApiResult>(this.baseUrl + 'Register', viewModel)
   }
   isSignIn(): boolean {
-    return this.getJwtToken() !== '';
-
+    const isSign= this.getJwtToken() != null ? true: false;
+    return isSign;
   }
   getJwtToken(): string {
-    return localStorage.getItem('token')
+
+    return localStorage.getItem('token');
   }
   logout() {
 
@@ -79,15 +85,15 @@ debugger;
 
   refreshToken() {
 
-    debugger;
     const requestToken = {
-      userName: this.currentUser.userName,
+      userName: localStorage.getItem('userName'),
       refreshToken: this.getRefreshToken(),
       grantType: 'RefreshToken'
     }
     return this.http.post<any>(this.baseUrl + 'Auth', requestToken).pipe(
       tap((res: ApiResult) => {
         this.storeJwtToken(res.data.accessToken);
+
         this.generalStore.dispatch(new fromStore.EditLoggedUser(res.data.user));
         this.roles = res.data.roles
       }));
@@ -100,20 +106,21 @@ debugger;
 
 
   roleMatch(allowedRoles): boolean {
-    debugger;
+  
     let isMatch = false;
 
-    if (this.currentUser.id != 0) {
+    //if (this.currentUser.id != 0) {
 
-      this.roles = this.currentUser.roles as Array<string>
-    }
-    else {
-      this.generalStore.dispatch(new fromStore.LoadLoggedUser());
-      this.generalStore.select(fromStore.getUserLoggedState).subscribe(user => {
-        this.currentUser = user
+    this.roles = this.currentUser.roles as Array<string>
+    //}
+    // else {
 
-      })
-    }
+
+    //   this.generalStore.dispatch(new fromStore.LoadLoggedUser());
+
+
+
+    // }
 
     if (Array.isArray(this.roles)) {
 
